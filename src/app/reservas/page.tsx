@@ -1,40 +1,68 @@
+import Image from "next/image";
 import Link from "next/link";
 import { BookingPriceObserver } from "@/components/BookingPriceObserver";
-import { CloudbedsBookingEmbed } from "@/components/CloudbedsBookingEmbed";
-import { ExchangeRateNotice } from "@/components/ExchangeRateNotice";
+import { CloudbedsScriptLoader } from "@/components/CloudbedsScriptLoader";
+import { publicConfig } from "@/lib/config";
+import logoImage from "../../../assets/images/logo-sin-fondo-270.png";
 
 export default function ReservasPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
-        <Link href="/" className="text-base font-semibold tracking-tight">
-          Los Lagos Hotel
-        </Link>
-        <Link className="text-sm font-medium text-accent" href="/">
-          Volver al inicio
-        </Link>
+    <main className="reservation-page bg-white text-[#1f2b27]">
+      <CloudbedsScriptLoader />
+      <BookingPriceObserver />
+
+      <header
+        className="reservation-shell-header sticky top-0 z-50 border-b border-[#e4e8e6] bg-white"
+        data-testid="reservation-wrapper-header"
+      >
+        <div className="mx-auto flex h-[72px] w-full max-w-7xl items-center justify-between px-5 sm:px-8">
+          <Link className="flex items-center gap-3" href="/">
+            <Image
+              alt="Los Lagos Hotel"
+              className="h-11 w-11 rounded-full bg-white object-contain p-1 ring-1 ring-[#e4e8e6]"
+              height={44}
+              priority
+              src={logoImage}
+              width={44}
+            />
+            <span className="text-base font-semibold tracking-wide">
+              Los Lagos Hotel
+            </span>
+          </Link>
+          <nav className="hidden items-center gap-7 text-sm font-medium text-[#52615d] md:flex">
+            <Link className="transition hover:text-[#1f2b27]" href="/#hotel">
+              Hotel
+            </Link>
+            <Link
+              className="transition hover:text-[#1f2b27]"
+              href="/#habitaciones"
+            >
+              Habitaciones
+            </Link>
+            <Link className="transition hover:text-[#1f2b27]" href="/#ubicacion">
+              Ubicacion
+            </Link>
+          </nav>
+          <Link
+            className="rounded-lg bg-[#1f2b27] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#31413d]"
+            href="/"
+          >
+            Volver al hotel
+          </Link>
+        </div>
       </header>
 
-      <section className="mx-auto w-full max-w-6xl px-5 pb-8 pt-6 sm:px-8">
-        <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
-          <div>
-            <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-              Reservas
-            </h1>
-            <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
-              Consulta disponibilidad, habitaciones y condiciones en el motor
-              oficial de Cloudbeds.
-            </p>
-          </div>
-          <ExchangeRateNotice arsPerUsd={1200} />
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-5 pb-16 sm:px-8">
-        <div className="booking-surface overflow-hidden rounded-[1.75rem] border border-border bg-surface-strong shadow-sm">
-          <BookingPriceObserver />
-          <CloudbedsBookingEmbed />
-        </div>
+      <section className="cloudbeds-host reservation-embed-host" data-testid="cloudbeds-host">
+        <cb-immersive-experience
+          currency={publicConfig.baseCurrency}
+          data-testid="cloudbeds-standard-embed"
+          hide-custom-footer="yes"
+          hide-custom-header="yes"
+          hide-property-info="yes"
+          lang="es"
+          mode="standard"
+          property-code={publicConfig.propertyCode}
+        />
       </section>
     </main>
   );

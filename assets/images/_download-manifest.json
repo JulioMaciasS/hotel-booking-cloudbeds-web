@@ -1,0 +1,3226 @@
+{
+  "source": "https://loslagoshotel.com.ar/",
+  "downloadedAt": "2026-05-12T12:39:54.557Z",
+  "pagesScanned": [
+    "https://loslagoshotel.com.ar/",
+    "https://loslagoshotel.com.ar/contacto/",
+    "https://loslagoshotel.com.ar/gracias-por-su-reserva/",
+    "https://loslagoshotel.com.ar/habitaciones/",
+    "https://loslagoshotel.com.ar/pagina-ejemplo/",
+    "https://loslagoshotel.com.ar/reserva/"
+  ],
+  "cssFilesDiscovered": [
+    "http://loslagoshotel.com.ar/wp-content/uploads/elementor/google-fonts/css/abeezee.css?ver=1751996101",
+    "http://loslagoshotel.com.ar/wp-content/uploads/elementor/google-fonts/css/arvo.css?ver=1746816005",
+    "http://loslagoshotel.com.ar/wp-content/uploads/elementor/google-fonts/css/asap.css?ver=1751996100",
+    "http://loslagoshotel.com.ar/wp-content/uploads/elementor/google-fonts/css/heebo.css?ver=1746816014",
+    "http://loslagoshotel.com.ar/wp-content/uploads/elementor/google-fonts/css/montserrat.css?ver=1746816011",
+    "http://loslagoshotel.com.ar/wp-content/uploads/elementor/google-fonts/css/roboto.css?ver=1746816000",
+    "http://loslagoshotel.com.ar/wp-content/uploads/elementor/google-fonts/css/robotoslab.css?ver=1746816004",
+    "https://loslagoshotel.com.ar/wp-content/plugins/dc-date-picker/css/pickerStyle.css?ver=6.9.4",
+    "https://loslagoshotel.com.ar/wp-content/plugins/dc-date-picker/css/style.default.css?ver=6.9.4",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor-pro/assets/css/conditionals/ribbon.min.css?ver=4.0.1",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor-pro/assets/css/conditionals/transitions.min.css?ver=4.0.1",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor-pro/assets/css/modules/sticky.min.css?ver=4.0.1",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor-pro/assets/css/widget-call-to-action.min.css?ver=4.0.1",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor-pro/assets/css/widget-form.min.css?ver=4.0.1",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor-pro/assets/css/widget-gallery.min.css?ver=4.0.1",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css?ver=4.0.1",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/css/widget-divider.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/css/widget-google_maps.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/css/widget-icon-box.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/css/widget-menu-anchor.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/css/widget-spacer.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/lib/animations/styles/bounceInDown.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/lib/animations/styles/e-animation-float.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/lib/animations/styles/fadeIn.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInDown.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInLeft.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInRight.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInUp.min.css?ver=4.0.7",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/lib/e-gallery/css/e-gallery.min.css?ver=1.2.0",
+    "https://loslagoshotel.com.ar/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css?ver=8.4.5",
+    "https://loslagoshotel.com.ar/wp-content/plugins/jet-engine/assets/css/frontend.css?ver=3.8.8",
+    "https://loslagoshotel.com.ar/wp-content/plugins/mentor-icon-set/assets/css/icofont.min.css?ver=1.0.0",
+    "https://loslagoshotel.com.ar/wp-content/plugins/mentor-icon-set/assets/css/line-awesome.min.css?ver=1.0.0",
+    "https://loslagoshotel.com.ar/wp-content/plugins/mentor-icon-set/assets/css/materialdesignicons.min.css?ver=1.0.0",
+    "https://loslagoshotel.com.ar/wp-content/plugins/motionger-elementor/css/motionger-elementor.min.css?ver=2.0.3",
+    "https://loslagoshotel.com.ar/wp-content/plugins/motionger-elementor/src/Merkulove/Unity/assets/css/elementor-admin.min.css?ver=2.0.3",
+    "https://loslagoshotel.com.ar/wp-content/themes/hello-elementor/assets/css/header-footer.css?ver=3.4.7",
+    "https://loslagoshotel.com.ar/wp-content/themes/hello-elementor/assets/css/reset.css?ver=3.4.7",
+    "https://loslagoshotel.com.ar/wp-content/themes/hello-elementor/assets/css/theme.css?ver=3.4.7",
+    "https://loslagoshotel.com.ar/wp-content/uploads/elementor/css/post-204.css?ver=1778093057",
+    "https://loslagoshotel.com.ar/wp-content/uploads/elementor/css/post-42.css?ver=1778076391",
+    "https://loslagoshotel.com.ar/wp-content/uploads/elementor/css/post-434.css?ver=1778103966",
+    "https://loslagoshotel.com.ar/wp-content/uploads/elementor/css/post-45.css?ver=1778076391",
+    "https://loslagoshotel.com.ar/wp-content/uploads/elementor/css/post-5.css?ver=1778076391",
+    "https://loslagoshotel.com.ar/wp-content/uploads/elementor/css/post-59.css?ver=1778077699",
+    "https://loslagoshotel.com.ar/wp-content/uploads/elementor/css/post-63.css?ver=1778078944",
+    "https://loslagoshotel.com.ar/wp-content/uploads/elementor/css/post-65.css?ver=1778148117",
+    "https://loslagoshotel.com.ar/wp-includes/css/dist/block-library/style.min.css?ver=6.9.4"
+  ],
+  "downloadedCount": 150,
+  "failedCount": 0,
+  "downloaded": [
+    {
+      "url": "http://loslagoshotel.com.ar/wp-content/uploads/2023/12/cerro-torre-los-glaciares-national-park-patagoni-2023-11-27-05-11-13-utc-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__cerro-torre-los-glaciares-national-park-patagoni-2023-11-27-05-11-13-utc-scaled__9c495052.jpg",
+      "bytes": 586161,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "http://loslagoshotel.com.ar/wp-content/uploads/2023/12/panorama-of-perito-moreno-glacier-in-patagonia-e-2023-11-27-04-56-41-utc-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__panorama-of-perito-moreno-glacier-in-patagonia-e-2023-11-27-04-56-41-utc-scaled__d36ecb06.jpg",
+      "bytes": 878548,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "http://loslagoshotel.com.ar/wp-content/uploads/2023/12/red-beech-trees-opposite-fitzroy-mount-autumn-in-2023-11-27-04-54-39-utc-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__red-beech-trees-opposite-fitzroy-mount-autumn-in-2023-11-27-04-54-39-utc-scaled__ef4789d8.jpg",
+      "bytes": 2087385,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "http://loslagoshotel.com.ar/wp-content/uploads/2023/12/the-perito-moreno-glacier-los-glaciares-national-2023-11-27-05-29-51-utc-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__the-perito-moreno-glacier-los-glaciares-national-2023-11-27-05-29-51-utc-scaled__dffbe63d.jpg",
+      "bytes": 807414,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/plugins/mentor-icon-set/assets/fonts/la-brands-400.svg",
+      "file": "assets/images/loslagoshotel.com.ar__la-brands-400__f381c4f3.svg",
+      "bytes": 927335,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/plugins/mentor-icon-set/assets/fonts/la-regular-400.svg",
+      "file": "assets/images/loslagoshotel.com.ar__la-regular-400__74db7958.svg",
+      "bytes": 113535,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/plugins/mentor-icon-set/assets/fonts/la-solid-900.svg",
+      "file": "assets/images/loslagoshotel.com.ar__la-solid-900__999bcb6a.svg",
+      "bytes": 923151,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/plugins/motionger-elementor/images/logo-color.svg",
+      "file": "assets/images/loslagoshotel.com.ar__logo-color__de52464b.svg",
+      "bytes": 1667,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/54090-bed-and-curtains-in-hotel-room.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__54090-bed-and-curtains-in-hotel-room__84e1f2af.jpg",
+      "bytes": 100001,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/GOPR1682_1697761769343-484758d185ef546da308c368c6caade8-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__GOPR1682_1697761769343-484758d185ef546da308c368c6caade8-scaled__45604990.jpg",
+      "bytes": 417758,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/GOPR1689_1697761769343-cf24fe74fbf7ab0c3fec25aa7fe9e149-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__GOPR1689_1697761769343-cf24fe74fbf7ab0c3fec25aa7fe9e149-scaled__028b401b.jpg",
+      "bytes": 407829,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/GOPR1691_1697761769343-237dd91237ed99b5a0e975ff7e894b4b-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__GOPR1691_1697761769343-237dd91237ed99b5a0e975ff7e894b4b-scaled__6aa513e4.jpg",
+      "bytes": 391901,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/GOPR1694_1697761769343-0fad3195208f77fc2adf4d13aff4766e-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__GOPR1694_1697761769343-0fad3195208f77fc2adf4d13aff4766e-scaled__a4f68285.jpg",
+      "bytes": 376859,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/GOPR1695_1697761769343-f81db683d1eddb48fae5ba8f3fd4a0e7-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__GOPR1695_1697761769343-f81db683d1eddb48fae5ba8f3fd4a0e7-scaled__5f9b22af.jpg",
+      "bytes": 392771,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/GOPR1703_1697761769343-04610a3e5fa9a47037948dcdadd1e4ac-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__GOPR1703_1697761769343-04610a3e5fa9a47037948dcdadd1e4ac-scaled__3d01decc.jpg",
+      "bytes": 397128,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/GOPR1710_1697761769343-f867c2b6779b449db62a337e618e632e-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__GOPR1710_1697761769343-f867c2b6779b449db62a337e618e632e-scaled__01605f82.jpg",
+      "bytes": 414535,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/GOPR1713_1697761769343-4e977fe4a41b03f75b6a15e2f060ef35-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__GOPR1713_1697761769343-4e977fe4a41b03f75b6a15e2f060ef35-scaled__aac5d556.jpg",
+      "bytes": 433436,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-10-DOBLE-MAT-SUPERIOR-vistas-al-jardin-300x200.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-10-DOBLE-MAT-SUPERIOR-vistas-al-jardin-300x200__8f4dece5.jpg",
+      "bytes": 10964,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-10-DOBLE-MAT-SUPERIOR-vistas-al-jardin-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-10-DOBLE-MAT-SUPERIOR-vistas-al-jardin-scaled__4a4fa435.jpg",
+      "bytes": 400719,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-12-DOBLE-TWIN-CONVERTIBLE-A-MAT-vistas-al-jardin-300x200.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-12-DOBLE-TWIN-CONVERTIBLE-A-MAT-vistas-al-jardin-300x200__a3c45ba6.jpg",
+      "bytes": 14030,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-12-DOBLE-TWIN-CONVERTIBLE-A-MAT-vistas-al-jardin-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-12-DOBLE-TWIN-CONVERTIBLE-A-MAT-vistas-al-jardin-scaled__d01f1605.jpg",
+      "bytes": 496607,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-12-DOBLE-TWIN-SUP-CONVERTIBLE-A-MAT-vistas-al-jardin-300x200.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-12-DOBLE-TWIN-SUP-CONVERTIBLE-A-MAT-vistas-al-jardin-300x200__86397a31.jpg",
+      "bytes": 13277,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-12-DOBLE-TWIN-SUP-CONVERTIBLE-A-MAT-vistas-al-jardin-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-12-DOBLE-TWIN-SUP-CONVERTIBLE-A-MAT-vistas-al-jardin-scaled__c6127efa.jpg",
+      "bytes": 417287,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-1024x682.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-1024x682__2853f2e1.jpg",
+      "bytes": 104965,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-1536x1022.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-1536x1022__df29fb4e.jpg",
+      "bytes": 214702,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-2048x1363.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-2048x1363__86c84274.jpg",
+      "bytes": 360458,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-300x200.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-300x200__38db8bfe.jpg",
+      "bytes": 13695,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-768x511.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-768x511__65352ece.jpg",
+      "bytes": 63813,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-scaled__5ca59eff.jpg",
+      "bytes": 545535,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-1024x681.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-1024x681__66a9dbd0.jpg",
+      "bytes": 106253,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-1536x1022.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-1536x1022__15666d73.jpg",
+      "bytes": 215001,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-2048x1362.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-2048x1362__b710017a.jpg",
+      "bytes": 355165,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-300x200.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-300x200__c661e260.jpg",
+      "bytes": 14284,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-768x511.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-768x511__4cdb10f4.jpg",
+      "bytes": 64792,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-scaled__2f0fbdba.jpg",
+      "bytes": 527389,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-1-300x200.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-1-300x200__7d2b975e.jpg",
+      "bytes": 10311,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-1-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-1-scaled__1bae356d.jpg",
+      "bytes": 355269,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-300x203.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-300x203__03b5a348.jpg",
+      "bytes": 13818,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-scaled__893847d9.jpg",
+      "bytes": 535558,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-15-DOBLE-SUPERIOR-MAT-vistas-al-jardin-300x200.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-15-DOBLE-SUPERIOR-MAT-vistas-al-jardin-300x200__099c9ad5.jpg",
+      "bytes": 12618,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-15-DOBLE-SUPERIOR-MAT-vistas-al-jardin-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-15-DOBLE-SUPERIOR-MAT-vistas-al-jardin-scaled__5637a4dc.jpg",
+      "bytes": 444531,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-16-DOBLE-MAT-SUPERIOR-vistas-patio-interior-300x201.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-16-DOBLE-MAT-SUPERIOR-vistas-patio-interior-300x201__ad8c422b.jpg",
+      "bytes": 10868,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-16-DOBLE-MAT-SUPERIOR-vistas-patio-interior-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-16-DOBLE-MAT-SUPERIOR-vistas-patio-interior-scaled__45d1f453.jpg",
+      "bytes": 429376,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-16-MAT-SUP-vistas-a-patio-interior-1024x682.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-1024x682__2db1e87f.jpg",
+      "bytes": 92589,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-16-MAT-SUP-vistas-a-patio-interior-1536x1022.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-1536x1022__7256aa20.jpg",
+      "bytes": 196902,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-16-MAT-SUP-vistas-a-patio-interior-2048x1363.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-2048x1363__da07dc78.jpg",
+      "bytes": 341636,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-16-MAT-SUP-vistas-a-patio-interior-300x200.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-300x200__4aecf637.jpg",
+      "bytes": 11220,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-16-MAT-SUP-vistas-a-patio-interior-768x511.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-768x511__30c6bea1.jpg",
+      "bytes": 54489,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-16-MAT-SUP-vistas-a-patio-interior-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-scaled__2195b9ea.jpg",
+      "bytes": 528893,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-16-MAT-SUP-vistas-al-patio-interior-300x201.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-al-patio-interior-300x201__329f11df.jpg",
+      "bytes": 11437,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-16-MAT-SUP-vistas-al-patio-interior-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-al-patio-interior-scaled__246631f1.jpg",
+      "bytes": 446893,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-3-DOBLE-MAT-STANDARD-1-vistas-al-jardin-300x197.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-1-vistas-al-jardin-300x197__7d69ec11.jpg",
+      "bytes": 12317,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-3-DOBLE-MAT-STANDARD-1-vistas-al-jardin-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-1-vistas-al-jardin-scaled__81bd6e0b.jpg",
+      "bytes": 475295,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-1024x682.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-1024x682__75c74c2e.jpg",
+      "bytes": 98941,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-1536x1022.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-1536x1022__95bfe937.jpg",
+      "bytes": 213988,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-2048x1363.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-2048x1363__a734819c.jpg",
+      "bytes": 371770,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-300x200.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-300x200__868c6af3.jpg",
+      "bytes": 12358,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-768x511.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-768x511__43282fea.jpg",
+      "bytes": 58466,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-scaled__917cd120.jpg",
+      "bytes": 576172,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-1024x682.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-1024x682__0971deb6.jpg",
+      "bytes": 85067,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-1536x1023.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-1536x1023__5649bf56.jpg",
+      "bytes": 172522,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-2048x1364.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-2048x1364__c41bd923.jpg",
+      "bytes": 286368,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-300x200.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-300x200__801138f1.jpg",
+      "bytes": 11191,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-768x512.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-768x512__9f6b19eb.jpg",
+      "bytes": 51713,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-scaled__a0e98d82.jpg",
+      "bytes": 425073,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-5-TRIPLE-STANDARD-vistas-patio-interior-1024x682.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-1024x682__fb52559f.jpg",
+      "bytes": 119562,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-5-TRIPLE-STANDARD-vistas-patio-interior-1536x1022.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-1536x1022__0258838e.jpg",
+      "bytes": 246866,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-5-TRIPLE-STANDARD-vistas-patio-interior-2048x1363.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-2048x1363__0e310e1e.jpg",
+      "bytes": 417755,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-5-TRIPLE-STANDARD-vistas-patio-interior-300x200.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-300x200__b232fe40.jpg",
+      "bytes": 14717,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-5-TRIPLE-STANDARD-vistas-patio-interior-768x511.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-768x511__6cae3bf6.jpg",
+      "bytes": 71558,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-5-TRIPLE-STANDARD-vistas-patio-interior-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-scaled__dd163d4b.jpg",
+      "bytes": 631198,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-5-TRIPLE-STANDARD-vistas-patio-intreior-300x200.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-intreior-300x200__ed12da5b.jpg",
+      "bytes": 17534,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/HAB-5-TRIPLE-STANDARD-vistas-patio-intreior-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-intreior-scaled__00ee985f.jpg",
+      "bytes": 758061,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231015_084100-0fec1d824ce3927a63e1964b6f046581-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231015_084100-0fec1d824ce3927a63e1964b6f046581-scaled__8f65d686.jpg",
+      "bytes": 323945,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231015_084143-019a69da969716796bfdc022257dddf1-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231015_084143-019a69da969716796bfdc022257dddf1-scaled__80689a39.jpg",
+      "bytes": 361997,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231016_174431-640512263ac8b13c23371c709661c2f3-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231016_174431-640512263ac8b13c23371c709661c2f3-scaled__84c3ca21.jpg",
+      "bytes": 373659,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231016_174636-4a57e301a9393391d72776ac1f39e0fe-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231016_174636-4a57e301a9393391d72776ac1f39e0fe-scaled__5f4eb5a5.jpg",
+      "bytes": 403891,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231016_175858-4a38ba59fb3caa74a995d96751726867-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231016_175858-4a38ba59fb3caa74a995d96751726867-scaled__d5cb5872.jpg",
+      "bytes": 373438,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231016_175940-a26e63ecb3c5b8288ca34788f6336efa-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231016_175940-a26e63ecb3c5b8288ca34788f6336efa-scaled__c0d535ef.jpg",
+      "bytes": 340599,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_163553-88589da7eaa8148540babf2029757907-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_163553-88589da7eaa8148540babf2029757907-scaled__04d081bd.jpg",
+      "bytes": 310863,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_163629-23853649292228e43ada87be4af08083-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_163629-23853649292228e43ada87be4af08083-scaled__ffb20d5b.jpg",
+      "bytes": 251191,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_163845-cb08f473ccf2c93235b98546ad691194-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_163845-cb08f473ccf2c93235b98546ad691194-scaled__d510ed38.jpg",
+      "bytes": 366032,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_163933-3bad52dbef45b8829115f2bd884cd2ba-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_163933-3bad52dbef45b8829115f2bd884cd2ba-scaled__e3f1fea7.jpg",
+      "bytes": 331739,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_164522-bed78113d68316d7efd159abadc8cad4-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_164522-bed78113d68316d7efd159abadc8cad4-scaled__a87f984c.jpg",
+      "bytes": 358514,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_164744-695a28b7946b55bc7ffe9f6ccbf7e775-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_164744-695a28b7946b55bc7ffe9f6ccbf7e775-scaled__8a47c752.jpg",
+      "bytes": 284281,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_164814-a3e9b3a7ccdbc02de90bc2fed821fd38-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_164814-a3e9b3a7ccdbc02de90bc2fed821fd38-scaled__b56cbd00.jpg",
+      "bytes": 297902,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_164915-45696a2e3eaf69e7ab0a1258c55c5a68-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_164915-45696a2e3eaf69e7ab0a1258c55c5a68-scaled__3815e4bb.jpg",
+      "bytes": 343766,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_165059-05f6624927b29f3a4b96cc4512a31d82-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_165059-05f6624927b29f3a4b96cc4512a31d82-scaled__469f66d5.jpg",
+      "bytes": 278457,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_165646-4c4384f5226ead87fb02c23b9ca72a6c-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_165646-4c4384f5226ead87fb02c23b9ca72a6c-scaled__46211428.jpg",
+      "bytes": 393626,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_165754-106510318391445ef8e2de56e9bd1663-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_165754-106510318391445ef8e2de56e9bd1663-scaled__7ecdc174.jpg",
+      "bytes": 360090,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_170055-4014591665e73ab7f0b67e7d858e15ed-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_170055-4014591665e73ab7f0b67e7d858e15ed-scaled__7988d49f.jpg",
+      "bytes": 323492,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_170144-2e6c6823e20d58349af86ce53f81aee1-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_170144-2e6c6823e20d58349af86ce53f81aee1-scaled__be5a6869.jpg",
+      "bytes": 416959,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_170154-6f75f9c0312f5920a31866536da559b6-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_170154-6f75f9c0312f5920a31866536da559b6-scaled__14ffc585.jpg",
+      "bytes": 375224,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_170320-465184713e859197c9beb448f5bbe399-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_170320-465184713e859197c9beb448f5bbe399-scaled__c3221fc7.jpg",
+      "bytes": 265978,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/IMG_20231019_170340-12c1c0e544216fb0d398cb5cc608812c-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__IMG_20231019_170340-12c1c0e544216fb0d398cb5cc608812c-scaled__e8140dec.jpg",
+      "bytes": 378980,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/asgardia.png",
+      "file": "assets/images/loslagoshotel.com.ar__asgardia__8378b3d2.png",
+      "bytes": 22134,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/atuh-beach-nusa-penida-bali-indonesia-travel-image.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__atuh-beach-nusa-penida-bali-indonesia-travel-image__0a6b1e77.jpg",
+      "bytes": 178431,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/bathroom-furniture-svgrepo-com.svg",
+      "file": "assets/images/loslagoshotel.com.ar__bathroom-furniture-svgrepo-com__77195c33.svg",
+      "bytes": 7442,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/bed-double-svgrepo-com.svg",
+      "file": "assets/images/loslagoshotel.com.ar__bed-double-svgrepo-com__c0fdb82b.svg",
+      "bytes": 4560,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/breakfast-svgrepo-com-3.svg",
+      "file": "assets/images/loslagoshotel.com.ar__breakfast-svgrepo-com-3__49cd441c.svg",
+      "bytes": 4024,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/breakfast-svgrepo-com-6.svg",
+      "file": "assets/images/loslagoshotel.com.ar__breakfast-svgrepo-com-6__618208d4.svg",
+      "bytes": 3289,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/cerro-torre-los-glaciares-national-park-patagoni-2023-11-27-05-11-13-utc-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__cerro-torre-los-glaciares-national-park-patagoni-2023-11-27-05-11-13-utc-scaled__2d052c32.jpg",
+      "bytes": 586161,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/coast-as-a-background-from-top-view-gili-meno-island-indonesia-travel-image.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__coast-as-a-background-from-top-view-gili-meno-island-indonesia-travel-image__5868a33d.jpg",
+      "bytes": 152952,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/code-lab.png",
+      "file": "assets/images/loslagoshotel.com.ar__code-lab__d29c7450.png",
+      "bytes": 18477,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/couple-on-a-beach.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__couple-on-a-beach__42df2544.jpg",
+      "bytes": 136860,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/desk-and-bed-in-hotel-room.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__desk-and-bed-in-hotel-room__935acccb.jpg",
+      "bytes": 96819,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/earth-2.0.png",
+      "file": "assets/images/loslagoshotel.com.ar__earth-2.0__de9a20cc.png",
+      "bytes": 54681,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/fi__electric_kettle.svg",
+      "file": "assets/images/loslagoshotel.com.ar__fi__electric_kettle__d01a17b9.svg",
+      "bytes": 682,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/fox-hub.png",
+      "file": "assets/images/loslagoshotel.com.ar__fox-hub__e5b1d9f3.png",
+      "bytes": 15676,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/garage-svgrepo-com.svg",
+      "file": "assets/images/loslagoshotel.com.ar__garage-svgrepo-com__f3e37b29.svg",
+      "bytes": 1108,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/goldline.png",
+      "file": "assets/images/loslagoshotel.com.ar__goldline__5200c8e0.png",
+      "bytes": 18770,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/hairdryer-on-2-svgrepo-com.svg",
+      "file": "assets/images/loslagoshotel.com.ar__hairdryer-on-2-svgrepo-com__730d8821.svg",
+      "bytes": 4850,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/hotel-room-2.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__hotel-room-2__7ff17be5.jpg",
+      "bytes": 93903,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/hotel-room-interior-with-nice-view.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__hotel-room-interior-with-nice-view__d04318ba.jpg",
+      "bytes": 128957,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/hotel-room.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__hotel-room__0db52b44.jpg",
+      "bytes": 84080,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/household.svg",
+      "file": "assets/images/loslagoshotel.com.ar__household__3efa6c83.svg",
+      "bytes": 2499,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/icon_morro.png",
+      "file": "assets/images/loslagoshotel.com.ar__icon_morro__671f2093.png",
+      "bytes": 4277,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/interior-of-a-twin-queen-bed-hotel-room.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__interior-of-a-twin-queen-bed-hotel-room__e9465c56.jpg",
+      "bytes": 92275,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/logo-sin-fondo-a5e69f6d81c820a383b71c90e72626e8-300x194.png",
+      "file": "assets/images/loslagoshotel.com.ar__logo-sin-fondo-a5e69f6d81c820a383b71c90e72626e8-300x194__13cc9b0f.png",
+      "bytes": 23081,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/logo-sin-fondo-a5e69f6d81c820a383b71c90e72626e8.png",
+      "file": "assets/images/loslagoshotel.com.ar__logo-sin-fondo-a5e69f6d81c820a383b71c90e72626e8__db4afcff.png",
+      "bytes": 24777,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/logo_morro.png",
+      "file": "assets/images/loslagoshotel.com.ar__logo_morro__ccaa2e37.png",
+      "bytes": 7710,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/mandala_1.png",
+      "file": "assets/images/loslagoshotel.com.ar__mandala_1__f3363c78.png",
+      "bytes": 27703,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/modern-hotel-room-interior-with-two-separate-beds-tourism-business.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__modern-hotel-room-interior-with-two-separate-beds-tourism-business__1e826f7c.jpg",
+      "bytes": 106035,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/muzica.png",
+      "file": "assets/images/loslagoshotel.com.ar__muzica__93dbae10.png",
+      "bytes": 26718,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/panorama-of-perito-moreno-glacier-in-patagonia-e-2023-11-27-04-56-41-utc-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__panorama-of-perito-moreno-glacier-in-patagonia-e-2023-11-27-04-56-41-utc-scaled__a1889320.jpg",
+      "bytes": 878548,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/placeholder-1.png",
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-1__05c5de3d.png",
+      "bytes": 6146,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/placeholder-2.png",
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-2__dcb0850f.png",
+      "bytes": 6146,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/placeholder-3.png",
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-3__f9623116.png",
+      "bytes": 6146,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/placeholder-4.png",
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-4__b56e2d96.png",
+      "bytes": 6146,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/placeholder-5.png",
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-5__688229b4.png",
+      "bytes": 6146,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/placeholder-6.png",
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-6__455af027.png",
+      "bytes": 6146,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/placeholder-7.png",
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-7__c417c701.png",
+      "bytes": 6146,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/placeholder-8.png",
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-8__68816719.png",
+      "bytes": 6146,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/placeholder-9.png",
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-9__91d93698.png",
+      "bytes": 6146,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/placeholder.png",
+      "file": "assets/images/loslagoshotel.com.ar__placeholder__65038d1d.png",
+      "bytes": 6146,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/pool-at-a-tropical-resort.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__pool-at-a-tropical-resort__d590f7bc.jpg",
+      "bytes": 237094,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/red-beech-trees-opposite-fitzroy-mount-autumn-in-2023-11-27-04-54-39-utc-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__red-beech-trees-opposite-fitzroy-mount-autumn-in-2023-11-27-04-54-39-utc-scaled__83ac0443.jpg",
+      "bytes": 2087385,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/ropa.svg",
+      "file": "assets/images/loslagoshotel.com.ar__ropa__a23069d8.svg",
+      "bytes": 3920,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/slovenia-resort-lake-bled-.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__slovenia-resort-lake-bled__8d2d9ac2.jpg",
+      "bytes": 105269,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/smart-tv-technology-monitor-screen-mirroring-.svg",
+      "file": "assets/images/loslagoshotel.com.ar__smart-tv-technology-monitor-screen-mirroring__806a612a.svg",
+      "bytes": 1960,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/the-perito-moreno-glacier-los-glaciares-national-2023-11-27-04-56-26-utc-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__the-perito-moreno-glacier-los-glaciares-national-2023-11-27-04-56-26-utc-scaled__4561fcc7.jpg",
+      "bytes": 874101,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/the-perito-moreno-glacier-los-glaciares-national-2023-11-27-05-29-51-utc-scaled.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__the-perito-moreno-glacier-los-glaciares-national-2023-11-27-05-29-51-utc-scaled__30eef5d5.jpg",
+      "bytes": 807414,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/tourist-svgrepo-com.svg",
+      "file": "assets/images/loslagoshotel.com.ar__tourist-svgrepo-com__ca3b74e6.svg",
+      "bytes": 2057,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/treva.png",
+      "file": "assets/images/loslagoshotel.com.ar__treva__9af995f8.png",
+      "bytes": 54430,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/tropical-beach-resort.jpg",
+      "file": "assets/images/loslagoshotel.com.ar__tropical-beach-resort__5cf7a37c.jpg",
+      "bytes": 177697,
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/2023/12/velocity-9.png",
+      "file": "assets/images/loslagoshotel.com.ar__velocity-9__13b864be.png",
+      "bytes": 38343,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://loslagoshotel.com.ar/wp-content/uploads/elementor/screenshots/Elementor-post-screenshot_45_2023-12-06-17-49-17_1cd03e7b.png",
+      "file": "assets/images/loslagoshotel.com.ar__Elementor-post-screenshot_45_2023-12-06-17-49-17_1cd03e7b__93dac9e3.png",
+      "bytes": 27083,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://treehousemachupicchu.com/wp-content/uploads/2022/09/icono-lobby-60.png",
+      "file": "assets/images/treehousemachupicchu.com__icono-lobby-60__a7c9f8b6.png",
+      "bytes": 2930,
+      "contentType": "image/png"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg",
+      "file": "assets/images/upload.wikimedia.org__WhatsApp__19db989c.svg",
+      "bytes": 2501,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg",
+      "file": "assets/images/upload.wikimedia.org__Gmail_icon_-2020__99d42913.svg",
+      "bytes": 419,
+      "contentType": "image/svg+xml"
+    }
+  ],
+  "failed": [],
+  "deduplicatedAt": "2026-05-12T12:43:12.327Z",
+  "originalDownloadedCount": 150,
+  "remainingCount": 79,
+  "removedCount": 71,
+  "removed": [
+    {
+      "file": "assets/images/loslagoshotel.com.ar__bathroom-furniture-svgrepo-com__77195c33.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__bed-double-svgrepo-com__c0fdb82b.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__breakfast-svgrepo-com-3__49cd441c.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__breakfast-svgrepo-com-6__618208d4.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__cerro-torre-los-glaciares-national-park-patagoni-2023-11-27-05-11-13-utc-scaled__9c495052.jpg",
+      "reason": "duplicate-content",
+      "duplicateOf": "assets/images/loslagoshotel.com.ar__cerro-torre-los-glaciares-national-park-patagoni-2023-11-27-05-11-13-utc-scaled__2d052c32.jpg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__fi__electric_kettle__d01a17b9.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__garage-svgrepo-com__f3e37b29.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__hairdryer-on-2-svgrepo-com__730d8821.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__household__3efa6c83.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__la-brands-400__f381c4f3.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__la-regular-400__74db7958.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__la-solid-900__999bcb6a.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__logo-color__de52464b.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__panorama-of-perito-moreno-glacier-in-patagonia-e-2023-11-27-04-56-41-utc-scaled__d36ecb06.jpg",
+      "reason": "duplicate-content",
+      "duplicateOf": "assets/images/loslagoshotel.com.ar__panorama-of-perito-moreno-glacier-in-patagonia-e-2023-11-27-04-56-41-utc-scaled__a1889320.jpg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-2__dcb0850f.png",
+      "reason": "duplicate-content",
+      "duplicateOf": "assets/images/loslagoshotel.com.ar__placeholder-1__05c5de3d.png"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-3__f9623116.png",
+      "reason": "duplicate-content",
+      "duplicateOf": "assets/images/loslagoshotel.com.ar__placeholder-1__05c5de3d.png"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-4__b56e2d96.png",
+      "reason": "duplicate-content",
+      "duplicateOf": "assets/images/loslagoshotel.com.ar__placeholder-1__05c5de3d.png"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-5__688229b4.png",
+      "reason": "duplicate-content",
+      "duplicateOf": "assets/images/loslagoshotel.com.ar__placeholder-1__05c5de3d.png"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-6__455af027.png",
+      "reason": "duplicate-content",
+      "duplicateOf": "assets/images/loslagoshotel.com.ar__placeholder-1__05c5de3d.png"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-7__c417c701.png",
+      "reason": "duplicate-content",
+      "duplicateOf": "assets/images/loslagoshotel.com.ar__placeholder-1__05c5de3d.png"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-8__68816719.png",
+      "reason": "duplicate-content",
+      "duplicateOf": "assets/images/loslagoshotel.com.ar__placeholder-1__05c5de3d.png"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__placeholder-9__91d93698.png",
+      "reason": "duplicate-content",
+      "duplicateOf": "assets/images/loslagoshotel.com.ar__placeholder-1__05c5de3d.png"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__placeholder__65038d1d.png",
+      "reason": "duplicate-content",
+      "duplicateOf": "assets/images/loslagoshotel.com.ar__placeholder-1__05c5de3d.png"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__red-beech-trees-opposite-fitzroy-mount-autumn-in-2023-11-27-04-54-39-utc-scaled__ef4789d8.jpg",
+      "reason": "duplicate-content",
+      "duplicateOf": "assets/images/loslagoshotel.com.ar__red-beech-trees-opposite-fitzroy-mount-autumn-in-2023-11-27-04-54-39-utc-scaled__83ac0443.jpg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__ropa__a23069d8.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__smart-tv-technology-monitor-screen-mirroring__806a612a.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__the-perito-moreno-glacier-los-glaciares-national-2023-11-27-05-29-51-utc-scaled__dffbe63d.jpg",
+      "reason": "duplicate-content",
+      "duplicateOf": "assets/images/loslagoshotel.com.ar__the-perito-moreno-glacier-los-glaciares-national-2023-11-27-05-29-51-utc-scaled__30eef5d5.jpg"
+    },
+    {
+      "file": "assets/images/loslagoshotel.com.ar__tourist-svgrepo-com__ca3b74e6.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/upload.wikimedia.org__Gmail_icon_-2020__99d42913.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "assets/images/upload.wikimedia.org__WhatsApp__19db989c.svg",
+      "reason": "svg"
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-10-DOBLE-MAT-SUPERIOR-vistas-al-jardin-300x200__8f4dece5.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-10-DOBLE-MAT-SUPERIOR-vistas-al-jardin-scaled__4a4fa435.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 200
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 10964,
+      "keptBytes": 400719
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-12-DOBLE-TWIN-CONVERTIBLE-A-MAT-vistas-al-jardin-300x200__a3c45ba6.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-12-DOBLE-TWIN-CONVERTIBLE-A-MAT-vistas-al-jardin-scaled__d01f1605.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 200
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 14030,
+      "keptBytes": 496607
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-12-DOBLE-TWIN-SUP-CONVERTIBLE-A-MAT-vistas-al-jardin-300x200__86397a31.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-12-DOBLE-TWIN-SUP-CONVERTIBLE-A-MAT-vistas-al-jardin-scaled__c6127efa.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 200
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 13277,
+      "keptBytes": 417287
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-2048x1363__86c84274.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-scaled__5ca59eff.jpg",
+      "dimensions": {
+        "width": 2048,
+        "height": 1363
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 360458,
+      "keptBytes": 545535
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-1536x1022__df29fb4e.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-scaled__5ca59eff.jpg",
+      "dimensions": {
+        "width": 1536,
+        "height": 1022
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 214702,
+      "keptBytes": 545535
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-1024x682__2853f2e1.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-scaled__5ca59eff.jpg",
+      "dimensions": {
+        "width": 1024,
+        "height": 682
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 104965,
+      "keptBytes": 545535
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-768x511__65352ece.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-scaled__5ca59eff.jpg",
+      "dimensions": {
+        "width": 768,
+        "height": 511
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 63813,
+      "keptBytes": 545535
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-300x200__38db8bfe.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-scaled__5ca59eff.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 200
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 13695,
+      "keptBytes": 545535
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-2048x1362__b710017a.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-scaled__2f0fbdba.jpg",
+      "dimensions": {
+        "width": 2048,
+        "height": 1362
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1703
+      },
+      "bytes": 355165,
+      "keptBytes": 527389
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-1536x1022__15666d73.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-scaled__2f0fbdba.jpg",
+      "dimensions": {
+        "width": 1536,
+        "height": 1022
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1703
+      },
+      "bytes": 215001,
+      "keptBytes": 527389
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-1024x681__66a9dbd0.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-scaled__2f0fbdba.jpg",
+      "dimensions": {
+        "width": 1024,
+        "height": 681
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1703
+      },
+      "bytes": 106253,
+      "keptBytes": 527389
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-768x511__4cdb10f4.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-scaled__2f0fbdba.jpg",
+      "dimensions": {
+        "width": 768,
+        "height": 511
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1703
+      },
+      "bytes": 64792,
+      "keptBytes": 527389
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-300x200__c661e260.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-scaled__2f0fbdba.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 200
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1703
+      },
+      "bytes": 14284,
+      "keptBytes": 527389
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-1-300x200__7d2b975e.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-1-scaled__1bae356d.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 200
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 10311,
+      "keptBytes": 355269
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-300x203__03b5a348.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-scaled__893847d9.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 203
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1729
+      },
+      "bytes": 13818,
+      "keptBytes": 535558
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-15-DOBLE-SUPERIOR-MAT-vistas-al-jardin-300x200__099c9ad5.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-15-DOBLE-SUPERIOR-MAT-vistas-al-jardin-scaled__5637a4dc.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 200
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 12618,
+      "keptBytes": 444531
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-16-DOBLE-MAT-SUPERIOR-vistas-patio-interior-300x201__ad8c422b.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-16-DOBLE-MAT-SUPERIOR-vistas-patio-interior-scaled__45d1f453.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 201
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1718
+      },
+      "bytes": 10868,
+      "keptBytes": 429376
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-2048x1363__da07dc78.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-scaled__2195b9ea.jpg",
+      "dimensions": {
+        "width": 2048,
+        "height": 1363
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 341636,
+      "keptBytes": 528893
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-1536x1022__7256aa20.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-scaled__2195b9ea.jpg",
+      "dimensions": {
+        "width": 1536,
+        "height": 1022
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 196902,
+      "keptBytes": 528893
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-1024x682__2db1e87f.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-scaled__2195b9ea.jpg",
+      "dimensions": {
+        "width": 1024,
+        "height": 682
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 92589,
+      "keptBytes": 528893
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-768x511__30c6bea1.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-scaled__2195b9ea.jpg",
+      "dimensions": {
+        "width": 768,
+        "height": 511
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 54489,
+      "keptBytes": 528893
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-300x200__4aecf637.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-scaled__2195b9ea.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 200
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 11220,
+      "keptBytes": 528893
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-al-patio-interior-300x201__329f11df.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-al-patio-interior-scaled__246631f1.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 201
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1718
+      },
+      "bytes": 11437,
+      "keptBytes": 446893
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-1-vistas-al-jardin-300x197__7d69ec11.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-1-vistas-al-jardin-scaled__81bd6e0b.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 197
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1684
+      },
+      "bytes": 12317,
+      "keptBytes": 475295
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-2048x1363__a734819c.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-scaled__917cd120.jpg",
+      "dimensions": {
+        "width": 2048,
+        "height": 1363
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 371770,
+      "keptBytes": 576172
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-1536x1022__95bfe937.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-scaled__917cd120.jpg",
+      "dimensions": {
+        "width": 1536,
+        "height": 1022
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 213988,
+      "keptBytes": 576172
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-1024x682__75c74c2e.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-scaled__917cd120.jpg",
+      "dimensions": {
+        "width": 1024,
+        "height": 682
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 98941,
+      "keptBytes": 576172
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-768x511__43282fea.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-scaled__917cd120.jpg",
+      "dimensions": {
+        "width": 768,
+        "height": 511
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 58466,
+      "keptBytes": 576172
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-300x200__868c6af3.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-scaled__917cd120.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 200
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 12358,
+      "keptBytes": 576172
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-2048x1364__c41bd923.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-scaled__a0e98d82.jpg",
+      "dimensions": {
+        "width": 2048,
+        "height": 1364
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1705
+      },
+      "bytes": 286368,
+      "keptBytes": 425073
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-1536x1023__5649bf56.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-scaled__a0e98d82.jpg",
+      "dimensions": {
+        "width": 1536,
+        "height": 1023
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1705
+      },
+      "bytes": 172522,
+      "keptBytes": 425073
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-1024x682__0971deb6.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-scaled__a0e98d82.jpg",
+      "dimensions": {
+        "width": 1024,
+        "height": 682
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1705
+      },
+      "bytes": 85067,
+      "keptBytes": 425073
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-768x512__9f6b19eb.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-scaled__a0e98d82.jpg",
+      "dimensions": {
+        "width": 768,
+        "height": 512
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1705
+      },
+      "bytes": 51713,
+      "keptBytes": 425073
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-300x200__801138f1.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-scaled__a0e98d82.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 200
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1705
+      },
+      "bytes": 11191,
+      "keptBytes": 425073
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-2048x1363__0e310e1e.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-scaled__dd163d4b.jpg",
+      "dimensions": {
+        "width": 2048,
+        "height": 1363
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 417755,
+      "keptBytes": 631198
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-1536x1022__0258838e.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-scaled__dd163d4b.jpg",
+      "dimensions": {
+        "width": 1536,
+        "height": 1022
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 246866,
+      "keptBytes": 631198
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-1024x682__fb52559f.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-scaled__dd163d4b.jpg",
+      "dimensions": {
+        "width": 1024,
+        "height": 682
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 119562,
+      "keptBytes": 631198
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-768x511__6cae3bf6.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-scaled__dd163d4b.jpg",
+      "dimensions": {
+        "width": 768,
+        "height": 511
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 71558,
+      "keptBytes": 631198
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-300x200__b232fe40.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-scaled__dd163d4b.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 200
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 14717,
+      "keptBytes": 631198
+    },
+    {
+      "file": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-intreior-300x200__ed12da5b.jpg",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-intreior-scaled__00ee985f.jpg",
+      "dimensions": {
+        "width": 300,
+        "height": 200
+      },
+      "keptDimensions": {
+        "width": 2560,
+        "height": 1704
+      },
+      "bytes": 17534,
+      "keptBytes": 758061
+    },
+    {
+      "file": "loslagoshotel.com.ar__logo-sin-fondo-a5e69f6d81c820a383b71c90e72626e8-300x194__13cc9b0f.png",
+      "reason": "smaller-scale-variant",
+      "kept": "loslagoshotel.com.ar__logo-sin-fondo-a5e69f6d81c820a383b71c90e72626e8__db4afcff.png",
+      "dimensions": {
+        "width": 300,
+        "height": 194
+      },
+      "keptDimensions": {
+        "width": 578,
+        "height": 373
+      },
+      "bytes": 23081,
+      "keptBytes": 24777
+    }
+  ],
+  "remaining": [
+    {
+      "file": "asgardia.png",
+      "width": 2558,
+      "height": 600,
+      "bytes": 22134,
+      "sha256": "8ec0eb787c76088861590d01ed317de55c7738a0536bd75a0bb876812fd9ba2d"
+    },
+    {
+      "file": "atuh-beach-nusa-penida-bali-indonesia-travel-image.jpg",
+      "width": 1080,
+      "height": 719,
+      "bytes": 178431,
+      "sha256": "b986a29f56cae1f0097d06aa837a2e30907baa7d0cba3bea64cc2732c6b36420"
+    },
+    {
+      "file": "bed-and-curtains-in-hotel-room.jpg",
+      "width": 1080,
+      "height": 720,
+      "bytes": 100001,
+      "sha256": "4fc5122dfb22d5764f40971882e14710a225cf54cdb9d5bb1c8cfa3ec2a11a25"
+    },
+    {
+      "file": "cerro-torre-los-glaciares-national-park-patagoni-2023-11-27-05-11-13-utc.jpg",
+      "width": 2560,
+      "height": 1250,
+      "bytes": 586161,
+      "sha256": "0ec7afb89a1a6f82bc40caf38a1bb86587f1431bf885aa180cbfa6cb9abf568b"
+    },
+    {
+      "file": "coast-as-a-background-from-top-view-gili-meno-island-indonesia-travel-image.jpg",
+      "width": 1080,
+      "height": 681,
+      "bytes": 152952,
+      "sha256": "481a4bf038e13d94b33ec8c16b99b76cd808e63940c32642d8c189ea49a4c11a"
+    },
+    {
+      "file": "code-lab.png",
+      "width": 2280,
+      "height": 600,
+      "bytes": 18477,
+      "sha256": "cbe66df2595c75188c820c6cf7178c65becfe919616fd0550773dcb7b85ae523"
+    },
+    {
+      "file": "couple-on-a-beach.jpg",
+      "width": 1080,
+      "height": 950,
+      "bytes": 136860,
+      "sha256": "82d428da6c1fc26b57014f1750ac5e18b16f3856834fd91878ec3b8c25485720"
+    },
+    {
+      "file": "desk-and-bed-in-hotel-room.jpg",
+      "width": 1080,
+      "height": 720,
+      "bytes": 96819,
+      "sha256": "668ef4ce4000b079184a13f96957e93ac27c29cf4701df0968f26c896516890b"
+    },
+    {
+      "file": "earth-2-0.png",
+      "width": 2520,
+      "height": 600,
+      "bytes": 54681,
+      "sha256": "6cb405c65bee1b01ff140f9e0873332a0b2e70d607aaae3e4a31757161648c04"
+    },
+    {
+      "file": "elementor-post-screenshot.png",
+      "width": 1200,
+      "height": 117,
+      "bytes": 27083,
+      "sha256": "f37d11de758a5ee095d2786527de9cd7e334656a7cc599683f917b02811eb31c"
+    },
+    {
+      "file": "fox-hub.png",
+      "width": 2566,
+      "height": 600,
+      "bytes": 15676,
+      "sha256": "e83a4a97ee71c98f25778f1bf7f7d082e4c441fbd337d4988f566870fd9e637e"
+    },
+    {
+      "file": "goldline.png",
+      "width": 2580,
+      "height": 600,
+      "bytes": 18770,
+      "sha256": "759e745eb6a9f3436ff3a96a761df3f1d3aff13cf66c6b69fe6595046cd0798c"
+    },
+    {
+      "file": "gopr1682.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 417758,
+      "sha256": "587a778154a286e6e1b055afe86e2799984783c419964972c12e93ed426d5cf7"
+    },
+    {
+      "file": "gopr1689.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 407829,
+      "sha256": "25d6ea5a7c8ae9f372926eaf26c27aed5f55f502636fc4099488e2a3d9d5554b"
+    },
+    {
+      "file": "gopr1691.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 391901,
+      "sha256": "c61c2212b5ae3bb904ea0d184994a092c9fc1c8db9f8fd1bcf6d6e18e4bea35b"
+    },
+    {
+      "file": "gopr1694.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 376859,
+      "sha256": "7246acbbea24523c41dd072f381e7428f3c42780e15773cb5c21865cea0d73a0"
+    },
+    {
+      "file": "gopr1695.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 392771,
+      "sha256": "ab9349a5e22f139f6b1e365746e61619fd9e04cd7cefc4bd68e6d8deb02c72b0"
+    },
+    {
+      "file": "gopr1703.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 397128,
+      "sha256": "fd393f74d9912512bd0eed78a7beb697c380664a21b34e90ee34ed3fe6b7d998"
+    },
+    {
+      "file": "gopr1710.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 414535,
+      "sha256": "6ac8b8aef0e96fcbb67765753f8eb954feb899ad83960c24345bc7fb9a48a488"
+    },
+    {
+      "file": "gopr1713.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 433436,
+      "sha256": "23d1322d11a1fa99849325a273eed501b48018d0a5cea7c0b71fc1f5356886da"
+    },
+    {
+      "file": "hab-10-doble-mat-superior-vistas-al-jardin.jpg",
+      "width": 2560,
+      "height": 1704,
+      "bytes": 400719,
+      "sha256": "326437f9555964ecf4faeef21357f2a2201bf7593c29e1514e506b111d7b7edf"
+    },
+    {
+      "file": "hab-12-doble-twin-convertible-a-mat-vistas-al-jardin.jpg",
+      "width": 2560,
+      "height": 1704,
+      "bytes": 496607,
+      "sha256": "93436186990de002076cb0d92fd1a2b44e354d891596fafb63d9a498920e698c"
+    },
+    {
+      "file": "hab-12-doble-twin-sup-convertible-a-mat-vistas-al-jardin.jpg",
+      "width": 2560,
+      "height": 1704,
+      "bytes": 417287,
+      "sha256": "49dde1f8b6e7398644a15c1efc4a2d53c1a229ee271e2c156adc2234cdb2c26a"
+    },
+    {
+      "file": "hab-13-triple-sup-mat-1-vistas-patio-interior.jpg",
+      "width": 2560,
+      "height": 1704,
+      "bytes": 545535,
+      "sha256": "2ac094834eaca03d3dcc2fea7cd4f87712009a0fda2f7997241df8e5e8103f99"
+    },
+    {
+      "file": "hab-14-doble-twin-sup-vistas-al-jardin.jpg",
+      "width": 2560,
+      "height": 1703,
+      "bytes": 527389,
+      "sha256": "493e726b74ddca9cee39ad95b7face51e88934a41197df7db39967e7e4e60dd7"
+    },
+    {
+      "file": "hab-14-doble-twin-superior-vistas-al-jardin-1.jpg",
+      "width": 2560,
+      "height": 1704,
+      "bytes": 355269,
+      "sha256": "59392336f3720a0f3b4b8052ae27524798805707a6127f6f54e03a8f94cd9a99"
+    },
+    {
+      "file": "hab-14-doble-twin-superior-vistas-al-jardin.jpg",
+      "width": 2560,
+      "height": 1729,
+      "bytes": 535558,
+      "sha256": "322212b856652cf2e87b4063d1d68ba20c13eb8e000b01cf62e234c5c28b2030"
+    },
+    {
+      "file": "hab-15-doble-superior-mat-vistas-al-jardin.jpg",
+      "width": 2560,
+      "height": 1704,
+      "bytes": 444531,
+      "sha256": "f4cf1f737d43968f7465e82b7ec463243eb32469ca4338ec843c3ee0fd90c107"
+    },
+    {
+      "file": "hab-16-doble-mat-superior-vistas-patio-interior.jpg",
+      "width": 2560,
+      "height": 1718,
+      "bytes": 429376,
+      "sha256": "b668a81399296083f2c679652a1bd70979bbf4d5636e90a9e1f1632f0dfdf6f2"
+    },
+    {
+      "file": "hab-16-mat-sup-vistas-a-patio-interior.jpg",
+      "width": 2560,
+      "height": 1704,
+      "bytes": 528893,
+      "sha256": "e531c0c238fd99475979d39fce46bb1eca33ab3d25e64908f03bf8bf2786f6dd"
+    },
+    {
+      "file": "hab-16-mat-sup-vistas-al-patio-interior.jpg",
+      "width": 2560,
+      "height": 1718,
+      "bytes": 446893,
+      "sha256": "d5d22a2b3a167813748c5252823775c23daab99f1afcd1ed0faa1966dfaea183"
+    },
+    {
+      "file": "hab-3-doble-mat-standard-1-vistas-al-jardin.jpg",
+      "width": 2560,
+      "height": 1684,
+      "bytes": 475295,
+      "sha256": "72115d6ae30149056db2dd64d98b12a8bc4fa215ccc87174521e229538d07f09"
+    },
+    {
+      "file": "hab-3-doble-mat-standard-vistas-al-jardin.jpg",
+      "width": 2560,
+      "height": 1704,
+      "bytes": 576172,
+      "sha256": "9a13fd3c530df8138ba359a6639fadc9f04e025a2e0d6f31312b9b040b2ca18b"
+    },
+    {
+      "file": "hab-4-doble-twin-standard-vistas-patio-interior.jpg",
+      "width": 2560,
+      "height": 1705,
+      "bytes": 425073,
+      "sha256": "2fee7b2b60e2551cc93275475ae6acb41bc9bddb753bf15bc46d93d8fc7a75df"
+    },
+    {
+      "file": "hab-5-triple-standard-vistas-patio-interior.jpg",
+      "width": 2560,
+      "height": 1704,
+      "bytes": 631198,
+      "sha256": "e48f0eb50c6fdc3e6acdae85b0bc04b69d82142a79158aa09538d47ceaa403f8"
+    },
+    {
+      "file": "hab-5-triple-standard-vistas-patio-intreior.jpg",
+      "width": 2560,
+      "height": 1704,
+      "bytes": 758061,
+      "sha256": "31275fb083b86db295c95da7641acb4e9082e2ddc2d03c8ef70406c5fc45e045"
+    },
+    {
+      "file": "hotel-room-2.jpg",
+      "width": 1080,
+      "height": 720,
+      "bytes": 93903,
+      "sha256": "aed5a167802dc361524c47c13b107b613635398d8783123a637f28d9b8b44c8c"
+    },
+    {
+      "file": "hotel-room-interior-with-nice-view.jpg",
+      "width": 1080,
+      "height": 720,
+      "bytes": 128957,
+      "sha256": "9ba1fdb79650f56713933aa80d6763f1d6d804ba9dffe51b9a7ac46df9c1370d"
+    },
+    {
+      "file": "hotel-room.jpg",
+      "width": 1080,
+      "height": 810,
+      "bytes": 84080,
+      "sha256": "cad37718b67bf73b75be39aaaa85eaadcacbc7800100f7c43086725c160356cb"
+    },
+    {
+      "file": "icon-morro.png",
+      "width": 72,
+      "height": 72,
+      "bytes": 4277,
+      "sha256": "b016cf789d6dc802f16c268af1f24817d3ff66230d997c9a2de4efdd60eb045f"
+    },
+    {
+      "file": "icono-lobby-60.png",
+      "width": 20,
+      "height": 20,
+      "bytes": 2930,
+      "sha256": "fb525be302c0ba77bff3bee6c2501ce5791916b14c6a58508cd9a005d399e8ed"
+    },
+    {
+      "file": "img-20231015-084100.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 323945,
+      "sha256": "c9a6e2cd05340662a57235f9ff36768e276d83a75ce59193e70231e2fd43d3bd"
+    },
+    {
+      "file": "img-20231015-084143.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 361997,
+      "sha256": "e304d4b8da8e1db96597deae7fb6d18d3d7450fb30479f97a6d2a250bcd6b72c"
+    },
+    {
+      "file": "img-20231016-174431.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 373659,
+      "sha256": "f03fcb506640e623c745b12d10b080e84d92cf3d224c2b804b226cc385441a1f"
+    },
+    {
+      "file": "img-20231016-174636.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 403891,
+      "sha256": "57854db5826269273dbaf83200d9f19d35ef56a0351e9aba920a3d6ff2dabdc4"
+    },
+    {
+      "file": "img-20231016-175858.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 373438,
+      "sha256": "958c90fc4ee21c64c1179022f7e6d9046966c88dc6e4b76c85c2d7e5775517ce"
+    },
+    {
+      "file": "img-20231016-175940.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 340599,
+      "sha256": "227d7aaf930929083186acc55cd75ff617ef81d78db3e04081e385b04c722b1f"
+    },
+    {
+      "file": "img-20231019-163553.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 310863,
+      "sha256": "317522c0b7673821633844e0febc46e291ae619278a6088b9136747b99a7a726"
+    },
+    {
+      "file": "img-20231019-163629.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 251191,
+      "sha256": "d96456ae2105b715917604b4f828ce0ccd0d21be7edd07b6f15542a6552d7d14"
+    },
+    {
+      "file": "img-20231019-163845.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 366032,
+      "sha256": "6be3c2ecfedfca3158bee361c294b2c5d797abca8ee024d1119fea7bbbf1ab72"
+    },
+    {
+      "file": "img-20231019-163933.jpg",
+      "width": 1920,
+      "height": 2560,
+      "bytes": 331739,
+      "sha256": "695d576aa7d6c8b6b1b2303f070a913bc0c2f3b014ec6d9f798b9606e205121f"
+    },
+    {
+      "file": "img-20231019-164522.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 358514,
+      "sha256": "c7b06406ee23da722dbe6ea785d895d18ba8f2929d3871965231b71e6919d4de"
+    },
+    {
+      "file": "img-20231019-164744.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 284281,
+      "sha256": "e6e289690c8fd9faad4188d8d3b9d45302b5d0289ab3935ae2e095bc373f0fb3"
+    },
+    {
+      "file": "img-20231019-164814.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 297902,
+      "sha256": "7d88c7a5b25bfcc9b8de9a93333657b06f375e66499adcddb6e63111a56be269"
+    },
+    {
+      "file": "img-20231019-164915.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 343766,
+      "sha256": "9b5facd34e0fa426cc4c22342830fabbeeec2b9fe80edd9838344128c1766f97"
+    },
+    {
+      "file": "img-20231019-165059.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 278457,
+      "sha256": "acf0b08b4029ee7374ec60c1da02fab86b930c49c0e9ff999fa7d4f6000c7922"
+    },
+    {
+      "file": "img-20231019-165646.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 393626,
+      "sha256": "2d31f02d5f2919b1956740e8674b72d3176c01df1f1c7e8ba04a3e4b53c661b4"
+    },
+    {
+      "file": "img-20231019-165754.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 360090,
+      "sha256": "8476a21a78756fdca925a35ee66597beb77ea64e4d7d3c94660bc899a077a61a"
+    },
+    {
+      "file": "img-20231019-170055.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 323492,
+      "sha256": "0296fd9ac0c31e146cf3b8c5d38ba526622b2b8a4b7595f883df94aea65121d2"
+    },
+    {
+      "file": "img-20231019-170144.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 416959,
+      "sha256": "7412aced616e2c81f72a1e0e01463816e1f4de14942433a69e58bdf13006c283"
+    },
+    {
+      "file": "img-20231019-170154.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 375224,
+      "sha256": "f4d3bde9bce108bd718b75ed9d7028cacd01ca72573f0b179c3ad835e77d0e7f"
+    },
+    {
+      "file": "img-20231019-170320.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 265978,
+      "sha256": "e483fed4e976b16245287b62faef25f265204081ca77b3cfeab9f63c4b601779"
+    },
+    {
+      "file": "img-20231019-170340.jpg",
+      "width": 2560,
+      "height": 1920,
+      "bytes": 378980,
+      "sha256": "7275059392af6c371d3f1e98456bf320a4b730449b50ba44444cb01f0b4393d4"
+    },
+    {
+      "file": "interior-of-a-twin-queen-bed-hotel-room.jpg",
+      "width": 1080,
+      "height": 720,
+      "bytes": 92275,
+      "sha256": "b9b3d2962d5a6974a4df5ea44fdbb3e9517936f7ab190115876454739bb8dbd1"
+    },
+    {
+      "file": "logo-morro.png",
+      "width": 293,
+      "height": 96,
+      "bytes": 7710,
+      "sha256": "56f372e552e761ae3ac507e9eaead48660d6538b745e77b249be9e8610f8fa23"
+    },
+    {
+      "file": "logo-sin-fondo.png",
+      "width": 578,
+      "height": 373,
+      "bytes": 24777,
+      "sha256": "4f417c0dc44a7dff54ae517b83a532361451bd6191c0443799324fe25fb84bd3"
+    },
+    {
+      "file": "mandala-1.png",
+      "width": 500,
+      "height": 500,
+      "bytes": 27703,
+      "sha256": "67f429c99a4b8be711bb34b09ec78777fb706662b2f3aa28ff8a1315bd72e8b8"
+    },
+    {
+      "file": "modern-hotel-room-interior-with-two-separate-beds-tourism-business.jpg",
+      "width": 1080,
+      "height": 720,
+      "bytes": 106035,
+      "sha256": "72fdd8c28f6547b2b65524f4a92c8ac37fea34ffc9d792b2b73f8b9a9b3b41f7"
+    },
+    {
+      "file": "muzica.png",
+      "width": 2400,
+      "height": 600,
+      "bytes": 26718,
+      "sha256": "33afafb276f754ea641a83db1ad8671c0b571992ebf6436f22a29964416ee344"
+    },
+    {
+      "file": "panorama-of-perito-moreno-glacier-in-patagonia-e-2023-11-27-04-56-41-utc.jpg",
+      "width": 2560,
+      "height": 1541,
+      "bytes": 878548,
+      "sha256": "b5a5bfeac15eff0a69f90c3a62ede3fcc61fda74c5aeca2929307510675836b9"
+    },
+    {
+      "file": "placeholder-1.png",
+      "width": 1200,
+      "height": 800,
+      "bytes": 6146,
+      "sha256": "1a8352b9372452ab024b5dfd3c74cd8fac2c84e7ff152879f83949c4707fd87e"
+    },
+    {
+      "file": "pool-at-a-tropical-resort.jpg",
+      "width": 1080,
+      "height": 817,
+      "bytes": 237094,
+      "sha256": "9aa65abd68db6c319ad8de4dc3e2c266afd10d470bc24124c6677d75d8081a2a"
+    },
+    {
+      "file": "red-beech-trees-opposite-fitzroy-mount-autumn-in-2023-11-27-04-54-39-utc.jpg",
+      "width": 1958,
+      "height": 2560,
+      "bytes": 2087385,
+      "sha256": "bf5c9ba728a2ecb59b2220ce2c9d471f63715d8f4c51b688aa598b0804a79a27"
+    },
+    {
+      "file": "slovenia-resort-lake-bled.jpg",
+      "width": 1080,
+      "height": 719,
+      "bytes": 105269,
+      "sha256": "8c3fea511b17aca9b239136adacecd65fca44ddb54a05a0f7fbeabee17d36651"
+    },
+    {
+      "file": "the-perito-moreno-glacier-los-glaciares-national-2023-11-27-04-56-26-utc.jpg",
+      "width": 2560,
+      "height": 1707,
+      "bytes": 874101,
+      "sha256": "1ea06fc485bfefd4aa4d4c2d696c09258b666b50a703b2aa1e83db6b3d997cc9"
+    },
+    {
+      "file": "the-perito-moreno-glacier-los-glaciares-national-2023-11-27-05-29-51-utc.jpg",
+      "width": 2560,
+      "height": 1707,
+      "bytes": 807414,
+      "sha256": "33d52344b9a7e8f49bc2343aa34ef4eb013ce7b6883fd89a73699710bc5f7209"
+    },
+    {
+      "file": "treva.png",
+      "width": 2155,
+      "height": 600,
+      "bytes": 54430,
+      "sha256": "fde0693fa8f9113d937fefc7ccef26a68f8c443bc6f9623632d8977a83a0dc92"
+    },
+    {
+      "file": "tropical-beach-resort.jpg",
+      "width": 1080,
+      "height": 708,
+      "bytes": 177697,
+      "sha256": "daefb61d83a2ea394aed7d1a822c621d64f40da4411d4d3e686ee5911c77ba1c"
+    },
+    {
+      "file": "velocity-9.png",
+      "width": 2333,
+      "height": 600,
+      "bytes": 38343,
+      "sha256": "6c73022a8c74e1e8b4d951bdced892374354e4392446c518ad93581142765701"
+    }
+  ],
+  "scaleDeduplicatedAt": "2026-05-12T13:27:06.258Z",
+  "scaleDedupe": {
+    "completedAt": "2026-05-12T13:27:06.258Z",
+    "startingCount": 120,
+    "remainingCount": 79,
+    "removedCount": 41,
+    "renamedCount": 79,
+    "removed": [
+      {
+        "file": "loslagoshotel.com.ar__HAB-10-DOBLE-MAT-SUPERIOR-vistas-al-jardin-300x200__8f4dece5.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-10-DOBLE-MAT-SUPERIOR-vistas-al-jardin-scaled__4a4fa435.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 200
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 10964,
+        "keptBytes": 400719
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-12-DOBLE-TWIN-CONVERTIBLE-A-MAT-vistas-al-jardin-300x200__a3c45ba6.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-12-DOBLE-TWIN-CONVERTIBLE-A-MAT-vistas-al-jardin-scaled__d01f1605.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 200
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 14030,
+        "keptBytes": 496607
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-12-DOBLE-TWIN-SUP-CONVERTIBLE-A-MAT-vistas-al-jardin-300x200__86397a31.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-12-DOBLE-TWIN-SUP-CONVERTIBLE-A-MAT-vistas-al-jardin-scaled__c6127efa.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 200
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 13277,
+        "keptBytes": 417287
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-2048x1363__86c84274.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-scaled__5ca59eff.jpg",
+        "dimensions": {
+          "width": 2048,
+          "height": 1363
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 360458,
+        "keptBytes": 545535
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-1536x1022__df29fb4e.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-scaled__5ca59eff.jpg",
+        "dimensions": {
+          "width": 1536,
+          "height": 1022
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 214702,
+        "keptBytes": 545535
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-1024x682__2853f2e1.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-scaled__5ca59eff.jpg",
+        "dimensions": {
+          "width": 1024,
+          "height": 682
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 104965,
+        "keptBytes": 545535
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-768x511__65352ece.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-scaled__5ca59eff.jpg",
+        "dimensions": {
+          "width": 768,
+          "height": 511
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 63813,
+        "keptBytes": 545535
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-300x200__38db8bfe.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-scaled__5ca59eff.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 200
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 13695,
+        "keptBytes": 545535
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-2048x1362__b710017a.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-scaled__2f0fbdba.jpg",
+        "dimensions": {
+          "width": 2048,
+          "height": 1362
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1703
+        },
+        "bytes": 355165,
+        "keptBytes": 527389
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-1536x1022__15666d73.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-scaled__2f0fbdba.jpg",
+        "dimensions": {
+          "width": 1536,
+          "height": 1022
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1703
+        },
+        "bytes": 215001,
+        "keptBytes": 527389
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-1024x681__66a9dbd0.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-scaled__2f0fbdba.jpg",
+        "dimensions": {
+          "width": 1024,
+          "height": 681
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1703
+        },
+        "bytes": 106253,
+        "keptBytes": 527389
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-768x511__4cdb10f4.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-scaled__2f0fbdba.jpg",
+        "dimensions": {
+          "width": 768,
+          "height": 511
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1703
+        },
+        "bytes": 64792,
+        "keptBytes": 527389
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-300x200__c661e260.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-scaled__2f0fbdba.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 200
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1703
+        },
+        "bytes": 14284,
+        "keptBytes": 527389
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-1-300x200__7d2b975e.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-1-scaled__1bae356d.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 200
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 10311,
+        "keptBytes": 355269
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-300x203__03b5a348.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-scaled__893847d9.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 203
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1729
+        },
+        "bytes": 13818,
+        "keptBytes": 535558
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-15-DOBLE-SUPERIOR-MAT-vistas-al-jardin-300x200__099c9ad5.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-15-DOBLE-SUPERIOR-MAT-vistas-al-jardin-scaled__5637a4dc.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 200
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 12618,
+        "keptBytes": 444531
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-16-DOBLE-MAT-SUPERIOR-vistas-patio-interior-300x201__ad8c422b.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-16-DOBLE-MAT-SUPERIOR-vistas-patio-interior-scaled__45d1f453.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 201
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1718
+        },
+        "bytes": 10868,
+        "keptBytes": 429376
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-2048x1363__da07dc78.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-scaled__2195b9ea.jpg",
+        "dimensions": {
+          "width": 2048,
+          "height": 1363
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 341636,
+        "keptBytes": 528893
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-1536x1022__7256aa20.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-scaled__2195b9ea.jpg",
+        "dimensions": {
+          "width": 1536,
+          "height": 1022
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 196902,
+        "keptBytes": 528893
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-1024x682__2db1e87f.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-scaled__2195b9ea.jpg",
+        "dimensions": {
+          "width": 1024,
+          "height": 682
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 92589,
+        "keptBytes": 528893
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-768x511__30c6bea1.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-scaled__2195b9ea.jpg",
+        "dimensions": {
+          "width": 768,
+          "height": 511
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 54489,
+        "keptBytes": 528893
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-300x200__4aecf637.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-scaled__2195b9ea.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 200
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 11220,
+        "keptBytes": 528893
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-al-patio-interior-300x201__329f11df.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-al-patio-interior-scaled__246631f1.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 201
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1718
+        },
+        "bytes": 11437,
+        "keptBytes": 446893
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-1-vistas-al-jardin-300x197__7d69ec11.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-1-vistas-al-jardin-scaled__81bd6e0b.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 197
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1684
+        },
+        "bytes": 12317,
+        "keptBytes": 475295
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-2048x1363__a734819c.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-scaled__917cd120.jpg",
+        "dimensions": {
+          "width": 2048,
+          "height": 1363
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 371770,
+        "keptBytes": 576172
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-1536x1022__95bfe937.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-scaled__917cd120.jpg",
+        "dimensions": {
+          "width": 1536,
+          "height": 1022
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 213988,
+        "keptBytes": 576172
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-1024x682__75c74c2e.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-scaled__917cd120.jpg",
+        "dimensions": {
+          "width": 1024,
+          "height": 682
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 98941,
+        "keptBytes": 576172
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-768x511__43282fea.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-scaled__917cd120.jpg",
+        "dimensions": {
+          "width": 768,
+          "height": 511
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 58466,
+        "keptBytes": 576172
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-300x200__868c6af3.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-scaled__917cd120.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 200
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 12358,
+        "keptBytes": 576172
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-2048x1364__c41bd923.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-scaled__a0e98d82.jpg",
+        "dimensions": {
+          "width": 2048,
+          "height": 1364
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1705
+        },
+        "bytes": 286368,
+        "keptBytes": 425073
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-1536x1023__5649bf56.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-scaled__a0e98d82.jpg",
+        "dimensions": {
+          "width": 1536,
+          "height": 1023
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1705
+        },
+        "bytes": 172522,
+        "keptBytes": 425073
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-1024x682__0971deb6.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-scaled__a0e98d82.jpg",
+        "dimensions": {
+          "width": 1024,
+          "height": 682
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1705
+        },
+        "bytes": 85067,
+        "keptBytes": 425073
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-768x512__9f6b19eb.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-scaled__a0e98d82.jpg",
+        "dimensions": {
+          "width": 768,
+          "height": 512
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1705
+        },
+        "bytes": 51713,
+        "keptBytes": 425073
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-300x200__801138f1.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-scaled__a0e98d82.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 200
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1705
+        },
+        "bytes": 11191,
+        "keptBytes": 425073
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-2048x1363__0e310e1e.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-scaled__dd163d4b.jpg",
+        "dimensions": {
+          "width": 2048,
+          "height": 1363
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 417755,
+        "keptBytes": 631198
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-1536x1022__0258838e.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-scaled__dd163d4b.jpg",
+        "dimensions": {
+          "width": 1536,
+          "height": 1022
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 246866,
+        "keptBytes": 631198
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-1024x682__fb52559f.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-scaled__dd163d4b.jpg",
+        "dimensions": {
+          "width": 1024,
+          "height": 682
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 119562,
+        "keptBytes": 631198
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-768x511__6cae3bf6.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-scaled__dd163d4b.jpg",
+        "dimensions": {
+          "width": 768,
+          "height": 511
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 71558,
+        "keptBytes": 631198
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-300x200__b232fe40.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-scaled__dd163d4b.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 200
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 14717,
+        "keptBytes": 631198
+      },
+      {
+        "file": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-intreior-300x200__ed12da5b.jpg",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-intreior-scaled__00ee985f.jpg",
+        "dimensions": {
+          "width": 300,
+          "height": 200
+        },
+        "keptDimensions": {
+          "width": 2560,
+          "height": 1704
+        },
+        "bytes": 17534,
+        "keptBytes": 758061
+      },
+      {
+        "file": "loslagoshotel.com.ar__logo-sin-fondo-a5e69f6d81c820a383b71c90e72626e8-300x194__13cc9b0f.png",
+        "reason": "smaller-scale-variant",
+        "kept": "loslagoshotel.com.ar__logo-sin-fondo-a5e69f6d81c820a383b71c90e72626e8__db4afcff.png",
+        "dimensions": {
+          "width": 300,
+          "height": 194
+        },
+        "keptDimensions": {
+          "width": 578,
+          "height": 373
+        },
+        "bytes": 23081,
+        "keptBytes": 24777
+      }
+    ],
+    "renamed": [
+      {
+        "from": "loslagoshotel.com.ar__asgardia__8378b3d2.png",
+        "to": "asgardia.png"
+      },
+      {
+        "from": "loslagoshotel.com.ar__atuh-beach-nusa-penida-bali-indonesia-travel-image__0a6b1e77.jpg",
+        "to": "atuh-beach-nusa-penida-bali-indonesia-travel-image.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__54090-bed-and-curtains-in-hotel-room__84e1f2af.jpg",
+        "to": "bed-and-curtains-in-hotel-room.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__cerro-torre-los-glaciares-national-park-patagoni-2023-11-27-05-11-13-utc-scaled__2d052c32.jpg",
+        "to": "cerro-torre-los-glaciares-national-park-patagoni-2023-11-27-05-11-13-utc.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__coast-as-a-background-from-top-view-gili-meno-island-indonesia-travel-image__5868a33d.jpg",
+        "to": "coast-as-a-background-from-top-view-gili-meno-island-indonesia-travel-image.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__code-lab__d29c7450.png",
+        "to": "code-lab.png"
+      },
+      {
+        "from": "loslagoshotel.com.ar__couple-on-a-beach__42df2544.jpg",
+        "to": "couple-on-a-beach.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__desk-and-bed-in-hotel-room__935acccb.jpg",
+        "to": "desk-and-bed-in-hotel-room.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__earth-2.0__de9a20cc.png",
+        "to": "earth-2-0.png"
+      },
+      {
+        "from": "loslagoshotel.com.ar__Elementor-post-screenshot_45_2023-12-06-17-49-17_1cd03e7b__93dac9e3.png",
+        "to": "elementor-post-screenshot.png"
+      },
+      {
+        "from": "loslagoshotel.com.ar__fox-hub__e5b1d9f3.png",
+        "to": "fox-hub.png"
+      },
+      {
+        "from": "loslagoshotel.com.ar__goldline__5200c8e0.png",
+        "to": "goldline.png"
+      },
+      {
+        "from": "loslagoshotel.com.ar__GOPR1682_1697761769343-484758d185ef546da308c368c6caade8-scaled__45604990.jpg",
+        "to": "gopr1682.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__GOPR1689_1697761769343-cf24fe74fbf7ab0c3fec25aa7fe9e149-scaled__028b401b.jpg",
+        "to": "gopr1689.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__GOPR1691_1697761769343-237dd91237ed99b5a0e975ff7e894b4b-scaled__6aa513e4.jpg",
+        "to": "gopr1691.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__GOPR1694_1697761769343-0fad3195208f77fc2adf4d13aff4766e-scaled__a4f68285.jpg",
+        "to": "gopr1694.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__GOPR1695_1697761769343-f81db683d1eddb48fae5ba8f3fd4a0e7-scaled__5f9b22af.jpg",
+        "to": "gopr1695.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__GOPR1703_1697761769343-04610a3e5fa9a47037948dcdadd1e4ac-scaled__3d01decc.jpg",
+        "to": "gopr1703.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__GOPR1710_1697761769343-f867c2b6779b449db62a337e618e632e-scaled__01605f82.jpg",
+        "to": "gopr1710.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__GOPR1713_1697761769343-4e977fe4a41b03f75b6a15e2f060ef35-scaled__aac5d556.jpg",
+        "to": "gopr1713.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-10-DOBLE-MAT-SUPERIOR-vistas-al-jardin-scaled__4a4fa435.jpg",
+        "to": "hab-10-doble-mat-superior-vistas-al-jardin.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-12-DOBLE-TWIN-CONVERTIBLE-A-MAT-vistas-al-jardin-scaled__d01f1605.jpg",
+        "to": "hab-12-doble-twin-convertible-a-mat-vistas-al-jardin.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-12-DOBLE-TWIN-SUP-CONVERTIBLE-A-MAT-vistas-al-jardin-scaled__c6127efa.jpg",
+        "to": "hab-12-doble-twin-sup-convertible-a-mat-vistas-al-jardin.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-13-TRIPLE-SUP-MAT-1-Vistas-patio-interior-scaled__5ca59eff.jpg",
+        "to": "hab-13-triple-sup-mat-1-vistas-patio-interior.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUP-vistas-al-jardin-scaled__2f0fbdba.jpg",
+        "to": "hab-14-doble-twin-sup-vistas-al-jardin.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-scaled__893847d9.jpg",
+        "to": "hab-14-doble-twin-superior-vistas-al-jardin.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-14-DOBLE-TWIN-SUPERIOR-vistas-al-jardin-1-scaled__1bae356d.jpg",
+        "to": "hab-14-doble-twin-superior-vistas-al-jardin-1.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-15-DOBLE-SUPERIOR-MAT-vistas-al-jardin-scaled__5637a4dc.jpg",
+        "to": "hab-15-doble-superior-mat-vistas-al-jardin.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-16-DOBLE-MAT-SUPERIOR-vistas-patio-interior-scaled__45d1f453.jpg",
+        "to": "hab-16-doble-mat-superior-vistas-patio-interior.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-a-patio-interior-scaled__2195b9ea.jpg",
+        "to": "hab-16-mat-sup-vistas-a-patio-interior.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-16-MAT-SUP-vistas-al-patio-interior-scaled__246631f1.jpg",
+        "to": "hab-16-mat-sup-vistas-al-patio-interior.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-1-vistas-al-jardin-scaled__81bd6e0b.jpg",
+        "to": "hab-3-doble-mat-standard-1-vistas-al-jardin.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-3-DOBLE-MAT-STANDARD-Vistas-al-jardin-scaled__917cd120.jpg",
+        "to": "hab-3-doble-mat-standard-vistas-al-jardin.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-4-DOBLE-TWIN-STANDARD-vistas-patio-interior-scaled__a0e98d82.jpg",
+        "to": "hab-4-doble-twin-standard-vistas-patio-interior.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-interior-scaled__dd163d4b.jpg",
+        "to": "hab-5-triple-standard-vistas-patio-interior.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__HAB-5-TRIPLE-STANDARD-vistas-patio-intreior-scaled__00ee985f.jpg",
+        "to": "hab-5-triple-standard-vistas-patio-intreior.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__hotel-room__0db52b44.jpg",
+        "to": "hotel-room.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__hotel-room-2__7ff17be5.jpg",
+        "to": "hotel-room-2.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__hotel-room-interior-with-nice-view__d04318ba.jpg",
+        "to": "hotel-room-interior-with-nice-view.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__icon_morro__671f2093.png",
+        "to": "icon-morro.png"
+      },
+      {
+        "from": "treehousemachupicchu.com__icono-lobby-60__a7c9f8b6.png",
+        "to": "icono-lobby-60.png"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231015_084100-0fec1d824ce3927a63e1964b6f046581-scaled__8f65d686.jpg",
+        "to": "img-20231015-084100.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231015_084143-019a69da969716796bfdc022257dddf1-scaled__80689a39.jpg",
+        "to": "img-20231015-084143.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231016_174431-640512263ac8b13c23371c709661c2f3-scaled__84c3ca21.jpg",
+        "to": "img-20231016-174431.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231016_174636-4a57e301a9393391d72776ac1f39e0fe-scaled__5f4eb5a5.jpg",
+        "to": "img-20231016-174636.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231016_175858-4a38ba59fb3caa74a995d96751726867-scaled__d5cb5872.jpg",
+        "to": "img-20231016-175858.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231016_175940-a26e63ecb3c5b8288ca34788f6336efa-scaled__c0d535ef.jpg",
+        "to": "img-20231016-175940.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_163553-88589da7eaa8148540babf2029757907-scaled__04d081bd.jpg",
+        "to": "img-20231019-163553.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_163629-23853649292228e43ada87be4af08083-scaled__ffb20d5b.jpg",
+        "to": "img-20231019-163629.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_163845-cb08f473ccf2c93235b98546ad691194-scaled__d510ed38.jpg",
+        "to": "img-20231019-163845.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_163933-3bad52dbef45b8829115f2bd884cd2ba-scaled__e3f1fea7.jpg",
+        "to": "img-20231019-163933.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_164522-bed78113d68316d7efd159abadc8cad4-scaled__a87f984c.jpg",
+        "to": "img-20231019-164522.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_164744-695a28b7946b55bc7ffe9f6ccbf7e775-scaled__8a47c752.jpg",
+        "to": "img-20231019-164744.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_164814-a3e9b3a7ccdbc02de90bc2fed821fd38-scaled__b56cbd00.jpg",
+        "to": "img-20231019-164814.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_164915-45696a2e3eaf69e7ab0a1258c55c5a68-scaled__3815e4bb.jpg",
+        "to": "img-20231019-164915.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_165059-05f6624927b29f3a4b96cc4512a31d82-scaled__469f66d5.jpg",
+        "to": "img-20231019-165059.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_165646-4c4384f5226ead87fb02c23b9ca72a6c-scaled__46211428.jpg",
+        "to": "img-20231019-165646.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_165754-106510318391445ef8e2de56e9bd1663-scaled__7ecdc174.jpg",
+        "to": "img-20231019-165754.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_170055-4014591665e73ab7f0b67e7d858e15ed-scaled__7988d49f.jpg",
+        "to": "img-20231019-170055.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_170144-2e6c6823e20d58349af86ce53f81aee1-scaled__be5a6869.jpg",
+        "to": "img-20231019-170144.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_170154-6f75f9c0312f5920a31866536da559b6-scaled__14ffc585.jpg",
+        "to": "img-20231019-170154.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_170320-465184713e859197c9beb448f5bbe399-scaled__c3221fc7.jpg",
+        "to": "img-20231019-170320.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__IMG_20231019_170340-12c1c0e544216fb0d398cb5cc608812c-scaled__e8140dec.jpg",
+        "to": "img-20231019-170340.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__interior-of-a-twin-queen-bed-hotel-room__e9465c56.jpg",
+        "to": "interior-of-a-twin-queen-bed-hotel-room.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__logo_morro__ccaa2e37.png",
+        "to": "logo-morro.png"
+      },
+      {
+        "from": "loslagoshotel.com.ar__logo-sin-fondo-a5e69f6d81c820a383b71c90e72626e8__db4afcff.png",
+        "to": "logo-sin-fondo.png"
+      },
+      {
+        "from": "loslagoshotel.com.ar__mandala_1__f3363c78.png",
+        "to": "mandala-1.png"
+      },
+      {
+        "from": "loslagoshotel.com.ar__modern-hotel-room-interior-with-two-separate-beds-tourism-business__1e826f7c.jpg",
+        "to": "modern-hotel-room-interior-with-two-separate-beds-tourism-business.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__muzica__93dbae10.png",
+        "to": "muzica.png"
+      },
+      {
+        "from": "loslagoshotel.com.ar__panorama-of-perito-moreno-glacier-in-patagonia-e-2023-11-27-04-56-41-utc-scaled__a1889320.jpg",
+        "to": "panorama-of-perito-moreno-glacier-in-patagonia-e-2023-11-27-04-56-41-utc.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__placeholder-1__05c5de3d.png",
+        "to": "placeholder-1.png"
+      },
+      {
+        "from": "loslagoshotel.com.ar__pool-at-a-tropical-resort__d590f7bc.jpg",
+        "to": "pool-at-a-tropical-resort.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__red-beech-trees-opposite-fitzroy-mount-autumn-in-2023-11-27-04-54-39-utc-scaled__83ac0443.jpg",
+        "to": "red-beech-trees-opposite-fitzroy-mount-autumn-in-2023-11-27-04-54-39-utc.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__slovenia-resort-lake-bled__8d2d9ac2.jpg",
+        "to": "slovenia-resort-lake-bled.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__the-perito-moreno-glacier-los-glaciares-national-2023-11-27-04-56-26-utc-scaled__4561fcc7.jpg",
+        "to": "the-perito-moreno-glacier-los-glaciares-national-2023-11-27-04-56-26-utc.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__the-perito-moreno-glacier-los-glaciares-national-2023-11-27-05-29-51-utc-scaled__30eef5d5.jpg",
+        "to": "the-perito-moreno-glacier-los-glaciares-national-2023-11-27-05-29-51-utc.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__treva__9af995f8.png",
+        "to": "treva.png"
+      },
+      {
+        "from": "loslagoshotel.com.ar__tropical-beach-resort__5cf7a37c.jpg",
+        "to": "tropical-beach-resort.jpg"
+      },
+      {
+        "from": "loslagoshotel.com.ar__velocity-9__13b864be.png",
+        "to": "velocity-9.png"
+      }
+    ]
+  }
+}
