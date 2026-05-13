@@ -174,95 +174,99 @@ export function injectCloudbedsDomAdjustmentStyles(
     }
 
     .hotel-bedding-selector {
-      background: transparent;
-      border: 0;
-      border-top: 1px solid #edf0ef;
-      margin: 12px 0 0;
-      padding: 12px 0 0;
+      background: transparent !important;
+      border: 0 !important;
+      border-top: 1px solid #edf0ef !important;
+      margin: 12px 0 0 !important;
+      padding: 12px 0 0 !important;
+      width: 100% !important;
     }
 
     .hotel-bedding-header {
-      margin: 0 0 6px;
+      margin: 0 0 6px !important;
     }
 
     .hotel-bedding-title {
-      color: #1f2b27;
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 1.35;
-      margin: 0;
-      text-transform: uppercase;
+      color: #1f2b27 !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      line-height: 1.35 !important;
+      margin: 0 !important;
+      text-transform: uppercase !important;
     }
 
     .hotel-bedding-subtitle {
-      display: none;
-      color: #63716d;
-      font-size: 12px;
-      line-height: 1.4;
-      margin: 2px 0 0;
+      display: none !important;
+      color: #63716d !important;
+      font-size: 12px !important;
+      line-height: 1.4 !important;
+      margin: 2px 0 0 !important;
     }
 
     .hotel-bedding-options {
-      background: #f6f8f7;
-      border: 1px solid #dfe5e2;
-      border-radius: 10px;
-      display: grid;
-      gap: 4px;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      padding: 4px;
+      background: #f6f8f7 !important;
+      border: 1px solid #dfe5e2 !important;
+      border-radius: 10px !important;
+      display: grid !important;
+      gap: 4px !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      padding: 4px !important;
     }
 
     .hotel-bedding-option {
-      appearance: none;
-      background: transparent;
-      border: 1px solid transparent;
-      border-radius: 8px;
-      color: #34423e;
-      cursor: pointer;
-      min-height: 42px;
-      padding: 9px 10px;
-      text-align: center;
+      appearance: none !important;
+      background: transparent !important;
+      border: 1px solid transparent !important;
+      border-radius: 8px !important;
+      box-shadow: none !important;
+      color: #34423e !important;
+      cursor: pointer !important;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      min-height: 42px !important;
+      padding: 9px 10px !important;
+      text-align: center !important;
       transition:
         background 0.15s ease,
         border-color 0.15s ease,
-        color 0.15s ease;
+        color 0.15s ease !important;
     }
 
     .hotel-bedding-option:hover {
-      background: #ffffff;
-      border-color: #cfd8d4;
+      background: #ffffff !important;
+      border-color: #cfd8d4 !important;
     }
 
     .hotel-bedding-option.is-selected {
-      background: #e7f0ed;
-      border-color: #38645b;
-      color: #1f2b27;
+      background: #e7f0ed !important;
+      border-color: #38645b !important;
+      color: #1f2b27 !important;
     }
 
     .hotel-bedding-name {
-      color: inherit;
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.25;
-      margin: 0;
+      color: inherit !important;
+      display: block !important;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      line-height: 1.25 !important;
+      margin: 0 !important;
     }
 
     .hotel-bedding-status {
-      display: none;
-      color: #6b7974;
-      font-size: 11px;
-      line-height: 1.25;
-      margin-top: 3px;
+      display: none !important;
+      color: #6b7974 !important;
+      font-size: 11px !important;
+      line-height: 1.25 !important;
+      margin-top: 3px !important;
     }
 
     .hotel-bedding-option.is-selected .hotel-bedding-status {
-      color: #38645b;
+      color: #38645b !important;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 400px) {
       .hotel-bedding-options {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
       }
     }
   `;
