@@ -4,18 +4,31 @@ import { useEffect } from "react";
 import {
   convertArsToUsd,
   formatUsd,
+  isCloudbedsBarePriceTextNode,
+  parseCloudbedsArsMoney,
   parseArsMoney,
   shouldConvertTextNode,
 } from "@/lib/currency";
-import { hideCloudbedsCurrencyControls } from "@/lib/hide-cloudbeds-currency-controls";
+import {
+  injectCloudbedsBeddingSelectors,
+  syncCloudbedsBeddingSelections,
+} from "@/lib/cloudbeds-bedding-selector";
+import {
+  hideCloudbedsCurrencyControls,
+  injectCloudbedsDomAdjustmentStyles,
+} from "@/lib/hide-cloudbeds-currency-controls";
 
 type FxRateResponse = {
   arsPerUsd: number;
   active: boolean;
 };
 
-const ARS_PRICE_PATTERN =
-  /(?:AR\$\s*|ARS\s*|\$\s*)(?:\d{1,3}(?:\.\d{3})+|\d+)(?:,\d{1,2})?/gi;
+const MONEY_AMOUNT_PATTERN = String.raw`\d(?:[\d.,\s]*\d)?(?:\s*[kK])?`;
+const BARE_NUMERIC_AMOUNT_PATTERN = String.raw`(?:\d{1,3}(?:[.,]\d{3})+|\d{4,})(?:[.,]\d{2})?`;
+const ARS_PRICE_PATTERN = new RegExp(
+  String.raw`(?:AR\$\s*|ARS\s*|\$\s*)${MONEY_AMOUNT_PATTERN}|${MONEY_AMOUNT_PATTERN}\s*(?:ARS|AR\$)|\b\d+(?:[.,]\d+)?\s*k\b|\b${BARE_NUMERIC_AMOUNT_PATTERN}\b`,
+  "gi",
+);
 
 function replacePricesInTextNode(textNode: Text, arsPerUsd: number) {
   const text = textNode.textContent ?? "";
@@ -31,7 +44,12 @@ function replacePricesInTextNode(textNode: Text, arsPerUsd: number) {
   for (const match of matches) {
     const original = match[0];
     const index = match.index ?? 0;
-    const amount = parseArsMoney(original);
+    const isCloudbedsPriceText = isCloudbedsBarePriceTextNode(textNode);
+    const amount =
+      parseCloudbedsArsMoney(original, {
+        allowBareNumber: isCloudbedsPriceText,
+        normalizeScaledAmount: isCloudbedsPriceText,
+      }) ?? parseArsMoney(original);
     const converted = convertArsToUsd(amount, arsPerUsd);
 
     if (converted === null) {
@@ -97,6 +115,8 @@ export function BookingPriceObserver() {
     const abortController = new AbortController();
     let observer: MutationObserver | null = null;
 
+    injectCloudbedsDomAdjustmentStyles(document);
+
     async function startObserver() {
       const response = await fetch("/api/public-fx-rate", {
         cache: "no-store",
@@ -116,6 +136,8 @@ export function BookingPriceObserver() {
       const convertDocument = () => {
         scanForPrices(document.body, rate.arsPerUsd);
         hideCloudbedsCurrencyControls(document);
+        injectCloudbedsBeddingSelectors(document);
+        syncCloudbedsBeddingSelections(document);
       };
 
       convertDocument();
