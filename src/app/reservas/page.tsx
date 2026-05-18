@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BookingLoader } from "@/components/BookingLoader";
 import { BookingPriceObserver } from "@/components/BookingPriceObserver";
 import { CloudbedsScriptLoader } from "@/components/CloudbedsScriptLoader";
 import { publicConfig } from "@/lib/config";
@@ -10,6 +11,7 @@ export default function ReservasPage() {
     <main className="reservation-page bg-white text-[#1f2b27]">
       <CloudbedsScriptLoader />
       <BookingPriceObserver />
+      <BookingLoader />
 
       <header
         className="reservation-shell-header sticky top-0 z-50 border-b border-[#e4e8e6] bg-white"
