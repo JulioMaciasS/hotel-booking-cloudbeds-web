@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BookingPriceObserver } from "@/components/BookingPriceObserver";
 import { CloudbedsScriptLoader } from "@/components/CloudbedsScriptLoader";
 import { publicConfig } from "@/lib/config";
-import logoImage from "../../../assets/images/logo-sin-fondo-270.png";
+import logoImage from "../../../assets/old-web-images/logo-sin-fondo-270.png";
 
 export default function ReservasPage() {
   return (
