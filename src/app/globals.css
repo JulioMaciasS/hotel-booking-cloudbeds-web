@@ -187,3 +187,8 @@ body {
   color: inherit;
   white-space: nowrap;
 }
+
+@keyframes kenBurns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}

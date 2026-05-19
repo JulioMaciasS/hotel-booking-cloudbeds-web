@@ -26,12 +26,13 @@ import { ContactForm } from "@/components/ContactForm";
 import { ReviewsSlider } from "@/components/ReviewsSlider";
 import { HotelMapWrapper } from "@/components/HotelMapWrapper";
 import { ScrollCenterHandler } from "@/components/ScrollCenterHandler";
+import { SiteHeader } from "@/components/SiteHeader";
 import Image from "next/image";
 import { BookingPriceObserver } from "@/components/BookingPriceObserver";
 import { CloudbedsScriptLoader } from "@/components/CloudbedsScriptLoader";
 import { publicConfig } from "@/lib/config";
 import gardenRoomImage from "../../assets/old-web-images/hab-14-doble-twin-superior-vistas-al-jardin.jpg";
-import heroImage from "../../assets/old-web-images/panorama-of-perito-moreno-glacier-in-patagonia-e-2023-11-27-04-56-41-utc.jpg";
+import { HeroSlideshow } from "@/components/HeroSlideshow";
 import tripadvisorLogo from "../../assets/logo/tripadvisor.png";
 import googleMapsLogo from "../../assets/logo/Google_Maps_icon_(2020).png";
 import lobbyImage from "../../assets/old-web-images/img-20231015-084100.jpg";
@@ -288,70 +289,41 @@ export default function HomePage() {
       <ScrollCenterHandler />
       <CloudbedsScriptLoader />
       <BookingPriceObserver />
+      <SiteHeader />
 
       {/* ── HERO ── */}
       <section className="relative min-h-[82svh] overflow-hidden bg-[#1d2a28] text-white">
-        <Image
-          alt="Glaciar Perito Moreno cerca de El Calafate"
-          className="object-cover"
-          fill
-          priority
-          quality={90}
-          sizes="100vw"
-          src={heroImage}
-        />
-        <div className="absolute inset-0 bg-linear-to-b from-black/50 via-black/20 to-black/65" />
-
-        <header className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
-          <a className="flex items-center gap-3" href="#inicio">
-            <Image
-              alt="Los Lagos Hotel"
-              className="h-12 w-12 rounded-full bg-white/90 object-contain p-1"
-              height={48}
-              src={logoImage}
-              width={48}
-            />
-            <span className="text-base font-semibold tracking-wide">
-              Los Lagos Hotel
-            </span>
-          </a>
-          <nav className="hidden items-center gap-6 text-sm font-medium text-white/85 md:flex">
-            <a className="transition hover:text-white" href="#hotel">Hotel</a>
-            <a className="transition hover:text-white" href="#habitaciones">Habitaciones</a>
-            <a className="transition hover:text-white" href="#servicios">Servicios</a>
-            <a className="transition hover:text-white" href="#excursiones">Excursiones</a>
-            <a className="transition hover:text-white" href="#opiniones">Opiniones</a>
-            <a className="transition hover:text-white" href="#ubicacion">Ubicación</a>
-            <a className="transition hover:text-white" href="#contacto">Contacto</a>
-          </nav>
-          <a
-            className="rounded-lg bg-white px-4 py-2 text-sm font-semibold text-[#1f2b27] shadow-sm transition hover:bg-[#f0f4f2]"
-            href="#reservar"
-          >
-            Reservar
-          </a>
-        </header>
+        <HeroSlideshow />
+        {/* gradient: top-to-bottom depth */}
+        <div className="absolute inset-0 bg-linear-to-b from-black/55 via-black/30 to-black/70" style={{ zIndex: 2 }} />
+        {/* gradient: left-to-right — protects text area */}
+        <div className="absolute inset-0 bg-linear-to-r from-black/50 via-black/20 to-transparent" style={{ zIndex: 2 }} />
 
         <div
-          className="relative z-10 mx-auto flex min-h-[calc(82svh-88px)] w-full max-w-7xl items-center px-5 pb-28 pt-8 sm:px-8 lg:pb-36"
+          className="relative mx-auto flex min-h-[82svh] w-full max-w-7xl items-center px-5 pb-28 pt-22 sm:px-8 lg:pb-36"
           id="inicio"
+          style={{ zIndex: 3 }}
         >
-          <div className="max-w-3xl">
+          <div className="max-w-3xl [text-shadow:0_1px_18px_rgba(0,0,0,0.55)]">
+            <p className="mb-4 text-sm font-medium uppercase tracking-widest text-white/60">
+              Hotel · El Calafate, Patagonia
+            </p>
             <h1 className="text-5xl font-semibold leading-[1.02] sm:text-6xl lg:text-7xl">
               Los Lagos Hotel
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/88 sm:text-xl">
-              Hospedaje cálido en El Calafate, a 200 metros del centro y de los
-              caminos que llevan a glaciares, lagos y senderos de Patagonia.
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85 sm:text-xl">
+              Hotel familiar en el corazón de El Calafate, a 200 metros del
+              centro. Tu punto de partida hacia los glaciares, lagos y senderos
+              de la Patagonia austral.
             </p>
             <div className="mt-8 flex flex-wrap gap-3 text-sm font-medium text-white/90">
-              <span className="rounded-lg border border-white/30 bg-white/10 px-4 py-2 backdrop-blur">
-                El Calafate · Santa Cruz
+              <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/30 bg-white/10 px-4 py-2 backdrop-blur">
+                <MapPin size={14} /> El Calafate · Patagonia
               </span>
-              <span className="rounded-lg border border-white/30 bg-white/10 px-4 py-2 backdrop-blur">
-                ✦ Desayuno incluido
+              <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/30 bg-white/10 px-4 py-2 backdrop-blur">
+                <Coffee size={14} /> Desayuno incluido
               </span>
-              <span className="rounded-lg border border-white/30 bg-white/10 px-4 py-2 backdrop-blur">
+              <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/30 bg-white/10 px-4 py-2 backdrop-blur">
                 Reserva directa
               </span>
             </div>
@@ -361,17 +333,7 @@ export default function HomePage() {
 
       {/* ── BOOKING WIDGET ── */}
       <section className="relative z-20 -mt-20 px-5 sm:px-8" id="reservar">
-        <div className="mx-auto max-w-6xl rounded-lg bg-white p-4 shadow-[0_24px_70px_rgba(30,45,40,0.18)] ring-1 ring-black/5 sm:p-5">
-          <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h2 className="text-xl font-semibold text-[#1f2b27]">
-                Buscar disponibilidad
-              </h2>
-              <p className="text-sm text-[#66736f]">
-                Elegí tus fechas para continuar la reserva dentro de este sitio.
-              </p>
-            </div>
-          </div>
+        <div className="mx-auto max-w-5xl">
           <cb-property-date-picker
             button-label="Buscar disponibilidad"
             currency={publicConfig.baseCurrency}
@@ -704,7 +666,7 @@ export default function HomePage() {
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_360px]">
             {/* Map */}
-            <div className="min-h-105 overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5 lg:min-h-0">
+            <div className="isolate min-h-105 overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5 lg:min-h-0">
               <HotelMapWrapper />
             </div>
 
