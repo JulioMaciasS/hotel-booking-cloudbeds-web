@@ -28,6 +28,7 @@ import { HotelMapWrapper } from "@/components/HotelMapWrapper";
 import { ScrollCenterHandler } from "@/components/ScrollCenterHandler";
 import { SiteHeader } from "@/components/SiteHeader";
 import Image from "next/image";
+import { BookingLoader } from "@/components/BookingLoader";
 import { BookingPriceObserver } from "@/components/BookingPriceObserver";
 import { CloudbedsScriptLoader } from "@/components/CloudbedsScriptLoader";
 import { publicConfig } from "@/lib/config";
@@ -289,6 +290,10 @@ export default function HomePage() {
       <ScrollCenterHandler />
       <CloudbedsScriptLoader />
       <BookingPriceObserver />
+      <BookingLoader
+        coverNav
+        selector='cb-property-date-picker [data-testid="property-date-picker-date-picker-checkin-input"]'
+      />
       <SiteHeader />
 
       {/* ── HERO ── */}

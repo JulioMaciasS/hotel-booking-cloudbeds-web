@@ -2,95 +2,82 @@
 
 import { useEffect, useState } from "react";
 
-const READY_HEIGHT_THRESHOLD_PX = 200;
-const FALLBACK_TIMEOUT_MS = 20_000;
+interface Props {
+  /**
+   * Watches for this element to appear then disappear (e.g. a third-party
+   * loading spinner). Dismisses the overlay when it's gone.
+   */
+  waitForRemoval?: string;
+  /**
+   * Watches for this element to appear in the DOM (e.g. an interactive form
+   * control). Used as a secondary signal when waitForRemoval is set, or as
+   * the sole signal when it isn't.
+   */
+  selector?: string;
+  /**
+   * When true the overlay covers the full viewport including the navbar.
+   * When false (default) the overlay starts below the 72px navbar.
+   */
+  coverNav?: boolean;
+}
 
-export function BookingLoader() {
+export function BookingLoader({ waitForRemoval, selector, coverNav = false }: Props) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    let observer: ResizeObserver | null = null;
-    let timeout: ReturnType<typeof setTimeout> | null = null;
+    let observer: MutationObserver | null = null;
+    let done = false;
+    let seenLoader = false;
 
     function markReady() {
+      if (done) return;
+      done = true;
       setReady(true);
       observer?.disconnect();
-      if (timeout !== null) clearTimeout(timeout);
     }
 
-    function observe(el: Element) {
-      observer = new ResizeObserver((entries) => {
-        for (const entry of entries) {
-          if (entry.contentRect.height >= READY_HEIGHT_THRESHOLD_PX) {
-            markReady();
-          }
+    function check() {
+      // --- waitForRemoval: fire when the loader element disappears ---
+      if (waitForRemoval) {
+        const loader = document.querySelector(waitForRemoval);
+        if (loader) {
+          seenLoader = true;
+        } else if (seenLoader) {
+          markReady();
+          return;
         }
-      });
-      observer.observe(el);
-      timeout = setTimeout(markReady, FALLBACK_TIMEOUT_MS);
-    }
-
-    // The element might already be in the DOM, or we may need to wait for it.
-    const existing = document.querySelector("cb-immersive-experience");
-    if (existing) {
-      observe(existing);
-      return () => {
-        observer?.disconnect();
-        if (timeout !== null) clearTimeout(timeout);
-      };
-    }
-
-    // If not yet in the DOM, wait for it via MutationObserver on <body>.
-    const domWatcher = new MutationObserver(() => {
-      const el = document.querySelector("cb-immersive-experience");
-      if (el) {
-        domWatcher.disconnect();
-        observe(el);
       }
-    });
-    domWatcher.observe(document.body, { childList: true, subtree: true });
 
-    return () => {
-      domWatcher.disconnect();
-      observer?.disconnect();
-      if (timeout !== null) clearTimeout(timeout);
-    };
-  }, []);
+      // --- selector: fire when the target element appears ---
+      if (selector && document.querySelector(selector)) {
+        markReady();
+      }
+    }
+
+    check();
+    if (done) return;
+
+    observer = new MutationObserver(check);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => observer?.disconnect();
+  }, [waitForRemoval, selector]);
 
   if (ready) return null;
 
   return (
     <div
       aria-busy="true"
-      aria-label="Cargando motor de reservas"
-      className="fixed inset-x-0 bottom-0 z-40 flex flex-col items-center justify-center gap-6 bg-white"
-      style={{ top: "72px" }}
+      aria-label="Cargando"
+      className={`fixed inset-x-0 bottom-0 flex items-center justify-center bg-white ${
+        coverNav ? "z-60" : "z-40"
+      }`}
+      style={{ top: coverNav ? 0 : "72px" }}
     >
-      {/* Spinner */}
       <div
         className="h-12 w-12 rounded-full border-4 border-[#edf3ef] border-t-[#38645b] animate-spin"
         role="status"
       />
-
-      <div className="text-center">
-        <p className="text-sm font-semibold text-[#1f2b27]">
-          Cargando motor de reservas…
-        </p>
-        <p className="mt-1 text-xs text-[#66736f]">
-          Esto puede tardar unos segundos
-        </p>
-      </div>
-
-      {/* Skeleton cards hinting at the widget content below */}
-      <div className="mt-2 flex w-full max-w-2xl flex-col gap-3 px-6">
-        {[70, 90, 60].map((w) => (
-          <div
-            key={w}
-            className="h-4 animate-pulse rounded-full bg-[#edf3ef]"
-            style={{ width: `${w}%` }}
-          />
-        ))}
-      </div>
     </div>
   );
 }

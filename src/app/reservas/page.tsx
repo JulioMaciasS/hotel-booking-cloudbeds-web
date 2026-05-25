@@ -11,13 +11,16 @@ export default function ReservasPage() {
     <main className="reservation-page bg-white text-[#1f2b27]">
       <CloudbedsScriptLoader />
       <BookingPriceObserver />
-      <BookingLoader />
+      <BookingLoader
+        waitForRemoval='[data-testid="main-layout-loader"]'
+        selector='cb-immersive-experience [data-testid="landing-search-panel-date-picker-checkin-input"]'
+      />
 
       <header
         className="reservation-shell-header sticky top-0 z-50 border-b border-[#e4e8e6] bg-white"
         data-testid="reservation-wrapper-header"
       >
-        <div className="mx-auto flex h-[72px] w-full max-w-7xl items-center justify-between px-5 sm:px-8">
+        <div className="mx-auto flex h-18 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
           <Link className="flex items-center gap-3" href="/">
             <Image
               alt="Los Lagos Hotel"
@@ -31,30 +34,10 @@ export default function ReservasPage() {
               Los Lagos Hotel
             </span>
           </Link>
-          <nav className="hidden items-center gap-7 text-sm font-medium text-[#52615d] md:flex">
-            <Link className="transition hover:text-[#1f2b27]" href="/#hotel">
-              Hotel
-            </Link>
-            <Link
-              className="transition hover:text-[#1f2b27]"
-              href="/#habitaciones"
-            >
-              Habitaciones
-            </Link>
-            <Link className="transition hover:text-[#1f2b27]" href="/#ubicacion">
-              Ubicacion
-            </Link>
-          </nav>
-          <Link
-            className="rounded-lg bg-[#1f2b27] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#31413d]"
-            href="/"
-          >
-            Volver al hotel
-          </Link>
         </div>
       </header>
 
-      <section className="cloudbeds-host reservation-embed-host" data-testid="cloudbeds-host">
+      <section className="cloudbeds-host reservation-embed-host" data-testid="cloudbeds-host" style={{ minHeight: "calc(100vh - 72px)" }}>
         <cb-immersive-experience
           currency={publicConfig.baseCurrency}
           data-testid="cloudbeds-standard-embed"
@@ -64,6 +47,7 @@ export default function ReservasPage() {
           lang="es"
           mode="standard"
           property-code={publicConfig.propertyCode}
+          style={{ display: "block", minHeight: "calc(100vh - 72px)" }}
         />
       </section>
     </main>
