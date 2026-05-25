@@ -2,28 +2,28 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import img0 from "../../assets/images/frente del hotel.jpg";
-import img1 from "../../assets/images/lateral del hotel con cartel 2.jpg";
-import img2 from "../../assets/images/lateral hotel + jardin.jpg";
-import img3 from "../../assets/images/recepcion 1.jpg";
-import img4 from "../../assets/images/triple twin - front left closeup.jpg";
-import img5 from "../../assets/images/comedor 1.jpg";
-import img6 from "../../assets/images/2 twin superior - front left.jpg";
-import img7 from "../../assets/images/desayuno 4.jpg";
-import img8 from "../../assets/images/double superior - front left 2.jpg";
-import img9 from "../../assets/images/double + twin superior - front right.jpg";
+import img0 from "../../assets/updated images/otros/fachada frente del hotel 2_ai_edited.png";
+import img1 from "../../assets/updated images/otros/exterior del lateral del hotel con cartel en el centro.jpg";
+import img2 from "../../assets/updated images/otros/fachada lateral hotel + jardin.jpg";
+import img3 from "../../assets/updated images/otros/recepcion 6 completa.jpg";
+import img4 from "../../assets/updated images/triples/triple_std_matsin_hab_a_01_rightcenenteredbed_closeup.jpg";
+import img5 from "../../assets/updated images/otros/comedor 3.jpg";
+import img6 from "../../assets/updated images/dobles/doble_sup_sinsin_hab_a_05_frontcenteredbed_above.jpg";
+import img7 from "../../assets/updated images/otros/desayuno 4.jpg";
+import img8 from "../../assets/updated images/dobles/doble_sup_mat_hab_a_01_abitrightcenteredbed_withbathroomatback_withvisiblewindow.jpg";
+import img9 from "../../assets/updated images/triples/triple_sup_matsin_hab_a_03_leftcenteredbed_withbathroomatback.jpg";
 
 const SLIDES = [
   { src: img0, alt: "Fachada de Los Lagos Hotel, El Calafate" },
   { src: img1, alt: "Lateral del hotel con cartel" },
   { src: img2, alt: "Lateral del hotel con jardín" },
   { src: img3, alt: "Recepción de Los Lagos Hotel" },
-  { src: img4, alt: "Habitación triple twin" },
+  { src: img4, alt: "Habitación triple estándar" },
   { src: img5, alt: "Comedor de Los Lagos Hotel" },
-  { src: img6, alt: "Habitación twin superior — dos camas" },
+  { src: img6, alt: "Habitación doble superior con dos camas" },
   { src: img7, alt: "Desayuno en Los Lagos Hotel" },
   { src: img8, alt: "Habitación doble superior" },
-  { src: img9, alt: "Habitación doble + twin superior" },
+  { src: img9, alt: "Habitación triple superior" },
 ];
 
 const INTERVAL_MS = 10_000;
@@ -65,7 +65,7 @@ export function HeroSlideshow() {
               className="object-cover"
               fill
               priority={i === 0}
-              quality={85}
+              quality={90}
               sizes="100vw"
               src={src}
             />
