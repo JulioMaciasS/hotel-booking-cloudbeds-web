@@ -45,7 +45,7 @@ export function SiteHeader() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/15 backdrop-blur-xl"
+          ? "bg-white/72 backdrop-blur-xl border-b border-black/[0.06]"
           : "bg-transparent"
       }`}
     >
@@ -121,7 +121,7 @@ export function SiteHeader() {
           mobileOpen ? "max-h-120 opacity-100" : "max-h-0 opacity-0"
         } ${
           scrolled
-            ? "border-t border-black/10 bg-white/15 backdrop-blur-xl"
+            ? "border-t border-black/[0.06] bg-white/72 backdrop-blur-xl"
             : "border-t border-white/10 bg-[#1a2825]/80 backdrop-blur-xl"
         }`}
       >

@@ -300,9 +300,9 @@ export default function HomePage() {
       <section className="relative min-h-[82svh] overflow-hidden bg-[#1d2a28] text-white">
         <HeroSlideshow />
         {/* gradient: top-to-bottom depth */}
-        <div className="absolute inset-0 bg-linear-to-b from-black/55 via-black/30 to-black/70" style={{ zIndex: 2 }} />
+        <div className="absolute inset-0 bg-linear-to-b from-black/40 via-black/15 to-black/55" style={{ zIndex: 2 }} />
         {/* gradient: left-to-right — protects text area */}
-        <div className="absolute inset-0 bg-linear-to-r from-black/50 via-black/20 to-transparent" style={{ zIndex: 2 }} />
+        <div className="absolute inset-0 bg-linear-to-r from-black/35 via-black/10 to-transparent" style={{ zIndex: 2 }} />
 
         <div
           className="relative mx-auto flex min-h-[82svh] w-full max-w-7xl items-center px-5 pb-28 pt-22 sm:px-8 lg:pb-36"
