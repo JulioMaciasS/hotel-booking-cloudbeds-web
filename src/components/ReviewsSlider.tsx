@@ -14,7 +14,7 @@ type Review = {
   rating: number;
   text: string;
   trip: string;
-  source: "tripadvisor" | "google";
+  source: "tripadvisor" | "google" | "booking";
 };
 
 function TripAdvisorLogo() {
@@ -23,6 +23,18 @@ function TripAdvisorLogo() {
 
 function GoogleMapsLogo() {
   return <Image src={googleMapsLogo} alt="Google Maps" width={14} height={20} className="object-contain" />;
+}
+
+function BookingLogo() {
+  return (
+    <span
+      aria-label="Booking.com"
+      className="flex h-5 items-center rounded px-1.5 text-[10px] font-bold tracking-tight text-white"
+      style={{ background: "#003580" }}
+    >
+      booking
+    </span>
+  );
 }
 
 const AVATAR_PALETTE = [
@@ -113,7 +125,13 @@ export function ReviewsSlider({ reviews }: { reviews: Review[] }) {
                   </p>
                 </div>
                 <span className="shrink-0">
-                  {review.source === "tripadvisor" ? <TripAdvisorLogo /> : <GoogleMapsLogo />}
+                  {review.source === "tripadvisor" ? (
+                    <TripAdvisorLogo />
+                  ) : review.source === "google" ? (
+                    <GoogleMapsLogo />
+                  ) : (
+                    <BookingLogo />
+                  )}
                 </span>
               </footer>
             </blockquote>

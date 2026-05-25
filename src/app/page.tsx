@@ -192,7 +192,7 @@ const trips = [
 
 const reviews: Array<{
   author: string; origin: string; date: string; rating: number;
-  text: string; trip: string; source: "tripadvisor" | "google";
+  text: string; trip: string; source: "tripadvisor" | "google" | "booking";
 }> = [
   {
     author: "Maria Esther R.",
@@ -256,6 +256,33 @@ const reviews: Array<{
     text: "Súper bien ubicado, a 3 cuadras de la calle principal. La ducha con buena presión y buen agua caliente. El WiFi funciona muy bien. La gente que atiende siempre muy amable.",
     trip: "Viaje en solitario",
     source: "tripadvisor",
+  },
+  {
+    author: "Luciana M.",
+    origin: "Córdoba, Argentina",
+    date: "Abril 2025",
+    rating: 4,
+    text: "Muy buena relación precio-calidad. Ubicación inmejorable para recorrer el centro y el lago. El desayuno muy variado y el personal siempre atento. Habitaciones sencillas pero cómodas y con buena calefacción para las noches frías.",
+    trip: "Viaje en pareja",
+    source: "booking",
+  },
+  {
+    author: "Markus W.",
+    origin: "Alemania",
+    date: "Noviembre 2024",
+    rating: 5,
+    text: "Perfect location, a few minutes walk from the town center and the lake. Breakfast was excellent with a great variety. The staff was very helpful with excursion bookings to Perito Moreno. Would definitely stay again.",
+    trip: "Viaje en pareja",
+    source: "booking",
+  },
+  {
+    author: "Valentina C.",
+    origin: "Montevideo, Uruguay",
+    date: "Enero 2024",
+    rating: 4,
+    text: "Habitación limpia y muy calefaccionada, esencial en El Calafate. El personal nos ayudó a organizar las excursiones. Buena relación calidad-precio para Patagonia. Lo recomendaría para viajeros que buscan comodidad céntrica.",
+    trip: "Viaje en pareja",
+    source: "booking",
   },
 ];
 
@@ -643,6 +670,33 @@ export default function HomePage() {
                     </div>
                   </div>
                   <p className="text-xs text-[#5f6e69]">43 opiniones · Google</p>
+                </div>
+              </a>
+              {/* Booking.com */}
+              <a
+                className="flex items-center gap-3 rounded-xl border border-[#003580]/20 bg-[#003580]/5 px-4 py-3 transition hover:bg-[#003580]/10"
+                href="https://www.booking.com/hotel/ar/los-lagos-el-calafate.es.html"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span
+                  aria-label="Booking.com"
+                  className="flex h-7 items-center rounded px-2 text-xs font-bold tracking-tight text-white"
+                  style={{ background: "#003580" }}
+                >
+                  booking
+                </span>
+                <div>
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-xl font-bold text-[#1f2b27]">8.0</span>
+                    <div className="flex gap-0.5 text-[#003580]">
+                      {[1, 2, 3, 4].map((i) => (
+                        <Star key={i} aria-hidden="true" fill="currentColor" size={13} strokeWidth={0} />
+                      ))}
+                      <Star aria-hidden="true" fill="none" size={13} strokeWidth={1.5} />
+                    </div>
+                  </div>
+                  <p className="text-xs text-[#5f6e69]">Booking.com</p>
                 </div>
               </a>
             </div>
