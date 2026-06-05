@@ -18,7 +18,58 @@ Copy `.env.example` to `.env.local` when you need local overrides.
 NEXT_PUBLIC_CLOUDBEDS_PROPERTY_CODE=5fdNYA
 NEXT_PUBLIC_BASE_CURRENCY=ARS
 NEXT_PUBLIC_DISPLAY_CURRENCY=USD
+NEXT_PUBLIC_VAT_RATE=0.21
 ```
+
+## VAT (IVA) toggle and FX recording
+
+On `/reservas`, an "¿Desde dónde reservás?" toggle (`ArgentinaVatToggle`) lets the
+guest mark whether they are an Argentine resident or a resident abroad. Argentine
+residents pay 21% IVA on lodging; residents abroad are exempt
+(Decreto 1043/2016). The toggle default is detected from the browser
+timezone/locale (`America/Argentina/*` → Argentina) and is overridable; the
+choice is stored in `localStorage` and broadcast via a `hotel-vat-change` event.
+
+The choice only changes how prices are **displayed** — the same visual layer that
+already converts ARS → USD ([BookingPriceObserver](src/components/BookingPriceObserver.tsx)).
+In resident-abroad mode, [cloudbeds-vat-adjust](src/lib/cloudbeds-vat-adjust.ts)
+hides the "Impuestos y tasas" line and drops the summary Total to the Subtotal;
+in resident mode Cloudbeds' default IVA-inclusive view is kept. The amount
+Cloudbeds actually charges is governed by its own tax configuration.
+
+No payment is taken in the booking engine — staff send a paylink manually
+afterwards — so the recorded custom fields are the source of truth for what to
+charge. With each reservation,
+[cloudbeds-fx-customfields](src/lib/cloudbeds-fx-customfields.ts) records the FX
+rate plus the **full price breakdown** (net / IVA / gross, in ARS + USD) into
+Cloudbeds **custom fields**. The full breakdown is stored regardless of the
+toggle so staff can charge either amount.
+
+The toggle also drives the **Comfiar "Factura T" flag**: it writes `SI` when the
+guest is an IVA-exempt resident abroad and `NO` for an Argentine resident, into
+Comfiar's existing custom field. Comfiar runs its IVA tax post-adjustment on the
+folio when that field reads `SI`, so the resident-abroad exemption is applied
+without manually capturing nationality.
+
+All fields must be configured in Cloudbeds with *display on the booking engine*
+enabled. The app matches each field by its **internal name** ("Nombre interno",
+rendered as the input `name` / `data-testid`) — not the display title — because
+the title can be mislabelled or duplicated. The app auto-fills and hides them
+(and the "Información adicional" heading). Match these env vars to the internal
+names:
+
+```env
+NEXT_PUBLIC_CB_FIELD_FX_RATE=cf_fx_ars_usd
+NEXT_PUBLIC_CB_FIELD_PRICE_NO_VAT_ARS=cf_precio_sin_iva_ars
+NEXT_PUBLIC_CB_FIELD_PRICE_NO_VAT_USD=cf_precio_sin_iva_usd
+NEXT_PUBLIC_CB_FIELD_VAT_ARS=cf_iva_ars
+NEXT_PUBLIC_CB_FIELD_VAT_USD=cf_iva_usd
+NEXT_PUBLIC_CB_FIELD_PRICE_ARS=cf_precio_ars_con_iva
+NEXT_PUBLIC_CB_FIELD_PRICE_USD=cf_precio_usd_con_iva
+NEXT_PUBLIC_CB_FIELD_FACTURA_T=cf_factura_t
+```
+
+If the custom fields are not present, recording silently no-ops.
 
 The homepage date picker uses `custom-url="/reservas"` so selected dates are
 passed into the in-site booking page:
@@ -98,7 +149,7 @@ pnpm tunnel
 If the tunnel returns `502 Bad Gateway`, confirm the local app is running:
 
 ```bash
-curl -I http://127.0.0.1:3000
+curl -I http://127.0.0.1:3100
 ```
 
 Cloudflare prints a public `https://...trycloudflare.com` URL. Add that host to
