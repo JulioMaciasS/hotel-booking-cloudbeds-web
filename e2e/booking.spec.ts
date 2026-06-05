@@ -148,10 +148,20 @@ test("home page date picker sends guests to /reservas without a hosted Cloudbeds
   await expect(page.getByTestId("cloudbeds-standard-embed")).toBeVisible();
 });
 
-test("reservas page renders the Cloudbeds immersive component with official hide attributes", async ({
+test("reservas page without booking params redirects back to the home date picker", async ({
   page,
 }) => {
   await page.goto("/reservas");
+
+  await expect(page).not.toHaveURL(/\/reservas/);
+  await expect(page.getByTestId("cloudbeds-date-picker")).toBeVisible();
+  await expect(page.getByTestId("cloudbeds-standard-embed")).toHaveCount(0);
+});
+
+test("reservas page renders the Cloudbeds immersive component with official hide attributes", async ({
+  page,
+}) => {
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
 
   const embed = page.getByTestId("cloudbeds-standard-embed");
   await expect(page.getByTestId("reservation-wrapper-header")).toBeVisible();
@@ -167,7 +177,7 @@ test("reservas page renders the Cloudbeds immersive component with official hide
 test("reservas page keeps Cloudbeds nav visible while hiding brand, currency, and promo controls", async ({
   page,
 }) => {
-  await page.goto("/reservas");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
 
   await expect(page.getByTestId("mock-cloudbeds")).toBeVisible();
   await expect(page.getByTestId("mock-cloudbeds-shell-nav")).toBeVisible();
@@ -186,7 +196,7 @@ test("reservas page keeps Cloudbeds nav visible while hiding brand, currency, an
 test("reservas page converts mocked Cloudbeds ARS prices to dollars once", async ({
   page,
 }) => {
-  await page.goto("/reservas");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
 
   await expect(page.getByTestId("mock-cloudbeds")).toBeVisible();
   await expect(page.getByText("$85.71")).toHaveCount(2);
@@ -203,7 +213,7 @@ test("reservas page converts mocked Cloudbeds ARS prices to dollars once", async
 test("reservas page adds bedding selectors to Cloudbeds room cards", async ({
   page,
 }) => {
-  await page.goto("/reservas");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
 
   const doubleCard = page.getByTestId("accommodation-card-227179928547456");
   const tripleCard = page.getByTestId("accommodation-card-229741180768384");
@@ -252,7 +262,7 @@ test("reservas page adds bedding selectors to Cloudbeds room cards", async ({
 test("reservas page keeps Cloudbeds filters button text and icon visible", async ({
   page,
 }) => {
-  await page.goto("/reservas");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
 
   const filterButton = page.getByTestId("mock-filter-button");
   await expect(page.getByTestId("mock-cloudbeds")).toBeVisible();
@@ -268,7 +278,7 @@ test("reservas page keeps Cloudbeds filters button text and icon visible", async
 test("reservas page keeps map zoom control backgrounds visible", async ({
   page,
 }) => {
-  await page.goto("/reservas");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
 
   await expect(page.getByTestId("mock-map-controls")).toBeVisible();
   await expect(page.getByLabel("Zoom in")).toHaveCSS(

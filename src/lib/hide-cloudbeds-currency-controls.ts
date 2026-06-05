@@ -214,6 +214,7 @@ export function injectCloudbedsDomAdjustmentStyles(
     }
 
     .hotel-bedding-option {
+      align-items: center !important;
       appearance: none !important;
       background: transparent !important;
       border: 1px solid transparent !important;
@@ -221,15 +222,31 @@ export function injectCloudbedsDomAdjustmentStyles(
       box-shadow: none !important;
       color: #34423e !important;
       cursor: pointer !important;
+      display: flex !important;
+      flex-direction: column !important;
       font-size: 13px !important;
       font-weight: 600 !important;
-      min-height: 42px !important;
+      gap: 5px !important;
+      justify-content: center !important;
+      min-height: 58px !important;
       padding: 9px 10px !important;
       text-align: center !important;
       transition:
         background 0.15s ease,
         border-color 0.15s ease,
         color 0.15s ease !important;
+    }
+
+    .hotel-bedding-icon {
+      color: #6b7974 !important;
+      display: block !important;
+      flex: none !important;
+      height: 22px !important;
+      width: 40px !important;
+    }
+
+    .hotel-bedding-option.is-selected .hotel-bedding-icon {
+      color: #38645b !important;
     }
 
     .hotel-bedding-option:hover {

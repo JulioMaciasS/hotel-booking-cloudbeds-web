@@ -1,6 +1,11 @@
 type BeddingOption = {
   key: string;
   label: string;
+  /**
+   * Relative widths of each bed, used to draw a top-down layout icon. A double
+   * (matrimonial) bed is `2`, a single bed is `1`.
+   */
+  beds: number[];
 };
 
 type BeddingConfig = {
@@ -14,17 +19,63 @@ type BeddingConfig = {
 const STORAGE_PREFIX = "hotel-bedding-selection:";
 
 const DOUBLE_BEDDING_OPTIONS: BeddingOption[] = [
-  { key: "matrimonial", label: "Matrimonial" },
-  { key: "dos_camas_separadas", label: "Dos camas separadas" },
+  { key: "matrimonial", label: "Matrimonial", beds: [2] },
+  { key: "dos_camas_separadas", label: "Dos camas separadas", beds: [1, 1] },
 ];
 
 const TRIPLE_BEDDING_OPTIONS: BeddingOption[] = [
   {
     key: "matrimonial_cama_individual",
     label: "Matrimonial y cama individual",
+    beds: [2, 1],
   },
-  { key: "tres_camas_individuales", label: "Tres camas individuales" },
+  {
+    key: "tres_camas_individuales",
+    label: "Tres camas individuales",
+    beds: [1, 1, 1],
+  },
 ];
+
+/**
+ * Builds a small top-down SVG of the bed layout. Each bed is a rounded
+ * rectangle (mattress) with one pillow per single, two for a double. Uses
+ * `currentColor` so it follows the button's text colour and selected state.
+ */
+function buildBeddingIcon(beds: number[]): string {
+  const width = 72;
+  const height = 40;
+  const margin = 5;
+  const gap = 5;
+  const bedTop = 6;
+  const bedHeight = 28;
+  const totalUnits = beds.reduce((sum, bed) => sum + bed, 0) || 1;
+  const available = width - margin * 2 - gap * (beds.length - 1);
+  const unit = available / totalUnits;
+
+  let cursor = margin;
+  let shapes = "";
+
+  for (const bed of beds) {
+    const bedWidth = unit * bed;
+    shapes += `<rect x="${cursor.toFixed(1)}" y="${bedTop}" width="${bedWidth.toFixed(1)}" height="${bedHeight}" rx="3"/>`;
+
+    const pillows = bed >= 2 ? 2 : 1;
+    const pillowGap = 2;
+    const pillowAreaWidth = bedWidth - 6;
+    const pillowWidth =
+      (pillowAreaWidth - pillowGap * (pillows - 1)) / pillows;
+    let pillowCursor = cursor + 3;
+
+    for (let index = 0; index < pillows; index += 1) {
+      shapes += `<rect x="${pillowCursor.toFixed(1)}" y="${bedTop + 3}" width="${pillowWidth.toFixed(1)}" height="6" rx="2" fill="currentColor" stroke="none" opacity="0.35"/>`;
+      pillowCursor += pillowWidth + pillowGap;
+    }
+
+    cursor += bedWidth + gap;
+  }
+
+  return `<svg class="hotel-bedding-icon" viewBox="0 0 ${width} ${height}" width="40" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">${shapes}</svg>`;
+}
 
 const BEDDING_CONFIGS: BeddingConfig[] = [
   {
@@ -176,6 +227,7 @@ function createBeddingSelector(card: Element, config: BeddingConfig) {
               data-hotel-bedding-option="${option.key}"
               type="button"
             >
+              ${buildBeddingIcon(option.beds)}
               <span class="hotel-bedding-name">${option.label}</span>
             </button>
           `,
