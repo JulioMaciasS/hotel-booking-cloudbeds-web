@@ -1,8 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
-import { useState } from "react";
 import Image from "next/image";
 import tripadvisorLogo from "../../assets/logo/tripadvisor.png";
 import googleMapsLogo from "../../assets/logo/Google_Maps_icon_(2020).png";
@@ -18,11 +17,31 @@ type Review = {
 };
 
 function TripAdvisorLogo() {
-  return <Image src={tripadvisorLogo} alt="TripAdvisor" width={20} height={20} className="object-contain" />;
+  return (
+    <span className="relative block h-5 w-5">
+      <Image
+        src={tripadvisorLogo}
+        alt="TripAdvisor"
+        fill
+        sizes="20px"
+        className="object-contain"
+      />
+    </span>
+  );
 }
 
 function GoogleMapsLogo() {
-  return <Image src={googleMapsLogo} alt="Google Maps" width={14} height={20} className="object-contain" />;
+  return (
+    <span className="relative block h-5 w-5">
+      <Image
+        src={googleMapsLogo}
+        alt="Google Maps"
+        fill
+        sizes="20px"
+        className="object-contain"
+      />
+    </span>
+  );
 }
 
 function BookingLogo() {
@@ -53,56 +72,61 @@ function getAvatar(author: string) {
 }
 
 export function ReviewsSlider({ reviews }: { reviews: Review[] }) {
+  const [index, setIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
-  const [canPrev, setCanPrev] = useState(false);
-  const [canNext, setCanNext] = useState(true);
+  const total = reviews.length;
 
-  const updateArrows = useCallback(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    setCanPrev(el.scrollLeft > 8);
-    setCanNext(el.scrollLeft < el.scrollWidth - el.clientWidth - 8);
-  }, []);
+  const goTo = useCallback(
+    (next: number) => {
+      const wrapped = ((next % total) + total) % total;
+      setIndex(wrapped);
+      const el = trackRef.current;
+      if (!el) return;
+      const card = el.children[wrapped] as HTMLElement | undefined;
+      card?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    },
+    [total],
+  );
 
+  // Scroll the track to keep the active card visible when index changes.
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
-    updateArrows();
-    el.addEventListener("scroll", updateArrows, { passive: true });
-    return () => el.removeEventListener("scroll", updateArrows);
-  }, [updateArrows]);
-
-  const scroll = (dir: -1 | 1) => {
-    const el = trackRef.current;
-    if (!el) return;
-    el.scrollBy({ left: dir * el.clientWidth, behavior: "smooth" });
-  };
+    const card = el.children[index] as HTMLElement | undefined;
+    if (!card) return;
+    const left = card.offsetLeft - (el.clientWidth - card.offsetWidth) / 2;
+    el.scrollTo({ left, behavior: "smooth" });
+  }, [index]);
 
   return (
     <div className="mt-10">
-      {/* Track */}
+      {/* Track — scrollable but driven by index; shows 1 card at a time on sm, 2 on md, 3 on lg */}
       <div
         ref={trackRef}
-        className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 scrollbar-none [&::-webkit-scrollbar]:hidden"
+        className="flex gap-5 overflow-x-hidden scroll-smooth snap-x snap-mandatory pb-2"
+        aria-live="polite"
+        aria-atomic="true"
       >
-        {reviews.map((review) => {
+        {reviews.map((review, i) => {
           const avatar = getAvatar(review.author);
+          const isActive = i === index;
           return (
             <blockquote
               key={review.author}
-              className="flex w-full shrink-0 snap-start flex-col rounded-lg bg-[#f7f3ea] p-6 ring-1 ring-black/5 sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]"
+              aria-hidden={!isActive}
+              className="flex w-full shrink-0 snap-start flex-col rounded-lg bg-[#f7f3ea] p-6 opacity-100 ring-1 ring-black/5 sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]"
             >
               <div
                 className="flex gap-0.5 text-amber-400"
                 aria-label={`${review.rating} de 5 estrellas`}
               >
-                {[1, 2, 3, 4, 5].map((i) => (
+                {[1, 2, 3, 4, 5].map((s) => (
                   <Star
-                    key={i}
+                    key={s}
                     aria-hidden="true"
-                    fill={i <= review.rating ? "currentColor" : "none"}
+                    fill={s <= review.rating ? "currentColor" : "none"}
                     size={15}
-                    strokeWidth={i <= review.rating ? 0 : 1.5}
+                    strokeWidth={s <= review.rating ? 0 : 1.5}
                   />
                 ))}
               </div>
@@ -143,25 +167,31 @@ export function ReviewsSlider({ reviews }: { reviews: Review[] }) {
       <div className="mt-5 flex items-center justify-center gap-3">
         <button
           aria-label="Reseña anterior"
-          disabled={!canPrev}
-          onClick={() => scroll(-1)}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-[#c8d4ce] bg-white text-[#1f2b27] shadow-sm transition hover:bg-[#f0f4f2] disabled:cursor-not-allowed disabled:opacity-30"
+          onClick={() => goTo(index - 1)}
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-[#c8d4ce] bg-white text-[#1f2b27] shadow-sm transition hover:bg-[#f0f4f2]"
         >
           <ChevronLeft size={18} />
         </button>
-        <div className="flex gap-1.5" aria-hidden="true">
+        <div className="flex gap-1.5" role="tablist" aria-label="Reseñas">
           {reviews.map((_, i) => (
-            <span
+            <button
               key={i}
-              className="h-1.5 w-1.5 rounded-full bg-[#38645b]/30"
+              role="tab"
+              aria-selected={i === index}
+              aria-label={`Reseña ${i + 1}`}
+              onClick={() => goTo(i)}
+              className={`rounded-full transition-all duration-200 ${
+                i === index
+                  ? "h-1.5 w-4 bg-[#38645b]"
+                  : "h-1.5 w-1.5 bg-[#38645b]/25 hover:bg-[#38645b]/50"
+              }`}
             />
           ))}
         </div>
         <button
           aria-label="Reseña siguiente"
-          disabled={!canNext}
-          onClick={() => scroll(1)}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-[#c8d4ce] bg-white text-[#1f2b27] shadow-sm transition hover:bg-[#f0f4f2] disabled:cursor-not-allowed disabled:opacity-30"
+          onClick={() => goTo(index + 1)}
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-[#c8d4ce] bg-white text-[#1f2b27] shadow-sm transition hover:bg-[#f0f4f2]"
         >
           <ChevronRight size={18} />
         </button>
