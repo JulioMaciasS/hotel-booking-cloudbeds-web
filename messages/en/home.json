@@ -1,0 +1,97 @@
+{
+  "hero": {
+    "eyebrow": "Hotel · El Calafate, Patagonia",
+    "title": "Los Lagos Hotel",
+    "subtitle": "A family-run hotel in the heart of El Calafate, just a 3-minute walk from downtown. Your starting point for the glaciers, lakes and trails of southern Patagonia.",
+    "badgeLocation": "El Calafate · Patagonia",
+    "badgeBreakfast": "Breakfast included",
+    "badgeDirect": "Direct booking",
+    "socialProof": "<strong>4.3</strong> · +400 verified reviews"
+  },
+  "heroSlideshow": {
+    "tablistLabel": "Hotel images",
+    "goToSlide": "View image {index}",
+    "slides": [
+      "Facade of Los Lagos Hotel, El Calafate",
+      "Side of the hotel with sign",
+      "Side of the hotel with garden",
+      "Reception of Los Lagos Hotel",
+      "Standard triple room",
+      "Dining room of Los Lagos Hotel",
+      "Superior double room with two beds",
+      "Breakfast at Los Lagos Hotel",
+      "Superior double room",
+      "Superior triple room"
+    ]
+  },
+  "booking": {
+    "buttonLabel": "Check availability",
+    "helper": "Book directly on this site and always get the best rate, with no intermediaries or commissions."
+  },
+  "about": {
+    "eyebrow": "El Calafate, Southern Patagonia",
+    "title": "A quiet base for exploring southern Patagonia.",
+    "paragraph": "We are a small family-run hotel in an exceptional location, just a 3-minute walk from the town centre, bars, restaurants and travel agencies. A place that combines simplicity, warmth, comfort and attentive, personalised service.",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "rooms": "Rooms",
+    "knowHotel": "Discover the hotel",
+    "contact": "Contact us",
+    "imageAlt": "Interior of Los Lagos Hotel"
+  },
+  "rooms": {
+    "eyebrow": "Rooms",
+    "title": "Double or triple, standard or superior.",
+    "paragraph": "4 room types with heating, Wi-Fi, TV and breakfast included. Choose the one that best suits your trip.",
+    "viewAll": "View all rooms",
+    "viewDetail": "View details"
+  },
+  "experiences": {
+    "eyebrow": "Experiences",
+    "title": "The Perito Moreno glacier, within your reach.",
+    "paragraph": "We are your base camp in El Calafate. The hotel arranges transfers and helps you plan every excursion across Patagonia.",
+    "viewAll": "View all experiences"
+  },
+  "whyDirect": {
+    "eyebrow": "Book direct",
+    "title": "The best conditions, always on this site.",
+    "paragraph": "Booking directly with us gives you advantages no intermediary can match."
+  },
+  "benefits": {
+    "bestRate": {
+      "title": "Best rate",
+      "text": "You'll always find the lowest price right here, with no third-party commissions."
+    },
+    "noIntermediaries": {
+      "title": "No intermediaries",
+      "text": "You deal directly with the hotel, with no surcharges or hidden fees."
+    },
+    "support24h": {
+      "title": "24-hour support",
+      "text": "Reception and support every day of the year to help you with anything."
+    },
+    "securePayment": {
+      "title": "Secure payment",
+      "text": "We process your booking securely and with instant confirmation."
+    }
+  },
+  "reviews": {
+    "eyebrow": "Verified reviews",
+    "title": "What our guests say.",
+    "tripadvisorCount": "{count} reviews · TripAdvisor",
+    "googleCount": "{count} reviews · Google",
+    "bookingCount": "{count} reviews · Booking"
+  },
+  "location": {
+    "eyebrow": "Getting here",
+    "title": "In the heart of El Calafate.",
+    "paragraph": "Just a 3-minute walk from Av. del Libertador and steps from Lago Argentino. The perfect starting point for the Perito Moreno Glacier and all of southern Patagonia.",
+    "addressLabel": "Address",
+    "viewDistances": "See distances and how to get here"
+  },
+  "cta": {
+    "title": "Ready to explore Patagonia?",
+    "paragraph": "Book directly with us and secure the best available rate, with breakfast included and personalised service.",
+    "button": "Search available dates"
+  }
+}

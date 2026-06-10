@@ -1,12 +1,14 @@
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { ExternalLink, Mail, MapPin, Phone } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { HOTEL } from "@/lib/site-data";
 import { BOOKING_HREF, NAV_LINKS } from "@/lib/nav";
-import logoImage from "../../assets/old-web-images/logo-sin-fondo-270.png";
+import logoImage from "@assets/old-web-images/logo-sin-fondo-270.png";
 
 export function SiteFooter() {
+  const t = useTranslations("common");
   return (
     <footer className="bg-[#141e1c] px-5 py-14 text-sm text-white/60 sm:px-8">
       <div className="mx-auto max-w-7xl">
@@ -23,11 +25,7 @@ export function SiteFooter() {
               />
               <span className="text-base font-semibold text-white">{HOTEL.name}</span>
             </Link>
-            <p className="mt-4 max-w-sm leading-7">
-              Pequeño hotel familiar en El Calafate, Patagonia. A 200 metros del
-              centro, con desayuno incluido y atención personalizada para cada
-              huésped.
-            </p>
+            <p className="mt-4 max-w-sm leading-7">{t("footer.tagline")}</p>
             <address className="mt-5 not-italic space-y-1.5">
               <p className="flex items-start gap-2">
                 <MapPin aria-hidden="true" className="mt-0.5 shrink-0 text-[#6dbfaa]" size={14} />
@@ -47,20 +45,20 @@ export function SiteFooter() {
           {/* Navigation */}
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/40">
-              Navegación
+              {t("footer.navHeading")}
             </p>
             <nav>
               <ul className="space-y-2">
-                {NAV_LINKS.map(({ href, label }) => (
+                {NAV_LINKS.map(({ href, key }) => (
                   <li key={href}>
                     <Link className="transition hover:text-white" href={href}>
-                      {label}
+                      {t(`nav.${key}`)}
                     </Link>
                   </li>
                 ))}
                 <li>
                   <Link className="transition hover:text-white" href="/#opiniones">
-                    Opiniones
+                    {t("nav.reviews")}
                   </Link>
                 </li>
               </ul>
@@ -70,7 +68,7 @@ export function SiteFooter() {
           {/* Links */}
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/40">
-              Reseñas &amp; Mapas
+              {t("footer.reviewsHeading")}
             </p>
             <ul className="space-y-2">
               <li>
@@ -92,7 +90,7 @@ export function SiteFooter() {
                   target="_blank"
                 >
                   <ExternalLink aria-hidden="true" size={13} />
-                  Ver en Google Maps
+                  {t("footer.viewOnGoogleMaps")}
                 </a>
               </li>
               <li>
@@ -111,19 +109,19 @@ export function SiteFooter() {
               className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-[#38645b] px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-[#2e5049]"
               href={BOOKING_HREF}
             >
-              Reservar ahora
+              {t("actions.bookNow")}
             </Link>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col items-center gap-3 border-t border-white/10 pt-8 text-center text-xs text-white/30 sm:flex-row sm:justify-between">
-          <p>© 2026 {HOTEL.name} · El Calafate, Patagonia, Argentina</p>
+          <p>{t("footer.copyright", { name: HOTEL.name })}</p>
           <div className="flex gap-4">
             <Link href="/terminos" className="transition hover:text-white/60">
-              Términos y Condiciones
+              {t("footer.terms")}
             </Link>
             <Link href="/privacidad" className="transition hover:text-white/60">
-              Política de Privacidad
+              {t("footer.privacy")}
             </Link>
           </div>
         </div>

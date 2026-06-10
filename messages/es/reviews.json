@@ -1,0 +1,71 @@
+{
+  "items": [
+    {
+      "text": "Buenas instalaciones. Personal de recepción muy agradable, sobre todo el chico de la tarde/noche. Desayuno muy completo. Buena relación precio/calidad.",
+      "origin": "Sevilla, España",
+      "date": "Diciembre 2025",
+      "trip": "Viaje en pareja"
+    },
+    {
+      "text": "Muy buena opción en El Calafate. Cálido, limpio y bien ubicado. El desayuno está muy completo y el personal siempre dispuesto a ayudar con excursiones y traslados.",
+      "origin": "Santiago, Chile",
+      "date": "Enero 2025",
+      "trip": "Viaje en familia"
+    },
+    {
+      "text": "Excelente relación precio calidad. La calefacción, la ducha, los colchones y ropa de cama impecables. La amabilidad y buena predisposición de Juan es para destacar. Nos sentimos muy a gusto en este hotel.",
+      "origin": "Avellaneda, Argentina",
+      "date": "Febrero 2023",
+      "trip": "Viaje en pareja"
+    },
+    {
+      "text": "La habitación estaba limpia, la limpiaban cada día y las camas eran cómodas. Desayuno incluido: pan, café, leche, yogures, zumos, cereales, mermelada, queso y jamón. Definitivamente me quedaría aquí de nuevo.",
+      "origin": "Europa",
+      "date": "Diciembre 2018",
+      "trip": "Viaje en pareja"
+    },
+    {
+      "text": "Excelente relación calidad-precio. Las habitaciones son acogedoras y la calefacción funcionó perfectamente durante las noches frías. La recepción 24 horas fue muy conveniente al llegar tarde.",
+      "origin": "Buenos Aires, Argentina",
+      "date": "Marzo 2024",
+      "trip": "Viaje en pareja"
+    },
+    {
+      "text": "Hotel coqueto, pequeño pero muy lindo. Queda cerca de la zona céntrica, los traslados se pueden hacer caminando. Lindas vistas a las montañas nevadas. Buen desayuno incluido.",
+      "origin": "Asunción, Paraguay",
+      "date": "Julio 2023",
+      "trip": "Viaje en pareja"
+    },
+    {
+      "text": "Súper bien ubicado, a 3 cuadras de la calle principal. La ducha con buena presión y buen agua caliente. El WiFi funciona muy bien. La gente que atiende siempre muy amable.",
+      "origin": "Bahía Blanca, Argentina",
+      "date": "Febrero 2023",
+      "trip": "Viaje en solitario"
+    },
+    {
+      "text": "Muy buena relación precio-calidad. Ubicación inmejorable para recorrer el centro y el lago. El desayuno muy variado y el personal siempre atento. Habitaciones sencillas pero cómodas y con buena calefacción para las noches frías.",
+      "origin": "Córdoba, Argentina",
+      "date": "Abril 2025",
+      "trip": "Viaje en pareja"
+    },
+    {
+      "text": "Ubicación perfecta, a pocos minutos a pie del centro y del lago. El desayuno fue excelente, con una gran variedad. El personal nos ayudó mucho con las reservas de excursiones al Perito Moreno. Sin duda volveríamos.",
+      "origin": "Alemania",
+      "date": "Noviembre 2024",
+      "trip": "Viaje en pareja"
+    },
+    {
+      "text": "Habitación limpia y muy calefaccionada, esencial en El Calafate. El personal nos ayudó a organizar las excursiones. Buena relación calidad-precio para Patagonia. Lo recomendaría para viajeros que buscan comodidad céntrica.",
+      "origin": "Montevideo, Uruguay",
+      "date": "Enero 2024",
+      "trip": "Viaje en pareja"
+    }
+  ],
+  "ui": {
+    "rating": "{rating} de 5 estrellas",
+    "tablistLabel": "Reseñas",
+    "prev": "Reseña anterior",
+    "next": "Reseña siguiente",
+    "goTo": "Reseña {index}"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "home": {
+    "title": "Los Lagos Hotel | Direct booking",
+    "description": "Official direct-booking site for Los Lagos Hotel in El Calafate."
+  },
+  "rooms": {
+    "title": "Rooms | Los Lagos Hotel, El Calafate",
+    "description": "Double and triple rooms, standard and superior, at Los Lagos Hotel, El Calafate. Heating, Wi-Fi, TV and breakfast included in every rate."
+  },
+  "hotel": {
+    "title": "The Hotel | Los Lagos Hotel, El Calafate",
+    "description": "Get to know Los Lagos Hotel: a small family-run hotel in the centre of El Calafate, with services designed for resting between glaciers."
+  },
+  "experiences": {
+    "title": "Experiences | Los Lagos Hotel, El Calafate",
+    "description": "Excursions from El Calafate: Perito Moreno Glacier, ice minitrekking, Lake Argentino cruises and El Chaltén. The hotel helps you arrange everything."
+  },
+  "location": {
+    "title": "Location | Los Lagos Hotel, El Calafate",
+    "description": "Los Lagos Hotel is 200 m from the centre of El Calafate. Distances to the airport, the bus terminal, Lake Argentino and the Perito Moreno Glacier."
+  },
+  "contact": {
+    "title": "Contact | Los Lagos Hotel, El Calafate",
+    "description": "Contact Los Lagos Hotel in El Calafate by phone, WhatsApp or email. We help with your booking and with planning your trip."
+  },
+  "reservas": {
+    "title": "Book | Los Lagos Hotel, El Calafate",
+    "description": "Book directly with Los Lagos Hotel and always get the best rate, with breakfast included and instant confirmation."
+  },
+  "privacy": {
+    "title": "Privacy Policy | Los Lagos Hotel",
+    "description": "Privacy policy for Los Lagos Hotel, El Calafate."
+  },
+  "terms": {
+    "title": "Terms & Conditions | Los Lagos Hotel",
+    "description": "Terms and conditions for Los Lagos Hotel, El Calafate."
+  },
+  "notFound": {
+    "title": "Page not found | Los Lagos Hotel",
+    "description": "The page you're looking for doesn't exist or has moved. Return to the Los Lagos Hotel home page, El Calafate."
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "page": {
+    "hero": {
+      "eyebrow": "Experiencias",
+      "title": "Glaciares, lagos y montañas.",
+      "subtitle": "Somos tu campamento base en El Calafate. El hotel organiza traslados a los principales atractivos y te ayuda a planificar cada salida."
+    },
+    "intro": {
+      "eyebrow": "Excursiones en bus",
+      "title": "Las salidas que no te podés perder.",
+      "description": "Salidas diarias en temporada desde el centro de la ciudad. Nuestros recepcionistas te ayudan a planificar y reservar cada excursión.",
+      "transfersBadge": "Traslados desde el hotel"
+    },
+    "help": {
+      "title": "¿Querés ayuda para armar tu itinerario?",
+      "description": "Consultá disponibilidad y precios de las excursiones directamente en la recepción del hotel o por WhatsApp. Reservá tu habitación y nosotros te ayudamos con el resto.",
+      "bookCta": "Reservar tu estadía",
+      "whatsappCta": "Escribinos por WhatsApp"
+    }
+  },
+  "trips": {
+    "peritoMoreno": {
+      "name": "Glaciar Perito Moreno",
+      "description": "El glaciar más famoso de Patagonia. Excursión de día completo en bus con pasarelas de madera y vistas privilegiadas al glaciar en movimiento.",
+      "duration": "Día completo",
+      "distance": "80 km · 1.5 h en bus",
+      "highlight": "Excursión estrella"
+    },
+    "minitrekking": {
+      "name": "Minitrekking sobre el Glaciar",
+      "description": "Caminata sobre el hielo del Perito Moreno con crampones y guías certificados. Una experiencia única que combina navegación y trekking.",
+      "duration": "Día completo",
+      "distance": "80 km · 1.5 h en bus",
+      "highlight": "Experiencia única"
+    },
+    "navigation": {
+      "name": "Navegación Lago Argentino",
+      "description": "Safari lacustre por el Lago Argentino con vistas a los glaciares Upsala, Spegazzini y Onelli. Salida desde Puerto Bandera.",
+      "duration": "Día completo",
+      "distance": "45 km · 45 min en bus",
+      "highlight": "Navegación glaciar"
+    },
+    "chalten": {
+      "name": "El Chaltén – Fitz Roy",
+      "description": "La capital nacional del trekking. Senderos con vistas al Cerro Fitz Roy y Cerro Torre en el Parque Nacional Los Glaciares.",
+      "duration": "Día completo",
+      "distance": "220 km · 2.5 h en bus",
+      "highlight": "Trekking legendario"
+    }
+  }
+}

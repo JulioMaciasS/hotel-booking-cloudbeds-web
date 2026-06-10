@@ -10,6 +10,25 @@ The app has two public routes:
 - `/reservas` embeds Cloudbeds Booking Engine Immersive Experience inside this
   site, so guests do not have to leave for the hosted Cloudbeds reservation URL.
 
+## Languages (i18n)
+
+The site is bilingual via [`next-intl`](https://next-intl.dev) with SEO-friendly,
+URL-based locales:
+
+- **Spanish** (`es`, default) is served at the unprefixed URLs (`/`,
+  `/habitaciones`, …) so the existing URLs/SEO are preserved.
+- **English** (`en`) lives under `/en/*` (`/en`, `/en/habitaciones`, …).
+- First-time visitors are routed by their browser `Accept-Language`; the choice
+  is remembered in a cookie. A header switch (`LanguageSwitcher`) toggles locale
+  on the current page. The Cloudbeds embed receives `lang={locale}`.
+
+All routes are statically pre-rendered per locale (except `/reservas`, which is
+dynamic). Pages live under `src/app/[locale]/`. Copy is stored as message
+catalogs in `messages/<locale>/<namespace>.json`; code-side data files
+(`src/lib/site-data.ts`, `src/lib/rooms.ts`) keep only media/structure and
+resolve text through those catalogs. Routing/config lives in `src/i18n/` and
+`src/proxy.ts`.
+
 ## Configuration
 
 Copy `.env.example` to `.env.local` when you need local overrides.
@@ -96,7 +115,7 @@ official Cloudbeds script after hydration:
   mode="standard"
   property-code="5fdNYA"
   currency="ARS"
-  lang="es"
+  lang="es"  // set dynamically to the active locale (es | en)
   hide-custom-header="yes"
   hide-custom-footer="yes"
   hide-property-info="yes"

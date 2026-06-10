@@ -1,0 +1,30 @@
+{
+  "page": {
+    "logoAlt": "Los Lagos Hotel",
+    "brand": "Los Lagos Hotel"
+  },
+  "vat": {
+    "residenceQuestion": "¿Dónde residís?",
+    "groupLabel": "Residencia para el cálculo del IVA",
+    "argentina": "Argentina",
+    "argentinaWithVat": "con IVA {percent}%",
+    "abroad": "Exterior",
+    "abroadNoVat": "sin IVA",
+    "argentinaTitle": "Residente en Argentina — precios con IVA {percent}%",
+    "abroadTitle": "Residente en el exterior — exento de IVA",
+    "infoButtonLabel": "Información sobre el IVA",
+    "closeLabel": "Cerrar",
+    "modalTitle": "IVA y residentes en el exterior",
+    "intro": "En Argentina el alojamiento tiene un IVA del {percent}%. Las personas <strong>residentes en el exterior</strong> están exentas de pagarlo (Decreto 1043/2016) cuando abonan con medios de pago del exterior.",
+    "residentArgentina": "<strong>Residente en Argentina:</strong> los precios incluyen el IVA ({percent}%).",
+    "residentAbroad": "<strong>Residente en el exterior:</strong> los precios se muestran sin IVA.",
+    "checkInNote": "Al hacer el check-in se verificará tu <strong>DNI o pasaporte</strong> para confirmar que se seleccionó la tarifa correcta. Si corresponde otra condición, se ajustará la diferencia.",
+    "understood": "Entendido"
+  },
+  "loader": {
+    "loading": "Cargando"
+  },
+  "priceObserver": {
+    "convertedFrom": "{value}, convertido visualmente desde {original}"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "page": {
+    "hero": {
+      "eyebrow": "Habitaciones",
+      "title": "Habitaciones para cada viaje.",
+      "subtitle": "Doble o triple, estándar o superior. Espacios cálidos y bien equipados, pensados para descansar después de un día entre glaciares."
+    },
+    "selector": {
+      "eyebrow": "Elegí tu habitación",
+      "title": "Cuatro tipos, una misma calidez.",
+      "description": "Mirá las fotos, las configuraciones de cama y lo que incluye cada tipo de habitación. Cuando quieras, consultá disponibilidad y tarifas en tiempo real."
+    },
+    "included": {
+      "eyebrow": "Incluido en todas las habitaciones"
+    },
+    "cta": {
+      "title": "Consultá disponibilidad y tarifas",
+      "description": "Reservá directo en este sitio y conseguí siempre la mejor tarifa, con desayuno incluido y confirmación inmediata."
+    }
+  },
+  "section": {
+    "tablistLabel": "Tipos de habitación",
+    "photoOf": "{name} — foto {index}",
+    "prevPhoto": "Foto anterior",
+    "nextPhoto": "Foto siguiente",
+    "goToPhoto": "Foto {index}",
+    "bedTypeLabel": "Tipo de cama",
+    "bedSeparator": "o",
+    "viewAvailability": "Ver disponibilidad"
+  },
+  "guests": "{count} huéspedes",
+  "items": {
+    "doubleStandard": {
+      "name": "Doble Estándar",
+      "blurb": "Cómoda y luminosa, ideal para parejas o viajeros que buscan una base cálida y económica en el centro de El Calafate."
+    },
+    "tripleStandard": {
+      "name": "Triple Estándar",
+      "blurb": "Espacio extra para familias o grupos de amigos, con configuraciones de cama flexibles y todo lo necesario para descansar."
+    },
+    "doubleSuperior": {
+      "name": "Doble Superior",
+      "blurb": "Nuestra habitación doble más amplia y equipada, con terminaciones cuidadas y baño privado renovado."
+    },
+    "tripleSuperior": {
+      "name": "Triple Superior",
+      "blurb": "Lo mejor para familias: amplitud, confort superior y baño privado renovado, sin resignar la ubicación céntrica."
+    }
+  },
+  "tiers": {
+    "standard": "Estándar",
+    "superior": "Superior"
+  },
+  "features": {
+    "wifi": "Wi-Fi gratuito",
+    "tv": "TV por cable",
+    "heating": "Calefacción central",
+    "bathroom": "Baño privado con amenities",
+    "breakfast": "Desayuno incluido"
+  },
+  "bedOptions": {
+    "matrimonial": "Matrimonial",
+    "twin": "Dos camas separadas",
+    "matrimonialSingle": "Matrimonial y cama individual",
+    "threeSingles": "Tres camas individuales"
+  }
+}

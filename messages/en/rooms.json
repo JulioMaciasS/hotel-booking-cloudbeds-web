@@ -1,0 +1,67 @@
+{
+  "page": {
+    "hero": {
+      "eyebrow": "Rooms",
+      "title": "Rooms for every trip.",
+      "subtitle": "Double or triple, standard or superior. Warm, well-equipped spaces designed for resting after a day out among the glaciers."
+    },
+    "selector": {
+      "eyebrow": "Choose your room",
+      "title": "Four types, the same warmth.",
+      "description": "Browse the photos, bed configurations and what each room type includes. Whenever you like, check real-time availability and rates."
+    },
+    "included": {
+      "eyebrow": "Included in every room"
+    },
+    "cta": {
+      "title": "Check availability and rates",
+      "description": "Book directly on this site and always get the best rate, with breakfast included and instant confirmation."
+    }
+  },
+  "section": {
+    "tablistLabel": "Room types",
+    "photoOf": "{name} — photo {index}",
+    "prevPhoto": "Previous photo",
+    "nextPhoto": "Next photo",
+    "goToPhoto": "Photo {index}",
+    "bedTypeLabel": "Bed type",
+    "bedSeparator": "or",
+    "viewAvailability": "Check availability"
+  },
+  "guests": "{count} guests",
+  "items": {
+    "doubleStandard": {
+      "name": "Standard Double",
+      "blurb": "Comfortable and bright, ideal for couples or travellers looking for a warm, affordable base in the centre of El Calafate."
+    },
+    "tripleStandard": {
+      "name": "Standard Triple",
+      "blurb": "Extra space for families or groups of friends, with flexible bed setups and everything you need to rest."
+    },
+    "doubleSuperior": {
+      "name": "Superior Double",
+      "blurb": "Our largest, best-equipped double room, with refined finishes and a renovated private bathroom."
+    },
+    "tripleSuperior": {
+      "name": "Superior Triple",
+      "blurb": "The best choice for families: space, superior comfort and a renovated private bathroom, without giving up the central location."
+    }
+  },
+  "tiers": {
+    "standard": "Standard",
+    "superior": "Superior"
+  },
+  "features": {
+    "wifi": "Free Wi-Fi",
+    "tv": "Cable TV",
+    "heating": "Central heating",
+    "bathroom": "Private bathroom with amenities",
+    "breakfast": "Breakfast included"
+  },
+  "bedOptions": {
+    "matrimonial": "Double bed",
+    "twin": "Two separate beds",
+    "matrimonialSingle": "Double bed and single bed",
+    "threeSingles": "Three single beds"
+  }
+}

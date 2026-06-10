@@ -2,7 +2,8 @@
 
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { ChevronLeft, ChevronRight, Users } from "lucide-react";
 import { FEATURES, ROOMS } from "@/lib/rooms";
 import { BOOKING_HREF } from "@/lib/nav";
@@ -69,6 +70,7 @@ function BedIcon({ beds }: { beds: number[] }) {
 // ─── Component ─────────────────────────────────────────────────────────────
 
 export function RoomsSection() {
+  const t = useTranslations("rooms");
   const [roomIdx, setRoomIdx] = useState(0);
   const [photoIdx, setPhotoIdx] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -127,7 +129,7 @@ export function RoomsSection() {
 
       {/* Tab selector */}
       <div
-        aria-label="Tipos de habitación"
+        aria-label={t("section.tablistLabel")}
         className="flex gap-2 overflow-x-auto pb-1 scrollbar-none [&::-webkit-scrollbar]:hidden"
         role="tablist"
       >
@@ -135,7 +137,7 @@ export function RoomsSection() {
           const isActive = i === roomIdx;
           return (
             <button
-              key={r.name}
+              key={r.key}
               aria-selected={isActive}
               onClick={() => selectRoom(i)}
               role="tab"
@@ -146,7 +148,7 @@ export function RoomsSection() {
                   : "border-[#c8d4ce] bg-white text-[#34423e] hover:border-[#38645b]/50 hover:bg-[#f0f4f2]"
               }`}
             >
-              {r.name}
+              {t(`items.${r.key}.name`)}
               {isActive && (
                 <span
                   ref={progressRef}
@@ -180,7 +182,10 @@ export function RoomsSection() {
                   }`}
                 >
                   <Image
-                    alt={`${r.name} — foto ${pi + 1}`}
+                    alt={t("section.photoOf", {
+                      name: t(`items.${r.key}.name`),
+                      index: pi + 1,
+                    })}
                     className="object-cover"
                     fill
                     placeholder="blur"
@@ -197,7 +202,7 @@ export function RoomsSection() {
           {total > 1 && (
             <>
               <button
-                aria-label="Foto anterior"
+                aria-label={t("section.prevPhoto")}
                 className="absolute left-3 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur-sm transition hover:bg-black/55"
                 onClick={prev}
                 type="button"
@@ -205,7 +210,7 @@ export function RoomsSection() {
                 <ChevronLeft size={20} />
               </button>
               <button
-                aria-label="Foto siguiente"
+                aria-label={t("section.nextPhoto")}
                 className="absolute right-3 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur-sm transition hover:bg-black/55"
                 onClick={next}
                 type="button"
@@ -221,7 +226,7 @@ export function RoomsSection() {
               {room.photos.map((_, i) => (
                 <button
                   key={i}
-                  aria-label={`Foto ${i + 1}`}
+                  aria-label={t("section.goToPhoto", { index: i + 1 })}
                   onClick={() => setPhotoIdx(i)}
                   type="button"
                   className={`rounded-full transition-all duration-200 ${
@@ -246,7 +251,7 @@ export function RoomsSection() {
             const active = ri === roomIdx;
             return (
               <div
-                key={r.name}
+                key={r.key}
                 aria-hidden={!active}
                 className={`col-start-1 row-start-1 flex flex-col justify-between p-6 transition-opacity duration-500 lg:p-8 ${
                   active ? "opacity-100" : "pointer-events-none opacity-0"
@@ -257,39 +262,45 @@ export function RoomsSection() {
                   <div className="flex items-center justify-between gap-2">
                     <span
                       className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                        r.tier === "Superior"
+                        r.tier === "superior"
                           ? "bg-[#38645b] text-white"
                           : "bg-[#edf3ef] text-[#38645b]"
                       }`}
                     >
-                      {r.tier}
+                      {t(`tiers.${r.tier}`)}
                     </span>
                     <span className="flex items-center gap-1 text-xs text-[#66736f]">
                       <Users aria-hidden size={13} />
-                      {r.guests} huéspedes
+                      {t("guests", { count: r.guests })}
                     </span>
                   </div>
 
                   {/* Name */}
-                  <h3 className="mt-3 text-2xl font-semibold text-[#1f2b27]">{r.name}</h3>
+                  <h3 className="mt-3 text-2xl font-semibold text-[#1f2b27]">
+                    {t(`items.${r.key}.name`)}
+                  </h3>
 
                   {/* Blurb */}
-                  <p className="mt-2 text-sm leading-6 text-[#5f6e69]">{r.blurb}</p>
+                  <p className="mt-2 text-sm leading-6 text-[#5f6e69]">
+                    {t(`items.${r.key}.blurb`)}
+                  </p>
 
                   {/* Bed options */}
                   <div className="mt-5">
                     <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-[#66736f]">
-                      Tipo de cama
+                      {t("section.bedTypeLabel")}
                     </p>
                     <div className="flex flex-wrap items-center gap-2">
                       {r.bedOptions.map((opt, i) => (
-                        <Fragment key={opt.label}>
+                        <Fragment key={opt.key}>
                           {i > 0 && (
-                            <span className="select-none text-xs text-[#a0aeaa]">o</span>
+                            <span className="select-none text-xs text-[#a0aeaa]">
+                              {t("section.bedSeparator")}
+                            </span>
                           )}
                           <span className="inline-flex items-center gap-1.5 rounded-full border border-[#c8d4ce] bg-white px-3 py-1.5 text-xs text-[#5f6e69]">
                             <BedIcon beds={opt.beds} />
-                            {opt.label}
+                            {t(`bedOptions.${opt.key}`)}
                           </span>
                         </Fragment>
                       ))}
@@ -298,10 +309,10 @@ export function RoomsSection() {
 
                   {/* Features */}
                   <ul className="mt-5 space-y-2">
-                    {FEATURES.map(({ icon: Icon, label }) => (
-                      <li key={label} className="flex items-center gap-2 text-sm text-[#52615d]">
+                    {FEATURES.map(({ icon: Icon, key }) => (
+                      <li key={key} className="flex items-center gap-2 text-sm text-[#52615d]">
                         <Icon aria-hidden size={14} strokeWidth={1.8} className="shrink-0 text-[#38645b]" />
-                        {label}
+                        {t(`features.${key}`)}
                       </li>
                     ))}
                   </ul>
@@ -313,7 +324,7 @@ export function RoomsSection() {
                   href={BOOKING_HREF}
                   tabIndex={active ? undefined : -1}
                 >
-                  Ver disponibilidad
+                  {t("section.viewAvailability")}
                 </Link>
               </div>
             );

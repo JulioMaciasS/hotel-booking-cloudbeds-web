@@ -1,0 +1,30 @@
+{
+  "page": {
+    "logoAlt": "Los Lagos Hotel",
+    "brand": "Los Lagos Hotel"
+  },
+  "vat": {
+    "residenceQuestion": "Where do you live?",
+    "groupLabel": "Residence for VAT calculation",
+    "argentina": "Argentina",
+    "argentinaWithVat": "with {percent}% VAT",
+    "abroad": "Abroad",
+    "abroadNoVat": "no VAT",
+    "argentinaTitle": "Argentine resident — prices include {percent}% VAT",
+    "abroadTitle": "Resident abroad — VAT exempt",
+    "infoButtonLabel": "Information about VAT",
+    "closeLabel": "Close",
+    "modalTitle": "VAT and residents abroad",
+    "intro": "In Argentina, accommodation carries a {percent}% VAT. <strong>Residents abroad</strong> are exempt from paying it (Decree 1043/2016) when they pay with foreign payment methods.",
+    "residentArgentina": "<strong>Argentine resident:</strong> prices include VAT ({percent}%).",
+    "residentAbroad": "<strong>Resident abroad:</strong> prices are shown without VAT.",
+    "checkInNote": "At check-in, your <strong>ID or passport</strong> will be verified to confirm the correct rate was selected. If a different condition applies, the difference will be adjusted.",
+    "understood": "Got it"
+  },
+  "loader": {
+    "loading": "Loading"
+  },
+  "priceObserver": {
+    "convertedFrom": "{value}, visually converted from {original}"
+  }
+}

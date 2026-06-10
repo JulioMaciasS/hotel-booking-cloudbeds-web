@@ -5,6 +5,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { MapContainer, Marker, Popup, TileLayer, Tooltip, useMap } from "react-leaflet";
 import { useEffect, useMemo } from "react";
+import { useTranslations } from "next-intl";
 
 // Hotel — verified from Google Maps @-50.3357896,-72.2666423
 const HOTEL: [number, number] = [-50.33579, -72.26664];
@@ -25,9 +26,9 @@ type PoiCategory =
   | "centre";
 
 type Poi = {
-  label: string;
+  /** Stable key resolving `label` and `note` under `location.map.pois.<tKey>`. */
+  tKey: string;
   coords: [number, number];
-  note: string;
   category: PoiCategory;
   url: string;
 };
@@ -45,188 +46,164 @@ type Poi = {
 const POIS: Poi[] = [
   // ── Centre ────────────────────────────────────────────────────────────────
   {
-    label: "Centro de El Calafate",
+    tKey: "centro",
     coords: [-50.33770, -72.26820],
-    note: "Corazón comercial y gastronómico de la ciudad",
     category: "centre",
     url: "https://www.google.com/maps/search/Centro+El+Calafate+Argentina",
   },
 
   // ── Restaurants ──────────────────────────────────────────────────────────
   {
-    label: "La Tablita",
+    tKey: "laTablita",
     coords: [-50.33794, -72.25729],
-    note: "Parrilla patagónica icónica desde 1965 · Cnel. Rosales 28",
     category: "restaurant",
     url: "https://www.google.com/maps/place/La+Tablita/@-50.3379421,-72.2572912,17z",
   },
   {
-    label: "Casimiro Biguá",
+    tKey: "casimiroBigua",
     coords: [-50.33770, -72.27412],
-    note: "Gourmet & parrilla · Av. Libertador 963",
     category: "restaurant",
     url: "https://www.google.com/maps/search/Casimiro+Bigua+El+Calafate+Argentina",
   },
   {
-    label: "Mi Viejo",
+    tKey: "miViejo",
     coords: [-50.33790, -72.27740],
-    note: "Parrilla argentina · Av. Libertador 1111",
     category: "restaurant",
     url: "https://www.google.com/maps/search/Mi+Viejo+restaurante+El+Calafate+Argentina",
   },
   {
-    label: "Mako Fuegos y Vinos",
+    tKey: "mako",
     coords: [-50.33800, -72.27870],
-    note: "Cocina de autor & vinos · Av. Libertador 1223",
     category: "restaurant",
     url: "https://www.google.com/maps/search/Mako+Fuegos+y+Vinos+El+Calafate",
   },
   {
-    label: "La Zaina Cocina Patagónica",
+    tKey: "laZaina",
     coords: [-50.33860, -72.27550],
-    note: "Cocina regional · Gregores 1057",
     category: "restaurant",
     url: "https://www.google.com/maps/search/La+Zaina+Cocina+Patagonica+El+Calafate",
   },
   {
-    label: "La Lechuza",
+    tKey: "laLechuza",
     coords: [-50.33857, -72.26825],
-    note: "Pizzas & pastas · Av. Libertador 1301",
     category: "restaurant",
     url: "https://www.google.com/maps/search/La+Lechuza+El+Calafate+Argentina",
   },
 
   // ── Bars ──────────────────────────────────────────────────────────────────
   {
-    label: "La Zorra Taproom",
+    tKey: "laZorra",
     coords: [-50.33756, -72.27256],
-    note: "Cerveza artesanal patagónica · Av. Libertador 832",
     category: "bar",
     url: "https://www.google.com/maps/search/La+Zorra+Taproom+El+Calafate",
   },
   {
-    label: "Borges y Álvarez Libro-Bar",
+    tKey: "borges",
     coords: [-50.33789, -72.27502],
-    note: "Bar literario & cerveza artesanal · Av. Libertador 1015",
     category: "bar",
     url: "https://www.google.com/maps/search/Borges+y+Alvarez+Libro+Bar+El+Calafate",
   },
 
   // ── Cafés ─────────────────────────────────────────────────────────────────
   {
-    label: "Viva la Pepa",
+    tKey: "vivaLaPepa",
     coords: [-50.33892, -72.26818],
-    note: "Crepería & café · Amado 833",
     category: "cafe",
     url: "https://www.google.com/maps/search/Viva+la+Pepa+El+Calafate+Argentina",
   },
   {
-    label: "Chocolates Ovejitas",
+    tKey: "ovejitas",
     coords: [-50.33805, -72.27840],
-    note: "Chocolatería & café patagónico · Av. Libertador 1197",
     category: "cafe",
     url: "https://www.google.com/maps/search/Chocolates+Ovejitas+El+Calafate",
   },
 
   // ── Attractions ───────────────────────────────────────────────────────────
   {
-    label: "Av. del Libertador",
+    tKey: "libertador",
     coords: [-50.33780, -72.26860],
-    note: "Calle peatonal principal · ~200 m caminando",
     category: "attraction",
     url: "https://www.google.com/maps/search/Avenida+del+Libertador+El+Calafate",
   },
   {
-    label: "Centro de Interpretación Histórica",
+    tKey: "centroInterpretacion",
     coords: [-50.33099, -72.26507],
-    note: "Museo local · Av. Brown y Bonarelli · ~700 m",
     category: "attraction",
     url: "https://www.google.com/maps/search/Centro+Interpretacion+Historica+El+Calafate",
   },
   {
-    label: "Glaciarium",
+    tKey: "glaciarium",
     coords: [-50.33663, -72.33982],
-    note: "Museo de glaciares · Ruta 11 · 5 km en auto",
     category: "attraction",
     url: "https://www.google.com/maps/search/Glaciarium+El+Calafate",
   },
   {
-    label: "Glaciar Perito Moreno",
+    tKey: "peritoMoreno",
     coords: [-50.48333, -73.05000],
-    note: "Maravilla natural · 80 km · 1.5 h en bus",
     category: "attraction",
     url: "https://www.google.com/maps/search/Glaciar+Perito+Moreno+Argentina",
   },
 
   // ── Nature ────────────────────────────────────────────────────────────────
   {
-    label: "Lago Argentino (orilla)",
+    tKey: "lagoArgentino",
     coords: [-50.34780, -72.27350],
-    note: "Orilla del lago · ~400 m caminando",
     category: "nature",
     url: "https://www.google.com/maps/search/Lago+Argentino+El+Calafate",
   },
   {
-    label: "Laguna Nimez",
+    tKey: "lagunaNimez",
     coords: [-50.34890, -72.27240],
-    note: "Reserva de aves · ~1.2 km caminando",
     category: "nature",
     url: "https://www.google.com/maps/search/Laguna+Nimez+El+Calafate",
   },
 
   // ── Transport ─────────────────────────────────────────────────────────────
   {
-    label: "Terminal de Ómnibus",
+    tKey: "terminal",
     coords: [-50.33626, -72.25697],
-    note: "Terminal de buses · ~700 m caminando",
     category: "transport",
     url: "https://www.google.com/maps/search/Terminal+Omnibus+El+Calafate+Argentina",
   },
   {
-    label: "Aeropuerto FTE",
+    tKey: "aeropuerto",
     coords: [-50.27990, -72.05310],
-    note: "Aeropuerto Malvinas Argentinas · 16 km en auto",
     category: "transport",
     url: "https://www.google.com/maps/search/Aeropuerto+El+Calafate+FTE",
   },
 
   // ── Banks ─────────────────────────────────────────────────────────────────
   {
-    label: "Banco Santa Cruz",
+    tKey: "bancoSantaCruz",
     coords: [-50.33800, -72.27960],
-    note: "Sucursal bancaria & cajero · Av. Libertador 1285",
     category: "bank",
     url: "https://www.google.com/maps/search/Banco+Santa+Cruz+El+Calafate",
   },
   {
-    label: "Banco Nación Argentina",
+    tKey: "bancoNacion",
     coords: [-50.33790, -72.27769],
-    note: "Sucursal bancaria & cajero · Av. Libertador 1133",
     category: "bank",
     url: "https://www.google.com/maps/search/Banco+Nacion+Argentina+El+Calafate",
   },
 
   // ── Tourism agencies ──────────────────────────────────────────────────────
   {
-    label: "Interlagos Turismo",
+    tKey: "interlagos",
     coords: [-50.33800, -72.27821],
-    note: "Agencia de excursiones · Av. Libertador 1175",
     category: "tourism",
     url: "https://www.google.com/maps/search/Interlagos+Turismo+El+Calafate",
   },
   {
-    label: "Cal-Tur",
+    tKey: "calTur",
     coords: [-50.33788, -72.27589],
-    note: "Agencia de turismo · Av. Libertador 1080",
     category: "tourism",
     url: "https://www.google.com/maps/search/Cal-Tur+El+Calafate+Argentina",
   },
 
   // ── Shops ─────────────────────────────────────────────────────────────────
   {
-    label: "Supermercado La Anónima",
+    tKey: "laAnonima",
     coords: [-50.33710, -72.26350],
-    note: "Supermercado · centro",
     category: "shop",
     url: "https://www.google.com/maps/search/La+Anonima+El+Calafate+Argentina",
   },
@@ -278,19 +255,6 @@ const CATEGORY_ICON_PATH: Record<PoiCategory, string> = {
   // Map pin star / landmark
   centre:
     "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z",
-};
-
-const CATEGORY_LABEL: Record<PoiCategory, string> = {
-  restaurant: "Restaurante",
-  bar: "Bar",
-  cafe: "Café",
-  attraction: "Atracción",
-  transport: "Transporte",
-  nature: "Naturaleza",
-  shop: "Comercio",
-  bank: "Banco",
-  tourism: "Agencia de turismo",
-  centre: "Centro de la ciudad",
 };
 
 function makePinSvg(category: PoiCategory): string {
@@ -347,6 +311,7 @@ function SetView() {
 }
 
 export function HotelMap() {
+  const t = useTranslations("location.map");
   const hotelIcon = useMemo(() => makeDivIcon(hotelPinSvg(), 40, 54), []);
   const poiIcons = useMemo(
     () =>
@@ -364,7 +329,7 @@ export function HotelMap() {
       center={HOTEL}
       zoom={INITIAL_ZOOM}
       className="h-full w-full"
-      scrollWheelZoom={false}
+      scrollWheelZoom
       zoomControl
     >
       <TileLayer
@@ -385,14 +350,14 @@ export function HotelMap() {
           <p style={{ fontWeight: 700, fontSize: "13px", color: "#1f2b27", marginBottom: "2px" }}>
             Los Lagos Hotel
           </p>
-          <p style={{ fontSize: "12px", color: "#5f6e69" }}>25 de Mayo 220, El Calafate</p>
+          <p style={{ fontSize: "12px", color: "#5f6e69" }}>{t("hotel.address")}</p>
           <a
             href={HOTEL_GOOGLE_MAPS_URL}
             rel="noopener noreferrer"
             style={POPUP_LINK_STYLE}
             target="_blank"
           >
-            Ver en Google Maps ↗
+            {t("viewOnGoogleMaps")}
           </a>
         </Popup>
       </Marker>
@@ -401,32 +366,32 @@ export function HotelMap() {
       {POIS.map((poi) => (
         <Marker
           icon={poiIcons[poi.category]}
-          key={poi.label}
+          key={poi.tKey}
           position={poi.coords}
           zIndexOffset={poi.category === "centre" ? 500 : 0}
         >
           {poi.category === "centre" && (
             <Tooltip permanent direction="right" offset={[16, -32]}>
               <span style={{ fontSize: "11px", fontWeight: 600, color: "#1f2b27" }}>
-                Centro
+                {t("centreLabel")}
               </span>
             </Tooltip>
           )}
           <Popup>
             <p style={{ fontWeight: 700, fontSize: "13px", color: "#1f2b27", marginBottom: "1px" }}>
-              {poi.label}
+              {t(`pois.${poi.tKey}.label`)}
             </p>
             <p style={{ fontSize: "11px", color: CATEGORY_COLOR[poi.category], fontWeight: 600, marginBottom: "3px" }}>
-              {CATEGORY_LABEL[poi.category]}
+              {t(`categories.${poi.category}`)}
             </p>
-            <p style={{ fontSize: "12px", color: "#5f6e69" }}>{poi.note}</p>
+            <p style={{ fontSize: "12px", color: "#5f6e69" }}>{t(`pois.${poi.tKey}.note`)}</p>
             <a
               href={poi.url}
               rel="noopener noreferrer"
               style={POPUP_LINK_STYLE}
               target="_blank"
             >
-              Ver en Google Maps ↗
+              {t("viewOnGoogleMaps")}
             </a>
           </Popup>
         </Marker>

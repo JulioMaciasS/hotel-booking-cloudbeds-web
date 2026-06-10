@@ -7,7 +7,7 @@
     "dev": "next dev --port 3100",
     "build": "next build",
     "start": "next start --port 3100",
-    "tunnel": "cloudflared tunnel --url http://127.0.0.1:3100",
+    "tunnel": "cloudflared tunnel --url http://127.0.0.1:3100 --protocol http2",
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -17,6 +17,7 @@
     "leaflet": "^1.9.4",
     "lucide-react": "^1.14.0",
     "next": "16.2.6",
+    "next-intl": "^4.13.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-leaflet": "^5.0.0"

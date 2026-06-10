@@ -1,0 +1,97 @@
+{
+  "hero": {
+    "eyebrow": "Hotel · El Calafate, Patagonia",
+    "title": "Los Lagos Hotel",
+    "subtitle": "Hotel familiar en el corazón de El Calafate, a tan solo 3 minutos andando del centro. Tu punto de partida hacia los glaciares, lagos y senderos de la Patagonia austral.",
+    "badgeLocation": "El Calafate · Patagonia",
+    "badgeBreakfast": "Desayuno incluido",
+    "badgeDirect": "Reserva directa",
+    "socialProof": "<strong>4.3</strong> · +400 opiniones verificadas"
+  },
+  "heroSlideshow": {
+    "tablistLabel": "Imágenes del hotel",
+    "goToSlide": "Ver imagen {index}",
+    "slides": [
+      "Fachada de Los Lagos Hotel, El Calafate",
+      "Lateral del hotel con cartel",
+      "Lateral del hotel con jardín",
+      "Recepción de Los Lagos Hotel",
+      "Habitación triple estándar",
+      "Comedor de Los Lagos Hotel",
+      "Habitación doble superior con dos camas",
+      "Desayuno en Los Lagos Hotel",
+      "Habitación doble superior",
+      "Habitación triple superior"
+    ]
+  },
+  "booking": {
+    "buttonLabel": "Buscar disponibilidad",
+    "helper": "Reservá directo en este sitio y conseguí siempre la mejor tarifa, sin intermediarios ni comisiones."
+  },
+  "about": {
+    "eyebrow": "El Calafate, Patagonia Austral",
+    "title": "Una base tranquila para conocer la Patagonia austral.",
+    "paragraph": "Somos un pequeño hotel familiar de excepcional ubicación, a tan solo 3 minutos andando del centro de la ciudad, bares, restaurantes y agencias de viajes. Un alojamiento que combina sencillez, calidez, confort y servicio personalizado integral.",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "rooms": "Habitaciones",
+    "knowHotel": "Conocé el hotel",
+    "contact": "Contactar",
+    "imageAlt": "Interior de Los Lagos Hotel"
+  },
+  "rooms": {
+    "eyebrow": "Habitaciones",
+    "title": "Doble o triple, estándar o superior.",
+    "paragraph": "4 tipos de habitación con calefacción, Wi-Fi, TV y desayuno incluido. Elegí la que mejor se adapte a tu viaje.",
+    "viewAll": "Ver todas las habitaciones",
+    "viewDetail": "Ver detalle"
+  },
+  "experiences": {
+    "eyebrow": "Experiencias",
+    "title": "El glaciar Perito Moreno, a tu alcance.",
+    "paragraph": "Somos tu campamento base en El Calafate. El hotel organiza traslados y te ayuda a planificar cada excursión por la Patagonia.",
+    "viewAll": "Ver todas las experiencias"
+  },
+  "whyDirect": {
+    "eyebrow": "Reservá directo",
+    "title": "Las mejores condiciones, siempre en este sitio.",
+    "paragraph": "Reservar directamente con nosotros te da ventajas que ningún intermediario puede igualar."
+  },
+  "benefits": {
+    "bestRate": {
+      "title": "Mejor tarifa",
+      "text": "El precio más bajo lo encontrás siempre acá, sin comisiones de terceros."
+    },
+    "noIntermediaries": {
+      "title": "Sin intermediarios",
+      "text": "Tratás directo con el hotel, sin recargos ni cargos ocultos."
+    },
+    "support24h": {
+      "title": "Atención 24 hs",
+      "text": "Recepción y soporte todos los días del año para ayudarte con todo."
+    },
+    "securePayment": {
+      "title": "Pago seguro",
+      "text": "Procesamos tu reserva de forma segura y con confirmación inmediata."
+    }
+  },
+  "reviews": {
+    "eyebrow": "Opiniones verificadas",
+    "title": "Lo que dicen nuestros huéspedes.",
+    "tripadvisorCount": "{count} opiniones · TripAdvisor",
+    "googleCount": "{count} opiniones · Google",
+    "bookingCount": "{count} opiniones · Booking"
+  },
+  "location": {
+    "eyebrow": "Cómo llegar",
+    "title": "En el corazón de El Calafate.",
+    "paragraph": "A solo 3 minutos a pie de la Av. del Libertador y a pasos del Lago Argentino. El punto de partida perfecto hacia el Glaciar Perito Moreno y toda la Patagonia austral.",
+    "addressLabel": "Dirección",
+    "viewDistances": "Ver distancias y cómo llegar"
+  },
+  "cta": {
+    "title": "¿Listo para explorar la Patagonia?",
+    "paragraph": "Reservá directamente con nosotros y asegurate la mejor tarifa disponible, con desayuno incluido y atención personalizada.",
+    "button": "Buscar fechas disponibles"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "page": {
+    "eyebrow": "Contact",
+    "title": "Have a question?",
+    "subtitle": "Write to us and we'll reply as soon as possible. You can also call us or message us on WhatsApp."
+  },
+  "info": {
+    "phone": "Calls",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "reception": "24-hour reception",
+    "receptionNote": "Every day of the year"
+  },
+  "form": {
+    "nameLabel": "Name",
+    "namePlaceholder": "Your full name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@email.com",
+    "phoneLabel": "Phone",
+    "phoneOptional": "(optional)",
+    "phonePlaceholder": "+54 9 ...",
+    "messageLabel": "Message",
+    "messagePlaceholder": "How can we help you?",
+    "submit": "Send message",
+    "successTitle": "Thanks for reaching out!",
+    "successBody": "Your email client opened with the message ready to send. We'll get back to you shortly.",
+    "sendAnother": "Send another message",
+    "mailSubject": "Inquiry from {name}",
+    "mailName": "Name: {name}",
+    "mailEmail": "Email: {email}",
+    "mailPhone": "Phone: {phone}",
+    "mailMessageLabel": "Message:"
+  }
+}

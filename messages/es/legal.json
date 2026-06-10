@@ -1,0 +1,179 @@
+{
+  "nav": {
+    "backHome": "Volver al inicio",
+    "brand": "Los Lagos Hotel"
+  },
+  "eyebrow": "Legal",
+  "lastUpdatedLabel": "Última actualización: {date}",
+  "lastUpdated": "18 de mayo de 2026",
+  "terms": {
+    "title": "Términos y Condiciones",
+    "toPrivacy": "Política de Privacidad →",
+    "sections": [
+      {
+        "heading": "1. Datos del prestador",
+        "body": "El presente sitio web y el servicio de alojamiento son prestados por <strong>Los Lagos Hotel</strong>, con domicilio en 25 de Mayo 220, Z9405 El Calafate, Provincia de Santa Cruz, República Argentina. Contacto: <email></email> / +54 2902 417738."
+      },
+      {
+        "heading": "2. Objeto",
+        "body": "Los presentes Términos y Condiciones regulan la relación entre Los Lagos Hotel y el huésped con respecto a la reserva y prestación del servicio de alojamiento, de conformidad con la <strong>Ley 24.240 de Defensa del Consumidor</strong> y el <strong>Código Civil y Comercial de la Nación</strong> (Ley 26.994)."
+      },
+      {
+        "heading": "3. Proceso de reserva y confirmación",
+        "body": "Las reservas pueden realizarse a través del motor de reservas en línea (gestionado por Cloudbeds), por correo electrónico o por teléfono. La reserva se considerará confirmada una vez que el huésped reciba una comunicación escrita de confirmación por parte del hotel. El hotel se reserva el derecho de no confirmar una reserva sin necesidad de expresar causa alguna, en cuyo caso reintegrará de inmediato todo importe eventualmente abonado."
+      },
+      {
+        "heading": "4. Precios, moneda y facturación",
+        "body": "Los precios publicados se expresan en pesos argentinos (ARS) o en dólares estadounidenses (USD) según se indique en el proceso de reserva. Para los turistas extranjeros no residentes en la República Argentina podrá aplicarse la alícuota diferenciada prevista por la normativa vigente del Banco Central de la República Argentina (BCRA). El hotel emitirá la factura correspondiente de acuerdo con los requerimientos de la AFIP. Los precios incluyen los impuestos nacionales y provinciales vigentes, salvo indicación expresa en contrario."
+      },
+      {
+        "heading": "5. Política de cancelación",
+        "intro": "Las condiciones específicas de cancelación se informan en el momento de la reserva y varían según la tarifa seleccionada:",
+        "items": [
+          "<strong>Tarifa flexible:</strong> cancelación sin cargo hasta 48 horas antes de la fecha de check-in prevista.",
+          "<strong>Tarifa no reembolsable:</strong> sin derecho a reembolso ante cancelación, modificación o no presentación (no show)."
+        ],
+        "outro": "En todos los casos, el hotel reintegrará los importes correspondientes dentro de los plazos previstos por la Ley 24.240 y sus modificatorias."
+      },
+      {
+        "heading": "6. Derecho de revocación (Art. 34, Ley 24.240)",
+        "body": "El huésped que haya contratado a distancia (por internet, correo electrónico o teléfono) tiene derecho a revocar la aceptación dentro de los <strong>10 (diez) días hábiles contados desde la fecha de confirmación de la reserva</strong>, sin responsabilidad alguna y sin necesidad de expresar causa, siempre que la fecha de check-in no sea inminente y el cumplimiento del contrato no haya comenzado. Para ejercer este derecho, el huésped debe notificar al hotel por correo electrónico o por teléfono.",
+        "body2": "Transcurrido dicho plazo, se aplicará la política de cancelación descripta en la sección 5."
+      },
+      {
+        "heading": "7. Check-in y check-out",
+        "items": [
+          "<strong>Check-in:</strong> a partir de las 14:00 hs. Se solicitará documento de identidad (DNI o pasaporte) al momento del ingreso, de conformidad con la normativa de registro de huéspedes vigente.",
+          "<strong>Check-out:</strong> hasta las 10:00 hs. La permanencia más allá de ese horario podrá ser facturada como una noche adicional.",
+          "El depósito anticipado o el importe total de la reserva podrá ser requerido al momento del check-in como garantía."
+        ]
+      },
+      {
+        "heading": "8. Obligaciones del huésped",
+        "items": [
+          "Presentar documento de identidad vigente al momento del check-in.",
+          "Hacer uso de las instalaciones de manera responsable y respetuosa.",
+          "Está prohibido fumar en el interior de las habitaciones y áreas comunes cerradas, conforme a la Ley 26.687 de Lucha Antitabaco.",
+          "El huésped será responsable por los daños materiales que cause en las instalaciones del hotel, pudiendo ser facturados antes del check-out.",
+          "El ingreso de visitas externas a las habitaciones deberá ser comunicado a la recepción."
+        ]
+      },
+      {
+        "heading": "9. Responsabilidad",
+        "body": "El hotel no se responsabiliza por la pérdida, robo o daño de objetos de valor que no hayan sido depositados en la caja de seguridad disponible en las habitaciones o en recepción. Se recomienda a los huéspedes utilizar los medios de resguardo provistos a tal fin.",
+        "body2": "El hotel no será responsable por incumplimientos derivados de causas de fuerza mayor o caso fortuito (incluyendo, sin limitación, desastres naturales, cortes de servicios públicos, actos de autoridad pública o situaciones de emergencia) conforme a los artículos 1730 y 1731 del Código Civil y Comercial de la Nación."
+      },
+      {
+        "heading": "10. Propiedad intelectual",
+        "body": "Todos los contenidos de este sitio web (textos, imágenes, logotipos, diseño) son propiedad de Los Lagos Hotel o de sus licenciantes, y están protegidos por la <strong>Ley 11.723 de Propiedad Intelectual</strong>. Queda prohibida su reproducción, distribución o comunicación pública sin autorización expresa."
+      },
+      {
+        "heading": "11. Resolución de conflictos",
+        "intro": "Ante cualquier inconveniente, el huésped puede contactar al hotel directamente. Si no se alcanza una solución satisfactoria, el consumidor puede recurrir a:",
+        "items": [
+          "<strong>Dirección Nacional de Defensa del Consumidor (DNDC):</strong> Sistema de resolución de conflictos en línea COPREC: <coprec>www.argentina.gob.ar/defensadelconsumidor</coprec>.",
+          "<strong>Defensa del Consumidor de la Provincia de Santa Cruz</strong> (jurisdicción local)."
+        ]
+      },
+      {
+        "heading": "12. Ley aplicable y jurisdicción",
+        "body": "Los presentes Términos y Condiciones se rigen por las leyes de la República Argentina. Para la resolución de cualquier controversia, las partes se someten a la jurisdicción de los Tribunales Ordinarios de la ciudad de El Calafate, Provincia de Santa Cruz, con renuncia expresa a cualquier otro fuero o jurisdicción que pudiere corresponder, sin perjuicio de los derechos que la Ley 24.240 y sus modificatorias reconocen al consumidor."
+      },
+      {
+        "heading": "13. Modificaciones",
+        "body": "El hotel se reserva el derecho de modificar los presentes Términos y Condiciones en cualquier momento. Los cambios serán publicados en este sitio web con indicación de la fecha de última actualización. Las reservas ya confirmadas se regirán por los términos vigentes al momento de su confirmación."
+      }
+    ]
+  },
+  "privacy": {
+    "title": "Política de Privacidad",
+    "toTerms": "← Términos y Condiciones",
+    "intro": "En <strong>Los Lagos Hotel</strong> nos comprometemos a proteger la privacidad de nuestros huéspedes y visitantes. La presente Política de Privacidad describe cómo recolectamos, usamos, almacenamos y protegemos sus datos personales, de conformidad con la <strong>Ley 25.326 de Protección de los Datos Personales</strong> (LPDP), su Decreto Reglamentario 1558/2001 y las disposiciones de la <strong>Agencia de Acceso a la Información Pública (AAIP)</strong>.",
+    "controller": {
+      "heading": "1. Responsable del tratamiento",
+      "name": "Los Lagos Hotel",
+      "addressLabel": "Domicilio:",
+      "address": "25 de Mayo 220, Z9405 El Calafate, Provincia de Santa Cruz, República Argentina",
+      "emailLabel": "Correo electrónico:",
+      "phoneLabel": "Teléfono:",
+      "phone": "+54 2902 417738"
+    },
+    "sections": [
+      {
+        "heading": "2. Datos personales que recolectamos",
+        "intro": "Recolectamos datos personales en los siguientes contextos:",
+        "items": [
+          "<strong>Formulario de contacto:</strong> nombre y apellido, dirección de correo electrónico, número de teléfono (opcional) y el contenido del mensaje.",
+          "<strong>Reservas en línea:</strong> nombre y apellido, correo electrónico, teléfono, número de documento o pasaporte, nacionalidad, datos de tarjeta de crédito/débito (procesados directamente por el procesador de pagos), fechas de estadía y preferencias de habitación.",
+          "<strong>Check-in presencial:</strong> número de documento o pasaporte, según lo exigido por la normativa policial provincial de registro de huéspedes.",
+          "<strong>Navegación web:</strong> dirección IP, tipo de navegador, páginas visitadas y tiempo de permanencia, a través de cookies técnicas (ver sección 7)."
+        ]
+      },
+      {
+        "heading": "3. Finalidad del tratamiento",
+        "intro": "Sus datos personales son tratados para las siguientes finalidades:",
+        "items": [
+          "Gestionar y confirmar reservas de alojamiento.",
+          "Responder consultas y solicitudes realizadas a través del formulario de contacto, correo electrónico o teléfono.",
+          "Cumplir obligaciones legales de registro de huéspedes ante la autoridad policial provincial.",
+          "Emitir comprobantes fiscales conforme a las exigencias de la AFIP.",
+          "Mejorar la experiencia del usuario en el sitio web mediante el análisis agregado del tráfico.",
+          "Enviar información sobre el establecimiento o promociones, única y exclusivamente cuando el titular haya prestado su consentimiento expreso."
+        ]
+      },
+      {
+        "heading": "4. Base de legitimación",
+        "intro": "El tratamiento de sus datos se fundamenta en:",
+        "items": [
+          "<strong>Ejecución de un contrato:</strong> los datos necesarios para gestionar la reserva y la estadía.",
+          "<strong>Cumplimiento de una obligación legal:</strong> registro de huéspedes y emisión de comprobantes fiscales.",
+          "<strong>Consentimiento del titular:</strong> para el envío de comunicaciones comerciales y el uso de cookies no estrictamente necesarias.",
+          "<strong>Interés legítimo:</strong> para el análisis agregado de la navegación web con fines de mejora del servicio."
+        ]
+      },
+      {
+        "heading": "5. Destinatarios y transferencias de datos",
+        "intro": "Sus datos podrán ser compartidos con:",
+        "items": [
+          "<strong>Cloudbeds, Inc.</strong> (Estados Unidos): plataforma de gestión hotelera y motor de reservas. Cloudbeds procesa datos en los Estados Unidos, país que no cuenta con declaración de nivel adecuado de protección por parte de la AAIP. El hotel ha celebrado con Cloudbeds un acuerdo de procesamiento de datos que incluye las garantías adecuadas previstas por el Art. 12 de la Ley 25.326.",
+          "<strong>Procesadores de pago:</strong> los datos de tarjeta son procesados directamente por el proveedor de pagos integrado en el motor de reservas bajo estándares PCI-DSS. El hotel no almacena números de tarjeta.",
+          "<strong>Autoridades competentes:</strong> Policía Provincial, AFIP u otras autoridades cuando exista obligación legal de informar."
+        ],
+        "outro": "No vendemos ni cedemos sus datos personales a terceros con fines comerciales propios."
+      },
+      {
+        "heading": "6. Plazo de conservación",
+        "items": [
+          "<strong>Datos de reservas y estadías:</strong> se conservan durante 5 (cinco) años desde la fecha de check-out, en cumplimiento de los plazos de prescripción contractual previstos por el Código Civil y Comercial de la Nación, y de las obligaciones impositivas ante la AFIP.",
+          "<strong>Datos del formulario de contacto:</strong> se conservan durante el tiempo necesario para resolver la consulta y, como máximo, 1 (un) año posterior a la última comunicación.",
+          "<strong>Registro policial de huéspedes:</strong> conforme a los plazos exigidos por la normativa provincial aplicable."
+        ]
+      },
+      {
+        "heading": "7. Cookies",
+        "body": "Este sitio web puede utilizar cookies técnicas estrictamente necesarias para el funcionamiento del motor de reservas. Estas cookies no requieren consentimiento previo ya que son esenciales para la prestación del servicio solicitado por el usuario. No se emplean cookies de seguimiento o publicidad comportamental de terceros."
+      },
+      {
+        "heading": "8. Derechos del titular (Habeas Data)",
+        "intro": "De conformidad con los artículos 14 a 16 de la Ley 25.326, el titular de los datos tiene derecho a:",
+        "items": [
+          "<strong>Acceso:</strong> solicitar información sobre los datos personales que el hotel posea sobre usted.",
+          "<strong>Rectificación:</strong> solicitar la corrección de datos inexactos, incompletos o desactualizados.",
+          "<strong>Supresión:</strong> solicitar la eliminación de sus datos cuando resulte procedente conforme a la ley.",
+          "<strong>Confidencialidad:</strong> exigir que sus datos no sean cedidos a terceros sin su consentimiento.",
+          "<strong>Oposición:</strong> oponerse al tratamiento de sus datos con fines de comunicaciones comerciales."
+        ],
+        "exerciseBox": "Para ejercer cualquiera de estos derechos, diríjase por escrito a <email></email>, indicando su nombre completo, número de documento y el derecho que desea ejercer. El hotel responderá en el plazo de 5 días hábiles conforme al Art. 14 de la Ley 25.326.",
+        "authority": "Si considera que su solicitud no ha sido atendida, puede acudir a la <strong>Agencia de Acceso a la Información Pública (AAIP)</strong>, organismo de control de la Ley 25.326: <aaip>www.argentina.gob.ar/aaip</aaip>."
+      },
+      {
+        "heading": "9. Seguridad de los datos",
+        "body": "El hotel adopta las medidas técnicas y organizativas necesarias para garantizar la seguridad e integridad de los datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado, habida cuenta del estado de la tecnología y la naturaleza de los datos almacenados (Art. 9, Ley 25.326)."
+      },
+      {
+        "heading": "10. Modificaciones de esta política",
+        "body": "El hotel se reserva el derecho de actualizar esta Política de Privacidad en cualquier momento. Toda modificación será publicada en esta página con la fecha de actualización correspondiente. Se recomienda revisar periódicamente este documento."
+      }
+    ]
+  }
+}

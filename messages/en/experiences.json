@@ -1,0 +1,51 @@
+{
+  "page": {
+    "hero": {
+      "eyebrow": "Experiences",
+      "title": "Glaciers, lakes and mountains.",
+      "subtitle": "We're your base camp in El Calafate. The hotel arranges transfers to the main attractions and helps you plan every outing."
+    },
+    "intro": {
+      "eyebrow": "Bus excursions",
+      "title": "The outings you can't miss.",
+      "description": "Daily departures in season from the town centre. Our front-desk team helps you plan and book every excursion.",
+      "transfersBadge": "Transfers from the hotel"
+    },
+    "help": {
+      "title": "Want help building your itinerary?",
+      "description": "Check excursion availability and prices directly at the hotel front desk or via WhatsApp. Book your room and we'll help you with the rest.",
+      "bookCta": "Book your stay",
+      "whatsappCta": "Message us on WhatsApp"
+    }
+  },
+  "trips": {
+    "peritoMoreno": {
+      "name": "Perito Moreno Glacier",
+      "description": "Patagonia's most famous glacier. A full-day bus excursion with wooden walkways and privileged views of the glacier in motion.",
+      "duration": "Full day",
+      "distance": "80 km · 1.5 h by bus",
+      "highlight": "Star excursion"
+    },
+    "minitrekking": {
+      "name": "Glacier Minitrekking",
+      "description": "A walk on the Perito Moreno ice with crampons and certified guides. A unique experience combining a boat crossing and trekking.",
+      "duration": "Full day",
+      "distance": "80 km · 1.5 h by bus",
+      "highlight": "Unique experience"
+    },
+    "navigation": {
+      "name": "Lake Argentino Cruise",
+      "description": "A lake safari across Lake Argentino with views of the Upsala, Spegazzini and Onelli glaciers. Departs from Puerto Bandera.",
+      "duration": "Full day",
+      "distance": "45 km · 45 min by bus",
+      "highlight": "Glacier cruise"
+    },
+    "chalten": {
+      "name": "El Chaltén – Fitz Roy",
+      "description": "Argentina's national trekking capital. Trails with views of Mount Fitz Roy and Cerro Torre in Los Glaciares National Park.",
+      "duration": "Full day",
+      "distance": "220 km · 2.5 h by bus",
+      "highlight": "Legendary trekking"
+    }
+  }
+}

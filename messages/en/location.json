@@ -1,0 +1,147 @@
+{
+  "page": {
+    "hero": {
+      "eyebrow": "Getting here",
+      "title": "In the heart of El Calafate.",
+      "subtitle": "Just a 3-minute walk from Av. del Libertador and steps from Lake Argentino. The perfect base for exploring southern Patagonia."
+    },
+    "address": {
+      "heading": "Address",
+      "openInMaps": "Open in Google Maps"
+    },
+    "distancesHeading": "Distances",
+    "cta": {
+      "book": "Book now",
+      "contact": "Contact the hotel"
+    }
+  },
+  "distances": [
+    { "label": "Centre — Av. del Libertador", "modeLabel": "Walking" },
+    { "label": "Bus Terminal", "modeLabel": "Walking" },
+    { "label": "Lake Argentino (shore)", "modeLabel": "Walking" },
+    { "label": "Glaciarium", "modeLabel": "By car" },
+    { "label": "El Calafate Airport (FTE)", "modeLabel": "By car" },
+    { "label": "Perito Moreno Glacier", "modeLabel": "By bus" }
+  ],
+  "map": {
+    "loading": "Loading map…",
+    "expand": "Expand map",
+    "close": "Close map",
+    "expandedLabel": "Expanded map",
+    "viewOnGoogleMaps": "View on Google Maps ↗",
+    "hotel": {
+      "address": "25 de Mayo 220, El Calafate"
+    },
+    "centreLabel": "Centre",
+    "categories": {
+      "restaurant": "Restaurant",
+      "bar": "Bar",
+      "cafe": "Café",
+      "attraction": "Attraction",
+      "transport": "Transport",
+      "nature": "Nature",
+      "shop": "Shop",
+      "bank": "Bank",
+      "tourism": "Travel agency",
+      "centre": "City centre"
+    },
+    "pois": {
+      "centro": {
+        "label": "El Calafate Centre",
+        "note": "The town's commercial and dining hub"
+      },
+      "laTablita": {
+        "label": "La Tablita",
+        "note": "Iconic Patagonian grill since 1965 · Cnel. Rosales 28"
+      },
+      "casimiroBigua": {
+        "label": "Casimiro Biguá",
+        "note": "Gourmet & grill · Av. Libertador 963"
+      },
+      "miViejo": {
+        "label": "Mi Viejo",
+        "note": "Argentine grill · Av. Libertador 1111"
+      },
+      "mako": {
+        "label": "Mako Fuegos y Vinos",
+        "note": "Signature cuisine & wines · Av. Libertador 1223"
+      },
+      "laZaina": {
+        "label": "La Zaina Cocina Patagónica",
+        "note": "Regional cuisine · Gregores 1057"
+      },
+      "laLechuza": {
+        "label": "La Lechuza",
+        "note": "Pizza & pasta · Av. Libertador 1301"
+      },
+      "laZorra": {
+        "label": "La Zorra Taproom",
+        "note": "Patagonian craft beer · Av. Libertador 832"
+      },
+      "borges": {
+        "label": "Borges y Álvarez Libro-Bar",
+        "note": "Literary bar & craft beer · Av. Libertador 1015"
+      },
+      "vivaLaPepa": {
+        "label": "Viva la Pepa",
+        "note": "Crêperie & café · Amado 833"
+      },
+      "ovejitas": {
+        "label": "Chocolates Ovejitas",
+        "note": "Patagonian chocolate shop & café · Av. Libertador 1197"
+      },
+      "libertador": {
+        "label": "Av. del Libertador",
+        "note": "Main pedestrian street · ~200 m on foot"
+      },
+      "centroInterpretacion": {
+        "label": "Historical Interpretation Centre",
+        "note": "Local museum · Av. Brown & Bonarelli · ~700 m"
+      },
+      "glaciarium": {
+        "label": "Glaciarium",
+        "note": "Glacier museum · Route 11 · 5 km by car"
+      },
+      "peritoMoreno": {
+        "label": "Perito Moreno Glacier",
+        "note": "Natural wonder · 80 km · 1.5 h by bus"
+      },
+      "lagoArgentino": {
+        "label": "Lake Argentino (shore)",
+        "note": "Lakeshore · ~400 m on foot"
+      },
+      "lagunaNimez": {
+        "label": "Laguna Nimez",
+        "note": "Bird reserve · ~1.2 km on foot"
+      },
+      "terminal": {
+        "label": "Bus Terminal",
+        "note": "Bus terminal · ~700 m on foot"
+      },
+      "aeropuerto": {
+        "label": "FTE Airport",
+        "note": "Malvinas Argentinas Airport · 16 km by car"
+      },
+      "bancoSantaCruz": {
+        "label": "Banco Santa Cruz",
+        "note": "Bank branch & ATM · Av. Libertador 1285"
+      },
+      "bancoNacion": {
+        "label": "Banco Nación Argentina",
+        "note": "Bank branch & ATM · Av. Libertador 1133"
+      },
+      "interlagos": {
+        "label": "Interlagos Turismo",
+        "note": "Excursion agency · Av. Libertador 1175"
+      },
+      "calTur": {
+        "label": "Cal-Tur",
+        "note": "Travel agency · Av. Libertador 1080"
+      },
+      "laAnonima": {
+        "label": "Supermercado La Anónima",
+        "note": "Supermarket · centre"
+      }
+    }
+  }
+}

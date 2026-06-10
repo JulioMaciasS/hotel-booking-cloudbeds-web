@@ -1,12 +1,14 @@
-export type NavLink = { href: string; label: string };
+/** Primary site navigation. Hrefs are locale-agnostic (the locale-aware
+ *  `Link` from `@/i18n/navigation` adds any `/en` prefix); the `key` resolves
+ *  the label via the `common.nav` message namespace. */
+export type NavItem = { href: string; key: string };
 
-/** Primary site navigation — real routes shared by the header and footer. */
-export const NAV_LINKS: NavLink[] = [
-  { href: "/habitaciones", label: "Habitaciones" },
-  { href: "/hotel", label: "El Hotel" },
-  { href: "/experiencias", label: "Experiencias" },
-  { href: "/ubicacion", label: "Ubicación" },
-  { href: "/contacto", label: "Contacto" },
+export const NAV_LINKS: NavItem[] = [
+  { href: "/habitaciones", key: "rooms" },
+  { href: "/hotel", key: "hotel" },
+  { href: "/experiencias", key: "experiences" },
+  { href: "/ubicacion", key: "location" },
+  { href: "/contacto", key: "contact" },
 ];
 
 /**

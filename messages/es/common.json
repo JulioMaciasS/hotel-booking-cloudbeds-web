@@ -1,0 +1,42 @@
+{
+  "brand": "Los Lagos Hotel",
+  "nav": {
+    "rooms": "Habitaciones",
+    "hotel": "El Hotel",
+    "experiences": "Experiencias",
+    "location": "Ubicación",
+    "contact": "Contacto",
+    "reviews": "Opiniones"
+  },
+  "actions": {
+    "book": "Reservar",
+    "bookNow": "Reservar ahora",
+    "searchAvailability": "Buscar disponibilidad",
+    "searchDates": "Buscar fechas disponibles",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
+  },
+  "languageSwitcher": {
+    "label": "Cambiar idioma",
+    "es": "Español",
+    "en": "English",
+    "short": {
+      "es": "ES",
+      "en": "EN"
+    }
+  },
+  "footer": {
+    "tagline": "Pequeño hotel familiar en El Calafate, Patagonia. A 200 metros del centro, con desayuno incluido y atención personalizada para cada huésped.",
+    "navHeading": "Navegación",
+    "reviewsHeading": "Reseñas & Mapas",
+    "viewOnGoogleMaps": "Ver en Google Maps",
+    "copyright": "© 2026 {name} · El Calafate, Patagonia, Argentina",
+    "terms": "Términos y Condiciones",
+    "privacy": "Política de Privacidad"
+  },
+  "mobileBar": {
+    "title": "Reservá tu estadía",
+    "subtitle": "Mejor tarifa · sin comisiones",
+    "cta": "Buscar fechas"
+  }
+}

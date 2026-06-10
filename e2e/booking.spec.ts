@@ -1,9 +1,14 @@
 import { expect, test } from "@playwright/test";
+import { mockFxRate } from "./mock-cloudbeds";
 
 const cloudbedsScriptUrl =
   "https://static1.cloudbeds.com/booking-engine/latest/static/js/immersive-experience/cb-immersive-experience.js";
 
 test.beforeEach(async ({ page }) => {
+  // Fixed FX rate so the currency-conversion assertions stay deterministic
+  // regardless of the live Supabase rate.
+  await mockFxRate(page);
+
   await page.route(cloudbedsScriptUrl, async (route) => {
     await route.fulfill({
       contentType: "application/javascript",
@@ -13,6 +18,7 @@ test.beforeEach(async ({ page }) => {
             connectedCallback() {
               this.innerHTML = \`
                 <form data-testid="mock-date-picker">
+                  <input data-testid="property-date-picker-date-picker-checkin-input" type="text" readonly />
                   <button data-testid="mock-checkin-button" type="button">Check-in</button>
                   <button type="button">Buscar disponibilidad</button>
                 </form>
@@ -51,6 +57,7 @@ test.beforeEach(async ({ page }) => {
             connectedCallback() {
               this.innerHTML = \`
                 <section id="cb-bookingengine" class="cb-bookingengine-root" data-testid="mock-cloudbeds">
+                  <input data-testid="landing-search-panel-date-picker-checkin-input" type="text" readonly />
                   <header class="cb-navigation-header" data-testid="mock-cloudbeds-shell-nav" aria-label="Booking navigation">
                     <a data-testid="mock-cloudbeds-logo" href="https://hotels.cloudbeds.com/reservation/5fdNYA">Cloudbeds</a>
                     <a data-testid="mock-cloudbeds-nav-item" href="#rooms">Habitaciones</a>
@@ -142,7 +149,7 @@ test("home page date picker sends guests to /reservas without a hosted Cloudbeds
 
   await page.getByRole("button", { name: "Buscar disponibilidad" }).click();
   await expect(page).toHaveURL(/\/reservas\?/);
-  expect(new URL(page.url()).origin).toBe("http://localhost:3000");
+  expect(new URL(page.url()).origin).toBe("http://localhost:3100");
   await expect(page).toHaveURL(/checkin=2026-06-01/);
   await expect(page).toHaveURL(/checkout=2026-06-03/);
   await expect(page.getByTestId("cloudbeds-standard-embed")).toBeVisible();

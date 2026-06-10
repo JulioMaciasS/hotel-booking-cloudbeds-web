@@ -1,0 +1,42 @@
+{
+  "home": {
+    "title": "Los Lagos Hotel | Reservas directas",
+    "description": "Sitio público de reservas directas para Los Lagos Hotel en El Calafate."
+  },
+  "rooms": {
+    "title": "Habitaciones | Los Lagos Hotel, El Calafate",
+    "description": "Habitaciones dobles y triples, estándar y superior, en Los Lagos Hotel, El Calafate. Calefacción, Wi-Fi, TV y desayuno incluido en todas las tarifas."
+  },
+  "hotel": {
+    "title": "El Hotel | Los Lagos Hotel, El Calafate",
+    "description": "Conocé Los Lagos Hotel: un pequeño hotel familiar en el centro de El Calafate, con servicios pensados para descansar entre glaciares."
+  },
+  "experiences": {
+    "title": "Experiencias | Los Lagos Hotel, El Calafate",
+    "description": "Excursiones desde El Calafate: Glaciar Perito Moreno, minitrekking, navegación por el Lago Argentino y El Chaltén. El hotel te ayuda a organizar todo."
+  },
+  "location": {
+    "title": "Ubicación | Los Lagos Hotel, El Calafate",
+    "description": "Los Lagos Hotel está a 200 m del centro de El Calafate. Distancias al aeropuerto, la terminal, el Lago Argentino y el Glaciar Perito Moreno."
+  },
+  "contact": {
+    "title": "Contacto | Los Lagos Hotel, El Calafate",
+    "description": "Contactá a Los Lagos Hotel en El Calafate por teléfono, WhatsApp o email. Te ayudamos con tu reserva y con la planificación de tu viaje."
+  },
+  "reservas": {
+    "title": "Reservar | Los Lagos Hotel, El Calafate",
+    "description": "Reservá directo en Los Lagos Hotel y conseguí siempre la mejor tarifa, con desayuno incluido y confirmación inmediata."
+  },
+  "privacy": {
+    "title": "Política de Privacidad | Los Lagos Hotel",
+    "description": "Política de privacidad de Los Lagos Hotel, El Calafate."
+  },
+  "terms": {
+    "title": "Términos y Condiciones | Los Lagos Hotel",
+    "description": "Términos y condiciones de Los Lagos Hotel, El Calafate."
+  },
+  "notFound": {
+    "title": "Página no encontrada | Los Lagos Hotel",
+    "description": "La página que buscás no existe o fue movida. Volvé al inicio de Los Lagos Hotel, El Calafate."
+  }
+}

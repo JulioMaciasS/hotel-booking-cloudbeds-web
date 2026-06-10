@@ -1,0 +1,71 @@
+{
+  "items": [
+    {
+      "text": "Good facilities. Very pleasant reception staff, especially the young man on the evening/night shift. Very complete breakfast. Great value for money.",
+      "origin": "Seville, Spain",
+      "date": "December 2025",
+      "trip": "Couple's getaway"
+    },
+    {
+      "text": "A very good option in El Calafate. Warm, clean and well located. The breakfast is very complete and the staff are always willing to help with excursions and transfers.",
+      "origin": "Santiago, Chile",
+      "date": "January 2025",
+      "trip": "Family trip"
+    },
+    {
+      "text": "Excellent value for money. The heating, the shower, the mattresses and the bedding were spotless. Juan's kindness and willingness to help really stand out. We felt very comfortable in this hotel.",
+      "origin": "Avellaneda, Argentina",
+      "date": "February 2023",
+      "trip": "Couple's getaway"
+    },
+    {
+      "text": "The room was clean, cleaned every day, and the beds were comfortable. Breakfast included: bread, coffee, milk, yoghurt, juices, cereals, jam, cheese and ham. I would definitely stay here again.",
+      "origin": "Europe",
+      "date": "December 2018",
+      "trip": "Couple's getaway"
+    },
+    {
+      "text": "Excellent value for money. The rooms are cosy and the heating worked perfectly during the cold nights. The 24-hour reception was very convenient when arriving late.",
+      "origin": "Buenos Aires, Argentina",
+      "date": "March 2024",
+      "trip": "Couple's getaway"
+    },
+    {
+      "text": "A charming hotel, small but very nice. It's close to the central area, and transfers can be done on foot. Lovely views of the snowy mountains. Good breakfast included.",
+      "origin": "Asunción, Paraguay",
+      "date": "July 2023",
+      "trip": "Couple's getaway"
+    },
+    {
+      "text": "Super well located, three blocks from the main street. The shower has good pressure and plenty of hot water. The Wi-Fi works very well. The staff are always very friendly.",
+      "origin": "Bahía Blanca, Argentina",
+      "date": "February 2023",
+      "trip": "Solo trip"
+    },
+    {
+      "text": "Very good value for money. Unbeatable location for exploring the centre and the lake. The breakfast was very varied and the staff always attentive. Simple but comfortable rooms with good heating for the cold nights.",
+      "origin": "Córdoba, Argentina",
+      "date": "April 2025",
+      "trip": "Couple's getaway"
+    },
+    {
+      "text": "Perfect location, a few minutes' walk from the town centre and the lake. Breakfast was excellent with a great variety. The staff were very helpful with excursion bookings to Perito Moreno. Would definitely stay again.",
+      "origin": "Germany",
+      "date": "November 2024",
+      "trip": "Couple's getaway"
+    },
+    {
+      "text": "Clean and very well-heated room, essential in El Calafate. The staff helped us organise the excursions. Good value for money for Patagonia. I'd recommend it for travellers looking for central comfort.",
+      "origin": "Montevideo, Uruguay",
+      "date": "January 2024",
+      "trip": "Couple's getaway"
+    }
+  ],
+  "ui": {
+    "rating": "{rating} out of 5 stars",
+    "tablistLabel": "Reviews",
+    "prev": "Previous review",
+    "next": "Next review",
+    "goTo": "Review {index}"
+  }
+}

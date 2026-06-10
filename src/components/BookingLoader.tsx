@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface Props {
   /**
@@ -22,6 +23,7 @@ interface Props {
 }
 
 export function BookingLoader({ waitForRemoval, selector, coverNav = false }: Props) {
+  const t = useTranslations("booking");
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -68,7 +70,7 @@ export function BookingLoader({ waitForRemoval, selector, coverNav = false }: Pr
   return (
     <div
       aria-busy="true"
-      aria-label="Cargando"
+      aria-label={t("loader.loading")}
       className={`fixed inset-x-0 bottom-0 flex items-center justify-center bg-white ${
         coverNav ? "z-60" : "z-40"
       }`}

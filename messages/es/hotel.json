@@ -1,0 +1,103 @@
+{
+  "page": {
+    "hero": {
+      "eyebrow": "El Hotel",
+      "title": "Un hotel familiar en el corazón de El Calafate.",
+      "subtitle": "Sencillez, calidez y servicio personalizado, a 3 minutos andando del centro de la ciudad."
+    },
+    "story": {
+      "eyebrow": "Nuestra historia",
+      "title": "Una base tranquila para conocer la Patagonia austral.",
+      "paragraph1": "Somos un pequeño hotel familiar de excepcional ubicación, a tan solo 3 minutos andando del centro de la ciudad, bares, restaurantes y agencias de viajes. Un alojamiento que combina sencillez, calidez, confort y servicio personalizado integral.",
+      "paragraph2": "Cada huésped recibe una atención cercana: te ayudamos a planificar tus excursiones, coordinamos traslados y estamos disponibles las 24 horas para que tu estadía en El Calafate sea simple y memorable.",
+      "stats": {
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "rooms": "Habitaciones"
+      }
+    },
+    "gallery": {
+      "eyebrow": "El hotel por dentro",
+      "title": "Calidez patagónica en cada rincón.",
+      "intro": "Desde un desayuno casero para arrancar el día hasta el jardín y los espacios comunes para relajarte después de las excursiones.",
+      "items": {
+        "breakfast": { "alt": "Desayuno casero incluido", "caption": "Desayuno incluido" },
+        "diningRoom": { "alt": "Comedor del hotel", "caption": "Comedor" },
+        "garden": { "alt": "Jardín del hotel", "caption": "Jardín" },
+        "reception": { "alt": "Recepción 24 horas", "caption": "Recepción 24 hs" },
+        "library": { "alt": "Rincón de lectura", "caption": "Espacios comunes" },
+        "outdoor": { "alt": "Exterior y jardín", "caption": "Aire libre" }
+      }
+    },
+    "servicesSection": {
+      "eyebrow": "Servicios del hotel",
+      "title": "Todo pensado para una estadía sin preocupaciones."
+    },
+    "faq": {
+      "eyebrow": "Preguntas frecuentes",
+      "title": "Todo lo que necesitás saber.",
+      "items": {
+        "schedule": {
+          "q": "¿Cuáles son los horarios de check-in y check-out?",
+          "a": "El check-in es a partir de las 14:00 y el check-out hasta las 10:00. La recepción está abierta las 24 horas, todos los días del año, así que podés llegar a cualquier hora."
+        },
+        "breakfast": {
+          "q": "¿El desayuno está incluido?",
+          "a": "Sí. Todas las tarifas incluyen un desayuno continental casero: pan, tostadas, café, té, leche, yogures, jugos, cereales, mermelada, queso y fiambre."
+        },
+        "vat": {
+          "q": "Soy turista extranjero, ¿pago el IVA?",
+          "a": "No. Las personas residentes en el exterior están exentas del IVA (21%) sobre el alojamiento cuando abonan con medios de pago del exterior. Al reservar podés indicar tu condición y, al hacer el check-in, verificamos tu DNI o pasaporte."
+        },
+        "cancellation": {
+          "q": "¿Cómo es la política de cancelación?",
+          "a": "Depende de la tarifa elegida. La tarifa flexible permite cancelar sin cargo hasta 48 horas antes del check-in; la tarifa no reembolsable no admite cancelaciones ni cambios. Las condiciones se muestran claramente al reservar."
+        },
+        "excursions": {
+          "q": "¿Organizan excursiones y traslados a los glaciares?",
+          "a": "Sí. Coordinamos excursiones al Glaciar Perito Moreno, navegaciones por el Lago Argentino, El Chaltén y más, con salidas en bus desde el centro. Nuestra recepción te ayuda a planificar y reservar."
+        },
+        "parking": {
+          "q": "¿Tienen estacionamiento?",
+          "a": "Sí, contamos con estacionamiento descubierto en la puerta del hotel, monitoreado por cámaras de seguridad, sin costo adicional para los huéspedes."
+        },
+        "directBooking": {
+          "q": "¿Por qué conviene reservar directo en este sitio?",
+          "a": "Reservando acá conseguís siempre la mejor tarifa disponible, sin comisiones de intermediarios ni cargos ocultos, con confirmación inmediata y atención directa del hotel."
+        }
+      },
+      "ctaBook": "Reservar ahora",
+      "ctaContact": "Hacé tu consulta"
+    }
+  },
+  "services": {
+    "housekeeping": {
+      "name": "Servicio Diario de Mucama",
+      "description": "Limpieza diaria de habitaciones. Cambio de toallas cada 2 días y sábanas cada 7 días."
+    },
+    "parking": {
+      "name": "Estacionamiento Vigilado",
+      "description": "Estacionamiento descubierto en la puerta del hotel, monitoreado por cámaras de seguridad."
+    },
+    "luggage": {
+      "name": "Guardaequipaje",
+      "description": "Servicio de custodia de equipaje disponible antes del check-in y después del check-out."
+    },
+    "laundry": {
+      "name": "Servicio de Lavandería",
+      "description": "Servicio de lavandería disponible para los huéspedes."
+    },
+    "concierge": {
+      "name": "Conserjería",
+      "description": "Asistencia personalizada para organizar excursiones, traslados y reservas locales."
+    },
+    "family": {
+      "name": "Apto para Familias",
+      "description": "Habitaciones triples y configuraciones especiales para familias con niños."
+    },
+    "nonSmoking": {
+      "name": "Habitaciones No Fumadores",
+      "description": "Todas las habitaciones y espacios comunes son libres de humo."
+    }
+  }
+}

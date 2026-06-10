@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { useTranslations } from "next-intl";
 import { Info, X } from "lucide-react";
 import {
   VAT_CHANGE_EVENT,
@@ -22,6 +23,7 @@ function subscribe(onChange: () => void) {
 }
 
 export function ArgentinaVatToggle() {
+  const t = useTranslations("booking");
   // Reads the shared preference (localStorage + locale default) without an SSR
   // mismatch; updates whenever the choice changes here or in another tab.
   const fromArgentina = useSyncExternalStore(
@@ -56,11 +58,11 @@ export function ArgentinaVatToggle() {
   return (
     <div className="flex items-center gap-2">
       <span className="hidden text-[11px] font-medium text-[#52615d] md:inline">
-        ¿Dónde residís?
+        {t("vat.residenceQuestion")}
       </span>
 
       <div
-        aria-label="Residencia para el cálculo del IVA"
+        aria-label={t("vat.groupLabel")}
         className="inline-flex items-center rounded-full bg-[#f1f5f3] p-0.5 text-[11px] font-semibold ring-1 ring-[#dfe5e2]"
         role="radiogroup"
       >
@@ -69,12 +71,12 @@ export function ArgentinaVatToggle() {
           className={pillClass(fromArgentina)}
           onClick={() => writeVatPreference(true)}
           role="radio"
-          title={`Residente en Argentina — precios con IVA ${VAT_PERCENT}%`}
+          title={t("vat.argentinaTitle", { percent: VAT_PERCENT })}
           type="button"
         >
-          Argentina
+          {t("vat.argentina")}
           <span className="block text-[9px] font-medium opacity-75">
-            con IVA {VAT_PERCENT}%
+            {t("vat.argentinaWithVat", { percent: VAT_PERCENT })}
           </span>
         </button>
         <button
@@ -82,18 +84,18 @@ export function ArgentinaVatToggle() {
           className={pillClass(!fromArgentina)}
           onClick={() => writeVatPreference(false)}
           role="radio"
-          title="Residente en el exterior — exento de IVA"
+          title={t("vat.abroadTitle")}
           type="button"
         >
-          Exterior
+          {t("vat.abroad")}
           <span className="block text-[9px] font-medium opacity-75">
-            sin IVA
+            {t("vat.abroadNoVat")}
           </span>
         </button>
       </div>
 
       <button
-        aria-label="Información sobre el IVA"
+        aria-label={t("vat.infoButtonLabel")}
         className="rounded-full p-1.5 text-[#52615d] transition-colors hover:bg-[#edf3ef] hover:text-[#1f2b27]"
         onClick={() => setInfoOpen(true)}
         type="button"
@@ -109,7 +111,7 @@ export function ArgentinaVatToggle() {
           role="dialog"
         >
           <button
-            aria-label="Cerrar"
+            aria-label={t("vat.closeLabel")}
             className="absolute inset-0 cursor-default bg-black/40"
             onClick={() => setInfoOpen(false)}
             tabIndex={-1}
@@ -117,7 +119,7 @@ export function ArgentinaVatToggle() {
           />
           <div className="relative z-10 w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
             <button
-              aria-label="Cerrar"
+              aria-label={t("vat.closeLabel")}
               className="absolute right-4 top-4 rounded-full p-1.5 text-[#66736f] transition-colors hover:bg-[#edf3ef] hover:text-[#1f2b27]"
               onClick={() => setInfoOpen(false)}
               type="button"
@@ -129,38 +131,41 @@ export function ArgentinaVatToggle() {
               className="pr-8 text-lg font-semibold text-[#1f2b27]"
               id="vat-info-title"
             >
-              IVA y residentes en el exterior
+              {t("vat.modalTitle")}
             </h2>
 
             <div className="mt-3 space-y-3 text-sm leading-6 text-[#52615d]">
               <p>
-                En Argentina el alojamiento tiene un IVA del {VAT_PERCENT}%. Las
-                personas{" "}
-                <strong className="text-[#1f2b27]">
-                  residentes en el exterior
-                </strong>{" "}
-                están exentas de pagarlo (Decreto 1043/2016) cuando abonan con
-                medios de pago del exterior.
+                {t.rich("vat.intro", {
+                  percent: VAT_PERCENT,
+                  strong: (chunks) => (
+                    <strong className="text-[#1f2b27]">{chunks}</strong>
+                  ),
+                })}
               </p>
               <ul className="space-y-1.5">
                 <li>
-                  <strong className="text-[#1f2b27]">
-                    Residente en Argentina:
-                  </strong>{" "}
-                  los precios incluyen el IVA ({VAT_PERCENT}%).
+                  {t.rich("vat.residentArgentina", {
+                    percent: VAT_PERCENT,
+                    strong: (chunks) => (
+                      <strong className="text-[#1f2b27]">{chunks}</strong>
+                    ),
+                  })}
                 </li>
                 <li>
-                  <strong className="text-[#1f2b27]">
-                    Residente en el exterior:
-                  </strong>{" "}
-                  los precios se muestran sin IVA.
+                  {t.rich("vat.residentAbroad", {
+                    strong: (chunks) => (
+                      <strong className="text-[#1f2b27]">{chunks}</strong>
+                    ),
+                  })}
                 </li>
               </ul>
               <p>
-                Al hacer el check-in se verificará tu{" "}
-                <strong className="text-[#1f2b27]">DNI o pasaporte</strong> para
-                confirmar que se seleccionó la tarifa correcta. Si corresponde
-                otra condición, se ajustará la diferencia.
+                {t.rich("vat.checkInNote", {
+                  strong: (chunks) => (
+                    <strong className="text-[#1f2b27]">{chunks}</strong>
+                  ),
+                })}
               </p>
             </div>
 
@@ -169,7 +174,7 @@ export function ArgentinaVatToggle() {
               onClick={() => setInfoOpen(false)}
               type="button"
             >
-              Entendido
+              {t("vat.understood")}
             </button>
           </div>
         </div>

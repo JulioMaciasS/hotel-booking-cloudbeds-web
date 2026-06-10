@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useTranslations } from "next-intl";
 import {
   convertArsToUsd,
   formatUsd,
@@ -34,7 +35,13 @@ const ARS_PRICE_PATTERN = new RegExp(
   "gi",
 );
 
-function replacePricesInTextNode(textNode: Text, arsPerUsd: number) {
+type ConvertedLabel = (value: string, original: string) => string;
+
+function replacePricesInTextNode(
+  textNode: Text,
+  arsPerUsd: number,
+  convertedLabel: ConvertedLabel,
+) {
   const text = textNode.textContent ?? "";
   const matches = Array.from(text.matchAll(ARS_PRICE_PATTERN));
 
@@ -72,10 +79,7 @@ function replacePricesInTextNode(textNode: Text, arsPerUsd: number) {
     span.dataset.originalCurrencyText = original;
     span.dataset.convertedCurrencyText = displayValue;
     span.dataset.arsPerUsd = String(arsPerUsd);
-    span.setAttribute(
-      "aria-label",
-      `${displayValue}, convertido visualmente desde ${original}`,
-    );
+    span.setAttribute("aria-label", convertedLabel(displayValue, original));
 
     fragment.append(span);
     cursor = index + original.length;
@@ -92,7 +96,11 @@ function replacePricesInTextNode(textNode: Text, arsPerUsd: number) {
   textNode.replaceWith(fragment);
 }
 
-function scanForPrices(root: ParentNode, arsPerUsd: number) {
+function scanForPrices(
+  root: ParentNode,
+  arsPerUsd: number,
+  convertedLabel: ConvertedLabel,
+) {
   const textNodes: Text[] = [];
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
     acceptNode(node) {
@@ -110,12 +118,16 @@ function scanForPrices(root: ParentNode, arsPerUsd: number) {
   }
 
   for (const textNode of textNodes) {
-    replacePricesInTextNode(textNode, arsPerUsd);
+    replacePricesInTextNode(textNode, arsPerUsd, convertedLabel);
   }
 }
 
 export function BookingPriceObserver() {
+  const t = useTranslations("booking");
+
   useEffect(() => {
+    const convertedLabel: ConvertedLabel = (value, original) =>
+      t("priceObserver.convertedFrom", { value, original });
     const abortController = new AbortController();
     let observer: MutationObserver | null = null;
 
@@ -154,7 +166,7 @@ export function BookingPriceObserver() {
       const convertDocument = () => {
         const fromArgentina = getFromArgentina();
 
-        scanForPrices(document.body, rate.arsPerUsd);
+        scanForPrices(document.body, rate.arsPerUsd, convertedLabel);
         relabelCloudbedsCurrencyText(document);
         hideCloudbedsCurrencyControls(document);
         injectCloudbedsBeddingSelectors(document);
@@ -223,7 +235,7 @@ export function BookingPriceObserver() {
       abortController.abort();
       observer?.disconnect();
     };
-  }, []);
+  }, [t]);
 
   return null;
 }

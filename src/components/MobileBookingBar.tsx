@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { CalendarDays } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { BOOKING_HREF } from "@/lib/nav";
 
 const SHOW_AFTER = 520;
@@ -13,6 +14,7 @@ const SHOW_AFTER = 520;
  * where the sticky header CTA is always visible.
  */
 export function MobileBookingBar() {
+  const t = useTranslations("common.mobileBar");
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -32,18 +34,16 @@ export function MobileBookingBar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
         <div className="min-w-0">
           <p className="truncate text-sm font-semibold text-[#1f2b27]">
-            Reservá tu estadía
+            {t("title")}
           </p>
-          <p className="truncate text-xs text-[#66736f]">
-            Mejor tarifa · sin comisiones
-          </p>
+          <p className="truncate text-xs text-[#66736f]">{t("subtitle")}</p>
         </div>
         <Link
           className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-[#38645b] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#2e5049] active:scale-[0.99]"
           href={BOOKING_HREF}
         >
           <CalendarDays size={16} aria-hidden="true" />
-          Buscar fechas
+          {t("cta")}
         </Link>
       </div>
     </div>

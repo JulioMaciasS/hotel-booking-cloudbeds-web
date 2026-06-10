@@ -1,19 +1,23 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import Image from "next/image";
-import tripadvisorLogo from "../../assets/logo/tripadvisor.png";
-import googleMapsLogo from "../../assets/logo/Google_Maps_icon_(2020).png";
+import tripadvisorLogo from "@assets/logo/tripadvisor.png";
+import googleMapsLogo from "@assets/logo/Google_Maps_icon_(2020).png";
 
-type Review = {
+type ReviewMeta = {
   author: string;
+  rating: number;
+  source: "tripadvisor" | "google" | "booking";
+};
+
+type ReviewCopy = {
+  text: string;
   origin: string;
   date: string;
-  rating: number;
-  text: string;
   trip: string;
-  source: "tripadvisor" | "google" | "booking";
 };
 
 function TripAdvisorLogo() {
@@ -71,7 +75,9 @@ function getAvatar(author: string) {
   return { initials, ...color };
 }
 
-export function ReviewsSlider({ reviews }: { reviews: Review[] }) {
+export function ReviewsSlider({ reviews }: { reviews: ReviewMeta[] }) {
+  const t = useTranslations("reviews");
+  const copy = t.raw("items") as ReviewCopy[];
   const [index, setIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const total = reviews.length;
@@ -110,6 +116,12 @@ export function ReviewsSlider({ reviews }: { reviews: Review[] }) {
         {reviews.map((review, i) => {
           const avatar = getAvatar(review.author);
           const isActive = i === index;
+          const { text, origin, date, trip } = copy[i] ?? {
+            text: "",
+            origin: "",
+            date: "",
+            trip: "",
+          };
           return (
             <blockquote
               key={review.author}
@@ -118,7 +130,7 @@ export function ReviewsSlider({ reviews }: { reviews: Review[] }) {
             >
               <div
                 className="flex gap-0.5 text-amber-400"
-                aria-label={`${review.rating} de 5 estrellas`}
+                aria-label={t("ui.rating", { rating: review.rating })}
               >
                 {[1, 2, 3, 4, 5].map((s) => (
                   <Star
@@ -131,7 +143,7 @@ export function ReviewsSlider({ reviews }: { reviews: Review[] }) {
                 ))}
               </div>
               <p className="mt-4 flex-1 text-sm leading-7 text-[#3b4c46]">
-                &ldquo;{review.text}&rdquo;
+                &ldquo;{text}&rdquo;
               </p>
               <footer className="mt-5 flex items-center gap-3 border-t border-black/5 pt-4">
                 <div
@@ -144,8 +156,8 @@ export function ReviewsSlider({ reviews }: { reviews: Review[] }) {
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-semibold text-[#1f2b27]">{review.author}</p>
                   <p className="text-xs text-[#66736f]">
-                    {review.origin && `${review.origin} · `}
-                    {review.date} · {review.trip}
+                    {origin && `${origin} · `}
+                    {date} · {trip}
                   </p>
                 </div>
                 <span className="shrink-0">
@@ -166,19 +178,19 @@ export function ReviewsSlider({ reviews }: { reviews: Review[] }) {
       {/* Controls */}
       <div className="mt-5 flex items-center justify-center gap-3">
         <button
-          aria-label="Reseña anterior"
+          aria-label={t("ui.prev")}
           onClick={() => goTo(index - 1)}
           className="flex h-9 w-9 items-center justify-center rounded-full border border-[#c8d4ce] bg-white text-[#1f2b27] shadow-sm transition hover:bg-[#f0f4f2]"
         >
           <ChevronLeft size={18} />
         </button>
-        <div className="flex gap-1.5" role="tablist" aria-label="Reseñas">
+        <div className="flex gap-1.5" role="tablist" aria-label={t("ui.tablistLabel")}>
           {reviews.map((_, i) => (
             <button
               key={i}
               role="tab"
               aria-selected={i === index}
-              aria-label={`Reseña ${i + 1}`}
+              aria-label={t("ui.goTo", { index: i + 1 })}
               onClick={() => goTo(i)}
               className={`rounded-full transition-all duration-200 ${
                 i === index
@@ -189,7 +201,7 @@ export function ReviewsSlider({ reviews }: { reviews: Review[] }) {
           ))}
         </div>
         <button
-          aria-label="Reseña siguiente"
+          aria-label={t("ui.next")}
           onClick={() => goTo(index + 1)}
           className="flex h-9 w-9 items-center justify-center rounded-full border border-[#c8d4ce] bg-white text-[#1f2b27] shadow-sm transition hover:bg-[#f0f4f2]"
         >

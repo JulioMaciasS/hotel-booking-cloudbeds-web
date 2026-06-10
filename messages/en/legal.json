@@ -1,0 +1,179 @@
+{
+  "nav": {
+    "backHome": "Back to home",
+    "brand": "Los Lagos Hotel"
+  },
+  "eyebrow": "Legal",
+  "lastUpdatedLabel": "Last updated: {date}",
+  "lastUpdated": "May 18, 2026",
+  "terms": {
+    "title": "Terms and Conditions",
+    "toPrivacy": "Privacy Policy →",
+    "sections": [
+      {
+        "heading": "1. Provider information",
+        "body": "This website and the accommodation service are provided by <strong>Los Lagos Hotel</strong>, located at 25 de Mayo 220, Z9405 El Calafate, Province of Santa Cruz, Argentine Republic. Contact: <email></email> / +54 2902 417738."
+      },
+      {
+        "heading": "2. Purpose",
+        "body": "These Terms and Conditions govern the relationship between Los Lagos Hotel and the guest regarding the booking and provision of the accommodation service, in accordance with <strong>Consumer Protection Law 24,240</strong> and the <strong>Civil and Commercial Code of Argentina</strong> (Law 26,994)."
+      },
+      {
+        "heading": "3. Booking and confirmation process",
+        "body": "Bookings can be made through the online booking engine (managed by Cloudbeds), by email, or by phone. A booking is considered confirmed once the guest receives a written confirmation from the hotel. The hotel reserves the right not to confirm a booking without stating any cause, in which case it will immediately refund any amount that may have been paid."
+      },
+      {
+        "heading": "4. Prices, currency, and billing",
+        "body": "Published prices are stated in Argentine pesos (ARS) or US dollars (USD) as indicated during the booking process. For foreign tourists who are not residents of the Argentine Republic, the differentiated rate set out in the regulations in force from the Central Bank of the Argentine Republic (BCRA) may apply. The hotel will issue the corresponding invoice in accordance with AFIP requirements. Prices include the national and provincial taxes in force, unless expressly stated otherwise."
+      },
+      {
+        "heading": "5. Cancellation policy",
+        "intro": "The specific cancellation conditions are provided at the time of booking and vary according to the rate selected:",
+        "items": [
+          "<strong>Flexible rate:</strong> free cancellation up to 48 hours before the scheduled check-in date.",
+          "<strong>Non-refundable rate:</strong> no right to a refund in the event of cancellation, modification, or no-show."
+        ],
+        "outro": "In all cases, the hotel will refund the corresponding amounts within the timeframes set out by Law 24,240 and its amendments."
+      },
+      {
+        "heading": "6. Right of withdrawal (Art. 34, Law 24,240)",
+        "body": "A guest who has contracted remotely (via internet, email, or phone) has the right to withdraw their acceptance within <strong>10 (ten) business days from the date the booking was confirmed</strong>, without any liability and without stating a cause, provided that the check-in date is not imminent and performance of the contract has not begun. To exercise this right, the guest must notify the hotel by email or by phone.",
+        "body2": "Once that period has elapsed, the cancellation policy described in section 5 will apply."
+      },
+      {
+        "heading": "7. Check-in and check-out",
+        "items": [
+          "<strong>Check-in:</strong> from 2:00 PM. A valid ID (national ID or passport) will be requested upon arrival, in accordance with the guest registration regulations in force.",
+          "<strong>Check-out:</strong> until 10:00 AM. Staying beyond that time may be billed as an additional night.",
+          "An advance deposit or the full amount of the booking may be required at check-in as a guarantee."
+        ]
+      },
+      {
+        "heading": "8. Guest obligations",
+        "items": [
+          "Present a valid ID at check-in.",
+          "Use the facilities in a responsible and respectful manner.",
+          "Smoking is prohibited inside the rooms and enclosed common areas, in accordance with Anti-Tobacco Law 26,687.",
+          "The guest will be liable for any material damage they cause to the hotel facilities, which may be billed before check-out.",
+          "Any external visitors entering the rooms must be reported to reception."
+        ]
+      },
+      {
+        "heading": "9. Liability",
+        "body": "The hotel is not liable for the loss, theft, or damage of valuables that have not been placed in the safe available in the rooms or at reception. Guests are advised to use the safekeeping facilities provided for this purpose.",
+        "body2": "The hotel will not be liable for any failure to perform arising from force majeure or unforeseeable events (including, without limitation, natural disasters, public utility outages, acts of public authority, or emergency situations) in accordance with articles 1730 and 1731 of the Civil and Commercial Code of Argentina."
+      },
+      {
+        "heading": "10. Intellectual property",
+        "body": "All content on this website (text, images, logos, design) is the property of Los Lagos Hotel or its licensors, and is protected by <strong>Intellectual Property Law 11,723</strong>. Its reproduction, distribution, or public communication without express authorization is prohibited."
+      },
+      {
+        "heading": "11. Dispute resolution",
+        "intro": "In the event of any problem, the guest may contact the hotel directly. If a satisfactory solution is not reached, the consumer may turn to:",
+        "items": [
+          "<strong>National Consumer Protection Directorate (DNDC):</strong> COPREC online dispute resolution system: <coprec>www.argentina.gob.ar/defensadelconsumidor</coprec>.",
+          "<strong>Consumer Protection Office of the Province of Santa Cruz</strong> (local jurisdiction)."
+        ]
+      },
+      {
+        "heading": "12. Applicable law and jurisdiction",
+        "body": "These Terms and Conditions are governed by the laws of the Argentine Republic. For the resolution of any dispute, the parties submit to the jurisdiction of the Ordinary Courts of the city of El Calafate, Province of Santa Cruz, expressly waiving any other venue or jurisdiction that may apply, without prejudice to the rights granted to the consumer by Law 24,240 and its amendments."
+      },
+      {
+        "heading": "13. Amendments",
+        "body": "The hotel reserves the right to amend these Terms and Conditions at any time. Changes will be published on this website with an indication of the date of the last update. Bookings already confirmed will be governed by the terms in force at the time of their confirmation."
+      }
+    ]
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "toTerms": "← Terms and Conditions",
+    "intro": "At <strong>Los Lagos Hotel</strong> we are committed to protecting the privacy of our guests and visitors. This Privacy Policy describes how we collect, use, store, and protect your personal data, in accordance with <strong>Personal Data Protection Law 25,326</strong> (LPDP), its Regulatory Decree 1558/2001, and the provisions of the <strong>Agency for Access to Public Information (AAIP)</strong>.",
+    "controller": {
+      "heading": "1. Data controller",
+      "name": "Los Lagos Hotel",
+      "addressLabel": "Address:",
+      "address": "25 de Mayo 220, Z9405 El Calafate, Province of Santa Cruz, Argentine Republic",
+      "emailLabel": "Email:",
+      "phoneLabel": "Phone:",
+      "phone": "+54 2902 417738"
+    },
+    "sections": [
+      {
+        "heading": "2. Personal data we collect",
+        "intro": "We collect personal data in the following contexts:",
+        "items": [
+          "<strong>Contact form:</strong> first and last name, email address, phone number (optional), and the content of the message.",
+          "<strong>Online bookings:</strong> first and last name, email, phone, ID or passport number, nationality, credit/debit card details (processed directly by the payment processor), stay dates, and room preferences.",
+          "<strong>On-site check-in:</strong> ID or passport number, as required by the provincial police guest registration regulations.",
+          "<strong>Web browsing:</strong> IP address, browser type, pages visited, and time spent, through technical cookies (see section 7)."
+        ]
+      },
+      {
+        "heading": "3. Purpose of processing",
+        "intro": "Your personal data is processed for the following purposes:",
+        "items": [
+          "To manage and confirm accommodation bookings.",
+          "To respond to inquiries and requests made through the contact form, email, or phone.",
+          "To comply with legal guest registration obligations before the provincial police authority.",
+          "To issue tax receipts in accordance with AFIP requirements.",
+          "To improve the user experience on the website through aggregate traffic analysis.",
+          "To send information about the establishment or promotions, solely and exclusively when the data subject has given their express consent."
+        ]
+      },
+      {
+        "heading": "4. Legal basis",
+        "intro": "The processing of your data is based on:",
+        "items": [
+          "<strong>Performance of a contract:</strong> the data necessary to manage the booking and the stay.",
+          "<strong>Compliance with a legal obligation:</strong> guest registration and the issuance of tax receipts.",
+          "<strong>Consent of the data subject:</strong> for sending commercial communications and the use of cookies that are not strictly necessary.",
+          "<strong>Legitimate interest:</strong> for the aggregate analysis of web browsing for the purpose of improving the service."
+        ]
+      },
+      {
+        "heading": "5. Recipients and data transfers",
+        "intro": "Your data may be shared with:",
+        "items": [
+          "<strong>Cloudbeds, Inc.</strong> (United States): hotel management platform and booking engine. Cloudbeds processes data in the United States, a country that does not have an adequacy declaration from the AAIP. The hotel has entered into a data processing agreement with Cloudbeds that includes the appropriate safeguards set out in Art. 12 of Law 25,326.",
+          "<strong>Payment processors:</strong> card data is processed directly by the payment provider integrated into the booking engine under PCI-DSS standards. The hotel does not store card numbers.",
+          "<strong>Competent authorities:</strong> Provincial Police, AFIP, or other authorities when there is a legal obligation to report."
+        ],
+        "outro": "We do not sell or transfer your personal data to third parties for their own commercial purposes."
+      },
+      {
+        "heading": "6. Retention period",
+        "items": [
+          "<strong>Booking and stay data:</strong> kept for 5 (five) years from the check-out date, in compliance with the contractual statute-of-limitations periods set out by the Civil and Commercial Code of Argentina, and with tax obligations before AFIP.",
+          "<strong>Contact form data:</strong> kept for as long as necessary to resolve the inquiry and, at most, 1 (one) year after the last communication.",
+          "<strong>Police guest register:</strong> in accordance with the periods required by the applicable provincial regulations."
+        ]
+      },
+      {
+        "heading": "7. Cookies",
+        "body": "This website may use strictly necessary technical cookies for the operation of the booking engine. These cookies do not require prior consent, as they are essential for providing the service requested by the user. No third-party tracking or behavioral advertising cookies are used."
+      },
+      {
+        "heading": "8. Rights of the data subject (Habeas Data)",
+        "intro": "In accordance with articles 14 to 16 of Law 25,326, the data subject has the right to:",
+        "items": [
+          "<strong>Access:</strong> request information about the personal data the hotel holds about you.",
+          "<strong>Rectification:</strong> request the correction of inaccurate, incomplete, or outdated data.",
+          "<strong>Erasure:</strong> request the deletion of your data where appropriate under the law.",
+          "<strong>Confidentiality:</strong> require that your data not be transferred to third parties without your consent.",
+          "<strong>Objection:</strong> object to the processing of your data for commercial communication purposes."
+        ],
+        "exerciseBox": "To exercise any of these rights, write to <email></email>, stating your full name, ID number, and the right you wish to exercise. The hotel will respond within 5 business days in accordance with Art. 14 of Law 25,326.",
+        "authority": "If you believe your request has not been addressed, you may turn to the <strong>Agency for Access to Public Information (AAIP)</strong>, the supervisory body for Law 25,326: <aaip>www.argentina.gob.ar/aaip</aaip>."
+      },
+      {
+        "heading": "9. Data security",
+        "body": "The hotel adopts the technical and organizational measures necessary to ensure the security and integrity of personal data and to prevent its alteration, loss, unauthorized processing, or access, taking into account the state of technology and the nature of the data stored (Art. 9, Law 25,326)."
+      },
+      {
+        "heading": "10. Changes to this policy",
+        "body": "The hotel reserves the right to update this Privacy Policy at any time. Any change will be published on this page with the corresponding update date. We recommend reviewing this document periodically."
+      }
+    ]
+  }
+}

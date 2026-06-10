@@ -1,0 +1,103 @@
+{
+  "page": {
+    "hero": {
+      "eyebrow": "The Hotel",
+      "title": "A family-run hotel in the heart of El Calafate.",
+      "subtitle": "Simplicity, warmth and personalised service, a 3-minute walk from the town centre."
+    },
+    "story": {
+      "eyebrow": "Our story",
+      "title": "A peaceful base for exploring southern Patagonia.",
+      "paragraph1": "We are a small family-run hotel in an outstanding location, just a 3-minute walk from the town centre, bars, restaurants and travel agencies. A place that blends simplicity, warmth, comfort and complete personalised service.",
+      "paragraph2": "Every guest enjoys attentive, personal care: we help you plan your excursions, arrange transfers and are available 24 hours a day to make your stay in El Calafate simple and memorable.",
+      "stats": {
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "rooms": "Rooms"
+      }
+    },
+    "gallery": {
+      "eyebrow": "Inside the hotel",
+      "title": "Patagonian warmth in every corner.",
+      "intro": "From a homemade breakfast to start the day to the garden and common areas where you can relax after your excursions.",
+      "items": {
+        "breakfast": { "alt": "Homemade breakfast included", "caption": "Breakfast included" },
+        "diningRoom": { "alt": "Hotel dining room", "caption": "Dining room" },
+        "garden": { "alt": "Hotel garden", "caption": "Garden" },
+        "reception": { "alt": "24-hour reception", "caption": "24-hour reception" },
+        "library": { "alt": "Reading nook", "caption": "Common areas" },
+        "outdoor": { "alt": "Exterior and garden", "caption": "Outdoors" }
+      }
+    },
+    "servicesSection": {
+      "eyebrow": "Hotel services",
+      "title": "Everything designed for a worry-free stay."
+    },
+    "faq": {
+      "eyebrow": "Frequently asked questions",
+      "title": "Everything you need to know.",
+      "items": {
+        "schedule": {
+          "q": "What are the check-in and check-out times?",
+          "a": "Check-in is from 14:00 and check-out is until 10:00. Reception is open 24 hours a day, every day of the year, so you can arrive at any time."
+        },
+        "breakfast": {
+          "q": "Is breakfast included?",
+          "a": "Yes. All rates include a homemade continental breakfast: bread, toast, coffee, tea, milk, yoghurt, juices, cereals, jam, cheese and cold cuts."
+        },
+        "vat": {
+          "q": "I'm a foreign tourist, do I pay VAT?",
+          "a": "No. Non-residents are exempt from VAT (21%) on accommodation when paying with foreign payment methods. When booking you can indicate your status, and at check-in we verify your ID or passport."
+        },
+        "cancellation": {
+          "q": "What is the cancellation policy?",
+          "a": "It depends on the rate you choose. The flexible rate allows free cancellation up to 48 hours before check-in; the non-refundable rate does not allow cancellations or changes. The conditions are shown clearly when you book."
+        },
+        "excursions": {
+          "q": "Do you organise excursions and transfers to the glaciers?",
+          "a": "Yes. We arrange excursions to the Perito Moreno Glacier, boat trips on Lake Argentino, El Chaltén and more, with bus departures from the town centre. Our reception helps you plan and book."
+        },
+        "parking": {
+          "q": "Do you have parking?",
+          "a": "Yes, we have open-air parking at the hotel entrance, monitored by security cameras, at no extra cost for guests."
+        },
+        "directBooking": {
+          "q": "Why is it best to book directly on this site?",
+          "a": "Booking here you always get the best available rate, with no third-party commissions or hidden fees, with instant confirmation and direct service from the hotel."
+        }
+      },
+      "ctaBook": "Book now",
+      "ctaContact": "Make an enquiry"
+    }
+  },
+  "services": {
+    "housekeeping": {
+      "name": "Daily Housekeeping",
+      "description": "Daily room cleaning. Towels changed every 2 days and sheets every 7 days."
+    },
+    "parking": {
+      "name": "Monitored Parking",
+      "description": "Open-air parking at the hotel entrance, monitored by security cameras."
+    },
+    "luggage": {
+      "name": "Luggage Storage",
+      "description": "Luggage storage available before check-in and after check-out."
+    },
+    "laundry": {
+      "name": "Laundry Service",
+      "description": "Laundry service available for guests."
+    },
+    "concierge": {
+      "name": "Concierge",
+      "description": "Personalised assistance to arrange excursions, transfers and local bookings."
+    },
+    "family": {
+      "name": "Family Friendly",
+      "description": "Triple rooms and special setups for families with children."
+    },
+    "nonSmoking": {
+      "name": "Non-Smoking Rooms",
+      "description": "All rooms and common areas are smoke-free."
+    }
+  }
+}

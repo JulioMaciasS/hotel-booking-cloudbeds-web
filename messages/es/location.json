@@ -1,0 +1,147 @@
+{
+  "page": {
+    "hero": {
+      "eyebrow": "Cómo llegar",
+      "title": "En el corazón de El Calafate.",
+      "subtitle": "A solo 3 minutos a pie de la Av. del Libertador y a pasos del Lago Argentino. El punto de partida perfecto hacia la Patagonia austral."
+    },
+    "address": {
+      "heading": "Dirección",
+      "openInMaps": "Abrir en Google Maps"
+    },
+    "distancesHeading": "Distancias",
+    "cta": {
+      "book": "Reservar ahora",
+      "contact": "Contactar al hotel"
+    }
+  },
+  "distances": [
+    { "label": "Centro — Av. del Libertador", "modeLabel": "Caminando" },
+    { "label": "Terminal de Ómnibus", "modeLabel": "Caminando" },
+    { "label": "Lago Argentino (orilla)", "modeLabel": "Caminando" },
+    { "label": "Glaciarium", "modeLabel": "En auto" },
+    { "label": "Aeropuerto El Calafate (FTE)", "modeLabel": "En auto" },
+    { "label": "Glaciar Perito Moreno", "modeLabel": "En bus" }
+  ],
+  "map": {
+    "loading": "Cargando mapa…",
+    "expand": "Ampliar mapa",
+    "close": "Cerrar mapa",
+    "expandedLabel": "Mapa ampliado",
+    "viewOnGoogleMaps": "Ver en Google Maps ↗",
+    "hotel": {
+      "address": "25 de Mayo 220, El Calafate"
+    },
+    "centreLabel": "Centro",
+    "categories": {
+      "restaurant": "Restaurante",
+      "bar": "Bar",
+      "cafe": "Café",
+      "attraction": "Atracción",
+      "transport": "Transporte",
+      "nature": "Naturaleza",
+      "shop": "Comercio",
+      "bank": "Banco",
+      "tourism": "Agencia de turismo",
+      "centre": "Centro de la ciudad"
+    },
+    "pois": {
+      "centro": {
+        "label": "Centro de El Calafate",
+        "note": "Corazón comercial y gastronómico de la ciudad"
+      },
+      "laTablita": {
+        "label": "La Tablita",
+        "note": "Parrilla patagónica icónica desde 1965 · Cnel. Rosales 28"
+      },
+      "casimiroBigua": {
+        "label": "Casimiro Biguá",
+        "note": "Gourmet & parrilla · Av. Libertador 963"
+      },
+      "miViejo": {
+        "label": "Mi Viejo",
+        "note": "Parrilla argentina · Av. Libertador 1111"
+      },
+      "mako": {
+        "label": "Mako Fuegos y Vinos",
+        "note": "Cocina de autor & vinos · Av. Libertador 1223"
+      },
+      "laZaina": {
+        "label": "La Zaina Cocina Patagónica",
+        "note": "Cocina regional · Gregores 1057"
+      },
+      "laLechuza": {
+        "label": "La Lechuza",
+        "note": "Pizzas & pastas · Av. Libertador 1301"
+      },
+      "laZorra": {
+        "label": "La Zorra Taproom",
+        "note": "Cerveza artesanal patagónica · Av. Libertador 832"
+      },
+      "borges": {
+        "label": "Borges y Álvarez Libro-Bar",
+        "note": "Bar literario & cerveza artesanal · Av. Libertador 1015"
+      },
+      "vivaLaPepa": {
+        "label": "Viva la Pepa",
+        "note": "Crepería & café · Amado 833"
+      },
+      "ovejitas": {
+        "label": "Chocolates Ovejitas",
+        "note": "Chocolatería & café patagónico · Av. Libertador 1197"
+      },
+      "libertador": {
+        "label": "Av. del Libertador",
+        "note": "Calle peatonal principal · ~200 m caminando"
+      },
+      "centroInterpretacion": {
+        "label": "Centro de Interpretación Histórica",
+        "note": "Museo local · Av. Brown y Bonarelli · ~700 m"
+      },
+      "glaciarium": {
+        "label": "Glaciarium",
+        "note": "Museo de glaciares · Ruta 11 · 5 km en auto"
+      },
+      "peritoMoreno": {
+        "label": "Glaciar Perito Moreno",
+        "note": "Maravilla natural · 80 km · 1.5 h en bus"
+      },
+      "lagoArgentino": {
+        "label": "Lago Argentino (orilla)",
+        "note": "Orilla del lago · ~400 m caminando"
+      },
+      "lagunaNimez": {
+        "label": "Laguna Nimez",
+        "note": "Reserva de aves · ~1.2 km caminando"
+      },
+      "terminal": {
+        "label": "Terminal de Ómnibus",
+        "note": "Terminal de buses · ~700 m caminando"
+      },
+      "aeropuerto": {
+        "label": "Aeropuerto FTE",
+        "note": "Aeropuerto Malvinas Argentinas · 16 km en auto"
+      },
+      "bancoSantaCruz": {
+        "label": "Banco Santa Cruz",
+        "note": "Sucursal bancaria & cajero · Av. Libertador 1285"
+      },
+      "bancoNacion": {
+        "label": "Banco Nación Argentina",
+        "note": "Sucursal bancaria & cajero · Av. Libertador 1133"
+      },
+      "interlagos": {
+        "label": "Interlagos Turismo",
+        "note": "Agencia de excursiones · Av. Libertador 1175"
+      },
+      "calTur": {
+        "label": "Cal-Tur",
+        "note": "Agencia de turismo · Av. Libertador 1080"
+      },
+      "laAnonima": {
+        "label": "Supermercado La Anónima",
+        "note": "Supermercado · centro"
+      }
+    }
+  }
+}
