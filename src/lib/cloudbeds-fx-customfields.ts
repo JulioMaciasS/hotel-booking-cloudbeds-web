@@ -1,5 +1,6 @@
 import { cloudbedsFxCustomFields } from "@/lib/config";
 import { readCloudbedsSummaryUsd } from "@/lib/cloudbeds-vat-adjust";
+import { reportFxDiagnostic } from "@/lib/fx-diagnostics";
 import { VAT_RATE } from "@/lib/vat";
 
 const STYLE_ID = "hotel-cloudbeds-fx-field-adjustments";
@@ -118,6 +119,21 @@ function isFieldControl(node: Element | null): node is FieldControl {
   );
 }
 
+function hideFieldControl(control: FieldControl) {
+  control.dataset.hotelFxField = "true";
+
+  // Hide the whole field row (label + input). The control sits inside a
+  // `*form-field*` wrapper; hide its parent stack so no empty gap remains.
+  const fieldWrapper = control.closest<HTMLElement>("[class*='form-field' i]");
+  const wrapper =
+    fieldWrapper?.parentElement ??
+    fieldWrapper ??
+    control.parentElement ??
+    control;
+
+  wrapper.setAttribute("data-hotel-fx-field-hidden", "true");
+}
+
 function fillCustomField(
   documentRef: Document,
   fieldName: string,
@@ -133,18 +149,7 @@ function fillCustomField(
     setNativeValue(control, value);
   }
 
-  control.dataset.hotelFxField = "true";
-
-  // Hide the whole field row (label + input). The control sits inside a
-  // `*form-field*` wrapper; hide its parent stack so no empty gap remains.
-  const fieldWrapper = control.closest<HTMLElement>("[class*='form-field' i]");
-  const wrapper =
-    fieldWrapper?.parentElement ??
-    fieldWrapper ??
-    control.parentElement ??
-    control;
-
-  wrapper.setAttribute("data-hotel-fx-field-hidden", "true");
+  hideFieldControl(control);
 
   return true;
 }
@@ -169,59 +174,109 @@ function hideAdditionalInfoHeading(documentRef: Document) {
 }
 
 type RecordFxOptions = {
-  arsPerUsd: number;
+  /**
+   * Null when no usable FX rate exists. Degraded mode still records the
+   * residency (Factura T) flag — it depends only on the toggle, and Comfiar
+   * needs it regardless of whether the FX snapshot could be taken.
+   */
+  arsPerUsd: number | null;
   fromArgentina: boolean;
   documentRef?: Document;
 };
 
+/** One-shot flag: report the first successful summary read per page load. */
+let snapshotReported = false;
+
 /**
  * Snapshots the FX rate and the with/without-IVA prices (ARS + USD) into the
  * Cloudbeds booking-engine custom fields so they are stored on the reservation.
- * No-ops silently until both the summary and the custom-field inputs render.
+ * No-ops until the custom-field inputs render; price fields additionally wait
+ * for the summary to render and the prices to be converted.
  */
 export function recordFxCustomFields({
   arsPerUsd,
   fromArgentina,
   documentRef = document,
 }: RecordFxOptions): boolean {
-  if (!Number.isFinite(arsPerUsd) || arsPerUsd <= 0) {
-    return false;
-  }
-
-  const summary = readCloudbedsSummaryUsd(documentRef);
-
-  if (!summary) {
-    return false;
-  }
-
-  // Always record the full breakdown (net / IVA / gross) regardless of the
-  // toggle; staff send the paylink manually and may charge either amount. The
-  // toggle drives Comfiar's "Factura T" flag: "SI" = IVA-exempt resident abroad
-  // (Comfiar runs the tax post-adjustment), "NO" = Argentine resident.
-  const netUsd = summary.subtotalUsd;
-  const vatUsd = summary.taxUsd ?? netUsd * VAT_RATE;
-  const grossUsd = netUsd + vatUsd;
-  const facturaT = fromArgentina ? "NO" : "SI";
-
-  const values: Array<[string, string]> = [
-    [cloudbedsFxCustomFields.fxRate, formatRate(arsPerUsd)],
-    [cloudbedsFxCustomFields.priceNoVatArs, formatArs(netUsd * arsPerUsd)],
-    [cloudbedsFxCustomFields.priceNoVatUsd, formatUsdValue(netUsd)],
-    [cloudbedsFxCustomFields.vatArs, formatArs(vatUsd * arsPerUsd)],
-    [cloudbedsFxCustomFields.vatUsd, formatUsdValue(vatUsd)],
-    [cloudbedsFxCustomFields.priceArs, formatArs(grossUsd * arsPerUsd)],
-    [cloudbedsFxCustomFields.priceUsd, formatUsdValue(grossUsd)],
-    [cloudbedsFxCustomFields.facturaT, facturaT],
-  ];
-
   injectFieldStyles(documentRef);
 
+  // These fields are internal bookkeeping and must never be guest-facing:
+  // hide every configured field as soon as it renders, filled or not.
+  let fieldsOnPage = 0;
+
+  for (const fieldName of Object.values(cloudbedsFxCustomFields)) {
+    const control = findFieldControl(documentRef, fieldName);
+
+    if (control) {
+      hideFieldControl(control);
+      fieldsOnPage += 1;
+    }
+  }
+
+  if (fieldsOnPage === 0) {
+    // Not on the checkout step yet — nothing to record.
+    return false;
+  }
+
+  // The residency flag drives Comfiar's "Factura T": "SI" = IVA-exempt
+  // resident abroad (Comfiar runs the tax post-adjustment), "NO" = resident.
+  const values: Array<[string, string]> = [
+    [cloudbedsFxCustomFields.facturaT, fromArgentina ? "NO" : "SI"],
+  ];
+
+  const hasRate =
+    typeof arsPerUsd === "number" &&
+    Number.isFinite(arsPerUsd) &&
+    arsPerUsd > 0;
+  const summary = hasRate ? readCloudbedsSummaryUsd(documentRef) : null;
+
+  if (hasRate && summary) {
+    // Always record the full breakdown (net / IVA / gross) regardless of the
+    // toggle; staff send the paylink manually and may charge either amount.
+    const netUsd = summary.subtotalUsd;
+    const vatUsd = summary.taxUsd ?? netUsd * VAT_RATE;
+    const grossUsd = netUsd + vatUsd;
+
+    values.push(
+      [cloudbedsFxCustomFields.fxRate, formatRate(arsPerUsd)],
+      [cloudbedsFxCustomFields.priceNoVatArs, formatArs(netUsd * arsPerUsd)],
+      [cloudbedsFxCustomFields.priceNoVatUsd, formatUsdValue(netUsd)],
+      [cloudbedsFxCustomFields.vatArs, formatArs(vatUsd * arsPerUsd)],
+      [cloudbedsFxCustomFields.vatUsd, formatUsdValue(vatUsd)],
+      [cloudbedsFxCustomFields.priceArs, formatArs(grossUsd * arsPerUsd)],
+      [cloudbedsFxCustomFields.priceUsd, formatUsdValue(grossUsd)],
+    );
+
+    if (!snapshotReported) {
+      snapshotReported = true;
+      // Net-vs-gross verification aid: compare these against the amounts on a
+      // real reservation to confirm Cloudbeds' "Subtotal" is the net price.
+      reportFxDiagnostic("summary-snapshot", {
+        subtotalUsd: netUsd,
+        taxUsd: summary.taxUsd,
+        derivedGrossUsd: grossUsd,
+        arsPerUsd,
+        vatRate: VAT_RATE,
+      });
+    }
+  }
+
   let filledAny = false;
+  const missing: string[] = [];
 
   for (const [fieldName, value] of values) {
     if (fillCustomField(documentRef, fieldName, value)) {
       filledAny = true;
+    } else {
+      missing.push(fieldName);
     }
+  }
+
+  // The checkout form is on screen (we found some of our fields) yet one of
+  // the configured internal names matched nothing — almost certainly renamed
+  // in Cloudbeds. Without this report the reservation silently loses FX data.
+  if (missing.length > 0) {
+    reportFxDiagnostic("custom-field-missing", { missing });
   }
 
   if (filledAny) {

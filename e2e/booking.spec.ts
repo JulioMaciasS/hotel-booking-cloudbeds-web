@@ -225,6 +225,58 @@ test("reservas page converts mocked Cloudbeds ARS prices to dollars once", async
   await expect(page.getByText("USD $")).toHaveCount(0);
 });
 
+test("reservas page converts prices with the stored last-known-good rate when the FX API fails", async ({
+  page,
+}) => {
+  // Seed the browser's last-known-good rate (saved 1h ago) and break the API.
+  await page.addInitScript(() => {
+    window.localStorage.setItem(
+      "hotel-fx-last-known-rate",
+      JSON.stringify({
+        arsPerUsd: 1400,
+        asOf: null,
+        savedAt: Date.now() - 3_600_000,
+      }),
+    );
+  });
+  await page.unroute("**/api/public-fx-rate");
+  await page.route("**/api/public-fx-rate", (route) =>
+    route.fulfill({ status: 500, body: "" }),
+  );
+
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+
+  await expect(page.getByTestId("mock-cloudbeds")).toBeVisible();
+  await expect(page.getByText("$85.71")).toHaveCount(2);
+});
+
+test("reservas page degrades gracefully when no FX rate exists anywhere", async ({
+  page,
+}) => {
+  await page.unroute("**/api/public-fx-rate");
+  await page.route("**/api/public-fx-rate", (route) =>
+    route.fulfill({ status: 500, body: "" }),
+  );
+
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+
+  await expect(page.getByTestId("mock-cloudbeds")).toBeVisible();
+
+  // Rate-independent layer still applies: bedding selectors injected and the
+  // Cloudbeds currency controls hidden.
+  const doubleCard = page.getByTestId("accommodation-card-227179928547456");
+  await expect(doubleCard.getByText("Tipo de cama")).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Seleccionar moneda" }),
+  ).toBeHidden();
+
+  // Prices stay in the original currency — never converted with a guess.
+  await expect(page.getByText("ARS 120.000")).toBeVisible();
+  await expect(
+    page.locator("[data-hotel-currency-converted='true']"),
+  ).toHaveCount(0);
+});
+
 test("reservas page adds bedding selectors to Cloudbeds room cards", async ({
   page,
 }) => {

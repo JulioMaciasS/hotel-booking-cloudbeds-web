@@ -61,6 +61,43 @@ describe("parseCloudbedsArsMoney", () => {
     expect(parseCloudbedsArsMoney("100")).toBeNull();
     expect(parseCloudbedsArsMoney("USD 100k")).toBeNull();
   });
+
+  it("rejects bare digit runs without a separator or decimals, even in price contexts", () => {
+    // Years / IDs must never convert, regardless of DOM context.
+    expect(parseCloudbedsArsMoney("2026", { allowBareNumber: true })).toBeNull();
+    expect(
+      parseCloudbedsArsMoney("123456", { allowBareNumber: true }),
+    ).toBeNull();
+    // The same magnitude WITH a price signal still parses.
+    expect(
+      parseCloudbedsArsMoney("123.456", { allowBareNumber: true }),
+    ).toBe(123456);
+    expect(
+      parseCloudbedsArsMoney("123456.00", { allowBareNumber: true }),
+    ).toBe(123456);
+  });
+
+  it("bounds the /1000 unscaling to plausible prices", () => {
+    // Just under the threshold: taken at face value.
+    expect(
+      parseCloudbedsArsMoney("99,999,999.00", { allowBareNumber: true }),
+    ).toBe(99999999);
+    // Past the threshold: unscaled back into a plausible price.
+    expect(
+      parseCloudbedsArsMoney("100,000,100.00", { allowBareNumber: true }),
+    ).toBe(100000.1);
+    // Still past the threshold after unscaling: not a price — rejected.
+    expect(
+      parseCloudbedsArsMoney("100,000,000,000,000.00", {
+        allowBareNumber: true,
+      }),
+    ).toBeNull();
+    expect(
+      parseCloudbedsArsMoney("ARS 100,000,000,000,000.00", {
+        normalizeScaledAmount: true,
+      }),
+    ).toBeNull();
+  });
 });
 
 describe("convertArsToUsd", () => {

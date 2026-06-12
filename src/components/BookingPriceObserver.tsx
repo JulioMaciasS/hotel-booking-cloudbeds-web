@@ -21,12 +21,8 @@ import {
 import { relabelCloudbedsCurrencyText } from "@/lib/cloudbeds-currency-label";
 import { applyCloudbedsVatDisplay } from "@/lib/cloudbeds-vat-adjust";
 import { recordFxCustomFields } from "@/lib/cloudbeds-fx-customfields";
+import { resolveFxRate, type ResolvedFxRate } from "@/lib/fx-rate-client";
 import { VAT_CHANGE_EVENT, getFromArgentina } from "@/lib/vat";
-
-type FxRateResponse = {
-  arsPerUsd: number;
-  active: boolean;
-};
 
 const MONEY_AMOUNT_PATTERN = String.raw`\d(?:[\d.,\s]*\d)?(?:\s*[kK])?`;
 const BARE_NUMERIC_AMOUNT_PATTERN = String.raw`(?:\d{1,3}(?:[.,]\d{3})+|\d{4,})(?:[.,]\d{2})?`;
@@ -134,45 +130,47 @@ export function BookingPriceObserver() {
     injectCloudbedsDomAdjustmentStyles(document);
 
     async function startObserver() {
-      let rate: FxRateResponse;
+      // A missing rate must degrade to "prices stay in ARS", never disable the
+      // whole layer: bedding selectors, currency-control hiding and the
+      // residency (Factura T) flag don't depend on the rate at all.
+      let rate: ResolvedFxRate | null = null;
 
       try {
-        const response = await fetch("/api/public-fx-rate", {
-          cache: "no-store",
-          signal: abortController.signal,
-        });
-
-        if (!response.ok) {
+        rate = await resolveFxRate(abortController.signal);
+      } catch (error) {
+        // Aborted on unmount (Fast Refresh / strict mode) — nothing to start.
+        if ((error as Error | undefined)?.name === "AbortError") {
           return;
         }
-
-        rate = (await response.json()) as FxRateResponse;
-      } catch (error) {
-        // Aborted on unmount (Fast Refresh / strict mode) or a network error —
-        // nothing to start. Swallow aborts quietly; surface real failures.
-        if (
-          !abortController.signal.aborted &&
-          (error as Error | undefined)?.name !== "AbortError"
-        ) {
-          console.warn("Booking price observer failed to fetch FX rate.", error);
-        }
-        return;
       }
 
-      if (!rate.active || !Number.isFinite(rate.arsPerUsd)) {
+      if (abortController.signal.aborted) {
         return;
       }
 
       const convertDocument = () => {
         const fromArgentina = getFromArgentina();
 
-        scanForPrices(document.body, rate.arsPerUsd, convertedLabel);
-        relabelCloudbedsCurrencyText(document);
+        // Rate-independent adjustments — always applied.
         hideCloudbedsCurrencyControls(document);
         injectCloudbedsBeddingSelectors(document);
         syncCloudbedsBeddingSelections(document);
-        applyCloudbedsVatDisplay(fromArgentina, document);
-        recordFxCustomFields({ arsPerUsd: rate.arsPerUsd, fromArgentina });
+
+        // Rate-dependent adjustments. The currency relabel and the VAT math
+        // only make sense once prices are actually converted to USD; without
+        // them Cloudbeds' native ARS view stays untouched (and correct).
+        if (rate) {
+          scanForPrices(document.body, rate.arsPerUsd, convertedLabel);
+          relabelCloudbedsCurrencyText(document);
+          applyCloudbedsVatDisplay(fromArgentina, document);
+        }
+
+        // Records what it can: the full FX snapshot when a rate exists, or at
+        // least the residency flag when it doesn't.
+        recordFxCustomFields({
+          arsPerUsd: rate?.arsPerUsd ?? null,
+          fromArgentina,
+        });
       };
 
       convertDocument();

@@ -2,8 +2,12 @@ const ARS_MARKER_PATTERN = /(?:^|\s)(?:ARS|AR\$|\$)|(?:ARS|AR\$)(?:\s|$)/i;
 const USD_MARKER_PATTERN = /(?:^|\s)(?:USD|US\$|U\$S)(?:\s|$)/i;
 const NUMBER_PATTERN = /\d(?:[\d.,\s]*\d)?(?:\s*[kK])?/;
 const BARE_K_PRICE_PATTERN = /^\s*\d+(?:[.,]\d+)?\s*k\s*$/i;
+// Bare numbers (no currency marker) must carry a price signal — a thousands
+// separator and/or a 2-digit decimal part. A plain digit run like "2026"
+// (years, IDs, room numbers) is never treated as a price, even inside a
+// Cloudbeds price container.
 const BARE_NUMERIC_PRICE_PATTERN =
-  /^\s*(?:\d{1,3}(?:[.,]\d{3})+|\d{4,})(?:[.,]\d{2})?\s*$/;
+  /^\s*(?:\d{1,3}(?:[.,]\d{3})+(?:[.,]\d{2})?|\d{4,}[.,]\d{2})\s*$/;
 const CLOUDBEDS_SCALED_BARE_PRICE_THRESHOLD = 100_000_000;
 const CLOUDBEDS_SCALED_BARE_PRICE_DIVISOR = 1000;
 const CLOUDBEDS_PRICE_ROOT_SELECTOR = [
@@ -94,9 +98,18 @@ export function parseArsMoney(input: string): number | null {
   return parseMoneyNumber(amount);
 }
 
-function normalizeCloudbedsBarePriceAmount(amount: number) {
+/**
+ * Cloudbeds sometimes renders cart amounts scaled by 1000 (e.g. ARS 277,700.60
+ * shown as "277,700,600.00"). Amounts past the threshold are unscaled — but
+ * only when the quotient lands back in a plausible price range. A value that
+ * is still past the threshold after unscaling is not a price at all (corrupt
+ * text, concatenated digits): return null rather than convert garbage.
+ */
+function normalizeCloudbedsBarePriceAmount(amount: number): number | null {
   if (amount >= CLOUDBEDS_SCALED_BARE_PRICE_THRESHOLD) {
-    return amount / CLOUDBEDS_SCALED_BARE_PRICE_DIVISOR;
+    const unscaled = amount / CLOUDBEDS_SCALED_BARE_PRICE_DIVISOR;
+
+    return unscaled >= CLOUDBEDS_SCALED_BARE_PRICE_THRESHOLD ? null : unscaled;
   }
 
   return amount;

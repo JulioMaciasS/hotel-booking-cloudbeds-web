@@ -179,17 +179,45 @@ Cloudflare Quick Tunnel docs:
 
 ## FX Rate API
 
-`GET /api/public-fx-rate` returns a mocked active manual rate for now:
+`GET /api/public-fx-rate` proxies the live USD→ARS rate from a Supabase Edge
+Function (`FX_RATE_URL`) with a 2-minute upstream cache and a layered safety
+policy ([fx-rate.ts](src/lib/fx-rate.ts)):
+
+- **Sanity band** — rates outside `[FX_RATE_MIN, FX_RATE_MAX]` (defaults
+  200–100000) are rejected, so a corrupt upstream value can never reach the UI.
+- **Freshness** — rates older than `FX_RATE_MAX_AGE_HOURS` (48) are served
+  flagged `stale: true`; older than `FX_RATE_HARD_MAX_AGE_HOURS` (168) they are
+  rejected outright.
+- **Last-known-good** — if the upstream fails, the route serves the last
+  accepted rate (flagged stale) instead of going dark; the browser additionally
+  keeps its own copy in `localStorage` for up to 72 h
+  ([fx-rate-client.ts](src/lib/fx-rate-client.ts), with retry + backoff).
+- **Degraded mode** — with no usable rate anywhere, `active: false` is returned
+  and the client leaves prices in ARS (it never converts with a guessed rate).
+  Rate-independent adjustments (bedding selectors, currency-control hiding, the
+  Factura T residency flag) still apply.
 
 ```json
 {
   "baseCurrency": "ARS",
   "displayCurrency": "USD",
-  "arsPerUsd": 1400,
+  "arsPerUsd": 1460,
   "active": true,
-  "source": "mocked-hotel-manual-rate"
+  "stale": false,
+  "asOf": "2026-06-07T13:29:35.691Z",
+  "ageHours": 1.2,
+  "source": "supabase-latest-confirmed-fx-rate"
 }
 ```
+
+### FX diagnostics
+
+Silent failures in the conversion layer (missing rate, fallback used, custom
+field not found, VAT not applied, summary snapshot) are reported through
+[fx-diagnostics.ts](src/lib/fx-diagnostics.ts): always to the browser console,
+and — when `NEXT_PUBLIC_FX_DIAGNOSTICS=on` — beaconed to
+`POST /api/fx-diagnostics`, which writes structured log lines for the hosting
+platform's log search/alerts. Events are rate-limited per page load.
 
 ## Bedding Selection
 
@@ -197,8 +225,10 @@ The `/reservas` page injects a visual bedding selector into matching Cloudbeds
 accommodation cards. The current hard-coded mappings cover:
 
 - Double rooms: `Matrimonial` or `Dos camas separadas`
-- Triple rooms: `Matrimonial y cama individual` or `Tres camas individuales`
-- Room classes: `standard` and `superior`
+- `Triple Estandar Twin`: only `Tres camas individuales`
+- `Triple Estandar Matrimonial`: only `Matrimonial y cama individual`
+- Triple Superior (and any unsuffixed standard triple): both triple layouts
+- Matching prefers the most specific room-title match
 
 The selected value is stored in the DOM and in `sessionStorage` with
 `data-hotel-*` attributes. This is ready for a future hotel API to read and
@@ -208,7 +238,10 @@ through Cloudbeds automatically.
 ## Currency Conversion Limitations
 
 - This is visual conversion only. The app scans rendered ARS price text and
-  visually replaces it with dollar-formatted values using the hotel manual rate.
+  visually replaces it with dollar-formatted values using the live rate served
+  by `/api/public-fx-rate`. The actual charge happens in ARS through Cloudbeds.
+- Bare numbers with no thousands separator or decimals (years, IDs) are never
+  treated as prices, and the `/1000` unscaling is bounded to plausible amounts.
 - Cloudbeds date-picker calendar prices such as `100k` are treated as ARS only
   inside Cloudbeds DOM/portal roots and converted visually to dollar-formatted
   values.

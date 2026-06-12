@@ -1,4 +1,5 @@
 import { formatUsd } from "@/lib/currency";
+import { reportFxDiagnostic } from "@/lib/fx-diagnostics";
 import { VAT_RATE } from "@/lib/vat";
 
 const STYLE_ID = "hotel-cloudbeds-iva-adjustments";
@@ -248,6 +249,31 @@ function restoreValue(element: HTMLElement) {
   }
 }
 
+/**
+ * Anomaly latch for "summary rendered but its prices were never converted".
+ * That state is normal for one pass while Cloudbeds streams the summary in, so
+ * it is only reported when it persists across two consecutive passes (the
+ * debounced settle pass confirms or clears it).
+ */
+let summaryWithoutConvertedPrices = false;
+
+function trackSummaryAnomaly(present: boolean) {
+  if (!present) {
+    summaryWithoutConvertedPrices = false;
+    return;
+  }
+
+  if (summaryWithoutConvertedPrices) {
+    summaryWithoutConvertedPrices = false;
+    reportFxDiagnostic("vat-not-applied", {
+      reason: "summary-rendered-without-converted-prices",
+    });
+    return;
+  }
+
+  summaryWithoutConvertedPrices = true;
+}
+
 function adjustSummary(documentRef: Document, fromArgentina: boolean) {
   const body = documentRef.body;
 
@@ -277,9 +303,14 @@ function adjustSummary(documentRef: Document, fromArgentina: boolean) {
   }
 
   // --- Net (subtotal) value: label first, then testid fallback ---
+  const subtotalRow = findLabeledRow(body, SUBTOTAL_PATTERN);
   const netEl =
-    (findLabeledRow(body, SUBTOTAL_PATTERN)?.valueEl as HTMLElement | null) ??
+    (subtotalRow?.valueEl as HTMLElement | null) ??
     getConvertedSpan(documentRef.querySelector(SUBTOTAL_TESTID_SELECTOR));
+
+  // Subtotal label on screen but no converted price anywhere near it: the
+  // summary rendered yet conversion missed it — surface instead of no-opping.
+  trackSummaryAnomaly(subtotalRow !== null && netEl === null);
 
   if (taxValueEls.size === 0 || !netEl) {
     setGlobalIvaNote(documentRef, false, null);
