@@ -67,6 +67,7 @@ export function injectCloudbedsIvaStyles(documentRef: Document = document) {
       font-size: 11px;
       font-weight: 600;
       margin-left: 6px;
+      vertical-align: middle;
       white-space: nowrap;
     }
   `;
@@ -369,19 +370,40 @@ function annotateRoomCards(documentRef: Document, fromArgentina: boolean) {
       continue;
     }
 
-    const host = element.parentElement ?? element;
-
-    if (host.closest("[data-hotel-iva-hidden='true']")) {
+    if (element.closest("[data-hotel-iva-hidden='true']")) {
       continue;
     }
 
-    let tag = host.querySelector<HTMLElement>(":scope > .hotel-iva-card-tag");
+    // Anchor the tag to the RIGHT of the converted price; fall back to right
+    // after the "Precio desde" label until the price has been converted.
+    const priceEl = valueNearLabel(element);
+    const anchor: Element = priceEl ?? element;
+
+    // Reuse a tag already created for this rate plan (it may currently sit after
+    // the label from a previous render) and move it next to the price.
+    let tag: HTMLElement | null = null;
+
+    for (const sibling of [
+      element.nextElementSibling,
+      priceEl?.nextElementSibling,
+    ]) {
+      if (
+        sibling instanceof HTMLElement &&
+        sibling.classList.contains("hotel-iva-card-tag")
+      ) {
+        tag = sibling;
+        break;
+      }
+    }
 
     if (!tag) {
       tag = documentRef.createElement("span");
       tag.className = "hotel-iva-card-tag";
       tag.dataset.noCurrencyConversion = "true";
-      element.after(tag);
+    }
+
+    if (anchor.nextElementSibling !== tag) {
+      anchor.after(tag);
     }
 
     if (tag.textContent !== tagText) {

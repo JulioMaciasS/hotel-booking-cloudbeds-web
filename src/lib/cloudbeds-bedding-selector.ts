@@ -23,17 +23,21 @@ const DOUBLE_BEDDING_OPTIONS: BeddingOption[] = [
   { key: "dos_camas_separadas", label: "Dos camas separadas", beds: [1, 1] },
 ];
 
+const TRIPLE_MATRIMONIAL_OPTION: BeddingOption = {
+  key: "matrimonial_cama_individual",
+  label: "Matrimonial y cama individual",
+  beds: [2, 1],
+};
+
+const TRIPLE_TWIN_OPTION: BeddingOption = {
+  key: "tres_camas_individuales",
+  label: "Tres camas individuales",
+  beds: [1, 1, 1],
+};
+
 const TRIPLE_BEDDING_OPTIONS: BeddingOption[] = [
-  {
-    key: "matrimonial_cama_individual",
-    label: "Matrimonial y cama individual",
-    beds: [2, 1],
-  },
-  {
-    key: "tres_camas_individuales",
-    label: "Tres camas individuales",
-    beds: [1, 1, 1],
-  },
+  TRIPLE_MATRIMONIAL_OPTION,
+  TRIPLE_TWIN_OPTION,
 ];
 
 /**
@@ -77,6 +81,21 @@ function buildBeddingIcon(beds: number[]): string {
   return `<svg class="hotel-bedding-icon" viewBox="0 0 ${width} ${height}" width="40" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">${shapes}</svg>`;
 }
 
+/**
+ * Escapes a string for safe interpolation into an HTML template literal. The
+ * option keys/labels are hard-coded constants today, but `selectedKey`
+ * round-trips through sessionStorage, so a poisoned value must never be able to
+ * break out of an attribute and inject markup via the `innerHTML` build below.
+ */
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 const BEDDING_CONFIGS: BeddingConfig[] = [
   {
     id: "227179928547456",
@@ -92,8 +111,23 @@ const BEDDING_CONFIGS: BeddingConfig[] = [
     occupancy: "double",
     options: DOUBLE_BEDDING_OPTIONS,
   },
+  // The standard triple is split into two Cloudbeds room types, each with a
+  // single fixed bed layout (matched by their full titles — see getBeddingConfig,
+  // which prefers the most specific title match over the generic one below).
   {
-    id: "229741180768384",
+    title: "Triple Estandar Twin",
+    roomClass: "standard",
+    occupancy: "triple",
+    options: [TRIPLE_TWIN_OPTION],
+  },
+  {
+    title: "Triple Estandar Matrimonial",
+    roomClass: "standard",
+    occupancy: "triple",
+    options: [TRIPLE_MATRIMONIAL_OPTION],
+  },
+  // Generic standard triple — fallback for any unsuffixed "Triple Estandar".
+  {
     title: "Triple Estandar",
     roomClass: "standard",
     occupancy: "triple",
@@ -136,20 +170,35 @@ function getBeddingConfig(card: Element) {
     }
   }
 
-  return BEDDING_CONFIGS.find((config) => {
+  // Prefer the most specific title match (e.g. "Triple Estandar Twin" wins over
+  // the generic "Triple Estandar") by picking the longest config title that the
+  // card title contains.
+  const titleMatch = BEDDING_CONFIGS.filter((config) => {
     const normalizedTitle = normalizeText(config.title);
+    return title === normalizedTitle || title.includes(normalizedTitle);
+  }).sort(
+    (a, b) => normalizeText(b.title).length - normalizeText(a.title).length,
+  )[0];
 
-    if (title === normalizedTitle || title.includes(normalizedTitle)) {
-      return true;
-    }
+  if (titleMatch) {
+    return titleMatch;
+  }
 
-    const matchesOccupancy = title.includes(config.occupancy === "double" ? "doble" : "triple");
+  // Last resort: occupancy + class, only when it points to a single config.
+  const occupancyClassMatches = BEDDING_CONFIGS.filter((config) => {
+    const matchesOccupancy = title.includes(
+      config.occupancy === "double" ? "doble" : "triple",
+    );
     const matchesClass = title.includes(
       config.roomClass === "standard" ? "estandar" : "superior",
     );
 
     return matchesOccupancy && matchesClass;
   });
+
+  return occupancyClassMatches.length === 1
+    ? occupancyClassMatches[0]
+    : undefined;
 }
 
 function getStorageKey(cardId: string) {
@@ -215,7 +264,7 @@ function createBeddingSelector(card: Element, config: BeddingConfig) {
       data-hotel-bedding-input="true"
       name="hotel_bedding_preference"
       type="hidden"
-      value="${selectedKey}"
+      value="${escapeHtml(selectedKey)}"
     />
     <div class="hotel-bedding-options">
       ${config.options
@@ -224,11 +273,11 @@ function createBeddingSelector(card: Element, config: BeddingConfig) {
             <button
               aria-pressed="${option.key === selectedKey ? "true" : "false"}"
               class="hotel-bedding-option ${option.key === selectedKey ? "is-selected" : ""}"
-              data-hotel-bedding-option="${option.key}"
+              data-hotel-bedding-option="${escapeHtml(option.key)}"
               type="button"
             >
               ${buildBeddingIcon(option.beds)}
-              <span class="hotel-bedding-name">${option.label}</span>
+              <span class="hotel-bedding-name">${escapeHtml(option.label)}</span>
             </button>
           `,
         )

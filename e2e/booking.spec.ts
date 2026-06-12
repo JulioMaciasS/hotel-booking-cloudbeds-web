@@ -89,6 +89,14 @@ test.beforeEach(async ({ page }) => {
                     <h3>Triple Estandar</h3>
                     <button class="cb-view-details-button" type="button">Ver detalles</button>
                   </article>
+                  <article class="cb-accommodation-card" data-testid="accommodation-card-300000000000001">
+                    <h3>Triple Estandar Twin</h3>
+                    <button class="cb-view-details-button" type="button">Ver detalles</button>
+                  </article>
+                  <article class="cb-accommodation-card" data-testid="accommodation-card-300000000000002">
+                    <h3>Triple Estandar Matrimonial</h3>
+                    <button class="cb-view-details-button" type="button">Ver detalles</button>
+                  </article>
                   <aside data-testid="mock-shopping-cart">
                     <p data-testid="shopping-cart-grand-total">ARS 277,700,600.00</p>
                   </aside>
@@ -264,6 +272,32 @@ test("reservas page adds bedding selectors to Cloudbeds room cards", async ({
   await expect(
     tripleCard.getByRole("button", { name: /Tres camas individuales/ }),
   ).toBeVisible();
+});
+
+test("reservas page restricts bed options for the split standard triples", async ({
+  page,
+}) => {
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+
+  const twinCard = page.getByTestId("accommodation-card-300000000000001");
+  const matrimonialCard = page.getByTestId("accommodation-card-300000000000002");
+
+  // Twin: only the three-separate-singles layout.
+  await expect(twinCard.getByText("Tipo de cama")).toBeVisible();
+  await expect(
+    twinCard.getByRole("button", { name: /Tres camas individuales/ }),
+  ).toBeVisible();
+  await expect(
+    twinCard.getByRole("button", { name: /Matrimonial y cama individual/ }),
+  ).toHaveCount(0);
+
+  // Matrimonial: only the double + single layout.
+  await expect(
+    matrimonialCard.getByRole("button", { name: /Matrimonial y cama individual/ }),
+  ).toBeVisible();
+  await expect(
+    matrimonialCard.getByRole("button", { name: /Tres camas individuales/ }),
+  ).toHaveCount(0);
 });
 
 test("reservas page keeps Cloudbeds filters button text and icon visible", async ({

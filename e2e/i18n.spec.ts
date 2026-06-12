@@ -44,8 +44,17 @@ test("language switcher swaps locale while keeping the same page", async ({
   await page.goto("/hotel");
   await expect(page.locator("html")).toHaveAttribute("lang", "es");
 
+  // Wait for the client switcher to hydrate before clicking — otherwise the
+  // click can fire before its onClick handler is attached and do nothing.
+  await page.waitForLoadState("networkidle");
+  const enButton = page
+    .locator("header")
+    .getByRole("button", { name: "EN" })
+    .first();
+  await expect(enButton).toBeEnabled();
+
   // Click the EN segment of the switcher (desktop one).
-  await page.locator("header").getByRole("button", { name: "EN" }).first().click();
+  await enButton.click();
 
   await expect(page).toHaveURL(/\/en\/hotel$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
