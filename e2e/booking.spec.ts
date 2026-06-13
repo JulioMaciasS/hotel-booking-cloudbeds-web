@@ -142,7 +142,9 @@ test("home page converts Cloudbeds date-picker calendar k prices to dollars", as
 
   await page.getByTestId("mock-checkin-button").click();
   await expect(page.getByTestId("mock-date-picker-calendar")).toBeVisible();
-  await expect(page.getByText("$71.43")).toBeVisible();
+  // Calendar rates are rounded to whole dollars (100k / 1400 = 71.43 -> $71).
+  await expect(page.getByText("$71", { exact: true })).toBeVisible();
+  await expect(page.getByText("$71.43")).toHaveCount(0);
   await expect(
     page.getByTestId("mock-date-picker-calendar").locator(
       "[data-hotel-currency-converted='true']",

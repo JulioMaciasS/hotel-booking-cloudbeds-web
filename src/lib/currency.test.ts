@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import {
   convertArsToUsd,
   formatUsd,
+  formatUsdWhole,
+  isCalendarRateTextNode,
   parseCloudbedsArsMoney,
   parseArsMoney,
   shouldConvertTextNode,
@@ -117,6 +119,36 @@ describe("formatUsd", () => {
   it("formats with a dollar sign and two decimals", () => {
     expect(formatUsd(100)).toBe("$100.00");
     expect(formatUsd(1200.5)).toBe("$1,200.50");
+  });
+});
+
+describe("formatUsdWhole", () => {
+  it("rounds to whole dollars with no decimals", () => {
+    expect(formatUsdWhole(38.97)).toBe("$39");
+    expect(formatUsdWhole(36)).toBe("$36");
+    expect(formatUsdWhole(36.004)).toBe("$36");
+    expect(formatUsdWhole(1234.56)).toBe("$1,235");
+  });
+
+  it("handles non-finite input", () => {
+    expect(formatUsdWhole(Number.NaN)).toBe("$0");
+  });
+});
+
+describe("isCalendarRateTextNode", () => {
+  it("detects prices inside calendar day cells, not room/summary prices", () => {
+    const cell = document.createElement("p");
+    cell.setAttribute("data-testid", "day-2026-06-12-lowest-rate-56550");
+    const calendarNode = document.createTextNode("56.5 K");
+    cell.append(calendarNode);
+
+    const roomPrice = document.createElement("p");
+    roomPrice.className = "cb-rate-plan-price";
+    const roomNode = document.createTextNode("ARS 120.000");
+    roomPrice.append(roomNode);
+
+    expect(isCalendarRateTextNode(calendarNode)).toBe(true);
+    expect(isCalendarRateTextNode(roomNode)).toBe(false);
   });
 });
 

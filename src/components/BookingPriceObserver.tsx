@@ -5,6 +5,8 @@ import { useTranslations } from "next-intl";
 import {
   convertArsToUsd,
   formatUsd,
+  formatUsdWhole,
+  isCalendarRateTextNode,
   isCloudbedsBarePriceTextNode,
   parseCloudbedsArsMoney,
   parseArsMoney,
@@ -68,7 +70,10 @@ function replacePricesInTextNode(
     }
 
     const span = document.createElement("span");
-    const displayValue = formatUsd(converted);
+    // Calendar "lowest rate" cells show whole dollars; priced quotes keep cents.
+    const displayValue = isCalendarRateTextNode(textNode)
+      ? formatUsdWhole(converted)
+      : formatUsd(converted);
 
     span.textContent = displayValue;
     span.dataset.hotelCurrencyConverted = "true";

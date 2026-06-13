@@ -30,6 +30,14 @@ const CLOUDBEDS_BARE_PRICE_CONTEXT_SELECTOR = [
   "[class*='price' i]",
   ".cb-rate-plan-price",
 ].join(",");
+// Date-picker calendar "lowest rate" cells. Prices here are rounded to whole
+// dollars (cents are noise per night); everything else keeps its decimals.
+const CLOUDBEDS_CALENDAR_RATE_SELECTOR = [
+  "[data-testid*='lowest-rate' i]",
+  "[data-testid*='calendar' i]",
+  ".calendar-days",
+  ".month-container",
+].join(",");
 
 function normalizeMoneyText(input: string) {
   return input.replace(/\u00a0/g, " ").trim();
@@ -195,6 +203,21 @@ export function formatUsd(amount: number): string {
   })}`;
 }
 
+/**
+ * Whole-dollar formatting (no decimals), e.g. `$39`, `$36`, `$1,200`. Used for
+ * the date-picker calendar's per-night "lowest rate" cells, where cents are
+ * noise — the full priced quote keeps its decimals via `formatUsd`.
+ */
+export function formatUsdWhole(amount: number): string {
+  if (!Number.isFinite(amount)) {
+    return "$0";
+  }
+
+  return `$${Math.round(amount).toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })}`;
+}
+
 export function formatArsRate(amount: number): string {
   return `ARS ${amount.toLocaleString("es-AR", {
     maximumFractionDigits: 0,
@@ -248,6 +271,23 @@ export function shouldConvertTextNode(node: Node): boolean {
     parseCloudbedsArsMoney(text, {
       allowBareNumber: isCloudbedsBarePriceTextNode(node),
     }) !== null
+  );
+}
+
+/**
+ * True when the price text lives in the date-picker calendar (a per-night
+ * "lowest rate" cell), whose values should display as whole dollars.
+ */
+export function isCalendarRateTextNode(node: Node): boolean {
+  if (node.nodeType !== Node.TEXT_NODE) {
+    return false;
+  }
+
+  const parent = node.parentElement;
+
+  return (
+    parent !== null &&
+    parent.closest(CLOUDBEDS_CALENDAR_RATE_SELECTOR) !== null
   );
 }
 
