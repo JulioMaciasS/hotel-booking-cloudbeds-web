@@ -19,7 +19,11 @@
     "residentArgentina": "<strong>Argentine resident:</strong> prices include VAT ({percent}%).",
     "residentAbroad": "<strong>Resident abroad:</strong> prices are shown without VAT.",
     "checkInNote": "At check-in, your <strong>ID or passport</strong> will be verified to confirm the correct rate was selected. If a different condition applies, the difference will be adjusted.",
-    "understood": "Got it"
+    "understood": "Got it",
+    "prompt": {
+      "title": "Before you start, choose your VAT condition",
+      "subtitle": "This sets how prices are shown. You can change it anytime from the top-right corner."
+    }
   },
   "loader": {
     "loading": "Loading"

@@ -9,6 +9,18 @@ test.beforeEach(async ({ page }) => {
   // regardless of the live Supabase rate.
   await mockFxRate(page);
 
+  // Pre-store the VAT residency choice (Argentina, matching the es-AR locale
+  // default these tests already ran under) so the first-visit VAT prompt does
+  // not block interaction with the engine. Tests that exercise the prompt clear
+  // this key with their own init script.
+  await page.addInitScript(() => {
+    try {
+      window.localStorage.setItem("hotel-vat-from-argentina", "true");
+    } catch {
+      // localStorage unavailable — ignore.
+    }
+  });
+
   await page.route(cloudbedsScriptUrl, async (route) => {
     await route.fulfill({
       contentType: "application/javascript",
@@ -173,6 +185,42 @@ test("reservas page without booking params redirects back to the home date picke
   await expect(page).not.toHaveURL(/\/reservas/);
   await expect(page.getByTestId("cloudbeds-date-picker")).toBeVisible();
   await expect(page.getByTestId("cloudbeds-standard-embed")).toHaveCount(0);
+});
+
+test("reservas page forces a VAT choice on first visit, then settles in the header toggle", async ({
+  page,
+}) => {
+  // First visit: no stored preference, so the gate must appear.
+  await page.addInitScript(() =>
+    window.localStorage.removeItem("hotel-vat-from-argentina"),
+  );
+
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+
+  const dialog = page.getByRole("dialog", { name: /condición de IVA/i });
+  await expect(dialog).toBeVisible();
+
+  // Choosing Argentina dismisses the gate...
+  await dialog.getByRole("button", { name: /Argentina/ }).click();
+  await expect(dialog).toBeHidden();
+
+  // ...and the persistent control in the top-right header reflects the choice.
+  const header = page.getByTestId("reservation-wrapper-header");
+  await expect(
+    header.getByRole("radio", { name: /Argentina/ }),
+  ).toHaveAttribute("aria-checked", "true");
+});
+
+test("reservas page does not show the VAT prompt once a preference is stored", async ({
+  page,
+}) => {
+  // beforeEach already seeds a stored preference.
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+
+  await expect(page.getByTestId("mock-cloudbeds")).toBeVisible();
+  await expect(
+    page.getByRole("dialog", { name: /condición de IVA/i }),
+  ).toHaveCount(0);
 });
 
 test("reservas page renders the Cloudbeds immersive component with official hide attributes", async ({

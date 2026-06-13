@@ -5,6 +5,7 @@ import { ArgentinaVatToggle } from "@/components/ArgentinaVatToggle";
 import { BookingLoader } from "@/components/BookingLoader";
 import { BookingPriceObserver } from "@/components/BookingPriceObserver";
 import { CloudbedsScriptLoader } from "@/components/CloudbedsScriptLoader";
+import { VatPreferencePrompt } from "@/components/VatPreferencePrompt";
 import { Link, redirect } from "@/i18n/navigation";
 import { publicConfig } from "@/lib/config";
 import { getAlternates } from "@/i18n/metadata";
@@ -51,6 +52,7 @@ export default async function ReservasPage({
     <main className="reservation-page bg-[#F6F5F5] text-[#1f2b27]">
       <CloudbedsScriptLoader />
       <BookingPriceObserver />
+      <VatPreferencePrompt />
       <BookingLoader
         waitForRemoval='[data-testid="main-layout-loader"]'
         selector='cb-immersive-experience [data-testid="landing-search-panel-date-picker-checkin-input"]'

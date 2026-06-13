@@ -19,7 +19,11 @@
     "residentArgentina": "<strong>Residente en Argentina:</strong> los precios incluyen el IVA ({percent}%).",
     "residentAbroad": "<strong>Residente en el exterior:</strong> los precios se muestran sin IVA.",
     "checkInNote": "Al hacer el check-in se verificará tu <strong>DNI o pasaporte</strong> para confirmar que se seleccionó la tarifa correcta. Si corresponde otra condición, se ajustará la diferencia.",
-    "understood": "Entendido"
+    "understood": "Entendido",
+    "prompt": {
+      "title": "Antes de empezar, elegí tu condición de IVA",
+      "subtitle": "Esto define cómo se muestran los precios. Vas a poder cambiarlo en cualquier momento desde la esquina superior derecha."
+    }
   },
   "loader": {
     "loading": "Cargando"
