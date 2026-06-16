@@ -6,7 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { RoomsSection } from "@/components/RoomsSection";
 import { FEATURES, ROOMS } from "@/lib/rooms";
 import { BOOKING_HREF } from "@/lib/nav";
-import { getAlternates } from "@/i18n/metadata";
+import { buildPageMetadata } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
 
 export async function generateMetadata({
@@ -15,12 +15,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "metadata" });
-  return {
-    title: t("rooms.title"),
-    description: t("rooms.description"),
-    alternates: getAlternates(locale as Locale, "/habitaciones"),
-  };
+  return buildPageMetadata(locale as Locale, "/habitaciones", "rooms");
 }
 
 export default async function HabitacionesPage({

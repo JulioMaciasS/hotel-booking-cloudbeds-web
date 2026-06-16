@@ -11,6 +11,12 @@ const SUBTOTAL_PATTERN = /^\s*subtotal\s*[:：]?\s*$/i;
 const TAX_PATTERN =
   /^\s*(?:impuestos(?:\s+y\s+tasas)?|taxes(?:\s+(?:and|&)\s+fees)?|iva|vat)\s*[:：]?\s*$/i;
 const TOTAL_PATTERN = /^\s*total\s*[:：]?\s*$/i;
+// The confirmation "Charges" card has no Subtotal line; instead it shows a
+// "Balance Due" row (= grand total when nothing has been paid yet). Recognised
+// as a second gross line so the IVA reduction reaches it too. Deliberately does
+// NOT match "Amount Paid" / "Importe pagado", which reflects real money paid.
+const BALANCE_PATTERN =
+  /^\s*(?:balance(?:\s+due)?|saldo(?:\s+(?:pendiente|adeudado|a\s+pagar))?)\s*[:：]?\s*$/i;
 const DEPOSIT_PATTERN =
   /^\s*(?:dep[oó]sito|deposit|pagar\s+ahora|pay\s+now)\s*[:：]?\s*$/i;
 
@@ -21,7 +27,8 @@ const SUBTOTAL_TESTID_SELECTOR = "[data-testid$='summary-total']";
 const PRICE_LABEL_PATTERN = /(precio\s+desde|price\s+from)/i;
 // Words that mark another summary line. We never hide a container that also
 // holds one of these — it would remove the whole breakdown, not just the tax.
-const SUMMARY_BOUNDARY_PATTERN = /subtotal|total|dep[oó]sito|deposit/i;
+const SUMMARY_BOUNDARY_PATTERN =
+  /subtotal|total|dep[oó]sito|deposit|balance|saldo/i;
 
 type LabeledRow = {
   labelEl: Element;
@@ -124,16 +131,23 @@ function findLabeledRow(
   return null;
 }
 
-/** Smallest ancestor of `taxRow` that also contains a Subtotal label. */
-function findSummaryRoot(taxRow: Element): Element | null {
-  let ancestor: Element | null = taxRow;
+/**
+ * Smallest ancestor of `start` whose own descendants include `pattern`. Climbs
+ * generously: on the confirmation card the price value sits ~6 levels below the
+ * row container, so a shallow limit would miss it and over-anchor to <body>.
+ */
+function findAncestorContainingLabel(
+  start: Element,
+  pattern: RegExp,
+): Element | null {
+  let ancestor: Element | null = start;
 
-  for (let depth = 0; depth < 6 && ancestor; depth += 1) {
-    const hasSubtotal = Array.from(
+  for (let depth = 0; depth < 8 && ancestor; depth += 1) {
+    const matches = Array.from(
       ancestor.querySelectorAll<HTMLElement>("*"),
-    ).some((element) => SUBTOTAL_PATTERN.test(directText(element).trim()));
+    ).some((element) => pattern.test(directText(element).trim()));
 
-    if (hasSubtotal) {
+    if (matches) {
       return ancestor;
     }
 
@@ -141,6 +155,18 @@ function findSummaryRoot(taxRow: Element): Element | null {
   }
 
   return null;
+}
+
+/**
+ * Smallest ancestor of `taxRow` that scopes the price summary. Prefers a
+ * Subtotal container (the booking-page shopping cart); falls back to a Total
+ * container for the confirmation "Charges" card, which has no Subtotal line.
+ */
+function findSummaryRoot(taxRow: Element): Element | null {
+  return (
+    findAncestorContainingLabel(taxRow, SUBTOTAL_PATTERN) ??
+    findAncestorContainingLabel(taxRow, TOTAL_PATTERN)
+  );
 }
 
 function setGlobalIvaNote(
@@ -304,23 +330,18 @@ function adjustSummary(documentRef: Document, fromArgentina: boolean) {
 
   // --- Net (subtotal) value: label first, then testid fallback ---
   const subtotalRow = findLabeledRow(body, SUBTOTAL_PATTERN);
-  const netEl =
+  const netElFromSubtotal =
     (subtotalRow?.valueEl as HTMLElement | null) ??
     getConvertedSpan(documentRef.querySelector(SUBTOTAL_TESTID_SELECTOR));
 
   // Subtotal label on screen but no converted price anywhere near it: the
   // summary rendered yet conversion missed it — surface instead of no-opping.
-  trackSummaryAnomaly(subtotalRow !== null && netEl === null);
-
-  if (taxValueEls.size === 0 || !netEl) {
-    setGlobalIvaNote(documentRef, false, null);
-    return;
-  }
+  trackSummaryAnomaly(subtotalRow !== null && netElFromSubtotal === null);
 
   // --- Gross total elements: "Total" label (scoped) + grand-total testid ---
   const grossEls = new Set<HTMLElement>();
-  const firstTaxEl = [...taxValueEls][0];
-  const summaryRoot = findSummaryRoot(firstTaxEl) ?? body;
+  const firstTaxEl = taxValueEls.size > 0 ? [...taxValueEls][0] : null;
+  const summaryRoot = (firstTaxEl ? findSummaryRoot(firstTaxEl) : null) ?? body;
   const totalRow = findLabeledRow(summaryRoot, TOTAL_PATTERN);
 
   if (totalRow?.valueEl) {
@@ -335,26 +356,61 @@ function adjustSummary(documentRef: Document, fromArgentina: boolean) {
     }
   }
 
+  // Reference grand total (= net + IVA). Used both to derive the net subtotal
+  // when there is no explicit Subtotal line, and to gate the Balance Due row.
+  const firstGrossEl =
+    (totalRow?.valueEl as HTMLElement | null) ??
+    (grossEls.size > 0 ? [...grossEls][0] : null);
+  const grandTotalUsd = originalUsd(firstGrossEl);
+
+  // --- Balance Due (confirmation "Charges" card): a second gross line that
+  // mirrors the grand total until something is paid. Treat it as gross only
+  // while it still equals the grand total, so a partially-paid balance is left
+  // untouched (and "Amount Paid" is never matched). ---
+  const balanceEl = findLabeledRow(summaryRoot, BALANCE_PATTERN)
+    ?.valueEl as HTMLElement | null;
+
+  if (balanceEl && usdEquals(originalUsd(balanceEl), grandTotalUsd)) {
+    grossEls.add(balanceEl);
+  }
+
+  // --- Net subtotal: an explicit Subtotal line when present (booking page),
+  // otherwise grand total minus IVA (the confirmation card has no Subtotal). ---
+  const taxUsd = originalUsd(firstTaxEl);
+  let netUsd: number | null;
+  let netText: string | null;
+
+  if (netElFromSubtotal) {
+    netUsd = parseUsdValue(netElFromSubtotal);
+    netText = netElFromSubtotal.textContent ?? "";
+  } else if (grandTotalUsd !== null && taxUsd !== null) {
+    netUsd = grandTotalUsd - taxUsd;
+    netText = formatUsd(netUsd);
+  } else {
+    netUsd = null;
+    netText = null;
+  }
+
+  if (taxValueEls.size === 0 || netUsd === null || netText === null) {
+    setGlobalIvaNote(documentRef, false, null);
+    return;
+  }
+
   // --- Deposit / payment-schedule value (scaled proportionally) ---
   const depositRow = findLabeledRow(body, DEPOSIT_PATTERN);
   const depositEl = depositRow?.labelEl
     ? valueNearLabel(depositRow.labelEl)
     : null;
 
-  const netUsd = parseUsdValue(netEl);
-
   if (!fromArgentina) {
-    // Resident abroad: hide every IVA line, drop totals to the net subtotal,
-    // and scale the deposit proportionally to the gross→net reduction.
+    // Resident abroad: hide every IVA line, drop the grand totals to the net
+    // subtotal, and scale the deposit proportionally to the gross→net reduction.
     for (const taxEl of taxValueEls) {
       taxRowToHide(taxEl, body).setAttribute("data-hotel-iva-hidden", "true");
     }
 
-    const netText = netEl.textContent ?? "";
-    const firstGrossEl = grossEls.size > 0 ? [...grossEls][0] : null;
-
     for (const grossEl of grossEls) {
-      if (grossEl !== netEl) {
+      if (grossEl !== netElFromSubtotal) {
         setValueText(grossEl, netText);
       }
     }
@@ -362,16 +418,12 @@ function adjustSummary(documentRef: Document, fromArgentina: boolean) {
     // Scale the deposit using the gross→net ratio derived from the gross total
     // value, not from net+tax. This avoids a 1-cent rounding drift caused by
     // individually-rounded USD amounts not summing exactly.
-    if (depositEl && netUsd !== null && firstGrossEl) {
-      const grossOrigUsd = parseUsdValue({
-        textContent: firstGrossEl.dataset.hotelIvaOrigText ?? firstGrossEl.textContent ?? "",
-      } as Element);
-      const depositOrigUsd = parseUsdValue({
-        textContent: depositEl.dataset.hotelIvaOrigText ?? depositEl.textContent ?? "",
-      } as Element);
+    if (depositEl && firstGrossEl) {
+      const grossOrigUsd = originalUsd(firstGrossEl);
+      const depositOrigUsd = originalUsd(depositEl);
 
       if (grossOrigUsd !== null && grossOrigUsd > 0 && depositOrigUsd !== null) {
-        setValueText(depositEl, formatUsd(depositOrigUsd / grossOrigUsd * netUsd));
+        setValueText(depositEl, formatUsd((depositOrigUsd / grossOrigUsd) * netUsd));
       }
     }
 
@@ -454,6 +506,26 @@ function parseUsdValue(element: Element | null): number | null {
   const numeric = Number(cleaned.replace(/,/g, ""));
 
   return Number.isFinite(numeric) ? numeric : null;
+}
+
+/**
+ * The element's USD value before any IVA adjustment. Reads the stashed original
+ * text when we have already rewritten the value on a previous pass, so repeated
+ * observer passes derive the same net amount instead of compounding.
+ */
+function originalUsd(element: HTMLElement | null): number | null {
+  if (!element) {
+    return null;
+  }
+
+  return parseUsdValue({
+    textContent: element.dataset.hotelIvaOrigText ?? element.textContent ?? "",
+  } as Element);
+}
+
+/** Two USD amounts equal within half a cent (rounding tolerance). */
+function usdEquals(a: number | null, b: number | null): boolean {
+  return a !== null && b !== null && Math.abs(a - b) < 0.005;
 }
 
 /**

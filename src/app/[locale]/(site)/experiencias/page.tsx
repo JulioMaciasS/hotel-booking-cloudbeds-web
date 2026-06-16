@@ -7,7 +7,7 @@ import { PageHero } from "@/components/PageHero";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { HOTEL, trips } from "@/lib/site-data";
 import { BOOKING_HREF } from "@/lib/nav";
-import { getAlternates } from "@/i18n/metadata";
+import { buildPageMetadata } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
 
 export async function generateMetadata({
@@ -16,12 +16,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "metadata" });
-  return {
-    title: t("experiences.title"),
-    description: t("experiences.description"),
-    alternates: getAlternates(locale as Locale, "/experiencias"),
-  };
+  return buildPageMetadata(locale as Locale, "/experiencias", "experiences");
 }
 
 export default async function ExperienciasPage({

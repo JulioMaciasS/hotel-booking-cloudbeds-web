@@ -1,9 +1,9 @@
 {
   "hero": {
-    "eyebrow": "Hotel · El Calafate, Patagonia",
+    "eyebrow": "Hotel familiar · El Calafate, Patagonia",
     "title": "Los Lagos Hotel",
-    "subtitle": "Hotel familiar en el corazón de El Calafate, a tan solo 3 minutos andando del centro. Tu punto de partida hacia los glaciares, lagos y senderos de la Patagonia austral.",
-    "badgeLocation": "El Calafate · Patagonia",
+    "subtitle": "Un hotel familiar en el corazón de El Calafate, a 3 minutos andando del centro. Te recibimos como en casa y te ayudamos a organizar tus glaciares, navegaciones y excursiones por la Patagonia austral.",
+    "badgeLocation": "A 3 min del centro",
     "badgeBreakfast": "Desayuno incluido",
     "badgeDirect": "Reserva directa",
     "socialProof": "<strong>4.3</strong> · +400 opiniones verificadas"
@@ -26,7 +26,7 @@
   },
   "booking": {
     "buttonLabel": "Buscar disponibilidad",
-    "helper": "Reservá directo en este sitio y conseguí siempre la mejor tarifa, sin intermediarios ni comisiones."
+    "helper": "Reservá directo y conseguí la mejor tarifa, sin comisiones ni intermediarios. Con desayuno casero incluido siempre."
   },
   "about": {
     "eyebrow": "El Calafate, Patagonia Austral",
@@ -54,25 +54,25 @@
   },
   "whyDirect": {
     "eyebrow": "Reservá directo",
-    "title": "Las mejores condiciones, siempre en este sitio.",
-    "paragraph": "Reservar directamente con nosotros te da ventajas que ningún intermediario puede igualar."
+    "title": "Reservá directo y aprovechá todo lo que somos.",
+    "paragraph": "Tratás directamente con la familia que atiende el hotel: la mejor tarifa, desayuno casero y una mano de verdad para armar tu viaje por la Patagonia."
   },
   "benefits": {
     "bestRate": {
-      "title": "Mejor tarifa",
-      "text": "El precio más bajo lo encontrás siempre acá, sin comisiones de terceros."
+      "title": "Mejor tarifa, sin comisiones",
+      "text": "El precio más bajo lo conseguís acá, tratando directo con el hotel."
     },
-    "noIntermediaries": {
-      "title": "Sin intermediarios",
-      "text": "Tratás directo con el hotel, sin recargos ni cargos ocultos."
+    "breakfast": {
+      "title": "Desayuno casero incluido",
+      "text": "Todas las tarifas incluyen nuestro desayuno casero para arrancar bien el día."
     },
-    "support24h": {
-      "title": "Atención 24 hs",
-      "text": "Recepción y soporte todos los días del año para ayudarte con todo."
+    "excursions": {
+      "title": "Te ayudamos con las excursiones",
+      "text": "Coordinamos glaciares, navegaciones y traslados, y te contamos cómo aprovechar cada día."
     },
-    "securePayment": {
-      "title": "Pago seguro",
-      "text": "Procesamos tu reserva de forma segura y con confirmación inmediata."
+    "personalCare": {
+      "title": "Trato cercano, las 24 horas",
+      "text": "Hablás directo con nosotros por WhatsApp, con recepción las 24 horas todos los días del año."
     }
   },
   "reviews": {
@@ -90,8 +90,8 @@
     "viewDistances": "Ver distancias y cómo llegar"
   },
   "cta": {
-    "title": "¿Listo para explorar la Patagonia?",
-    "paragraph": "Reservá directamente con nosotros y asegurate la mejor tarifa disponible, con desayuno incluido y atención personalizada.",
+    "title": "¿Listo para vivir la Patagonia?",
+    "paragraph": "Reservá directo con la familia de Los Lagos: mejor tarifa, desayuno incluido y una mano para organizar tus glaciares y excursiones.",
     "button": "Buscar fechas disponibles"
   }
 }

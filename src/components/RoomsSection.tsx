@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ChevronLeft, ChevronRight, Users } from "lucide-react";
 import { FEATURES, ROOMS } from "@/lib/rooms";
-import { BOOKING_HREF } from "@/lib/nav";
 
 const AUTO_ROTATE_MS = 6000;
 
@@ -318,10 +317,12 @@ export function RoomsSection() {
                   </ul>
                 </div>
 
-                {/* CTA */}
+                {/* CTA — carries the room as a hint so the home picker can land
+                    the visitor straight on it (see BookingIntentHandler). */}
                 <Link
                   className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-[#38645b] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#2e5049]"
-                  href={BOOKING_HREF}
+                  href={`/?room=${r.key}#reservar`}
+                  data-track="room_cta"
                   tabIndex={active ? undefined : -1}
                 >
                   {t("section.viewAvailability")}

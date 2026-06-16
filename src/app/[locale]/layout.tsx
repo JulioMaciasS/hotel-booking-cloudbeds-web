@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { routing, type Locale } from "@/i18n/routing";
-import { getAlternates, siteUrl } from "@/i18n/metadata";
+import { buildPageMetadata, siteUrl } from "@/i18n/metadata";
+import { Analytics } from "@/components/Analytics";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -16,12 +17,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "metadata" });
   return {
     metadataBase: new URL(siteUrl),
-    title: t("home.title"),
-    description: t("home.description"),
-    alternates: getAlternates(locale as Locale, "/"),
+    ...(await buildPageMetadata(locale as Locale, "/", "home")),
   };
 }
 
@@ -47,6 +45,7 @@ export default async function LocaleLayout({
     // own attribute diff, not mismatches in its children.
     <html lang={locale} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body>
+        <Analytics />
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>

@@ -1,13 +1,13 @@
+import { Suspense } from "react";
 import {
   ArrowRight,
   BadgePercent,
   Coffee,
+  Compass,
   ExternalLink,
   Handshake,
-  Headphones,
   MapPin,
   Mountain,
-  ShieldCheck,
   Star,
   Users,
 } from "lucide-react";
@@ -21,6 +21,9 @@ import { BookingLoader } from "@/components/BookingLoader";
 import { BookingPriceObserver } from "@/components/BookingPriceObserver";
 import { CloudbedsScriptLoader } from "@/components/CloudbedsScriptLoader";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
+import { BookingIntentHandler } from "@/components/BookingIntentHandler";
+import { JsonLd } from "@/components/JsonLd";
+import { lodgingBusinessJsonLd } from "@/lib/structured-data";
 import { publicConfig } from "@/lib/config";
 import { HOTEL, reviews, trips } from "@/lib/site-data";
 import { ROOMS } from "@/lib/rooms";
@@ -30,9 +33,9 @@ import lobbyImage from "@assets/updated images/otros/recepcion 6 completa.jpg";
 
 const benefits = [
   { icon: BadgePercent, key: "bestRate" },
-  { icon: Handshake, key: "noIntermediaries" },
-  { icon: Headphones, key: "support24h" },
-  { icon: ShieldCheck, key: "securePayment" },
+  { icon: Coffee, key: "breakfast" },
+  { icon: Compass, key: "excursions" },
+  { icon: Handshake, key: "personalCare" },
 ] as const;
 
 export default async function HomePage({
@@ -49,6 +52,10 @@ export default async function HomePage({
 
   return (
     <main className="hotel-home bg-[#f7f3ea] text-[#1f2b27]">
+      <JsonLd data={lodgingBusinessJsonLd()} />
+      <Suspense fallback={null}>
+        <BookingIntentHandler />
+      </Suspense>
       <ScrollCenterHandler />
       <CloudbedsScriptLoader />
       <BookingPriceObserver />

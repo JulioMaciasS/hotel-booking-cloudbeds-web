@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { getAlternates } from "@/i18n/metadata";
+import { buildPageMetadata } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
 
 const HOTEL_EMAIL = "loslagoshotelcalafate@gmail.com";
@@ -13,12 +13,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "metadata" });
-  return {
-    title: t("terms.title"),
-    description: t("terms.description"),
-    alternates: getAlternates(locale as Locale, "/terminos"),
-  };
+  return buildPageMetadata(locale as Locale, "/terminos", "terms");
 }
 
 const richTags = {

@@ -6,7 +6,9 @@ import { Link } from "@/i18n/navigation";
 import { PageHero } from "@/components/PageHero";
 import { HOTEL, services } from "@/lib/site-data";
 import { BOOKING_HREF } from "@/lib/nav";
-import { getAlternates } from "@/i18n/metadata";
+import { JsonLd } from "@/components/JsonLd";
+import { faqPageJsonLd } from "@/lib/structured-data";
+import { buildPageMetadata } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
 import facadeImage from "@assets/updated images/otros/fachada frente del hotel 2_ai_edited.png";
 import galDesayuno from "@assets/updated images/otros/desayuno 2.jpg";
@@ -22,12 +24,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "metadata" });
-  return {
-    title: t("hotel.title"),
-    description: t("hotel.description"),
-    alternates: getAlternates(locale as Locale, "/hotel"),
-  };
+  return buildPageMetadata(locale as Locale, "/hotel", "hotel");
 }
 
 const gallery = [
@@ -58,8 +55,14 @@ export default async function HotelPage({
   setRequestLocale(locale);
   const t = await getTranslations("hotel");
 
+  const faqItems = faqKeys.map((key) => ({
+    question: t(`page.faq.items.${key}.q`),
+    answer: t(`page.faq.items.${key}.a`),
+  }));
+
   return (
     <main className="bg-[#f7f3ea] text-[#1f2b27]">
+      <JsonLd data={faqPageJsonLd(faqItems)} />
       <PageHero
         eyebrow={t("page.hero.eyebrow")}
         title={t("page.hero.title")}

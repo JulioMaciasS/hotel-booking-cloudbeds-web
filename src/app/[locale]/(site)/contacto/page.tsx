@@ -5,7 +5,7 @@ import { PageHero } from "@/components/PageHero";
 import { ContactForm } from "@/components/ContactForm";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { HOTEL } from "@/lib/site-data";
-import { getAlternates } from "@/i18n/metadata";
+import { buildPageMetadata } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
 import contactImage from "@assets/updated images/otros/recepcion 5 completa de frente 2.jpeg";
 
@@ -15,12 +15,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "metadata" });
-  return {
-    title: t("contact.title"),
-    description: t("contact.description"),
-    alternates: getAlternates(locale as Locale, "/contacto"),
-  };
+  return buildPageMetadata(locale as Locale, "/contacto", "contact");
 }
 
 export default async function ContactoPage({

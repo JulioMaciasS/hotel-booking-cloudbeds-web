@@ -15,10 +15,16 @@ export default defineConfig({
     locale: "es-AR",
   },
   webServer: {
-    command: "pnpm dev",
+    // Run the suite against a production build, not `next dev`. Dev generates
+    // the opengraph-image (Satori) and optimises images on demand per request,
+    // which can't keep up with the parallel suite and stalls page loads. A
+    // production server pre-generates both, so it's fast, reliable and closer to
+    // what ships. Set E2E_DEV=1 to use the dev server instead for quick local
+    // iteration (single-project runs).
+    command: process.env.E2E_DEV ? "pnpm dev" : "pnpm build && pnpm start",
     url: "http://localhost:3100",
     reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
+    timeout: 240_000,
   },
   projects: [
     // Functional suite (booking flow, currency, etc.) — desktop Chrome only.

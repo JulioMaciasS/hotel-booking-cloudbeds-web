@@ -6,7 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { HotelMapWrapper } from "@/components/HotelMapWrapper";
 import { HOTEL, distances } from "@/lib/site-data";
 import { BOOKING_HREF } from "@/lib/nav";
-import { getAlternates } from "@/i18n/metadata";
+import { buildPageMetadata } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
 import locationImage from "@assets/updated images/otros/exterior del lateral del hotel con cartel en el centro.jpg";
 
@@ -16,12 +16,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "metadata" });
-  return {
-    title: t("location.title"),
-    description: t("location.description"),
-    alternates: getAlternates(locale as Locale, "/ubicacion"),
-  };
+  return buildPageMetadata(locale as Locale, "/ubicacion", "location");
 }
 
 export default async function UbicacionPage({

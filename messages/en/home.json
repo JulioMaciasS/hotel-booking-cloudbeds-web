@@ -1,9 +1,9 @@
 {
   "hero": {
-    "eyebrow": "Hotel · El Calafate, Patagonia",
+    "eyebrow": "Family-run hotel · El Calafate, Patagonia",
     "title": "Los Lagos Hotel",
-    "subtitle": "A family-run hotel in the heart of El Calafate, just a 3-minute walk from downtown. Your starting point for the glaciers, lakes and trails of southern Patagonia.",
-    "badgeLocation": "El Calafate · Patagonia",
+    "subtitle": "A family-run hotel in the heart of El Calafate, a 3-minute walk from downtown. We welcome you like family and help you plan your glaciers, boat trips and excursions across southern Patagonia.",
+    "badgeLocation": "3-minute walk to downtown",
     "badgeBreakfast": "Breakfast included",
     "badgeDirect": "Direct booking",
     "socialProof": "<strong>4.3</strong> · +400 verified reviews"
@@ -26,7 +26,7 @@
   },
   "booking": {
     "buttonLabel": "Check availability",
-    "helper": "Book directly on this site and always get the best rate, with no intermediaries or commissions."
+    "helper": "Book direct for the best rate — no commissions, no middleman. Homemade breakfast always included."
   },
   "about": {
     "eyebrow": "El Calafate, Southern Patagonia",
@@ -54,25 +54,25 @@
   },
   "whyDirect": {
     "eyebrow": "Book direct",
-    "title": "The best conditions, always on this site.",
-    "paragraph": "Booking directly with us gives you advantages no intermediary can match."
+    "title": "Book direct and get everything we are.",
+    "paragraph": "You deal directly with the family that runs the hotel: the best rate, homemade breakfast and real help planning your trip across Patagonia."
   },
   "benefits": {
     "bestRate": {
-      "title": "Best rate",
-      "text": "You'll always find the lowest price right here, with no third-party commissions."
+      "title": "Best rate, no commissions",
+      "text": "You get the lowest price right here, dealing directly with the hotel."
     },
-    "noIntermediaries": {
-      "title": "No intermediaries",
-      "text": "You deal directly with the hotel, with no surcharges or hidden fees."
+    "breakfast": {
+      "title": "Homemade breakfast included",
+      "text": "Every rate includes our homemade breakfast to start the day right."
     },
-    "support24h": {
-      "title": "24-hour support",
-      "text": "Reception and support every day of the year to help you with anything."
+    "excursions": {
+      "title": "We help with your excursions",
+      "text": "We arrange glaciers, boat trips and transfers, and help you make the most of every day."
     },
-    "securePayment": {
-      "title": "Secure payment",
-      "text": "We process your booking securely and with instant confirmation."
+    "personalCare": {
+      "title": "Personal care, around the clock",
+      "text": "Talk to us directly on WhatsApp, with 24-hour reception every day of the year."
     }
   },
   "reviews": {
@@ -90,8 +90,8 @@
     "viewDistances": "See distances and how to get here"
   },
   "cta": {
-    "title": "Ready to explore Patagonia?",
-    "paragraph": "Book directly with us and secure the best available rate, with breakfast included and personalised service.",
+    "title": "Ready to experience Patagonia?",
+    "paragraph": "Book direct with the Los Lagos family: the best rate, breakfast included and a hand planning your glaciers and excursions.",
     "button": "Search available dates"
   }
 }

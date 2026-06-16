@@ -6,12 +6,16 @@ import { CalendarDays } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { BOOKING_HREF } from "@/lib/nav";
 
-const SHOW_AFTER = 520;
+// Reveal the bar after a short scroll — enough to clear the header CTA on the
+// first viewport, but early enough that visitors who barely scroll still get a
+// persistent path to book. (Was 520px, which hid it until past the full hero.)
+// Tunable / A/B-test candidate.
+const SHOW_AFTER = 160;
 
 /**
- * Persistent bottom "Reservar" bar on mobile. Appears after the user scrolls
- * past the hero, giving a constant path to the booking engine. Hidden on lg+
- * where the sticky header CTA is always visible.
+ * Persistent bottom "Reservar" bar on mobile. Appears after a short scroll,
+ * giving a constant path to the booking engine. Hidden on lg+ where the sticky
+ * header CTA is always visible.
  */
 export function MobileBookingBar() {
   const t = useTranslations("common.mobileBar");

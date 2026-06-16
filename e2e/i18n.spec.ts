@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
 test("serves Spanish (default locale) at the unprefixed root", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
   await expect(page.locator("html")).toHaveAttribute("lang", "es");
   // Desktop nav shows the Spanish labels.
   await expect(
@@ -19,7 +19,7 @@ test("serves Spanish (default locale) at the unprefixed root", async ({
 test("serves English under /en with translated nav and lang attribute", async ({
   page,
 }) => {
-  await page.goto("/en");
+  await page.goto("/en", { waitUntil: "domcontentloaded" });
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
   await expect(
     page.locator("header nav").first().getByRole("link", { name: "The Hotel" }),
@@ -31,7 +31,7 @@ test("serves English under /en with translated nav and lang attribute", async ({
 });
 
 test("English inner page renders translated content", async ({ page }) => {
-  await page.goto("/en/habitaciones");
+  await page.goto("/en/habitaciones", { waitUntil: "domcontentloaded" });
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
   await expect(page.locator("h1").first()).toBeVisible();
   // The shared footer is translated.
@@ -41,12 +41,12 @@ test("English inner page renders translated content", async ({ page }) => {
 test("language switcher swaps locale while keeping the same page", async ({
   page,
 }) => {
-  await page.goto("/hotel");
+  await page.goto("/hotel", { waitUntil: "domcontentloaded" });
   await expect(page.locator("html")).toHaveAttribute("lang", "es");
 
   // Wait for the client switcher to hydrate before clicking — otherwise the
   // click can fire before its onClick handler is attached and do nothing.
-  await page.waitForLoadState("networkidle");
+  await page.waitForLoadState("domcontentloaded");
   const enButton = page
     .locator("header")
     .getByRole("button", { name: "EN" })

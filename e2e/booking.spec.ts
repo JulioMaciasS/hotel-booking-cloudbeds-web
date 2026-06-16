@@ -136,7 +136,7 @@ test.beforeEach(async ({ page }) => {
 test("home page renders hotel content and the horizontal date picker", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
 
   await expect(
     page.getByRole("heading", { name: "Los Lagos Hotel" }),
@@ -150,7 +150,7 @@ test("home page renders hotel content and the horizontal date picker", async ({
 test("home page converts Cloudbeds date-picker calendar k prices to dollars", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
 
   await page.getByTestId("mock-checkin-button").click();
   await expect(page.getByTestId("mock-date-picker-calendar")).toBeVisible();
@@ -167,7 +167,7 @@ test("home page converts Cloudbeds date-picker calendar k prices to dollars", as
 test("home page date picker sends guests to /reservas without a hosted Cloudbeds redirect", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
 
   await page.getByRole("button", { name: "Buscar disponibilidad" }).click();
   await expect(page).toHaveURL(/\/reservas\?/);
@@ -180,7 +180,7 @@ test("home page date picker sends guests to /reservas without a hosted Cloudbeds
 test("reservas page without booking params redirects back to the home date picker", async ({
   page,
 }) => {
-  await page.goto("/reservas");
+  await page.goto("/reservas", { waitUntil: "domcontentloaded" });
 
   await expect(page).not.toHaveURL(/\/reservas/);
   await expect(page.getByTestId("cloudbeds-date-picker")).toBeVisible();
@@ -195,7 +195,7 @@ test("reservas page forces a VAT choice on first visit, then settles in the head
     window.localStorage.removeItem("hotel-vat-from-argentina"),
   );
 
-  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03", { waitUntil: "domcontentloaded" });
 
   const dialog = page.getByRole("dialog", { name: /condición de IVA/i });
   await expect(dialog).toBeVisible();
@@ -215,7 +215,7 @@ test("reservas page does not show the VAT prompt once a preference is stored", a
   page,
 }) => {
   // beforeEach already seeds a stored preference.
-  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03", { waitUntil: "domcontentloaded" });
 
   await expect(page.getByTestId("mock-cloudbeds")).toBeVisible();
   await expect(
@@ -226,7 +226,7 @@ test("reservas page does not show the VAT prompt once a preference is stored", a
 test("reservas page renders the Cloudbeds immersive component with official hide attributes", async ({
   page,
 }) => {
-  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03", { waitUntil: "domcontentloaded" });
 
   const embed = page.getByTestId("cloudbeds-standard-embed");
   await expect(page.getByTestId("reservation-wrapper-header")).toBeVisible();
@@ -242,7 +242,7 @@ test("reservas page renders the Cloudbeds immersive component with official hide
 test("reservas page keeps Cloudbeds nav visible while hiding brand, currency, and promo controls", async ({
   page,
 }) => {
-  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03", { waitUntil: "domcontentloaded" });
 
   await expect(page.getByTestId("mock-cloudbeds")).toBeVisible();
   await expect(page.getByTestId("mock-cloudbeds-shell-nav")).toBeVisible();
@@ -261,7 +261,7 @@ test("reservas page keeps Cloudbeds nav visible while hiding brand, currency, an
 test("reservas page converts mocked Cloudbeds ARS prices to dollars once", async ({
   page,
 }) => {
-  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03", { waitUntil: "domcontentloaded" });
 
   await expect(page.getByTestId("mock-cloudbeds")).toBeVisible();
   await expect(page.getByText("$85.71")).toHaveCount(2);
@@ -294,7 +294,7 @@ test("reservas page converts prices with the stored last-known-good rate when th
     route.fulfill({ status: 500, body: "" }),
   );
 
-  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03", { waitUntil: "domcontentloaded" });
 
   await expect(page.getByTestId("mock-cloudbeds")).toBeVisible();
   await expect(page.getByText("$85.71")).toHaveCount(2);
@@ -308,7 +308,7 @@ test("reservas page degrades gracefully when no FX rate exists anywhere", async 
     route.fulfill({ status: 500, body: "" }),
   );
 
-  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03", { waitUntil: "domcontentloaded" });
 
   await expect(page.getByTestId("mock-cloudbeds")).toBeVisible();
 
@@ -330,7 +330,7 @@ test("reservas page degrades gracefully when no FX rate exists anywhere", async 
 test("reservas page adds bedding selectors to Cloudbeds room cards", async ({
   page,
 }) => {
-  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03", { waitUntil: "domcontentloaded" });
 
   const doubleCard = page.getByTestId("accommodation-card-227179928547456");
   const tripleCard = page.getByTestId("accommodation-card-229741180768384");
@@ -379,7 +379,7 @@ test("reservas page adds bedding selectors to Cloudbeds room cards", async ({
 test("reservas page restricts bed options for the split standard triples", async ({
   page,
 }) => {
-  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03", { waitUntil: "domcontentloaded" });
 
   const twinCard = page.getByTestId("accommodation-card-300000000000001");
   const matrimonialCard = page.getByTestId("accommodation-card-300000000000002");
@@ -405,7 +405,7 @@ test("reservas page restricts bed options for the split standard triples", async
 test("reservas page keeps Cloudbeds filters button text and icon visible", async ({
   page,
 }) => {
-  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03", { waitUntil: "domcontentloaded" });
 
   const filterButton = page.getByTestId("mock-filter-button");
   await expect(page.getByTestId("mock-cloudbeds")).toBeVisible();
@@ -421,7 +421,7 @@ test("reservas page keeps Cloudbeds filters button text and icon visible", async
 test("reservas page keeps map zoom control backgrounds visible", async ({
   page,
 }) => {
-  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03");
+  await page.goto("/reservas?checkin=2026-06-01&checkout=2026-06-03", { waitUntil: "domcontentloaded" });
 
   await expect(page.getByTestId("mock-map-controls")).toBeVisible();
   await expect(page.getByLabel("Zoom in")).toHaveCSS(

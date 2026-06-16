@@ -51,10 +51,23 @@ for (const { name, path } of PAGES) {
     test("has no horizontal overflow and renders its heading", async ({
       page,
     }, testInfo) => {
-      await page.goto(path);
-      await page.waitForLoadState("networkidle");
+      // Don't wait for "load"/"networkidle": in `next dev` the on-demand
+      // opengraph-image (Satori) generation contends with the image optimizer
+      // and those events can stall. Wait for real content instead.
+      await page.goto(path, { waitUntil: "domcontentloaded" });
 
-      // 1. The document must not scroll horizontally.
+      // 1. A primary heading is rendered (also serves as the readiness wait
+      //    before measuring layout). The /reservas page is the Cloudbeds embed
+      //    (no h1 of its own), so we check its branded header instead.
+      if (name === "reservas") {
+        await expect(
+          page.getByRole("link", { name: "Los Lagos Hotel" }),
+        ).toBeVisible();
+      } else {
+        await expect(page.locator("h1").first()).toBeVisible();
+      }
+
+      // 2. The document must not scroll horizontally.
       const { scrollWidth, innerWidth } = await page.evaluate(() => ({
         scrollWidth: document.documentElement.scrollWidth,
         innerWidth: window.innerWidth,
@@ -68,16 +81,6 @@ for (const { name, path } of PAGES) {
           `scrollWidth=${scrollWidth} > innerWidth=${innerWidth}. ` +
           `Offenders: ${offenders.join(" | ") || "none found"}`,
       ).toBeLessThanOrEqual(innerWidth + 1);
-
-      // 2. A primary heading is rendered. The /reservas page is the Cloudbeds
-      //    embed (no h1 of its own), so we check its branded header instead.
-      if (name === "reservas") {
-        await expect(
-          page.getByRole("link", { name: "Los Lagos Hotel" }),
-        ).toBeVisible();
-      } else {
-        await expect(page.locator("h1").first()).toBeVisible();
-      }
     });
   });
 }
@@ -92,8 +95,8 @@ test.describe("site header navigation", () => {
     // Use an inner page: the home page mounts the Cloudbeds booking loader,
     // whose full-screen "Cargando" overlay would intercept the hamburger click.
     // The header is identical across the site.
-    await page.goto("/contacto");
-    await page.waitForLoadState("networkidle");
+    await page.goto("/contacto", { waitUntil: "domcontentloaded" });
+    await page.waitForLoadState("domcontentloaded");
 
     const hamburger = page.getByRole("button", { name: /Abrir menú|Cerrar menú/ });
     const desktopNav = page.locator("header nav").first();
@@ -123,8 +126,8 @@ test.describe("mobile booking bar", () => {
     const width = page.viewportSize()!.width;
     const isDesktop = width >= LG_BREAKPOINT;
 
-    await page.goto("/");
-    await page.waitForLoadState("networkidle");
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.waitForLoadState("domcontentloaded");
 
     const bar = page.getByText("Reservá tu estadía");
 

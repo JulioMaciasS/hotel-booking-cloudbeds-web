@@ -195,3 +195,16 @@ body {
   from { transform: scale(1); }
   to   { transform: scale(1.08); }
 }
+
+/* Brief cue when a room CTA lands the visitor on the booking picker
+   (see BookingIntentHandler). */
+@keyframes bookingIntentPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(56, 100, 91, 0); }
+  25%  { box-shadow: 0 0 0 6px rgba(56, 100, 91, 0.25); }
+  100% { box-shadow: 0 0 0 0 rgba(56, 100, 91, 0); }
+}
+
+.booking-intent-highlight {
+  border-radius: 1rem;
+  animation: bookingIntentPulse 2.2s ease-out;
+}

@@ -8,7 +8,7 @@ import { CloudbedsScriptLoader } from "@/components/CloudbedsScriptLoader";
 import { VatPreferencePrompt } from "@/components/VatPreferencePrompt";
 import { Link, redirect } from "@/i18n/navigation";
 import { publicConfig } from "@/lib/config";
-import { getAlternates } from "@/i18n/metadata";
+import { buildPageMetadata } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
 import logoImage from "@assets/old-web-images/logo-sin-fondo-270.png";
 
@@ -18,12 +18,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations("metadata");
-
   return {
-    title: t("reservas.title"),
-    description: t("reservas.description"),
-    alternates: getAlternates(locale as Locale, "/reservas"),
+    ...(await buildPageMetadata(locale as Locale, "/reservas", "reservas")),
+    // Thin booking-engine shell that redirects when opened without dates — keep
+    // it out of the index so search traffic lands on real content pages instead.
+    robots: { index: false, follow: true },
   };
 }
 
