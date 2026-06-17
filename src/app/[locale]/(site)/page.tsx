@@ -225,7 +225,7 @@ export default async function HomePage({
             {ROOMS.map((room) => (
               <Link
                 key={room.key}
-                href="/habitaciones"
+                href={`/habitaciones?room=${room.key}`}
                 className="group flex flex-col overflow-hidden rounded-2xl bg-[#f7f3ea] ring-1 ring-black/5 transition hover:shadow-lg"
               >
                 <div className="relative aspect-4/3 overflow-hidden">

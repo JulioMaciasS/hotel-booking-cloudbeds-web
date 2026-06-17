@@ -78,10 +78,6 @@
         "label": "La Zorra Taproom",
         "note": "Cerveza artesanal patagónica · Av. Libertador 832"
       },
-      "borges": {
-        "label": "Borges y Álvarez Libro-Bar",
-        "note": "Bar literario & cerveza artesanal · Av. Libertador 1015"
-      },
       "vivaLaPepa": {
         "label": "Viva la Pepa",
         "note": "Crepería & café · Amado 833"
@@ -96,7 +92,7 @@
       },
       "centroInterpretacion": {
         "label": "Centro de Interpretación Histórica",
-        "note": "Museo local · Av. Brown y Bonarelli · ~700 m"
+        "note": "Museo local · Alte. Brown 1175 · ~700 m"
       },
       "glaciarium": {
         "label": "Glaciarium",
@@ -128,11 +124,11 @@
       },
       "bancoNacion": {
         "label": "Banco Nación Argentina",
-        "note": "Sucursal bancaria & cajero · Av. Libertador 1133"
+        "note": "Sucursal bancaria & cajero · Av. Libertador 1408"
       },
-      "interlagos": {
-        "label": "Interlagos Turismo",
-        "note": "Agencia de excursiones · Av. Libertador 1175"
+      "patagoniaChic": {
+        "label": "PatagoniaChic Excursiones",
+        "note": "Agencia de excursiones · Av. Libertador 932"
       },
       "calTur": {
         "label": "Cal-Tur",

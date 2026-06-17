@@ -4,6 +4,7 @@
 export type NavItem = { href: string; key: string };
 
 export const NAV_LINKS: NavItem[] = [
+  { href: "/", key: "home" },
   { href: "/habitaciones", key: "rooms" },
   { href: "/hotel", key: "hotel" },
   { href: "/experiencias", key: "experiences" },

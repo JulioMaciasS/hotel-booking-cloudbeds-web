@@ -3,12 +3,12 @@
     "hero": {
       "eyebrow": "Habitaciones",
       "title": "Habitaciones para cada viaje.",
-      "subtitle": "Doble o triple, estándar o superior. Espacios cálidos y bien equipados, pensados para descansar después de un día entre glaciares."
+      "subtitle": "Doble o triple, estándar o superior. Espacios cálidos y bien equipados, con desayuno casero incluido, pensados para descansar después de un día entre glaciares."
     },
     "selector": {
       "eyebrow": "Elegí tu habitación",
       "title": "Cuatro tipos, una misma calidez.",
-      "description": "Mirá las fotos, las configuraciones de cama y lo que incluye cada tipo de habitación. Cuando quieras, consultá disponibilidad y tarifas en tiempo real."
+      "description": "Mirá las fotos y las configuraciones de cama de cada tipo. Cuando quieras, consultá disponibilidad y tarifas en tiempo real."
     },
     "included": {
       "eyebrow": "Incluido en todas las habitaciones"

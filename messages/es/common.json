@@ -1,6 +1,7 @@
 {
   "brand": "Los Lagos Hotel",
   "nav": {
+    "home": "Inicio",
     "rooms": "Habitaciones",
     "hotel": "El Hotel",
     "experiences": "Experiencias",

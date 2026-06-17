@@ -7,10 +7,9 @@ import { MapContainer, Marker, Popup, TileLayer, Tooltip, useMap } from "react-l
 import { useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 
-// Hotel — verified from Google Maps @-50.3357896,-72.2666423
+// Hotel — verified pin from the owner's share link (@-50.3357896,-72.2666423)
 const HOTEL: [number, number] = [-50.33579, -72.26664];
-const HOTEL_GOOGLE_MAPS_URL =
-  "https://www.google.com/maps/place/Hotel+Los+Lagos/@-50.3361799,-72.2666852,17z/data=!4m11!3m10!1s0xbdbb0cbecdfaad93:0xabbbd7fd7dbc58e5!5m4!1s2026-07-23!2i5!4m1!1i2!8m2!3d-50.3357896!4d-72.2666423!16s%2Fg%2F1tdx0s_r?entry=tts&g_ep=EgoyMDI2MDYwMi4wIPu8ASoASAFQAw%3D%3D&skid=caa95aa2-6c5f-485c-916b-f122cb914a77";
+const HOTEL_GOOGLE_MAPS_URL = "https://maps.app.goo.gl/fcEX1Tgnc37brYYAA";
 const INITIAL_ZOOM = 15;
 
 type PoiCategory =
@@ -34,14 +33,11 @@ type Poi = {
 };
 
 /*
- * Coordinates sourced from:
- * - La Tablita: Google Maps @-50.3379421,-72.2572912
- * - Glaciarium: Wikivoyage -50.336632,-72.339819
- * - Perito Moreno: Wikivoyage -50.483333,-73.05
- * - Centro Interpretación: Wikivoyage -50.330988,-72.265066
- * - Airport FTE: Wikivoyage -50.2799,-72.0531
- * - All others geocoded from confirmed street addresses on the
- *   Av. del Libertador grid (~0.0000134°lng per address number)
+ * Coordinates are the verified place pins (the `!3d<lat>!4d<lng>` value) from
+ * the owner-supplied Google Maps share links below — accurate to the listing,
+ * not geocoded from street numbers. Lago Argentino and Perito Moreno use the
+ * exact lat/lng the owner provided. `centro` and `libertador` are not in that
+ * list, so their original coordinates/links are left unchanged.
  */
 const POIS: Poi[] = [
   // ── Centre ────────────────────────────────────────────────────────────────
@@ -55,67 +51,61 @@ const POIS: Poi[] = [
   // ── Restaurants ──────────────────────────────────────────────────────────
   {
     tKey: "laTablita",
-    coords: [-50.33794, -72.25729],
+    coords: [-50.3379421, -72.2572912],
     category: "restaurant",
-    url: "https://www.google.com/maps/place/La+Tablita/@-50.3379421,-72.2572912,17z",
+    url: "https://maps.app.goo.gl/6PvyvJhhRMqPkXKQ9",
   },
   {
     tKey: "casimiroBigua",
-    coords: [-50.33770, -72.27412],
+    coords: [-50.3380944, -72.2623824],
     category: "restaurant",
-    url: "https://www.google.com/maps/search/Casimiro+Bigua+El+Calafate+Argentina",
+    url: "https://maps.app.goo.gl/YSDojiCdfxhi7d6v9",
   },
   {
     tKey: "miViejo",
-    coords: [-50.33790, -72.27740],
+    coords: [-50.338179, -72.2647465],
     category: "restaurant",
-    url: "https://www.google.com/maps/search/Mi+Viejo+restaurante+El+Calafate+Argentina",
+    url: "https://maps.app.goo.gl/4RonQfwvG9xnVAWf8",
   },
   {
     tKey: "mako",
-    coords: [-50.33800, -72.27870],
+    coords: [-50.3384441, -72.266851],
     category: "restaurant",
-    url: "https://www.google.com/maps/search/Mako+Fuegos+y+Vinos+El+Calafate",
+    url: "https://maps.app.goo.gl/1u6FrpSJhVWN9BCo8",
   },
   {
     tKey: "laZaina",
-    coords: [-50.33860, -72.27550],
+    coords: [-50.3369593, -72.2635683],
     category: "restaurant",
-    url: "https://www.google.com/maps/search/La+Zaina+Cocina+Patagonica+El+Calafate",
+    url: "https://maps.app.goo.gl/YdgiX9ivNW8smDXX8",
   },
   {
     tKey: "laLechuza",
-    coords: [-50.33857, -72.26825],
+    coords: [-50.3385261, -72.2681837],
     category: "restaurant",
-    url: "https://www.google.com/maps/search/La+Lechuza+El+Calafate+Argentina",
+    url: "https://maps.app.goo.gl/GJJHey4J7cbSMyTu8",
   },
 
   // ── Bars ──────────────────────────────────────────────────────────────────
   {
     tKey: "laZorra",
-    coords: [-50.33756, -72.27256],
+    coords: [-50.3381959, -72.2594997],
     category: "bar",
-    url: "https://www.google.com/maps/search/La+Zorra+Taproom+El+Calafate",
-  },
-  {
-    tKey: "borges",
-    coords: [-50.33789, -72.27502],
-    category: "bar",
-    url: "https://www.google.com/maps/search/Borges+y+Alvarez+Libro+Bar+El+Calafate",
+    url: "https://maps.app.goo.gl/5ib2PKVrHRJ2bC8T7",
   },
 
   // ── Cafés ─────────────────────────────────────────────────────────────────
   {
     tKey: "vivaLaPepa",
-    coords: [-50.33892, -72.26818],
+    coords: [-50.3384631, -72.2607868],
     category: "cafe",
-    url: "https://www.google.com/maps/search/Viva+la+Pepa+El+Calafate+Argentina",
+    url: "https://maps.app.goo.gl/b87Es96kcZkoHWMM9",
   },
   {
     tKey: "ovejitas",
-    coords: [-50.33805, -72.27840],
+    coords: [-50.33834, -72.2663643],
     category: "cafe",
-    url: "https://www.google.com/maps/search/Chocolates+Ovejitas+El+Calafate",
+    url: "https://maps.app.goo.gl/QcCTPN2caQuVK6PT7",
   },
 
   // ── Attractions ───────────────────────────────────────────────────────────
@@ -127,85 +117,85 @@ const POIS: Poi[] = [
   },
   {
     tKey: "centroInterpretacion",
-    coords: [-50.33099, -72.26507],
+    coords: [-50.3313371, -72.2649896],
     category: "attraction",
-    url: "https://www.google.com/maps/search/Centro+Interpretacion+Historica+El+Calafate",
+    url: "https://maps.app.goo.gl/yWtKf7jimQaap8JS7",
   },
   {
     tKey: "glaciarium",
-    coords: [-50.33663, -72.33982],
+    coords: [-50.3367106, -72.3398274],
     category: "attraction",
-    url: "https://www.google.com/maps/search/Glaciarium+El+Calafate",
+    url: "https://maps.app.goo.gl/WVJm2B9n9As5qEph8",
   },
   {
     tKey: "peritoMoreno",
-    coords: [-50.48333, -73.05000],
+    coords: [-50.470853, -73.043928],
     category: "attraction",
-    url: "https://www.google.com/maps/search/Glaciar+Perito+Moreno+Argentina",
+    url: "https://maps.app.goo.gl/ZDaivzUNMoGKejoGA",
   },
 
   // ── Nature ────────────────────────────────────────────────────────────────
   {
     tKey: "lagoArgentino",
-    coords: [-50.34780, -72.27350],
+    coords: [-50.324714, -72.298152],
     category: "nature",
-    url: "https://www.google.com/maps/search/Lago+Argentino+El+Calafate",
+    url: "https://maps.app.goo.gl/7fxWsviTRcRUvLgs8",
   },
   {
     tKey: "lagunaNimez",
-    coords: [-50.34890, -72.27240],
+    coords: [-50.3283488, -72.268301],
     category: "nature",
-    url: "https://www.google.com/maps/search/Laguna+Nimez+El+Calafate",
+    url: "https://maps.app.goo.gl/L4tSg3hu34Aki58C9",
   },
 
   // ── Transport ─────────────────────────────────────────────────────────────
   {
     tKey: "terminal",
-    coords: [-50.33626, -72.25697],
+    coords: [-50.3375761, -72.2451082],
     category: "transport",
-    url: "https://www.google.com/maps/search/Terminal+Omnibus+El+Calafate+Argentina",
+    url: "https://maps.app.goo.gl/nExzcZgJB4roM87q6",
   },
   {
     tKey: "aeropuerto",
-    coords: [-50.27990, -72.05310],
+    coords: [-50.2838909, -72.0536694],
     category: "transport",
-    url: "https://www.google.com/maps/search/Aeropuerto+El+Calafate+FTE",
+    url: "https://maps.app.goo.gl/92B7pAVJ9ciM7VjX6",
   },
 
   // ── Banks ─────────────────────────────────────────────────────────────────
   {
     tKey: "bancoSantaCruz",
-    coords: [-50.33800, -72.27960],
+    coords: [-50.3385109, -72.267665],
     category: "bank",
-    url: "https://www.google.com/maps/search/Banco+Santa+Cruz+El+Calafate",
+    url: "https://maps.app.goo.gl/goutwEJumUdPpcF18",
   },
   {
     tKey: "bancoNacion",
-    coords: [-50.33790, -72.27769],
+    coords: [-50.3383945, -72.2706873],
     category: "bank",
-    url: "https://www.google.com/maps/search/Banco+Nacion+Argentina+El+Calafate",
+    url: "https://maps.app.goo.gl/KopQyTMnkBHxLBLt8",
   },
 
   // ── Tourism agencies ──────────────────────────────────────────────────────
   {
-    tKey: "interlagos",
-    coords: [-50.33800, -72.27821],
+    tKey: "patagoniaChic",
+    coords: [-50.3377189, -72.2621592],
     category: "tourism",
-    url: "https://www.google.com/maps/search/Interlagos+Turismo+El+Calafate",
+    url: "https://maps.app.goo.gl/f92mSSKWZegh5s6v8",
   },
   {
     tKey: "calTur",
-    coords: [-50.33788, -72.27589],
+    coords: [-50.3379036, -72.2640403],
     category: "tourism",
-    url: "https://www.google.com/maps/search/Cal-Tur+El+Calafate+Argentina",
+    url: "https://maps.app.goo.gl/N9Z5D5Q7TFYEQZU89",
   },
 
   // ── Shops ─────────────────────────────────────────────────────────────────
   {
     tKey: "laAnonima",
-    coords: [-50.33710, -72.26350],
+    coords: [-50.3375814, -72.2615971],
     category: "shop",
-    url: "https://www.google.com/maps/search/La+Anonima+El+Calafate+Argentina",
+    url: "https://maps.app.goo.gl/Cj6GkQLafsRJ8UfC9",
   },
 ];
 
@@ -240,9 +230,9 @@ const CATEGORY_ICON_PATH: Record<PoiCategory, string> = {
   // Bus
   transport:
     "M8 6v6M16 6v6M2 12h20M7 18h10M4 18H3a1 1 0 0 1-1-1v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a1 1 0 0 1-1 1h-1M4 18a2 2 0 1 0 4 0M16 18a2 2 0 1 0 4 0M2 8h20",
-  // Leaf
+  // Pine tree
   nature:
-    "M12 22V12M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6",
+    "m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z",
   // Shopping bag
   shop:
     "M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4ZM3 6h18M16 10a4 4 0 0 1-8 0",

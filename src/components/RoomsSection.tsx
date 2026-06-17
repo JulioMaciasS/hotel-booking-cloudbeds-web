@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ChevronLeft, ChevronRight, Users } from "lucide-react";
-import { FEATURES, ROOMS } from "@/lib/rooms";
+import { ROOMS } from "@/lib/rooms";
 
 const AUTO_ROTATE_MS = 6000;
 
@@ -74,9 +74,36 @@ export function RoomsSection() {
   const [photoIdx, setPhotoIdx] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const progressRef = useRef<HTMLSpanElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const room = ROOMS[roomIdx];
   const total = room.photos.length;
+
+  // Honour a `?room=<key>` deep link (e.g. the "view details" cards on the home
+  // page): open that room's tab, bring the selector into view, and pause the
+  // auto-rotate so the carousel doesn't drift off the room the visitor picked.
+  // Read once on mount via window.location so the page stays server-rendered
+  // (no useSearchParams Suspense bail-out).
+  useEffect(() => {
+    const key = new URLSearchParams(window.location.search).get("room");
+    if (!key) return;
+    const idx = ROOMS.findIndex((r) => r.key === key);
+    if (idx === -1) return;
+
+    // Browser-only, one-time sync of UI state from the URL: it can't run during
+    // SSR, so it has to land in an effect (photoIdx already defaults to 0).
+    /* eslint-disable react-hooks/set-state-in-effect */
+    setRoomIdx(idx);
+    setIsPaused(true);
+    /* eslint-enable react-hooks/set-state-in-effect */
+
+    // Drop the hint so a manual tab change followed by a refresh isn't sticky.
+    const url = new URL(window.location.href);
+    url.searchParams.delete("room");
+    window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+
+    sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
 
   const goNextRoom = useCallback(() => {
     setRoomIdx((i) => (i + 1) % ROOMS.length);
@@ -117,6 +144,8 @@ export function RoomsSection() {
 
   return (
     <div
+      ref={sectionRef}
+      className="scroll-mt-28"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -305,16 +334,6 @@ export function RoomsSection() {
                       ))}
                     </div>
                   </div>
-
-                  {/* Features */}
-                  <ul className="mt-5 space-y-2">
-                    {FEATURES.map(({ icon: Icon, key }) => (
-                      <li key={key} className="flex items-center gap-2 text-sm text-[#52615d]">
-                        <Icon aria-hidden size={14} strokeWidth={1.8} className="shrink-0 text-[#38645b]" />
-                        {t(`features.${key}`)}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
 
                 {/* CTA — carries the room as a hint so the home picker can land
