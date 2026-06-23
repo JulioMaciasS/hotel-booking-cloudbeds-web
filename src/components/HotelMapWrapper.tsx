@@ -63,13 +63,18 @@ export function HotelMapWrapper() {
         </button>
       </div>
 
-      {/* Fullscreen modal — starts at top-18 (72px) so the backdrop never
-          covers the navbar. z-40 keeps it below the header (z-50). */}
+      {/* Fullscreen modal — the top aligns with the header's bottom edge
+          (h-[85px] + 1px border = 86px) and the bottom padding reserves exactly
+          the mobile booking bar's height (~65px; also fixed, z-40, bottom-0).
+          Combined with the map panel's even m-4 / sm:m-6 inset, that leaves the
+          map equidistant from the navbar, the booking bar, and the side edges.
+          z-40 keeps the modal below the header (z-50); the bar is lg:hidden, so
+          the bottom reservation is dropped at lg. */}
       {expanded && (
         <div
           aria-label={t("expandedLabel")}
           aria-modal="true"
-          className="fixed inset-x-0 bottom-0 top-18 z-40 flex flex-col bg-black/60"
+          className="fixed inset-x-0 bottom-0 top-[86px] z-40 flex flex-col bg-black/60 pb-[calc(65px+env(safe-area-inset-bottom))] lg:pb-0"
           role="dialog"
         >
           {/* Backdrop close */}

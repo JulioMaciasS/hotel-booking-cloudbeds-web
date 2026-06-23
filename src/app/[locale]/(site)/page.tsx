@@ -3,7 +3,6 @@ import {
   ArrowRight,
   BadgePercent,
   Coffee,
-  Compass,
   ExternalLink,
   Handshake,
   MapPin,
@@ -25,7 +24,7 @@ import { BookingIntentHandler } from "@/components/BookingIntentHandler";
 import { JsonLd } from "@/components/JsonLd";
 import { lodgingBusinessJsonLd } from "@/lib/structured-data";
 import { publicConfig } from "@/lib/config";
-import { HOTEL, reviews, trips } from "@/lib/site-data";
+import { HOTEL, reviews } from "@/lib/site-data";
 import { ROOMS } from "@/lib/rooms";
 import tripadvisorLogo from "@assets/logo/tripadvisor.png";
 import googleMapsLogo from "@assets/logo/Google_Maps_icon_(2020).png";
@@ -34,7 +33,8 @@ import lobbyImage from "@assets/updated images/otros/recepcion 6 completa.jpg";
 const benefits = [
   { icon: BadgePercent, key: "bestRate" },
   { icon: Coffee, key: "breakfast" },
-  { icon: Compass, key: "excursions" },
+  // Hidden until the excursions offering launches:
+  // { icon: Compass, key: "excursions" },
   { icon: Handshake, key: "personalCare" },
 ] as const;
 
@@ -47,7 +47,6 @@ export default async function HomePage({
   setRequestLocale(locale);
 
   const t = await getTranslations("home");
-  const te = await getTranslations("experiences");
   const trm = await getTranslations("rooms");
 
   return (
@@ -198,7 +197,7 @@ export default async function HomePage({
       </section>
 
       {/* ── ROOMS TEASER ── */}
-      <section className="bg-white py-24">
+      <section className="bg-[#f7f3ea] py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-2xl">
@@ -226,7 +225,7 @@ export default async function HomePage({
               <Link
                 key={room.key}
                 href={`/habitaciones?room=${room.key}`}
-                className="group flex flex-col overflow-hidden rounded-2xl bg-[#f7f3ea] ring-1 ring-black/5 transition hover:shadow-lg"
+                className="group flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-black/5 transition hover:shadow-lg"
               >
                 <div className="relative aspect-4/3 overflow-hidden">
                   <Image
@@ -265,66 +264,11 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* ── EXPERIENCES TEASER ── */}
-      <section className="bg-[#1f2b27] py-24 text-white">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div className="max-w-2xl">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#6dbfaa]">
-                {t("experiences.eyebrow")}
-              </p>
-              <h2 className="text-3xl font-semibold leading-tight sm:text-4xl">
-                {t("experiences.title")}
-              </h2>
-              <p className="mt-4 text-base leading-8 text-white/70">
-                {t("experiences.paragraph")}
-              </p>
-            </div>
-            <Link
-              className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[#6dbfaa] transition hover:text-white"
-              href="/experiencias"
-            >
-              {t("experiences.viewAll")}
-              <ArrowRight size={16} aria-hidden="true" />
-            </Link>
-          </div>
-
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {trips.slice(0, 3).map((trip) => (
-              <Link
-                key={trip.key}
-                href="/experiencias"
-                className="group flex flex-col overflow-hidden rounded-lg bg-white/5 ring-1 ring-white/10 transition hover:bg-white/10"
-              >
-                <div className="relative aspect-4/3 overflow-hidden">
-                  <Image
-                    alt={te(`trips.${trip.key}.name`)}
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    src={trip.image}
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
-                  <span className="absolute bottom-3 left-3 rounded-full bg-[#38645b] px-3 py-1 text-xs font-semibold text-white">
-                    {te(`trips.${trip.key}.highlight`)}
-                  </span>
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-base font-semibold text-white">
-                    {te(`trips.${trip.key}.name`)}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-white/65">
-                    {te(`trips.${trip.key}.description`)}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Experiences teaser hidden until the excursions offering launches
+          (the section + /experiencias page are preserved in git history). */}
 
       {/* ── WHY BOOK DIRECT ── */}
-      <section className="py-24">
+      <section className="bg-white py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#38645b]">
@@ -338,7 +282,7 @@ export default async function HomePage({
             </p>
           </div>
 
-          <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {benefits.map(({ icon: Icon, key }) => (
               <li key={key} className="flex flex-col items-center text-center">
                 <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#edf3ef] text-[#38645b]">
@@ -357,7 +301,7 @@ export default async function HomePage({
       </section>
 
       {/* ── REVIEWS ── */}
-      <section className="bg-white py-24" id="opiniones">
+      <section className="bg-[#f7f3ea] py-24" id="opiniones">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-xl">
@@ -457,7 +401,7 @@ export default async function HomePage({
       </section>
 
       {/* ── LOCATION TEASER ── */}
-      <section className="py-24">
+      <section className="bg-white py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
             <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5">

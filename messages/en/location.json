@@ -13,6 +13,24 @@
     "cta": {
       "book": "Book now",
       "contact": "Contact the hotel"
+    },
+    "gallery": {
+      "eyebrow": "Gallery",
+      "title": "A look around the hotel",
+      "subtitle": "From the garden to the front door — the corners that make our little family hotel feel like home.",
+      "open": "Open image",
+      "close": "Close gallery",
+      "previous": "Previous image",
+      "next": "Next image",
+      "counter": "{current} of {total}",
+      "alts": [
+        "Front facade of Los Lagos Hotel",
+        "The hotel garden",
+        "Side view of the hotel",
+        "A quiet corner of the garden",
+        "Los Lagos Hotel sign at the entrance",
+        "The garden in the afternoon light"
+      ]
     }
   },
   "distances": [
@@ -77,6 +95,10 @@
       "laZorra": {
         "label": "La Zorra Taproom",
         "note": "Patagonian craft beer · Av. Libertador 832"
+      },
+      "yetiIceBar": {
+        "label": "Yeti Ice Bar",
+        "note": "Ice bar · Av. Libertador 1359"
       },
       "vivaLaPepa": {
         "label": "Viva la Pepa",

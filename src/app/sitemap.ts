@@ -13,7 +13,8 @@ const PAGES: { href: string; priority: number }[] = [
   { href: "/", priority: 1 },
   { href: "/habitaciones", priority: 0.8 },
   { href: "/hotel", priority: 0.8 },
-  { href: "/experiencias", priority: 0.8 },
+  // Hidden until the Experiencias / excursions offering launches:
+  // { href: "/experiencias", priority: 0.8 },
   { href: "/ubicacion", priority: 0.7 },
   { href: "/contacto", priority: 0.7 },
   { href: "/terminos", priority: 0.3 },

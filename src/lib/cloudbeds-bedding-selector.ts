@@ -1,6 +1,8 @@
 type BeddingOption = {
   key: string;
   label: string;
+  /** Maximum number of physical rooms that can provide this layout. */
+  maxRooms: number;
   /**
    * Relative widths of each bed, used to draw a top-down layout icon. A double
    * (matrimonial) bed is `2`, a single bed is `1`.
@@ -16,24 +18,58 @@ type BeddingConfig = {
   options: BeddingOption[];
 };
 
-const STORAGE_PREFIX = "hotel-bedding-selection:";
+export type CloudbedsBeddingAvailability = {
+  mappingComplete: boolean;
+  roomTypes: Record<
+    string,
+    {
+      totalAvailable: number;
+      options: Record<string, number>;
+    }
+  >;
+};
 
-const DOUBLE_BEDDING_OPTIONS: BeddingOption[] = [
-  { key: "matrimonial", label: "Matrimonial", beds: [2] },
-  { key: "dos_camas_separadas", label: "Dos camas separadas", beds: [1, 1] },
-];
+const STORAGE_PREFIX = "hotel-bedding-selection:";
+let liveAvailability: CloudbedsBeddingAvailability | null = null;
+
+function buildDoubleBeddingOptions(
+  matrimonialMaxRooms: number,
+  twinMaxRooms: number,
+): BeddingOption[] {
+  return [
+    {
+      key: "matrimonial",
+      label: "Matrimonial",
+      maxRooms: matrimonialMaxRooms,
+      beds: [2],
+    },
+    {
+      key: "dos_camas_separadas",
+      label: "Dos camas separadas",
+      maxRooms: twinMaxRooms,
+      beds: [1, 1],
+    },
+  ];
+}
 
 const TRIPLE_MATRIMONIAL_OPTION: BeddingOption = {
   key: "matrimonial_cama_individual",
   label: "Matrimonial y cama individual",
+  maxRooms: 2,
   beds: [2, 1],
 };
 
 const TRIPLE_TWIN_OPTION: BeddingOption = {
   key: "tres_camas_individuales",
   label: "Tres camas individuales",
+  maxRooms: 2,
   beds: [1, 1, 1],
 };
+
+const TRIPLE_SUPERIOR_BEDDING_OPTIONS: BeddingOption[] = [
+  { ...TRIPLE_MATRIMONIAL_OPTION, maxRooms: 1 },
+  { ...TRIPLE_TWIN_OPTION, maxRooms: 1 },
+];
 
 const TRIPLE_BEDDING_OPTIONS: BeddingOption[] = [
   TRIPLE_MATRIMONIAL_OPTION,
@@ -102,25 +138,29 @@ const BEDDING_CONFIGS: BeddingConfig[] = [
     title: "Doble Estandar",
     roomClass: "standard",
     occupancy: "double",
-    options: DOUBLE_BEDDING_OPTIONS,
+    // Rooms 01 and 03 can be matrimonial; all four rooms can be twin.
+    options: buildDoubleBeddingOptions(2, 4),
   },
   {
     id: "229741541683392",
     title: "Doble Superior",
     roomClass: "superior",
     occupancy: "double",
-    options: DOUBLE_BEDDING_OPTIONS,
+    // All five rooms can be matrimonial; rooms 12, 14 and 15 can be twin.
+    options: buildDoubleBeddingOptions(5, 3),
   },
   // The standard triple is split into two Cloudbeds room types, each with a
   // single fixed bed layout (matched by their full titles — see getBeddingConfig,
   // which prefers the most specific title match over the generic one below).
   {
+    id: "229741180768384",
     title: "Triple Estandar Twin",
     roomClass: "standard",
     occupancy: "triple",
     options: [TRIPLE_TWIN_OPTION],
   },
   {
+    id: "239441314484352",
     title: "Triple Estandar Matrimonial",
     roomClass: "standard",
     occupancy: "triple",
@@ -138,9 +178,21 @@ const BEDDING_CONFIGS: BeddingConfig[] = [
     title: "Triple Superior",
     roomClass: "superior",
     occupancy: "triple",
-    options: TRIPLE_BEDDING_OPTIONS,
+    options: TRIPLE_SUPERIOR_BEDDING_OPTIONS,
   },
 ];
+
+function getOptionMaxRooms(config: BeddingConfig, option: BeddingOption) {
+  if (!config.id || !liveAvailability) {
+    return option.maxRooms;
+  }
+
+  const liveMax = liveAvailability.roomTypes[config.id]?.options[option.key];
+
+  return typeof liveMax === "number" && Number.isFinite(liveMax) && liveMax >= 0
+    ? liveMax
+    : option.maxRooms;
+}
 
 function normalizeText(value: string) {
   return value
@@ -223,6 +275,16 @@ function writeStoredSelection(cardId: string, value: string) {
 
 function updateSelectedOption(wrapper: HTMLElement, selectedKey: string) {
   wrapper.dataset.hotelSelectedBedding = selectedKey;
+  const selectedButton = wrapper.querySelector<HTMLButtonElement>(
+    `[data-hotel-bedding-option="${selectedKey}"]`,
+  );
+
+  if (selectedButton?.dataset.hotelBeddingMaxRooms) {
+    wrapper.dataset.hotelBeddingMaxRooms =
+      selectedButton.dataset.hotelBeddingMaxRooms;
+    wrapper.dataset.hotelBeddingLabel =
+      selectedButton.dataset.hotelBeddingLabel ?? selectedKey;
+  }
 
   const hiddenInput = wrapper.querySelector<HTMLInputElement>(
     "input[data-hotel-bedding-input='true']",
@@ -244,10 +306,16 @@ function updateSelectedOption(wrapper: HTMLElement, selectedKey: string) {
 
 function createBeddingSelector(card: Element, config: BeddingConfig) {
   const cardId = getAccommodationId(card) ?? normalizeText(config.title);
-  const selectedKey =
-    readStoredSelection(cardId) ??
-    config.options[0]?.key ??
-    "";
+  const storedSelection = readStoredSelection(cardId);
+  const selectedKey = config.options.some(
+    (option) =>
+      option.key === storedSelection && getOptionMaxRooms(config, option) > 0,
+  )
+    ? storedSelection!
+    : (config.options.find((option) => getOptionMaxRooms(config, option) > 0)
+        ?.key ??
+      config.options[0]?.key ??
+      "");
   const wrapper = document.createElement("div");
 
   wrapper.className = "hotel-bedding-selector";
@@ -269,17 +337,25 @@ function createBeddingSelector(card: Element, config: BeddingConfig) {
     <div class="hotel-bedding-options">
       ${config.options
         .map(
-          (option) => `
+          (option) => {
+            const maxRooms = getOptionMaxRooms(config, option);
+
+            return `
             <button
               aria-pressed="${option.key === selectedKey ? "true" : "false"}"
+              aria-disabled="${maxRooms === 0 ? "true" : "false"}"
               class="hotel-bedding-option ${option.key === selectedKey ? "is-selected" : ""}"
+              data-hotel-bedding-label="${escapeHtml(option.label)}"
+              data-hotel-bedding-max-rooms="${maxRooms}"
               data-hotel-bedding-option="${escapeHtml(option.key)}"
+              ${maxRooms === 0 ? "disabled" : ""}
               type="button"
             >
               ${buildBeddingIcon(option.beds)}
               <span class="hotel-bedding-name">${escapeHtml(option.label)}</span>
             </button>
-          `,
+          `;
+          },
         )
         .join("")}
     </div>
@@ -291,7 +367,7 @@ function createBeddingSelector(card: Element, config: BeddingConfig) {
       button.addEventListener("click", () => {
         const nextSelection = button.dataset.hotelBeddingOption;
 
-        if (!nextSelection) {
+        if (!nextSelection || button.disabled) {
           return;
         }
 
@@ -302,6 +378,7 @@ function createBeddingSelector(card: Element, config: BeddingConfig) {
             detail: {
               accommodationId: getAccommodationId(card),
               bedding: nextSelection,
+              maxRooms: Number(wrapper.dataset.hotelBeddingMaxRooms),
               occupancy: config.occupancy,
               roomClass: config.roomClass,
               title: config.title,
@@ -312,6 +389,250 @@ function createBeddingSelector(card: Element, config: BeddingConfig) {
     });
 
   return wrapper;
+}
+
+function syncWrapperAvailability(
+  wrapper: HTMLElement,
+  config: BeddingConfig,
+) {
+  for (const option of config.options) {
+    const button = wrapper.querySelector<HTMLButtonElement>(
+      `[data-hotel-bedding-option="${option.key}"]`,
+    );
+
+    if (!button) {
+      continue;
+    }
+
+    const maxRooms = getOptionMaxRooms(config, option);
+    button.dataset.hotelBeddingMaxRooms = String(maxRooms);
+    button.disabled = maxRooms === 0;
+    button.setAttribute("aria-disabled", String(maxRooms === 0));
+  }
+
+  const selectedKey = wrapper.dataset.hotelSelectedBedding;
+  const selectedButton = selectedKey
+    ? wrapper.querySelector<HTMLButtonElement>(
+        `[data-hotel-bedding-option="${selectedKey}"]`,
+      )
+    : null;
+  const nextSelected =
+    selectedButton && !selectedButton.disabled
+      ? selectedKey
+      : wrapper.querySelector<HTMLButtonElement>(
+          "[data-hotel-bedding-option]:not(:disabled)",
+        )?.dataset.hotelBeddingOption;
+
+  if (nextSelected) {
+    updateSelectedOption(wrapper, nextSelected);
+  }
+}
+
+const RATE_PLAN_QUANTITY_BUTTON_SELECTOR = [
+  "[data-testid^='rate-plan-guest-quantity-select-']",
+  "[data-testid^='rate-plan-quantity-select-']",
+].join(",");
+
+function setActiveQuantityLimit(
+  documentRef: Document,
+  wrapper: HTMLElement,
+  button: HTMLElement,
+) {
+  const testId = button.getAttribute("data-testid");
+  const maxRooms = wrapper.dataset.hotelBeddingMaxRooms;
+
+  if (!testId || !maxRooms) {
+    return;
+  }
+
+  documentRef.documentElement.dataset.hotelActiveRatePlanTestId = testId;
+  documentRef.documentElement.dataset.hotelActiveBeddingMaxRooms = maxRooms;
+  documentRef.documentElement.dataset.hotelActiveBeddingLabel =
+    wrapper.dataset.hotelBeddingLabel ?? wrapper.dataset.hotelSelectedBedding ?? "";
+}
+
+function bindRatePlanQuantityButtons(
+  documentRef: Document,
+  wrapper: HTMLElement,
+) {
+  const card = wrapper.closest("[data-testid^='accommodation-card-']");
+
+  card
+    ?.querySelectorAll<HTMLElement>(RATE_PLAN_QUANTITY_BUTTON_SELECTOR)
+    .forEach((button) => {
+      if (button.dataset.hotelBeddingLimitBound === "true") {
+        return;
+      }
+
+      button.dataset.hotelBeddingLimitBound = "true";
+      button.addEventListener(
+        "click",
+        () => setActiveQuantityLimit(documentRef, wrapper, button),
+        true,
+      );
+    });
+}
+
+function limitText(label: string, maxRooms: number) {
+  const roomLabel = maxRooms === 1 ? "habitación" : "habitaciones";
+
+  return `Máximo para ${label}: ${maxRooms} ${roomLabel}`;
+}
+
+function applyQuantityInputLimit(
+  documentRef: Document,
+  input: HTMLInputElement,
+  maxRooms: number,
+  beddingLabel: string,
+) {
+  if (!Number.isFinite(maxRooms) || maxRooms < 1) {
+    return;
+  }
+
+  const inputTestId = input.getAttribute("data-testid");
+
+  if (!inputTestId?.endsWith("-quantity-input")) {
+    return;
+  }
+
+  const stepperTestId = inputTestId.slice(0, -"-input".length);
+  const plusButton = documentRef.querySelector<HTMLButtonElement>(
+    `[data-testid="${stepperTestId}-plus-button"]`,
+  );
+  const currentValue = Number(input.value);
+  const reachedBeddingLimit =
+    Number.isFinite(currentValue) && currentValue >= maxRooms;
+
+  input.readOnly = true;
+  input.max = String(maxRooms);
+  input.dataset.hotelBeddingQuantityLimit = String(maxRooms);
+  input.setAttribute(
+    "aria-label",
+    `${input.getAttribute("aria-label") ?? "Cantidad"}. ${limitText(beddingLabel, maxRooms)}`,
+  );
+
+  if (plusButton) {
+    plusButton.dataset.hotelBeddingMaxRooms = String(maxRooms);
+    plusButton.dataset.hotelBeddingInputTestId = inputTestId;
+
+    if (plusButton.dataset.hotelBeddingLimitBound !== "true") {
+      plusButton.dataset.hotelBeddingLimitBound = "true";
+      plusButton.addEventListener(
+        "click",
+        (event) => {
+          const limit = Number(plusButton.dataset.hotelBeddingMaxRooms);
+          const relatedInputTestId = plusButton.dataset.hotelBeddingInputTestId;
+          const relatedInput = relatedInputTestId
+            ? documentRef.querySelector<HTMLInputElement>(
+                `[data-testid="${relatedInputTestId}"]`,
+              )
+            : null;
+          const value = Number(relatedInput?.value);
+
+          if (
+            Number.isFinite(limit) &&
+            Number.isFinite(value) &&
+            value >= limit
+          ) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+          }
+        },
+        true,
+      );
+    }
+
+    const addedAriaDisabled =
+      plusButton.dataset.hotelBeddingAddedAriaDisabled === "true";
+
+    if (reachedBeddingLimit) {
+      if (!plusButton.hasAttribute("aria-disabled")) {
+        plusButton.dataset.hotelBeddingAddedAriaDisabled = "true";
+      }
+      plusButton.setAttribute("aria-disabled", "true");
+      plusButton.dataset.hotelBeddingLimitReached = "true";
+    } else {
+      plusButton.dataset.hotelBeddingLimitReached = "false";
+      if (addedAriaDisabled) {
+        plusButton.removeAttribute("aria-disabled");
+        delete plusButton.dataset.hotelBeddingAddedAriaDisabled;
+      }
+    }
+  }
+
+  const popover = input.closest("[data-testid='guestselector-popover']");
+  const quantityLabel = popover?.querySelector(
+    ".cb-guestselector-quantity-text",
+  );
+  const quantityRow = quantityLabel?.parentElement;
+  let note = popover?.querySelector<HTMLElement>(
+    "[data-hotel-bedding-limit-note='true']",
+  );
+
+  if (!note && quantityRow) {
+    note = documentRef.createElement("p");
+    note.className = "hotel-bedding-limit-note";
+    note.dataset.hotelBeddingLimitNote = "true";
+    quantityRow.insertAdjacentElement("afterend", note);
+  }
+
+  if (note) {
+    const nextText = limitText(beddingLabel, maxRooms);
+
+    if (note.textContent !== nextText) {
+      note.textContent = nextText;
+    }
+  }
+}
+
+function syncCloudbedsBeddingQuantityLimit(documentRef: Document) {
+  const activeRatePlanTestId =
+    documentRef.documentElement.dataset.hotelActiveRatePlanTestId;
+  const activeMaxRooms = Number(
+    documentRef.documentElement.dataset.hotelActiveBeddingMaxRooms,
+  );
+  const activeBeddingLabel =
+    documentRef.documentElement.dataset.hotelActiveBeddingLabel ?? "esta opción";
+
+  if (activeRatePlanTestId) {
+    const popoverInput = documentRef.querySelector<HTMLInputElement>(
+      `[data-testid="${activeRatePlanTestId}-quantity-input"]`,
+    );
+
+    if (popoverInput) {
+      applyQuantityInputLimit(
+        documentRef,
+        popoverInput,
+        activeMaxRooms,
+        activeBeddingLabel,
+      );
+    }
+  }
+
+  documentRef
+    .querySelectorAll<HTMLElement>("[data-hotel-bedding-selector]")
+    .forEach((wrapper) => {
+      const cardId = wrapper.dataset.hotelBeddingSelector;
+      const maxRooms = Number(wrapper.dataset.hotelBeddingMaxRooms);
+      const beddingLabel = wrapper.dataset.hotelBeddingLabel ?? "esta opción";
+
+      if (!cardId) {
+        return;
+      }
+
+      documentRef
+        .querySelectorAll<HTMLInputElement>(
+          `[data-testid^="rate-plan-quantity-stepper-${cardId}-"][data-testid$="-quantity-input"]`,
+        )
+        .forEach((input) =>
+          applyQuantityInputLimit(
+            documentRef,
+            input,
+            maxRooms,
+            beddingLabel,
+          ),
+        );
+    });
 }
 
 function findInsertionPoint(card: Element) {
@@ -362,10 +683,31 @@ export function syncCloudbedsBeddingSelections(
   documentRef
     .querySelectorAll<HTMLElement>("[data-hotel-bedding-selector]")
     .forEach((wrapper) => {
+      const card = wrapper.closest("[data-testid^='accommodation-card-']");
+      const config = card ? getBeddingConfig(card) : undefined;
+
+      if (config) {
+        syncWrapperAvailability(wrapper, config);
+      }
+
       const selectedKey = wrapper.dataset.hotelSelectedBedding;
 
       if (selectedKey) {
         updateSelectedOption(wrapper, selectedKey);
       }
+
+      bindRatePlanQuantityButtons(documentRef, wrapper);
     });
+
+  syncCloudbedsBeddingQuantityLimit(documentRef);
+}
+
+/** Applies server-digested counters without ever exposing physical room IDs. */
+export function setCloudbedsBeddingAvailability(
+  availability: CloudbedsBeddingAvailability | null,
+  documentRef: Document = document,
+) {
+  liveAvailability = availability;
+  injectCloudbedsBeddingSelectors(documentRef);
+  syncCloudbedsBeddingSelections(documentRef);
 }

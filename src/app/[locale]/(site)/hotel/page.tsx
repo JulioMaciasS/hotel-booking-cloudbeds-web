@@ -41,7 +41,8 @@ const faqKeys = [
   "breakfast",
   "vat",
   "cancellation",
-  "excursions",
+  // Hidden until the excursions offering launches:
+  // "excursions",
   "parking",
   "directBooking",
 ];

@@ -231,9 +231,38 @@ accommodation cards. The current hard-coded mappings cover:
 - Matching prefers the most specific room-title match
 
 The selected value is stored in the DOM and in `sessionStorage` with
-`data-hotel-*` attributes. This is ready for a future hotel API to read and
-persist into Cloudbeds custom fields, but v1 does not submit or confirm bedding
-through Cloudbeds automatically.
+`data-hotel-*` attributes. It is not yet persisted into a reservation custom
+field and `postRoomAssign` is not yet run after booking.
+
+On `/reservas?checkin=YYYY-MM-DD&checkout=YYYY-MM-DD`, the browser calls
+`GET /api/bedding-availability`. That server-only route calls Cloudbeds v1.3
+`getRooms` using `CLOUDBEDS_PROPERTY_ID` and `CLOUDBEDS_API_KEY`, converts the
+returned physical `roomID` values through the fixed capability map in
+`cloudbeds-bedding-inventory.ts`, and sends only per-room-type option counters
+to the browser. Physical room IDs and the API key never reach the client.
+
+Flexible rooms count toward both compatible options. Since a guest can select
+only one bedding option at a time for a Cloudbeds room type, this makes all
+compatible dated availability usable without assigning a specific room during
+shopping. An option with zero compatible rooms is disabled. The quantity input
+is read-only and the `+` control stops at the dated compatible count.
+
+The following physical capacities remain as a fallback when the live API is
+not configured or temporarily unavailable:
+
+- Doble Estandar: 2 matrimonial or 4 twin
+- Doble Superior: 5 matrimonial or 3 twin
+- Triple Superior: 1 of either layout
+- Split standard triples: 2 rooms in their fixed layout
+
+Cloudbeds documents dated `getRooms` as returning **unassigned rooms**, not a
+transactional hold or a guarantee of sellable inventory. The counter is a live
+snapshot and may change before checkout. Unknown room IDs fail closed (they are
+not counted) and `mappingComplete: false` is logged so the server-side map can
+be updated. The map must be checked after rooms are added, deleted, reordered,
+or moved between room types. The four Doble Estandar roomID suffixes must be
+confirmed once against an undated `getRooms` response because the supplied
+dated payload contained no rooms of that type.
 
 ## Currency Conversion Limitations
 

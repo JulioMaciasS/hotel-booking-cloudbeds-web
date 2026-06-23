@@ -104,7 +104,12 @@ function ConversionEvents() {
       if (!el) return;
       const href = el.getAttribute("href") ?? "";
 
-      if (href.includes("#reservar") || href.includes("/reservas")) {
+      if (
+        href.includes("book=1") ||
+        href.includes("#reservar") ||
+        href.includes("/reservas") ||
+        el.dataset.track === "room_cta"
+      ) {
         track("book_click", { location: el.dataset.track ?? "link" });
       } else if (href.startsWith("tel:")) {
         track("contact_click", { method: "phone" });

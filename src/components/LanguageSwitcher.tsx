@@ -2,14 +2,21 @@
 
 import { useTransition } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { ChevronDown, Globe } from "lucide-react";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 
 /**
- * Segmented ES | EN switch. Swaps the locale while staying on the current page
- * (and preserving any query params, so the booking engine keeps its dates).
+ * Locale dropdown — a native <select> (the OS picker is the friendliest control
+ * on touch) that swaps the locale while preserving the current page and any
+ * query params, so the booking engine keeps its dates.
+ *
+ * Sizing is breakpoint-driven because the two nav placements never show at once:
+ * full-width and tappable in the mobile menu (`lg:hidden`), compact in the
+ * desktop nav bar (`hidden lg:block`). So the base styles dress the mobile one
+ * and the `lg:` styles dress the desktop one.
  */
-export function LanguageSwitcher({ scrolled = true }: { scrolled?: boolean }) {
+export function LanguageSwitcher() {
   const t = useTranslations("common.languageSwitcher");
   const activeLocale = useLocale();
   const router = useRouter();
@@ -30,39 +37,30 @@ export function LanguageSwitcher({ scrolled = true }: { scrolled?: boolean }) {
   };
 
   return (
-    <div
-      aria-label={t("label")}
-      className={`flex items-center rounded-lg border p-0.5 text-xs font-semibold ${
-        scrolled
-          ? "border-black/10 bg-white/60"
-          : "border-white/30 bg-white/10 backdrop-blur"
-      }`}
-      role="group"
-    >
-      {routing.locales.map((locale) => {
-        const active = locale === activeLocale;
-        return (
-          <button
-            key={locale}
-            aria-current={active ? "true" : undefined}
-            className={`rounded-md px-2 py-1 transition-colors ${
-              active
-                ? scrolled
-                  ? "bg-[#1f2b27] text-white"
-                  : "bg-white text-[#1f2b27]"
-                : scrolled
-                  ? "text-[#52615d] hover:text-[#1f2b27]"
-                  : "text-white/85 hover:text-white"
-            }`}
-            disabled={isPending}
-            lang={locale}
-            onClick={() => switchTo(locale)}
-            type="button"
-          >
+    <div className="relative w-full lg:w-auto">
+      <Globe
+        aria-hidden
+        className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[#52615d]"
+        size={18}
+      />
+      <select
+        aria-label={t("label")}
+        className="w-full cursor-pointer appearance-none rounded-xl border border-black/10 bg-white px-10 py-3 text-center text-base font-semibold text-[#1f2b27] transition-colors hover:border-black/20 focus:outline-none focus:ring-2 focus:ring-[#6dbfaa] disabled:opacity-60 lg:w-auto lg:rounded-lg lg:py-2 lg:text-sm"
+        disabled={isPending}
+        onChange={(event) => switchTo(event.target.value as Locale)}
+        value={activeLocale}
+      >
+        {routing.locales.map((locale) => (
+          <option key={locale} lang={locale} value={locale}>
             {t(`short.${locale}`)}
-          </button>
-        );
-      })}
+          </option>
+        ))}
+      </select>
+      <ChevronDown
+        aria-hidden
+        className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#52615d]"
+        size={18}
+      />
     </div>
   );
 }

@@ -44,7 +44,7 @@ export default async function ReservasPage({
   // the picker.
   const search = await searchParams;
   if (Object.keys(search).length === 0) {
-    redirect({ href: "/#reservar", locale });
+    redirect({ href: "/?book=1", locale });
   }
 
   return (

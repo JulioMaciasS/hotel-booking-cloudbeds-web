@@ -260,6 +260,16 @@ export function injectCloudbedsDomAdjustmentStyles(
       color: #1f2b27 !important;
     }
 
+    .hotel-bedding-option:disabled {
+      cursor: not-allowed !important;
+      opacity: 0.42 !important;
+    }
+
+    .hotel-bedding-option:disabled:hover {
+      background: transparent !important;
+      border-color: transparent !important;
+    }
+
     .hotel-bedding-name {
       color: inherit !important;
       display: block !important;
@@ -279,6 +289,25 @@ export function injectCloudbedsDomAdjustmentStyles(
 
     .hotel-bedding-option.is-selected .hotel-bedding-status {
       color: #38645b !important;
+    }
+
+    .hotel-bedding-limit-note {
+      color: #38645b !important;
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      line-height: 1.35 !important;
+      margin: 0 8px 8px !important;
+      text-align: right !important;
+    }
+
+    input[data-hotel-bedding-quantity-limit] {
+      caret-color: transparent !important;
+      cursor: default !important;
+    }
+
+    button[data-hotel-bedding-limit-reached="true"] {
+      cursor: not-allowed !important;
+      opacity: 0.5 !important;
     }
 
     @media (max-width: 400px) {

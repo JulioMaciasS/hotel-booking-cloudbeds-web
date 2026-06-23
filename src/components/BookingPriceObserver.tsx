@@ -14,8 +14,10 @@ import {
 } from "@/lib/currency";
 import {
   injectCloudbedsBeddingSelectors,
+  setCloudbedsBeddingAvailability,
   syncCloudbedsBeddingSelections,
 } from "@/lib/cloudbeds-bedding-selector";
+import { fetchCloudbedsBeddingAvailability } from "@/lib/cloudbeds-bedding-availability-client";
 import {
   hideCloudbedsCurrencyControls,
   injectCloudbedsDomAdjustmentStyles,
@@ -133,6 +135,30 @@ export function BookingPriceObserver() {
     let observer: MutationObserver | null = null;
 
     injectCloudbedsDomAdjustmentStyles(document);
+
+    // Availability is independent of the FX rate. Start it immediately so the
+    // dated Cloudbeds counters normally arrive before a guest opens a quantity
+    // stepper. Failure keeps the conservative static capacities as fallback.
+    fetchCloudbedsBeddingAvailability(abortController.signal)
+      .then((availability) => {
+        if (availability && !abortController.signal.aborted) {
+          setCloudbedsBeddingAvailability(availability, document);
+
+          if (!availability.mappingComplete) {
+            console.warn(
+              "Cloudbeds returned rooms missing from the bedding capability map.",
+            );
+          }
+        }
+      })
+      .catch((error: unknown) => {
+        if ((error as Error | undefined)?.name !== "AbortError") {
+          console.warn(
+            "Live bedding availability unavailable; using static limits.",
+            error,
+          );
+        }
+      });
 
     async function startObserver() {
       // A missing rate must degrade to "prices stay in ARS", never disable the

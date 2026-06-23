@@ -126,7 +126,7 @@ export function ReviewsSlider({ reviews }: { reviews: ReviewMeta[] }) {
             <blockquote
               key={review.author}
               aria-hidden={!isActive}
-              className="flex w-full shrink-0 snap-start flex-col rounded-lg bg-[#f7f3ea] p-6 opacity-100 ring-1 ring-black/5 sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]"
+              className="flex w-full shrink-0 snap-start flex-col rounded-lg bg-white p-6 opacity-100 ring-1 ring-black/5 sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]"
             >
               <div
                 className="flex gap-0.5 text-amber-400"

@@ -7,14 +7,19 @@ export const NAV_LINKS: NavItem[] = [
   { href: "/", key: "home" },
   { href: "/habitaciones", key: "rooms" },
   { href: "/hotel", key: "hotel" },
-  { href: "/experiencias", key: "experiences" },
+  // Hidden until the Experiencias / excursions offering launches:
+  // { href: "/experiencias", key: "experiences" },
   { href: "/ubicacion", key: "location" },
   { href: "/contacto", key: "contact" },
 ];
 
 /**
- * Where every generic "Reservar" action points: the home date-picker.
- * The picker collects dates/guests and forwards them to /reservas as query
- * params — /reservas is not meant to be opened directly without them.
+ * Where every generic "Reservar" action points: the home date-picker, scrolled
+ * to the centre of the viewport. Uses a `?book` intent rather than the
+ * `#reservar` hash on purpose — a cross-page hash navigation fires a native
+ * top-aligned jump that fights (and, with a cached picker, beats) the centring.
+ * Same-page clicks are centred immediately by ScrollCenterHandler; arrivals from
+ * another page are centred by BookingIntentHandler once the picker loads. The
+ * picker collects dates/guests and forwards them to /reservas.
  */
-export const BOOKING_HREF = "/#reservar";
+export const BOOKING_HREF = "/?book=1";

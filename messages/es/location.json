@@ -13,6 +13,24 @@
     "cta": {
       "book": "Reservar ahora",
       "contact": "Contactar al hotel"
+    },
+    "gallery": {
+      "eyebrow": "Galería",
+      "title": "Un vistazo al hotel",
+      "subtitle": "Del jardín a la puerta de entrada: los rincones que hacen de nuestro pequeño hotel familiar un lugar como en casa.",
+      "open": "Abrir imagen",
+      "close": "Cerrar galería",
+      "previous": "Imagen anterior",
+      "next": "Imagen siguiente",
+      "counter": "{current} de {total}",
+      "alts": [
+        "Fachada principal de Los Lagos Hotel",
+        "El jardín del hotel",
+        "Vista lateral del hotel",
+        "Un rincón tranquilo del jardín",
+        "Cartel de Los Lagos Hotel en la entrada",
+        "El jardín con la luz de la tarde"
+      ]
     }
   },
   "distances": [
@@ -77,6 +95,10 @@
       "laZorra": {
         "label": "La Zorra Taproom",
         "note": "Cerveza artesanal patagónica · Av. Libertador 832"
+      },
+      "yetiIceBar": {
+        "label": "Yeti Ice Bar",
+        "note": "Bar de hielo · Av. Libertador 1359"
       },
       "vivaLaPepa": {
         "label": "Viva la Pepa",

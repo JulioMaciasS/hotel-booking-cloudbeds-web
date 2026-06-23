@@ -3,6 +3,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { ArrowRight, ExternalLink, MapPin, Mountain } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
+import { LocationGallery } from "@/components/LocationGallery";
 import { HotelMapWrapper } from "@/components/HotelMapWrapper";
 import { HOTEL, distances } from "@/lib/site-data";
 import { BOOKING_HREF } from "@/lib/nav";
@@ -40,7 +41,7 @@ export default async function UbicacionPage({
         imagePosition="center 55%"
       />
 
-      <section className="py-20">
+      <section className="pt-16 sm:pt-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-8 lg:grid-cols-[1fr_360px]">
             {/* Map */}
@@ -104,8 +105,16 @@ export default async function UbicacionPage({
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-12 flex flex-wrap gap-3">
+      {/* Gallery — a look around the property */}
+      <LocationGallery />
+
+      {/* Book / Contact */}
+      <section className="pb-16 sm:pb-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="flex flex-wrap gap-3">
             <Link
               className="inline-flex items-center gap-2 rounded-lg bg-[#38645b] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#2e5049]"
               href={BOOKING_HREF}

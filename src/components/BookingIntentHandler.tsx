@@ -5,14 +5,16 @@ import { useSearchParams } from "next/navigation";
 import { track } from "@/lib/analytics";
 
 /**
- * Picks up a `?room=<key>` hint left by a room CTA and lands the visitor on the
- * date picker instead of an arbitrary scroll position: it scrolls the picker to
- * the centre, briefly highlights it, and records the room interest as a
- * `book_intent` analytics event.
+ * Lands the visitor on the date picker — centred and briefly highlighted —
+ * instead of an arbitrary scroll position, whenever they arrive at the home page
+ * with booking intent:
+ *  - a `?room=<key>` hint left by a room CTA (also recorded as a `book_intent`
+ *    event so the room they cared about is captured for funnel analysis), or
+ *  - a `?book` intent left by any generic booking button (the nav "Book",
+ *    footer, mobile bar, or an inner-page CTA) navigating in from another page.
  *
  * Note: the picker is a Cloudbeds web component, so the room *type* cannot be
- * pre-selected from our side — but the visitor no longer has to hunt for the
- * picker, and the room they cared about is captured for funnel analysis.
+ * pre-selected from our side — but the visitor no longer has to hunt for it.
  *
  * Mounted on the home page (where the picker lives) and wrapped in <Suspense>
  * by the caller because it reads search params.
@@ -22,14 +24,12 @@ export function BookingIntentHandler() {
 
   useEffect(() => {
     const room = searchParams.get("room");
-    if (!room) return;
+    // A generic booking button navigating in from another page lands here with
+    // ?book (same-page clicks are centred directly by ScrollCenterHandler).
+    const book = searchParams.has("book");
+    if (!room && !book) return;
 
-    track("book_intent", { room, source: "room_cta" });
-
-    // Drop the hint from the URL so a refresh or share isn't sticky.
-    const url = new URL(window.location.href);
-    url.searchParams.delete("room");
-    window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+    if (room) track("book_intent", { room, source: "room_cta" });
 
     const target = document.getElementById("reservar");
     if (!target) return;
@@ -48,6 +48,14 @@ export function BookingIntentHandler() {
       done = true;
       observer.disconnect();
       window.clearTimeout(fallback);
+      // Drop the intent params from the URL now (after committing to centre) so
+      // a refresh or share isn't sticky — but late enough that the observer can
+      // still re-arm under React's dev double-invoke (which, by clearing them
+      // up front, would otherwise skip the second run before the picker loads).
+      const url = new URL(window.location.href);
+      url.searchParams.delete("room");
+      url.searchParams.delete("book");
+      window.history.replaceState({}, "", url.pathname + url.search);
       target.scrollIntoView({ behavior: "smooth", block: "center" });
       target.classList.add("booking-intent-highlight");
       window.setTimeout(

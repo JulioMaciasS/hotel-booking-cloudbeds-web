@@ -37,14 +37,26 @@ export function SiteHeader() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
+  // Lock the page behind the full-screen mobile menu so only the menu scrolls.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [mobileOpen]);
+
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b border-black/[0.06] transition-all duration-300 ${
-        // White by default; keeps a translucent whitish blur once scrolled.
-        scrolled ? "bg-white/72 backdrop-blur-xl" : "bg-white"
+        // Solid white while the full-screen menu is open (its backdrop-blur
+        // would otherwise become the containing block for the fixed overlay);
+        // white by default; translucent whitish blur once scrolled.
+        mobileOpen ? "bg-white" : scrolled ? "bg-white/72 backdrop-blur-xl" : "bg-white"
       }`}
     >
       <div className="mx-auto flex h-[85px] w-full max-w-7xl items-center justify-between px-5 sm:px-8">
@@ -83,7 +95,7 @@ export function SiteHeader() {
         {/* CTA + hamburger */}
         <div className="flex items-center gap-2">
           <div className="hidden lg:block">
-            <LanguageSwitcher scrolled />
+            <LanguageSwitcher />
           </div>
           <Link
             className="rounded-lg bg-[#1f2b27] px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#31413d]"
@@ -103,33 +115,40 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile menu — full-height overlay below the header bar. Fades via
+          opacity/visibility so it's fully inert (no pointer/scroll capture)
+          when closed. The body scroll-lock keeps the page fixed behind it. */}
       <div
-        className={`overflow-hidden border-t border-black/[0.06] transition-all duration-300 ease-in-out lg:hidden ${
-          mobileOpen ? "max-h-120 opacity-100" : "max-h-0 opacity-0"
-        } ${scrolled ? "bg-white/72 backdrop-blur-xl" : "bg-white"}`}
+        className={`fixed inset-x-0 bottom-0 top-[85px] z-40 bg-white transition-all duration-300 ease-in-out lg:hidden ${
+          mobileOpen ? "visible opacity-100" : "invisible opacity-0"
+        }`}
       >
-        <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-3 sm:px-8">
-          {NAV_LINKS.map(({ href, key }) => {
-            const active = isActive(href);
-            return (
-              <Link
-                key={href}
-                aria-current={active ? "page" : undefined}
-                className={`rounded-lg px-3 py-3 text-sm font-medium transition-colors ${
-                  active
-                    ? "bg-[#edf3ef] text-[#1f2b27]"
-                    : "text-[#1f2b27] hover:bg-[#edf3ef]"
-                }`}
-                href={href}
-                onClick={() => setMobileOpen(false)}
-              >
-                {t(`nav.${key}`)}
-              </Link>
-            );
-          })}
-          <div className="px-3 py-3">
-            <LanguageSwitcher scrolled />
+        <nav className="flex h-full flex-col overflow-y-auto">
+          {/* Top-aligned just under the header bar; mx-auto centres the stack
+              horizontally and overflow-y-auto scrolls it on short (landscape)
+              viewports without clipping the top. */}
+          <div className="mx-auto flex w-full max-w-xs flex-col items-center gap-2 px-6 pt-6 pb-8">
+            {NAV_LINKS.map(({ href, key }) => {
+              const active = isActive(href);
+              return (
+                <Link
+                  key={href}
+                  aria-current={active ? "page" : undefined}
+                  className={`w-full rounded-xl px-6 py-4 text-center text-lg font-medium transition-colors ${
+                    active
+                      ? "bg-[#edf3ef] text-[#1f2b27]"
+                      : "text-[#1f2b27] hover:bg-[#edf3ef]"
+                  }`}
+                  href={href}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {t(`nav.${key}`)}
+                </Link>
+              );
+            })}
+            <div className="mt-4 w-full">
+              <LanguageSwitcher />
+            </div>
           </div>
         </nav>
       </div>

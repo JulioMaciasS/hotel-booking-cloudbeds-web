@@ -102,7 +102,7 @@ export function RoomsSection() {
     url.searchParams.delete("room");
     window.history.replaceState({}, "", url.pathname + url.search + url.hash);
 
-    sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   }, []);
 
   const goNextRoom = useCallback(() => {
@@ -337,10 +337,12 @@ export function RoomsSection() {
                 </div>
 
                 {/* CTA — carries the room as a hint so the home picker can land
-                    the visitor straight on it (see BookingIntentHandler). */}
+                    the visitor straight on it, centred (see BookingIntentHandler).
+                    No `#reservar` hash: it would trigger a native top-aligned jump
+                    that overrides the handler's centring when the picker is cached. */}
                 <Link
                   className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-[#38645b] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#2e5049]"
-                  href={`/?room=${r.key}#reservar`}
+                  href={`/?room=${r.key}`}
                   data-track="room_cta"
                   tabIndex={active ? undefined : -1}
                 >

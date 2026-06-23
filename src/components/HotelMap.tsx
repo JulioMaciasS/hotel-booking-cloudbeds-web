@@ -6,6 +6,7 @@ import L from "leaflet";
 import { MapContainer, Marker, Popup, TileLayer, Tooltip, useMap } from "react-leaflet";
 import { useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
+import hotelLogo from "@assets/old-web-images/logo-sin-fondo-270.png";
 
 // Hotel — verified pin from the owner's share link (@-50.3357896,-72.2666423)
 const HOTEL: [number, number] = [-50.33579, -72.26664];
@@ -92,6 +93,12 @@ const POIS: Poi[] = [
     coords: [-50.3381959, -72.2594997],
     category: "bar",
     url: "https://maps.app.goo.gl/5ib2PKVrHRJ2bC8T7",
+  },
+  {
+    tKey: "yetiIceBar",
+    coords: [-50.3385919, -72.2693884],
+    category: "bar",
+    url: "https://maps.app.goo.gl/3DLCS4EZhmsdjRy29",
   },
 
   // ── Cafés ─────────────────────────────────────────────────────────────────
@@ -260,14 +267,16 @@ function makePinSvg(category: PoiCategory): string {
   ].join("");
 }
 
-function hotelPinSvg(): string {
+// The hotel's own logo on a white badge with a brand-coloured pointer, so the
+// primary marker is unmistakable among the generic category pins.
+function hotelMarkerHtml(): string {
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="54" viewBox="0 0 40 54" style="filter:drop-shadow(0 3px 6px rgba(0,0,0,.4))">`,
-    `<path d="M20 0C9 0 0 9 0 20c0 13.5 20 34 20 34S40 33.5 40 20C40 9 31 0 20 0z" fill="#38645b"/>`,
-    `<circle cx="20" cy="20" r="14" fill="white"/>`,
-    `<svg x="6" y="6" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#38645b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">`,
-    `<path d="M3 22V8l9-6 9 6v14M3 22h18M9 22v-6h6v6M9 10h1M14 10h1M9 14h1M14 14h1"/>`,
-    `</svg></svg>`,
+    `<div style="position:relative;width:60px;height:60px;">`,
+    `<div style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;box-sizing:border-box;background:#fff;border:2px solid #38645b;border-radius:50%;overflow:hidden;filter:drop-shadow(0 3px 6px rgba(0,0,0,.4));">`,
+    `<img src="${hotelLogo.src}" alt="" style="width:48px;height:48px;object-fit:contain;display:block;" />`,
+    `</div>`,
+    `<div style="position:absolute;left:50%;bottom:-7px;transform:translateX(-50%);width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:8px solid #38645b;"></div>`,
+    `</div>`,
   ].join("");
 }
 
@@ -302,7 +311,7 @@ function SetView() {
 
 export function HotelMap() {
   const t = useTranslations("location.map");
-  const hotelIcon = useMemo(() => makeDivIcon(hotelPinSvg(), 40, 54), []);
+  const hotelIcon = useMemo(() => makeDivIcon(hotelMarkerHtml(), 60, 67), []);
   const poiIcons = useMemo(
     () =>
       Object.fromEntries(
@@ -329,13 +338,8 @@ export function HotelMap() {
       />
       <SetView />
 
-      {/* Hotel — primary marker */}
+      {/* Hotel — primary marker (the logo badge carries the name on its own) */}
       <Marker icon={hotelIcon} position={HOTEL}>
-        <Tooltip permanent direction="right" offset={[18, -38]}>
-          <span style={{ fontWeight: 700, fontSize: "12px", color: "#1f2b27" }}>
-            Los Lagos Hotel
-          </span>
-        </Tooltip>
         <Popup>
           <p style={{ fontWeight: 700, fontSize: "13px", color: "#1f2b27", marginBottom: "2px" }}>
             Los Lagos Hotel
