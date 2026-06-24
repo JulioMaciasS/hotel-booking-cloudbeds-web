@@ -6,6 +6,7 @@ type CloudbedsImmersiveElementProps = DetailedHTMLProps<
     "hide-custom-footer"?: "yes" | "no";
     "hide-custom-header"?: "yes" | "no";
     "hide-property-info"?: "yes" | "no";
+    island?: string;
     lang?: string;
     mode?: "standard" | "popup";
     "property-code"?: string;
@@ -19,6 +20,7 @@ type CloudbedsPropertyDatePickerElementProps = DetailedHTMLProps<
     "class-name"?: string;
     currency?: string;
     "custom-url"?: string;
+    island?: string;
     lang?: string;
     layout?: "horizontal" | "vertical";
     "open-in-new-tab"?: "true" | "false";

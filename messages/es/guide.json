@@ -1,0 +1,51 @@
+{
+  "page": {
+    "hero": {
+      "eyebrow": "Descubrí El Calafate",
+      "title": "Qué ver y hacer en El Calafate.",
+      "subtitle": "Glaciares, lagos y la inmensidad de la estepa patagónica, todo cerca del hotel. Estos son los lugares que más nos gusta recomendarles a nuestros huéspedes."
+    },
+    "intro": "El Calafate es la puerta de entrada al Parque Nacional Los Glaciares y uno de los rincones más impactantes de la Patagonia. Tengas una sola tarde o una semana entera, hay de sobra para llenar tus días. Estos son los imperdibles que más recomienda nuestra familia.",
+    "distanceLabel": "Distancia",
+    "items": [
+      {
+        "name": "Glaciar Perito Moreno",
+        "distance": "~80 km · 1.5 h",
+        "description": "El ícono de la región: un glaciar enorme y en constante avance, dentro del Parque Nacional Los Glaciares. Las pasarelas te dejan frente a frente con paredes de hielo gigantes y, con suerte, vas a escucharlo crujir y desprenderse sobre el lago."
+      },
+      {
+        "name": "Navegaciones por el Lago Argentino",
+        "distance": "Desde Puerto Bandera",
+        "description": "Zarpá desde Puerto Bandera y navegá entre témpanos flotantes hasta los glaciares Upsala y Spegazzini. Ver estos gigantes desde el agua, con el viento y el azul profundo del hielo alrededor, es algo que no se olvida."
+      },
+      {
+        "name": "Glaciarium",
+        "distance": "~6 km",
+        "description": "Un moderno museo de glaciología, muy bien armado, que explica cómo se formaron los campos de hielo patagónicos y por qué son tan importantes. Adentro tiene el famoso bar de hielo, ideal para una parada divertida antes o después del glaciar."
+      },
+      {
+        "name": "Reserva Laguna Nimez",
+        "distance": "~15 min a pie",
+        "description": "Una tranquila reserva natural a orillas del lago, en el borde mismo del pueblo y a pocos minutos caminando desde el hotel. Llevá la cámara para los flamencos, los patos y decenas de aves con el Lago Argentino de fondo."
+      },
+      {
+        "name": "El Chaltén y el Fitz Roy",
+        "distance": "~210 km · 3 h",
+        "description": "La capital nacional del trekking, coronada por las dramáticas agujas del cerro Fitz Roy. Es una excursión de día completo espectacular, aunque quedarse a dormir te da tiempo para disfrutar los senderos con más calma."
+      },
+      {
+        "name": "Estancias y asado patagónico",
+        "distance": "En los alrededores",
+        "description": "Las estancias tradicionales cerca de El Calafate reciben visitantes con cordero al asador, cabalgatas y una verdadera probada de la vida de campo. Una forma cálida y relajada de pasar un día lejos de los glaciares."
+      }
+    ],
+    "planning": {
+      "title": "¿Te damos una mano para organizar tus días?",
+      "text": "En recepción siempre estamos para ayudarte a aprovechar tu estadía al máximo. Podemos charlar qué paseos te convienen según el tiempo que tengas, orientarte sobre los micros y operadores que hacen cada recorrido y compartirte algunos datos locales que fuimos juntando con los años. Consultanos apenas llegues."
+    },
+    "cta": {
+      "book": "Reservá tu estadía",
+      "contact": "Escribinos"
+    }
+  }
+}

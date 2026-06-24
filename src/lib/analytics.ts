@@ -27,6 +27,10 @@ type EventParams = Record<string, string | number | boolean | undefined>;
 type PostHog = {
   init: (key: string, options: Record<string, unknown>) => void;
   capture: (event: string, params?: Record<string, unknown>) => void;
+  /** Consent controls — used to honour withdrawal without a reload. */
+  opt_in_capturing?: () => void;
+  opt_out_capturing?: () => void;
+  stopSessionRecording?: () => void;
   __loaded?: boolean;
 };
 

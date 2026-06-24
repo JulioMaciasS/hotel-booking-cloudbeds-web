@@ -45,6 +45,14 @@
           "q": "Is breakfast included?",
           "a": "Yes. All rates include a homemade continental breakfast: bread, toast, coffee, tea, milk, yoghurt, juices, cereals, jam, cheese and cold cuts."
         },
+        "arrival": {
+          "q": "Can I check in early, arrive late at night, or leave my luggage?",
+          "a": "Reception is open 24 hours, so you can arrive at any time, day or night. Early check-in and late check-out depend on availability — just ask and we'll do our best — and we're glad to store your luggage if you arrive before your room is ready or have a late departure."
+        },
+        "family": {
+          "q": "Are children and families welcome?",
+          "a": "Absolutely — we're a small family-run hotel and families feel right at home here. Our triple rooms are a great fit; tell us who's travelling when you book and we'll help you choose the right room."
+        },
         "vat": {
           "q": "I'm a foreign tourist, do I pay VAT?",
           "a": "No. Non-residents are exempt from VAT (21%) on accommodation when paying with foreign payment methods. When booking you can indicate your status, and at check-in we verify your ID or passport."

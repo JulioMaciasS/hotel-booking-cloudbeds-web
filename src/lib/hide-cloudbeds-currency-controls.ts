@@ -187,12 +187,12 @@ export function injectCloudbedsDomAdjustmentStyles(
     }
 
     .hotel-bedding-title {
-      color: #1f2b27 !important;
-      font-size: 12px !important;
+      color: #0f172a !important;
+      font-size: 14px !important;
       font-weight: 700 !important;
       line-height: 1.35 !important;
       margin: 0 !important;
-      text-transform: uppercase !important;
+      text-transform: none !important;
     }
 
     .hotel-bedding-subtitle {
@@ -204,32 +204,32 @@ export function injectCloudbedsDomAdjustmentStyles(
     }
 
     .hotel-bedding-options {
-      background: #f6f8f7 !important;
-      border: 1px solid #dfe5e2 !important;
-      border-radius: 10px !important;
+      background: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
       display: grid !important;
-      gap: 4px !important;
+      gap: 10px !important;
       grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-      padding: 4px !important;
+      padding: 0 !important;
     }
 
     .hotel-bedding-option {
       align-items: center !important;
       appearance: none !important;
-      background: transparent !important;
-      border: 1px solid transparent !important;
-      border-radius: 8px !important;
+      background: #ffffff !important;
+      border: 1.5px solid #cfd6df !important;
+      border-radius: 14px !important;
       box-shadow: none !important;
-      color: #34423e !important;
+      color: #4b5563 !important;
       cursor: pointer !important;
       display: flex !important;
       flex-direction: column !important;
-      font-size: 13px !important;
+      font-size: 14px !important;
       font-weight: 600 !important;
-      gap: 5px !important;
+      gap: 7px !important;
       justify-content: center !important;
-      min-height: 58px !important;
-      padding: 9px 10px !important;
+      min-height: 74px !important;
+      padding: 12px 10px !important;
       text-align: center !important;
       transition:
         background 0.15s ease,
@@ -238,7 +238,7 @@ export function injectCloudbedsDomAdjustmentStyles(
     }
 
     .hotel-bedding-icon {
-      color: #6b7974 !important;
+      color: #6b7280 !important;
       display: block !important;
       flex: none !important;
       height: 22px !important;
@@ -246,18 +246,18 @@ export function injectCloudbedsDomAdjustmentStyles(
     }
 
     .hotel-bedding-option.is-selected .hotel-bedding-icon {
-      color: #38645b !important;
+      color: #32c0a0 !important;
     }
 
     .hotel-bedding-option:hover {
-      background: #ffffff !important;
-      border-color: #cfd8d4 !important;
+      background: #e9f9f4 !important;
+      border-color: #32c0a0 !important;
     }
 
     .hotel-bedding-option.is-selected {
-      background: #e7f0ed !important;
-      border-color: #38645b !important;
-      color: #1f2b27 !important;
+      background: #e9f9f4 !important;
+      border-color: #32c0a0 !important;
+      color: #157f68 !important;
     }
 
     .hotel-bedding-option:disabled {
@@ -266,15 +266,15 @@ export function injectCloudbedsDomAdjustmentStyles(
     }
 
     .hotel-bedding-option:disabled:hover {
-      background: transparent !important;
-      border-color: transparent !important;
+      background: #ffffff !important;
+      border-color: #cfd6df !important;
     }
 
     .hotel-bedding-name {
       color: inherit !important;
       display: block !important;
-      font-size: 13px !important;
-      font-weight: 600 !important;
+      font-size: 14px !important;
+      font-weight: 700 !important;
       line-height: 1.25 !important;
       margin: 0 !important;
     }
@@ -288,11 +288,130 @@ export function injectCloudbedsDomAdjustmentStyles(
     }
 
     .hotel-bedding-option.is-selected .hotel-bedding-status {
-      color: #38645b !important;
+      color: #157f68 !important;
     }
 
+    [data-hotel-bedding-native-quantity-row="true"],
+    [data-hotel-bedding-native-max-note="true"] {
+      display: none !important;
+    }
+
+    .hotel-bedding-counter-panel {
+      display: grid !important;
+      gap: 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
+    }
+
+    .hotel-bedding-counter-list {
+      display: grid !important;
+      gap: 0 !important;
+      width: 100% !important;
+    }
+
+    /* Mirror Cloudbeds' native Adults/Children rows: label left, stepper
+       right, hairline divider between rows. */
+    .hotel-bedding-counter-row {
+      align-items: center !important;
+      background: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      display: flex !important;
+      gap: 12px !important;
+      justify-content: space-between !important;
+      min-height: 0 !important;
+      padding: 8px 0 !important;
+    }
+
+    .hotel-bedding-counter-row + .hotel-bedding-counter-row {
+      border-top: 1px solid #dde0e4 !important;
+    }
+
+    .hotel-bedding-counter-row.is-unavailable {
+      opacity: 0.5 !important;
+    }
+
+    .hotel-bedding-counter-name {
+      color: #1e2330 !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      line-height: 1.3 !important;
+      min-width: 0 !important;
+    }
+
+    /* White pill housing the −/value/+ trio, matching Cloudbeds' own
+       guest steppers. */
+    .hotel-bedding-counter-controls {
+      align-items: center !important;
+      background: #ffffff !important;
+      border: 1px solid #d9dee7 !important;
+      border-radius: 9999px !important;
+      display: inline-flex !important;
+      flex: none !important;
+      gap: 0 !important;
+      overflow: hidden !important;
+      white-space: nowrap !important;
+    }
+
+    /* 35px transparent circular buttons with muted icons — identical to the
+       native guest steppers. */
+    .hotel-bedding-counter-button {
+      align-items: center !important;
+      appearance: none !important;
+      background: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      color: #778295 !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      height: 35px !important;
+      justify-content: center !important;
+      line-height: 1 !important;
+      padding: 0 !important;
+      width: 35px !important;
+    }
+
+    .hotel-bedding-counter-button .hotel-bedding-counter-glyph {
+      height: 14px !important;
+      width: 14px !important;
+    }
+
+    .hotel-bedding-counter-button:hover:not(:disabled) {
+      background: #f1f3f5 !important;
+    }
+
+    .hotel-bedding-counter-button:disabled {
+      cursor: not-allowed !important;
+      opacity: 0.4 !important;
+    }
+
+    .hotel-bedding-counter-count {
+      color: #1e2330 !important;
+      display: inline-block !important;
+      font-size: 16px !important;
+      font-weight: 500 !important;
+      min-width: 24px !important;
+      padding: 0 2px !important;
+      text-align: center !important;
+    }
+
+    /* Muted, right-aligned summary in the same vein as Cloudbeds' "Max: N"
+       captions. */
+    .hotel-bedding-total {
+      border-top: 1px solid #dde0e4 !important;
+      color: #778295 !important;
+      font-size: 13px !important;
+      font-weight: 500 !important;
+      margin: 0 !important;
+      padding: 8px 0 0 !important;
+      text-align: right !important;
+      white-space: nowrap !important;
+    }
+
+
     .hotel-bedding-limit-note {
-      color: #38645b !important;
+      color: #157f68 !important;
       font-size: 12px !important;
       font-weight: 600 !important;
       line-height: 1.35 !important;
@@ -313,6 +432,15 @@ export function injectCloudbedsDomAdjustmentStyles(
     @media (max-width: 400px) {
       .hotel-bedding-options {
         grid-template-columns: 1fr !important;
+      }
+
+      .hotel-bedding-counter-row {
+        grid-template-columns: auto minmax(0, 1fr) !important;
+      }
+
+      .hotel-bedding-counter-controls {
+        grid-column: 1 / -1 !important;
+        justify-content: flex-end !important;
       }
     }
   `;

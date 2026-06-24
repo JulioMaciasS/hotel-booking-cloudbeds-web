@@ -15,6 +15,7 @@ const NAMESPACES = [
   "hotel",
   "experiences",
   "location",
+  "guide",
   "contact",
   "reviews",
   "legal",

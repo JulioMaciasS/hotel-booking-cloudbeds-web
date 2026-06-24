@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   calculateBeddingAvailability,
+  calculateStaticBeddingAvailability,
   type CloudbedsRoom,
 } from "./cloudbeds-bedding-inventory";
 
@@ -66,5 +67,26 @@ describe("calculateBeddingAvailability", () => {
     expect(result.roomTypes[DOUBLE_STANDARD]?.totalAvailable).toBe(0);
     expect(result.mappingComplete).toBe(false);
     expect(result.unmappedRoomCount).toBe(1);
+  });
+
+  it("can produce a static fallback from the fixed physical-room map", () => {
+    const result = calculateStaticBeddingAvailability();
+
+    expect(result.mappingComplete).toBe(true);
+    expect(result.unmappedRoomCount).toBe(0);
+    expect(result.roomTypes[DOUBLE_STANDARD]).toEqual({
+      totalAvailable: 4,
+      options: {
+        matrimonial: 2,
+        dos_camas_separadas: 4,
+      },
+    });
+    expect(result.roomTypes[DOUBLE_SUPERIOR]).toEqual({
+      totalAvailable: 5,
+      options: {
+        matrimonial: 5,
+        dos_camas_separadas: 3,
+      },
+    });
   });
 });

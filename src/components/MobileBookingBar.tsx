@@ -43,7 +43,7 @@ export function MobileBookingBar() {
           <p className="truncate text-xs text-[#66736f]">{t("subtitle")}</p>
         </div>
         <Link
-          className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-[#38645b] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#2e5049] active:scale-[0.99]"
+          className="inline-flex shrink-0 items-center gap-2 rounded-lg btn-book px-5 py-2.5 text-sm font-semibold shadow-sm transition active:scale-[0.99]"
           href={BOOKING_HREF}
         >
           <CalendarDays size={16} aria-hidden="true" />

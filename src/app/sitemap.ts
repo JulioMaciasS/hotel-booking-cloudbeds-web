@@ -16,6 +16,7 @@ const PAGES: { href: string; priority: number }[] = [
   // Hidden until the Experiencias / excursions offering launches:
   // { href: "/experiencias", priority: 0.8 },
   { href: "/ubicacion", priority: 0.7 },
+  { href: "/que-hacer", priority: 0.7 },
   { href: "/contacto", priority: 0.7 },
   { href: "/terminos", priority: 0.3 },
   { href: "/privacidad", priority: 0.3 },

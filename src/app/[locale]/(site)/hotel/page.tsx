@@ -38,7 +38,9 @@ const gallery = [
 
 const faqKeys = [
   "schedule",
+  "arrival",
   "breakfast",
+  "family",
   "vat",
   "cancellation",
   // Hidden until the excursions offering launches:
@@ -74,7 +76,7 @@ export default async function HotelPage({
 
       {/* Story + stats */}
       <section className="py-24">
-        <div className="mx-auto max-w-3xl px-5 sm:px-8">
+        <div className="reveal mx-auto max-w-3xl px-5 sm:px-8">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#38645b]">
             {t("page.story.eyebrow")}
           </p>
@@ -106,7 +108,7 @@ export default async function HotelPage({
       {/* Gallery */}
       <section className="bg-white py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="max-w-2xl">
+          <div className="reveal max-w-2xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#38645b]">
               {t("page.gallery.eyebrow")}
             </p>
@@ -144,7 +146,7 @@ export default async function HotelPage({
       {/* Services */}
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="max-w-2xl">
+          <div className="reveal max-w-2xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#38645b]">
               {t("page.servicesSection.eyebrow")}
             </p>
@@ -157,7 +159,7 @@ export default async function HotelPage({
               <li key={key} className="flex items-start gap-3">
                 <span
                   aria-hidden="true"
-                  className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#edf3ef] text-[#38645b]"
+                  className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#edf3ef] text-[#38645b] shadow-sm ring-1 ring-black/5"
                 >
                   <Icon size={17} strokeWidth={1.8} />
                 </span>
@@ -178,7 +180,7 @@ export default async function HotelPage({
       {/* FAQ */}
       <section className="bg-white py-24">
         <div className="mx-auto max-w-3xl px-5 sm:px-8">
-          <div className="max-w-2xl">
+          <div className="reveal max-w-2xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#38645b]">
               {t("page.faq.eyebrow")}
             </p>
@@ -207,7 +209,7 @@ export default async function HotelPage({
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              className="inline-flex items-center gap-2 rounded-lg bg-[#38645b] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#2e5049]"
+              className="inline-flex items-center gap-2 rounded-lg btn-book px-5 py-3 text-sm font-semibold transition"
               href={BOOKING_HREF}
             >
               {t("page.faq.ctaBook")}

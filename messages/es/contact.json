@@ -22,6 +22,7 @@
     "messageLabel": "Mensaje",
     "messagePlaceholder": "¿En qué podemos ayudarte?",
     "submit": "Enviar mensaje",
+    "privacyNotice": "Al enviar, usamos tus datos únicamente para responder tu consulta, conforme a nuestra <link>Política de Privacidad</link>.",
     "successTitle": "¡Gracias por escribirnos!",
     "successBody": "Se abrió tu cliente de correo con el mensaje listo. Te respondemos a la brevedad.",
     "sendAnother": "Enviar otro mensaje",

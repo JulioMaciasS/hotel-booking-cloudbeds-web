@@ -9,6 +9,18 @@
       "heading": "Address",
       "openInMaps": "Open in Google Maps"
     },
+    "gettingHere": {
+      "heading": "Getting here",
+      "airport": {
+        "title": "From the airport",
+        "text": "El Calafate International Airport (FTE) is about 16 km away — roughly a 25-minute drive. Taxis and transfer services wait at arrivals."
+      },
+      "bus": {
+        "title": "By bus",
+        "text": "The bus terminal is a short walk from the hotel, with long-distance services from El Chaltén, Río Gallegos and Puerto Natales (Chile)."
+      },
+      "note": "Tell us your arrival details and our reception will gladly help you arrange a private transfer."
+    },
     "distancesHeading": "Distances",
     "cta": {
       "book": "Book now",

@@ -5,7 +5,7 @@
   },
   "eyebrow": "Legal",
   "lastUpdatedLabel": "Última actualización: {date}",
-  "lastUpdated": "18 de mayo de 2026",
+  "lastUpdated": "24 de junio de 2026",
   "terms": {
     "title": "Términos y Condiciones",
     "toPrivacy": "Política de Privacidad →",
@@ -106,7 +106,7 @@
           "<strong>Formulario de contacto:</strong> nombre y apellido, dirección de correo electrónico, número de teléfono (opcional) y el contenido del mensaje.",
           "<strong>Reservas en línea:</strong> nombre y apellido, correo electrónico, teléfono, número de documento o pasaporte, nacionalidad, datos de tarjeta de crédito/débito (procesados directamente por el procesador de pagos), fechas de estadía y preferencias de habitación.",
           "<strong>Check-in presencial:</strong> número de documento o pasaporte, según lo exigido por la normativa policial provincial de registro de huéspedes.",
-          "<strong>Navegación web:</strong> dirección IP, tipo de navegador, páginas visitadas y tiempo de permanencia, a través de cookies técnicas (ver sección 7)."
+          "<strong>Navegación web:</strong> dirección IP, tipo de navegador, páginas visitadas y tiempo de permanencia, a través de cookies técnicas y —únicamente con tu consentimiento— cookies de análisis (ver sección 7)."
         ]
       },
       {
@@ -137,6 +137,7 @@
         "items": [
           "<strong>Cloudbeds, Inc.</strong> (Estados Unidos): plataforma de gestión hotelera y motor de reservas. Cloudbeds procesa datos en los Estados Unidos, país que no cuenta con declaración de nivel adecuado de protección por parte de la AAIP. El hotel ha celebrado con Cloudbeds un acuerdo de procesamiento de datos que incluye las garantías adecuadas previstas por el Art. 12 de la Ley 25.326.",
           "<strong>Procesadores de pago:</strong> los datos de tarjeta son procesados directamente por el proveedor de pagos integrado en el motor de reservas bajo estándares PCI-DSS. El hotel no almacena números de tarjeta.",
+          "<strong>Proveedores de analítica web:</strong> Google Analytics (Google LLC) y PostHog (PostHog, Inc.), con sede en los Estados Unidos. Sólo se activan si el usuario presta su consentimiento a las cookies de análisis (ver sección 7) y tratan datos de navegación seudonimizados con el fin de elaborar estadísticas de uso. Las transferencias a los Estados Unidos se amparan en cláusulas contractuales con garantías adecuadas conforme al Art. 12 de la Ley 25.326.",
           "<strong>Autoridades competentes:</strong> Policía Provincial, AFIP u otras autoridades cuando exista obligación legal de informar."
         ],
         "outro": "No vendemos ni cedemos sus datos personales a terceros con fines comerciales propios."
@@ -150,8 +151,13 @@
         ]
       },
       {
-        "heading": "7. Cookies",
-        "body": "Este sitio web puede utilizar cookies técnicas estrictamente necesarias para el funcionamiento del motor de reservas. Estas cookies no requieren consentimiento previo ya que son esenciales para la prestación del servicio solicitado por el usuario. No se emplean cookies de seguimiento o publicidad comportamental de terceros."
+        "heading": "7. Cookies y tecnologías similares",
+        "intro": "Utilizamos dos categorías de cookies y almacenamiento local en el navegador:",
+        "items": [
+          "<strong>Necesarias (siempre activas):</strong> imprescindibles para el funcionamiento del sitio y del motor de reservas. Incluyen la preferencia de idioma, la preferencia de IVA/residencia, el estado del motor de reservas de Cloudbeds y el registro de tu propia elección de cookies. No requieren consentimiento porque sin ellas no puede prestarse el servicio solicitado.",
+          "<strong>De análisis (requieren tu consentimiento):</strong> Google Analytics 4 y PostHog. Nos permiten entender de forma agregada cómo se usa el sitio (páginas vistas, origen del tráfico y, en el caso de PostHog, repetición de sesión para detectar problemas de usabilidad). No se cargan ni instalan ninguna cookie hasta que prestás tu consentimiento."
+        ],
+        "outro": "Al ingresar por primera vez verás un aviso para aceptar o rechazar las cookies de análisis; nada se activa hasta que elijas, y rechazar es tan simple como aceptar. Podés cambiar o retirar tu consentimiento en cualquier momento desde el enlace «Configurar cookies» del pie de página, sin que ello afecte el uso del sitio. No utilizamos cookies de publicidad comportamental. Estos servicios de análisis pueden implicar la transferencia de datos seudonimizados a los Estados Unidos (ver sección 5)."
       },
       {
         "heading": "8. Derechos del titular (Habeas Data)",

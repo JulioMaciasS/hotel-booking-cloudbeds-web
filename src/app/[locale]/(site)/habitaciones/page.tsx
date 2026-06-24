@@ -41,7 +41,7 @@ export default async function HabitacionesPage({
       {/* Room selector */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="max-w-2xl">
+          <div className="reveal max-w-2xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#38645b]">
               {t("page.selector.eyebrow")}
             </p>
@@ -80,7 +80,7 @@ export default async function HabitacionesPage({
 
       {/* CTA */}
       <section className="bg-[#1f2b27] px-5 py-20 text-white sm:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 text-center">
+        <div className="reveal mx-auto flex max-w-7xl flex-col items-center gap-6 text-center">
           <h2 className="max-w-2xl text-3xl font-semibold sm:text-4xl">
             {t("page.cta.title")}
           </h2>
@@ -88,7 +88,7 @@ export default async function HabitacionesPage({
             {t("page.cta.description")}
           </p>
           <Link
-            className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3.5 text-sm font-semibold text-[#1f2b27] shadow transition hover:bg-[#edf2ef]"
+            className="inline-flex items-center gap-2 rounded-lg btn-book px-6 py-3.5 text-sm font-semibold shadow transition"
             href={BOOKING_HREF}
           >
             {tc("actions.searchDates")}

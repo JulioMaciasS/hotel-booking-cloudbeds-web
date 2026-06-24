@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 interface FormState {
   nombre: string;
@@ -150,6 +151,19 @@ export function ContactForm() {
       >
         {t("form.submit")}
       </button>
+
+      <p className="text-xs leading-5 text-[#66736f]">
+        {t.rich("form.privacyNotice", {
+          link: (chunks) => (
+            <Link
+              href="/privacidad"
+              className="font-medium text-[#38645b] underline underline-offset-2"
+            >
+              {chunks}
+            </Link>
+          ),
+        })}
+      </p>
     </form>
   );
 }

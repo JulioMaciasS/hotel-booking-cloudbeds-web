@@ -3,7 +3,11 @@ import type { CloudbedsBeddingAvailability } from "@/lib/cloudbeds-bedding-selec
 type BeddingAvailabilityApiResponse = CloudbedsBeddingAvailability & {
   checkin: string;
   checkout: string;
-  source: "cloudbeds:getRooms";
+  fallbackReason?: "cloudbeds_not_configured" | "cloudbeds_unavailable";
+  source:
+    | "cloudbeds:getRooms"
+    | "static:fallback:cloudbeds_not_configured"
+    | "static:fallback:cloudbeds_unavailable";
 };
 
 function isAvailabilityResponse(
@@ -16,7 +20,9 @@ function isAvailabilityResponse(
   const response = value as Record<string, unknown>;
 
   return (
-    response.source === "cloudbeds:getRooms" &&
+    typeof response.source === "string" &&
+    (response.source === "cloudbeds:getRooms" ||
+      response.source.startsWith("static:fallback:")) &&
     typeof response.mappingComplete === "boolean" &&
     !!response.roomTypes &&
     typeof response.roomTypes === "object"

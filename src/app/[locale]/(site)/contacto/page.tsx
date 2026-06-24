@@ -44,7 +44,7 @@ export default async function ContactoPage({
               rows. On lg+ the two detail blocks recombine into the left column
               beside the form — a single continuous card (seam matches the row
               dividers), unchanged from before. */}
-          <div className="grid gap-x-10 gap-y-6 lg:grid-cols-2 lg:gap-y-0">
+          <div className="reveal grid gap-x-10 gap-y-6 lg:grid-cols-2 lg:gap-y-0">
             {/* Quick contact — phone, WhatsApp, email (the tappable actions) */}
             <div className="order-1 flex flex-col divide-y divide-black/5 overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-black/5 lg:order-none lg:col-start-1 lg:row-start-1 lg:rounded-b-none">
               <a

@@ -5,8 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { track } from "@/lib/analytics";
 
 /**
- * Lands the visitor on the date picker — centred and briefly highlighted —
- * instead of an arbitrary scroll position, whenever they arrive at the home page
+ * Lands the visitor on the date picker — centred in view — instead of an
+ * arbitrary scroll position, whenever they arrive at the home page
  * with booking intent:
  *  - a `?room=<key>` hint left by a room CTA (also recorded as a `book_intent`
  *    event so the room they cared about is captured for funnel analysis), or
@@ -37,8 +37,8 @@ export function BookingIntentHandler() {
     // The Cloudbeds picker renders asynchronously, so #reservar starts at zero
     // height — scrolling immediately lands nowhere and later layout shifts undo
     // it. Wait until the picker's date input exists (it has real height by
-    // then), then scroll it to centre and pulse it. Fall back to scrolling the
-    // section anyway if the picker never loads.
+    // then), then scroll it to centre. Fall back to scrolling the section
+    // anyway if the picker never loads.
     const PICKER_INPUT =
       'cb-property-date-picker [data-testid="property-date-picker-date-picker-checkin-input"]';
 
@@ -57,11 +57,6 @@ export function BookingIntentHandler() {
       url.searchParams.delete("book");
       window.history.replaceState({}, "", url.pathname + url.search);
       target.scrollIntoView({ behavior: "smooth", block: "center" });
-      target.classList.add("booking-intent-highlight");
-      window.setTimeout(
-        () => target.classList.remove("booking-intent-highlight"),
-        2200,
-      );
     };
 
     const observer = new MutationObserver(() => {

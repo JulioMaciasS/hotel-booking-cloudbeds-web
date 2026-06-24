@@ -5,6 +5,7 @@ import { setRequestLocale } from "next-intl/server";
 import { routing, type Locale } from "@/i18n/routing";
 import { buildPageMetadata, siteUrl } from "@/i18n/metadata";
 import { Analytics } from "@/components/Analytics";
+import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -46,7 +47,10 @@ export default async function LocaleLayout({
     <html lang={locale} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body>
         <Analytics />
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          {children}
+          <CookieConsentBanner />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

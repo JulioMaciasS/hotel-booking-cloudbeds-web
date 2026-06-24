@@ -15,6 +15,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { ReviewsSlider } from "@/components/ReviewsSlider";
 import { HotelMapWrapper } from "@/components/HotelMapWrapper";
+import { SectionDivider } from "@/components/SectionDivider";
 import { ScrollCenterHandler } from "@/components/ScrollCenterHandler";
 import { BookingLoader } from "@/components/BookingLoader";
 import { BookingPriceObserver } from "@/components/BookingPriceObserver";
@@ -129,6 +130,7 @@ export default async function HomePage({
             currency={publicConfig.baseCurrency}
             custom-url="/reservas"
             data-testid="cloudbeds-date-picker"
+            island={publicConfig.cloudbedsIsland}
             lang={locale}
             layout="horizontal"
             open-in-new-tab="false"
@@ -144,7 +146,7 @@ export default async function HomePage({
       {/* ── ABOUT TEASER ── */}
       <section className="bg-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-24 sm:px-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
-          <div>
+          <div className="reveal">
             <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#38645b]">
               {t("about.eyebrow")}
             </p>
@@ -184,7 +186,7 @@ export default async function HomePage({
               </Link>
             </div>
           </div>
-          <div className="relative aspect-4/3 overflow-hidden rounded-lg bg-[#d8ddd8] shadow-xl">
+          <div className="reveal relative aspect-4/3 overflow-hidden rounded-lg bg-[#d8ddd8] shadow-xl">
             <Image
               alt={t("about.imageAlt")}
               className="object-cover"
@@ -196,10 +198,12 @@ export default async function HomePage({
         </div>
       </section>
 
+      <SectionDivider topColor="#ffffff" bottomColor="#f7f3ea" variant="hill" />
+
       {/* ── ROOMS TEASER ── */}
       <section className="bg-[#f7f3ea] py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="reveal flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-2xl">
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#38645b]">
                 {t("rooms.eyebrow")}
@@ -220,12 +224,12 @@ export default async function HomePage({
             </Link>
           </div>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="reveal mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {ROOMS.map((room) => (
               <Link
                 key={room.key}
                 href={`/habitaciones?room=${room.key}`}
-                className="group flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-black/5 transition hover:shadow-lg"
+                className="group flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-black/5 transition duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
                 <div className="relative aspect-4/3 overflow-hidden">
                   <Image
@@ -267,10 +271,12 @@ export default async function HomePage({
       {/* Experiences teaser hidden until the excursions offering launches
           (the section + /experiencias page are preserved in git history). */}
 
+      <SectionDivider topColor="#f7f3ea" bottomColor="#ffffff" variant="wave" />
+
       {/* ── WHY BOOK DIRECT ── */}
       <section className="bg-white py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="reveal mx-auto max-w-2xl text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#38645b]">
               {t("whyDirect.eyebrow")}
             </p>
@@ -282,7 +288,7 @@ export default async function HomePage({
             </p>
           </div>
 
-          <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="reveal mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {benefits.map(({ icon: Icon, key }) => (
               <li key={key} className="flex flex-col items-center text-center">
                 <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#edf3ef] text-[#38645b]">
@@ -300,10 +306,12 @@ export default async function HomePage({
         </div>
       </section>
 
+      <SectionDivider topColor="#ffffff" bottomColor="#f7f3ea" variant="valley" />
+
       {/* ── REVIEWS ── */}
       <section className="bg-[#f7f3ea] py-24" id="opiniones">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+          <div className="reveal flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-xl">
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#38645b]">
                 {t("reviews.eyebrow")}
@@ -400,6 +408,8 @@ export default async function HomePage({
         </div>
       </section>
 
+      <SectionDivider topColor="#f7f3ea" bottomColor="#ffffff" variant="hill" />
+
       {/* ── LOCATION TEASER ── */}
       <section className="bg-white py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -407,7 +417,7 @@ export default async function HomePage({
             <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5">
               <HotelMapWrapper />
             </div>
-            <div>
+            <div className="reveal">
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#38645b]">
                 {t("location.eyebrow")}
               </p>
@@ -437,9 +447,11 @@ export default async function HomePage({
         </div>
       </section>
 
+      <SectionDivider topColor="#ffffff" bottomColor="#1f2b27" variant="wave" />
+
       {/* ── CTA BANNER ── */}
       <section className="bg-[#1f2b27] px-5 py-20 text-white sm:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 text-center">
+        <div className="reveal mx-auto flex max-w-7xl flex-col items-center gap-6 text-center">
           <Mountain aria-hidden="true" size={32} className="text-[#6dbfaa]" />
           <h2 className="max-w-2xl text-3xl font-semibold sm:text-4xl">
             {t("cta.title")}
@@ -448,7 +460,7 @@ export default async function HomePage({
             {t("cta.paragraph")}
           </p>
           <a
-            className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3.5 text-sm font-semibold text-[#1f2b27] shadow transition hover:bg-[#edf2ef]"
+            className="inline-flex items-center gap-2 rounded-lg btn-book px-6 py-3.5 text-sm font-semibold shadow transition"
             href="#reservar"
           >
             {t("cta.button")}

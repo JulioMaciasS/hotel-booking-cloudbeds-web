@@ -1,7 +1,7 @@
 "use client";
 
 import Script from "next/script";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useSyncExternalStore } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import {
   POSTHOG_KEY,
@@ -12,6 +12,7 @@ import {
   analyticsEnabled,
   track,
 } from "@/lib/analytics";
+import { analyticsConsentGranted, subscribeConsent } from "@/lib/consent";
 
 /**
  * Loads PostHog (CDN snippet) and/or Google Analytics 4 (gtag.js) and wires the
@@ -20,9 +21,45 @@ import {
  *
  * Each tracker is gated by its own env var; loads nothing unless at least one is
  * set, so the site ships tracker-free until configured at deploy time.
+ *
+ * On top of that, NOTHING analytics-related loads until the visitor has opted in
+ * via the cookie banner (see CookieConsentBanner / `consent.ts`). This satisfies
+ * the prior-consent rule for non-essential cookies under Ley 25.326 and, for
+ * international guests, GDPR/ePrivacy. Withdrawing consent stops both trackers in
+ * place without requiring a reload.
  */
 export function Analytics() {
   if (!analyticsEnabled) return null;
+  return <AnalyticsRuntime />;
+}
+
+function AnalyticsRuntime() {
+  // Re-renders whenever consent changes (this tab or another). Server snapshot
+  // is `false`, so the markup is tracker-free until a client opt-in is read.
+  const granted = useSyncExternalStore(
+    subscribeConsent,
+    analyticsConsentGranted,
+    () => false,
+  );
+
+  // Enforce the current decision on the already-loaded trackers. Toggling GA's
+  // documented `ga-disable-<ID>` kill switch and PostHog's opt-in/out lets a
+  // withdrawal take effect immediately, and a re-grant resume, without a reload.
+  useEffect(() => {
+    if (GA_ID) {
+      (window as unknown as Record<string, boolean>)[`ga-disable-${GA_ID}`] =
+        !granted;
+    }
+
+    if (granted) {
+      window.posthog?.opt_in_capturing?.();
+    } else {
+      window.posthog?.opt_out_capturing?.();
+      window.posthog?.stopSessionRecording?.();
+    }
+  }, [granted]);
+
+  if (!granted) return null;
 
   // PostHog's official bootstrap snippet: stubs `window.posthog` immediately
   // (queuing calls) and async-loads array.js, then initialises. Pageviews are
@@ -77,16 +114,30 @@ function PageViews() {
     const path = query ? `${pathname}?${query}` : pathname;
     const url = window.location.origin + path;
 
-    if (window.posthog) {
-      window.posthog.capture("$pageview", { $current_url: url });
-    }
-    if (window.gtag) {
-      window.gtag("event", "page_view", {
+    // When consent is granted mid-session the tracker snippets are injected in
+    // the same render as this component, so their globals may not exist yet on
+    // first run. Retry briefly until the (queuing) stub appears, then send.
+    let tries = 0;
+    let timer: ReturnType<typeof setTimeout>;
+
+    const send = () => {
+      if (!window.posthog && !window.gtag && tries < 20) {
+        tries += 1;
+        timer = setTimeout(send, 100);
+        return;
+      }
+
+      window.posthog?.capture("$pageview", { $current_url: url });
+      window.gtag?.("event", "page_view", {
         page_path: path,
         page_location: url,
         page_title: document.title,
       });
-    }
+    };
+
+    send();
+
+    return () => clearTimeout(timer);
   }, [pathname, searchParams]);
 
   return null;

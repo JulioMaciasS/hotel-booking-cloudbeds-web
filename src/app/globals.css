@@ -167,11 +167,11 @@ body {
 }
 
 .reservation-embed-host {
-  min-height: calc(100dvh - 72px);
+  min-height: calc(100dvh - 85px);
 }
 
 .reservation-embed-host cb-immersive-experience {
-  min-height: calc(100dvh - 72px);
+  min-height: calc(100dvh - 85px);
 }
 
 .hotel-home {
@@ -196,15 +196,57 @@ body {
   to   { transform: scale(1.08); }
 }
 
-/* Brief cue when a room CTA lands the visitor on the booking picker
-   (see BookingIntentHandler). */
-@keyframes bookingIntentPulse {
-  0%   { box-shadow: 0 0 0 0 rgba(56, 100, 91, 0); }
-  25%  { box-shadow: 0 0 0 6px rgba(56, 100, 91, 0.25); }
-  100% { box-shadow: 0 0 0 0 rgba(56, 100, 91, 0); }
+/* ── Motion system ──────────────────────────────────────────────────────────
+   Subtle scroll-reveal for content blocks. Native CSS scroll-driven animation
+   runs off the main thread (no INP/jank cost) and only animates compositor-safe
+   properties (opacity, transform). Double-gated so it can NEVER hide content:
+   browsers without scroll-timeline support, and users who prefer reduced motion,
+   both get the static, fully-visible base state. */
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.booking-intent-highlight {
-  border-radius: 1rem;
-  animation: bookingIntentPulse 2.2s ease-out;
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-rise both ease-out;
+      animation-timeline: view();
+      animation-range: entry 0% cover 25%;
+    }
+  }
+}
+
+/* Honor reduced-motion globally: neutralize the Ken-Burns hero, the booking
+   pulse, smooth scrolling and long transitions for motion-sensitive users. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Booking CTAs — aligned with the Cloudbeds engine's primary button (#32C0A0)
+   so the whole booking flow shares one colour. Dark ink because the teal is
+   light enough that white text fails contrast (Cloudbeds uses dark text here
+   too); the hover brightens rather than darkens to keep that ink readable. */
+.btn-book {
+  background-color: #32c0a0;
+  color: #0f3a30;
+}
+.btn-book:hover {
+  background-color: #3bccab;
 }

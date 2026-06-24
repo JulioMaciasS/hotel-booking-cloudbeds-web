@@ -10,6 +10,7 @@ export const NAV_LINKS: NavItem[] = [
   // Hidden until the Experiencias / excursions offering launches:
   // { href: "/experiencias", key: "experiences" },
   { href: "/ubicacion", key: "location" },
+  { href: "/que-hacer", key: "guide" },
   { href: "/contacto", key: "contact" },
 ];
 

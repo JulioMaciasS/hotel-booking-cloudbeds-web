@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { validateStayDates } from "@/lib/booking-dates";
-import { calculateBeddingAvailability } from "@/lib/cloudbeds-bedding-inventory";
+import {
+  calculateBeddingAvailability,
+  calculateStaticBeddingAvailability,
+} from "@/lib/cloudbeds-bedding-inventory";
 import {
   CloudbedsConfigurationError,
   CloudbedsUpstreamError,
@@ -8,6 +11,28 @@ import {
 } from "@/lib/cloudbeds-rooms";
 
 export const dynamic = "force-dynamic";
+
+function fallbackResponse({
+  checkin,
+  checkout,
+  reason,
+}: {
+  checkin: string;
+  checkout: string;
+  reason: "cloudbeds_not_configured" | "cloudbeds_unavailable";
+}) {
+  return NextResponse.json(
+    {
+      checkin,
+      checkout,
+      fallbackReason: reason,
+      generatedAt: new Date().toISOString(),
+      source: `static:fallback:${reason}`,
+      ...calculateStaticBeddingAvailability(),
+    },
+    { headers: { "Cache-Control": "private, no-store" } },
+  );
+}
 
 export async function GET(request: NextRequest) {
   const dates = validateStayDates(
@@ -38,10 +63,11 @@ export async function GET(request: NextRequest) {
     );
   } catch (error) {
     if (error instanceof CloudbedsConfigurationError) {
-      return NextResponse.json(
-        { error: "cloudbeds_not_configured" },
-        { status: 503, headers: { "Cache-Control": "no-store" } },
-      );
+      return fallbackResponse({
+        checkin: dates.checkin,
+        checkout: dates.checkout,
+        reason: "cloudbeds_not_configured",
+      });
     }
 
     if (error instanceof CloudbedsUpstreamError) {
@@ -49,10 +75,11 @@ export async function GET(request: NextRequest) {
         message: error.message,
       });
 
-      return NextResponse.json(
-        { error: "cloudbeds_unavailable" },
-        { status: 502, headers: { "Cache-Control": "no-store" } },
-      );
+      return fallbackResponse({
+        checkin: dates.checkin,
+        checkout: dates.checkout,
+        reason: "cloudbeds_unavailable",
+      });
     }
 
     throw error;

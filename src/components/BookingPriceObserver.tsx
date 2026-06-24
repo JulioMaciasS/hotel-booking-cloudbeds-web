@@ -28,6 +28,14 @@ import { recordFxCustomFields } from "@/lib/cloudbeds-fx-customfields";
 import { resolveFxRate, type ResolvedFxRate } from "@/lib/fx-rate-client";
 import { VAT_CHANGE_EVENT, getFromArgentina } from "@/lib/vat";
 
+const HOTEL_DOM_ADJUSTMENT_SELECTOR = [
+  ".hotel-bedding-selector",
+  ".hotel-bedding-counter-panel",
+  "[data-hotel-bedding-counter-panel='true']",
+  "[data-hotel-currency-converted='true']",
+  "[data-no-currency-conversion='true']",
+  ".hotel-iva-card-tag",
+].join(",");
 const MONEY_AMOUNT_PATTERN = String.raw`\d(?:[\d.,\s]*\d)?(?:\s*[kK])?`;
 const BARE_NUMERIC_AMOUNT_PATTERN = String.raw`(?:\d{1,3}(?:[.,]\d{3})+|\d{4,})(?:[.,]\d{2})?`;
 const ARS_PRICE_PATTERN = new RegExp(
@@ -36,6 +44,27 @@ const ARS_PRICE_PATTERN = new RegExp(
 );
 
 type ConvertedLabel = (value: string, original: string) => string;
+
+function isHotelDomAdjustmentNode(node: Node) {
+  const element =
+    node.nodeType === Node.ELEMENT_NODE
+      ? (node as Element)
+      : node.parentElement;
+
+  return element?.closest(HOTEL_DOM_ADJUSTMENT_SELECTOR) !== null;
+}
+
+function isOnlyHotelDomAdjustmentMutation(mutation: MutationRecord) {
+  if (mutation.type === "characterData") {
+    return isHotelDomAdjustmentNode(mutation.target);
+  }
+
+  if (mutation.addedNodes.length === 0) {
+    return false;
+  }
+
+  return Array.from(mutation.addedNodes).every(isHotelDomAdjustmentNode);
+}
 
 function replacePricesInTextNode(
   textNode: Text,
@@ -149,6 +178,16 @@ export function BookingPriceObserver() {
               "Cloudbeds returned rooms missing from the bedding capability map.",
             );
           }
+
+          if (availability.source.startsWith("static:fallback:")) {
+            console.warn(
+              "Live bedding availability unavailable; using static fallback counters.",
+              {
+                reason: availability.fallbackReason,
+                source: availability.source,
+              },
+            );
+          }
         }
       })
       .catch((error: unknown) => {
@@ -204,21 +243,67 @@ export function BookingPriceObserver() {
         });
       };
 
+      // Our own DOM writes — and especially the way the bedding counter
+      // mirrors its total into Cloudbeds' native quantity stepper — make
+      // Cloudbeds re-render. The observer below would otherwise see that
+      // re-render as "new content" and react to it, driving an unbounded
+      // convert → mutate → convert loop that freezes the tab (most visibly
+      // when Cloudbeds refuses a quantity above its real availability and
+      // keeps reverting the value we set). `applyAdjustments` runs a pass,
+      // discards the mutations our own work queued (takeRecords), and ignores
+      // further mutations for a short cooldown so Cloudbeds' asynchronous
+      // re-render fallout cannot restart the loop.
+      let isApplyingAdjustments = false;
+      let cooldownTimer: ReturnType<typeof setTimeout> | null = null;
+
+      const applyAdjustments = () => {
+        isApplyingAdjustments = true;
+
+        if (cooldownTimer !== null) {
+          clearTimeout(cooldownTimer);
+        }
+
+        try {
+          convertDocument();
+        } finally {
+          // Drop the mutations our synchronous DOM writes just queued.
+          observer?.takeRecords();
+          cooldownTimer = setTimeout(() => {
+            cooldownTimer = null;
+            observer?.takeRecords();
+            isApplyingAdjustments = false;
+          }, 250);
+        }
+      };
+
+      // The initial pass runs before the observer is attached, so it cannot
+      // feed back into itself.
       convertDocument();
 
-      window.addEventListener(VAT_CHANGE_EVENT, convertDocument, {
+      window.addEventListener(VAT_CHANGE_EVENT, applyAdjustments, {
         signal: abortController.signal,
       });
 
       // Debounce timer: after rapid Cloudbeds DOM updates settle we run one
-      // final convertDocument(). This ensures the VAT/price adjustments land
-      // on the final rendered state rather than an intermediate skeleton.
+      // final pass. This ensures the VAT/price adjustments land on the final
+      // rendered state rather than an intermediate skeleton.
       let debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
       observer = new MutationObserver((mutations) => {
+        // Mutations that arrive while we're applying our own adjustments (and
+        // during the brief cooldown after) are self-inflicted — ignore them
+        // so they can't re-enter the convert pass.
+        if (isApplyingAdjustments) {
+          return;
+        }
+
         let shouldScan = false;
 
         for (const mutation of mutations) {
+          if (isOnlyHotelDomAdjustmentMutation(mutation)) {
+            continue;
+          }
+
           if (
             mutation.type === "characterData" ||
             mutation.addedNodes.length > 0
@@ -233,7 +318,7 @@ export function BookingPriceObserver() {
         }
 
         // Run immediately for fast price conversion.
-        convertDocument();
+        applyAdjustments();
 
         // Also schedule a follow-up in case Cloudbeds does a final render
         // after we've already adjusted (e.g. summary card settling after
@@ -243,7 +328,7 @@ export function BookingPriceObserver() {
         }
         debounceTimer = setTimeout(() => {
           debounceTimer = null;
-          convertDocument();
+          applyAdjustments();
         }, 300);
       });
 

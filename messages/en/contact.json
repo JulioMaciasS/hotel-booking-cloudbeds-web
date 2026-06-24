@@ -22,6 +22,7 @@
     "messageLabel": "Message",
     "messagePlaceholder": "How can we help you?",
     "submit": "Send message",
+    "privacyNotice": "By sending this, we use your details only to reply to your enquiry, in line with our <link>Privacy Policy</link>.",
     "successTitle": "Thanks for reaching out!",
     "successBody": "Your email client opened with the message ready to send. We'll get back to you shortly.",
     "sendAnother": "Send another message",

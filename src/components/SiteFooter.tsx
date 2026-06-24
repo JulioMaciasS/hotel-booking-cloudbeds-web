@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { ExternalLink, Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+import { CookieSettingsLink } from "@/components/CookieSettingsLink";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { HOTEL } from "@/lib/site-data";
 import { BOOKING_HREF, NAV_LINKS } from "@/lib/nav";
@@ -106,7 +107,7 @@ export function SiteFooter() {
               </li>
             </ul>
             <Link
-              className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-[#38645b] px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-[#2e5049]"
+              className="mt-6 inline-flex w-full items-center justify-center rounded-lg btn-book px-4 py-2.5 text-xs font-semibold transition"
               href={BOOKING_HREF}
             >
               {t("actions.bookNow")}
@@ -116,13 +117,23 @@ export function SiteFooter() {
 
         <div className="mt-12 flex flex-col items-center gap-3 border-t border-white/10 pt-8 text-center text-xs text-white/30 sm:flex-row sm:justify-between">
           <p>{t("footer.copyright", { name: HOTEL.name })}</p>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {/* Botón de Arrepentimiento — Argentine consumer-law requirement
+                (Res. 424/2020). Placeholder for now; to be wired to a Google
+                Form (replace this <button> with an <a href={formUrl}>). */}
+            <button
+              type="button"
+              className="rounded-md border border-white/25 px-3 py-1.5 font-medium text-white/70 transition hover:border-white/50 hover:text-white"
+            >
+              {t("footer.regretButton")}
+            </button>
             <Link href="/terminos" className="transition hover:text-white/60">
               {t("footer.terms")}
             </Link>
             <Link href="/privacidad" className="transition hover:text-white/60">
               {t("footer.privacy")}
             </Link>
+            <CookieSettingsLink />
           </div>
         </div>
       </div>

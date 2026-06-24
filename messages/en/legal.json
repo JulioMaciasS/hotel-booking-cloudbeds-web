@@ -5,7 +5,7 @@
   },
   "eyebrow": "Legal",
   "lastUpdatedLabel": "Last updated: {date}",
-  "lastUpdated": "May 18, 2026",
+  "lastUpdated": "June 24, 2026",
   "terms": {
     "title": "Terms and Conditions",
     "toPrivacy": "Privacy Policy →",
@@ -106,7 +106,7 @@
           "<strong>Contact form:</strong> first and last name, email address, phone number (optional), and the content of the message.",
           "<strong>Online bookings:</strong> first and last name, email, phone, ID or passport number, nationality, credit/debit card details (processed directly by the payment processor), stay dates, and room preferences.",
           "<strong>On-site check-in:</strong> ID or passport number, as required by the provincial police guest registration regulations.",
-          "<strong>Web browsing:</strong> IP address, browser type, pages visited, and time spent, through technical cookies (see section 7)."
+          "<strong>Web browsing:</strong> IP address, browser type, pages visited, and time spent, through technical cookies and —only with your consent— analytics cookies (see section 7)."
         ]
       },
       {
@@ -137,6 +137,7 @@
         "items": [
           "<strong>Cloudbeds, Inc.</strong> (United States): hotel management platform and booking engine. Cloudbeds processes data in the United States, a country that does not have an adequacy declaration from the AAIP. The hotel has entered into a data processing agreement with Cloudbeds that includes the appropriate safeguards set out in Art. 12 of Law 25,326.",
           "<strong>Payment processors:</strong> card data is processed directly by the payment provider integrated into the booking engine under PCI-DSS standards. The hotel does not store card numbers.",
+          "<strong>Web analytics providers:</strong> Google Analytics (Google LLC) and PostHog (PostHog, Inc.), based in the United States. They are only activated if the user consents to analytics cookies (see section 7) and process pseudonymised browsing data to produce usage statistics. Transfers to the United States rely on contractual clauses with adequate safeguards under Art. 12 of Law 25,326.",
           "<strong>Competent authorities:</strong> Provincial Police, AFIP, or other authorities when there is a legal obligation to report."
         ],
         "outro": "We do not sell or transfer your personal data to third parties for their own commercial purposes."
@@ -150,8 +151,13 @@
         ]
       },
       {
-        "heading": "7. Cookies",
-        "body": "This website may use strictly necessary technical cookies for the operation of the booking engine. These cookies do not require prior consent, as they are essential for providing the service requested by the user. No third-party tracking or behavioral advertising cookies are used."
+        "heading": "7. Cookies and similar technologies",
+        "intro": "We use two categories of cookies and browser local storage:",
+        "items": [
+          "<strong>Necessary (always on):</strong> essential for the website and the booking engine to work. They include your language preference, your VAT/residency preference, the state of the Cloudbeds booking engine, and the record of your own cookie choice. They require no consent because the requested service cannot be provided without them.",
+          "<strong>Analytics (require your consent):</strong> Google Analytics 4 and PostHog. They let us understand, in aggregate, how the site is used (page views, traffic sources and, in PostHog's case, session replay to spot usability issues). They do not load or set any cookie until you give your consent."
+        ],
+        "outro": "On your first visit you'll see a notice to accept or reject analytics cookies; nothing is activated until you choose, and rejecting is as simple as accepting. You can change or withdraw your consent at any time from the \"Configurar cookies\" (Cookie settings) link in the footer, without affecting your use of the site. We do not use behavioural advertising cookies. These analytics services may involve the transfer of pseudonymised data to the United States (see section 5)."
       },
       {
         "heading": "8. Rights of the data subject (Habeas Data)",

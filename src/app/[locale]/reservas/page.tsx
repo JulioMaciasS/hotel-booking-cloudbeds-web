@@ -61,35 +61,33 @@ export default async function ReservasPage({
         className="reservation-shell-header sticky top-0 z-50 border-b border-black/[0.06] bg-white/72 backdrop-blur-xl"
         data-testid="reservation-wrapper-header"
       >
-        <div className="mx-auto flex h-18 w-full max-w-7xl items-center justify-between gap-3 px-5 sm:px-8">
-          <Link className="flex items-center gap-3" href="/">
+        <div className="mx-auto flex h-[85px] w-full max-w-7xl items-center justify-between gap-3 px-5 sm:px-8">
+          <Link className="flex items-center" href="/">
             <Image
               alt={t("page.logoAlt")}
-              className="h-14 w-14 rounded-full bg-white object-contain p-1 ring-1 ring-[#e4e8e6]"
-              height={56}
+              className="h-[85px] w-[85px] object-contain"
+              height={85}
               priority
               src={logoImage}
-              width={56}
+              width={85}
             />
-            <span className="hidden text-base font-semibold tracking-wide text-[#1f2b27] sm:inline">
-              {t("page.brand")}
-            </span>
           </Link>
           <ArgentinaVatToggle />
         </div>
       </header>
 
-      <section className="cloudbeds-host reservation-embed-host" data-testid="cloudbeds-host" style={{ minHeight: "calc(100vh - 72px)" }}>
+      <section className="cloudbeds-host reservation-embed-host" data-testid="cloudbeds-host" style={{ minHeight: "calc(100vh - 85px)" }}>
         <cb-immersive-experience
           currency={publicConfig.baseCurrency}
           data-testid="cloudbeds-standard-embed"
           hide-custom-footer="yes"
           hide-custom-header="yes"
           hide-property-info="yes"
+          island={publicConfig.cloudbedsIsland}
           lang={locale}
           mode="standard"
           property-code={publicConfig.propertyCode}
-          style={{ display: "block", minHeight: "calc(100vh - 72px)" }}
+          style={{ display: "block", minHeight: "calc(100vh - 85px)" }}
         />
       </section>
     </main>

@@ -11,7 +11,7 @@ import {
  */
 const FX_URL =
   process.env.FX_RATE_URL ??
-  "https://bvdlrnvwjzizrjvimisa.supabase.co/functions/v1/latest-confirmed-fx-rate";
+  "https://ops.loslagoshotel.com.ar/tipocambio";
 
 // The upstream fetch is cached for 2 minutes (aligned with the upstream's own
 // max-age) via the Next data cache, so at most one upstream call every couple

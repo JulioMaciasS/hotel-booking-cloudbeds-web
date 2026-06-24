@@ -193,7 +193,7 @@ export function RoomsSection() {
 
       {/* Room panel — height is driven by the tallest details panel (grid stack),
           so every room renders at the same height with no inner scrollbar. */}
-      <div className="mt-5 overflow-hidden rounded-2xl bg-[#f7f3ea] shadow-lg ring-1 ring-black/5 lg:grid lg:grid-cols-[3fr_2fr]">
+      <div className="mt-5 overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-black/5 lg:grid lg:grid-cols-[3fr_2fr]">
         {/* ── Photo carousel ── */}
         <div className="relative aspect-4/3 overflow-hidden lg:aspect-auto lg:h-full">
           {/* All photos stay mounted and crossfade by opacity, so switching
@@ -341,7 +341,7 @@ export function RoomsSection() {
                     No `#reservar` hash: it would trigger a native top-aligned jump
                     that overrides the handler's centring when the picker is cached. */}
                 <Link
-                  className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-[#38645b] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#2e5049]"
+                  className="mt-6 inline-flex w-full items-center justify-center rounded-lg btn-book px-6 py-3 text-sm font-semibold transition"
                   href={`/?room=${r.key}`}
                   data-track="room_cta"
                   tabIndex={active ? undefined : -1}

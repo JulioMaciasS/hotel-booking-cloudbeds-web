@@ -98,7 +98,7 @@ export function SiteHeader() {
             <LanguageSwitcher />
           </div>
           <Link
-            className="rounded-lg bg-[#1f2b27] px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#31413d]"
+            className="rounded-lg btn-book px-4 py-2 text-sm font-semibold transition-all duration-300"
             href={BOOKING_HREF}
           >
             {t("actions.book")}

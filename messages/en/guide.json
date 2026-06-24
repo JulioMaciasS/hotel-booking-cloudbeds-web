@@ -1,0 +1,51 @@
+{
+  "page": {
+    "hero": {
+      "eyebrow": "Explore El Calafate",
+      "title": "What to see and do around El Calafate.",
+      "subtitle": "Glaciers, lakes and wide-open Patagonian steppe, all within reach of the hotel. Here are the places we love to point our guests towards."
+    },
+    "intro": "El Calafate is the gateway to Los Glaciares National Park and one of the most spectacular corners of Patagonia. Whether you have a single afternoon or a full week, there is more than enough to fill your days. These are the highlights our family recommends most often.",
+    "distanceLabel": "Distance",
+    "items": [
+      {
+        "name": "Perito Moreno Glacier",
+        "distance": "~80 km · 1.5 h",
+        "description": "The icon of the region: a vast, constantly-advancing glacier in Los Glaciares National Park. A network of boardwalks brings you face-to-face with towering walls of ice, and on a good day you may hear it crack and calve into the lake."
+      },
+      {
+        "name": "Boat safaris on Lake Argentino",
+        "distance": "From Puerto Bandera",
+        "description": "Set sail from Puerto Bandera and glide among floating icebergs toward the Upsala and Spegazzini glaciers. Seeing these giants from the water, with the wind and the deep blue ice around you, is unforgettable."
+      },
+      {
+        "name": "Glaciarium",
+        "distance": "~6 km",
+        "description": "A modern, beautifully designed glaciology museum that explains how Patagonia's ice fields formed and why they matter. There is even a famous ice bar inside, perfect for a fun stop before or after the glacier."
+      },
+      {
+        "name": "Laguna Nimez Reserve",
+        "distance": "~15 min on foot",
+        "description": "A peaceful lakeside nature reserve right at the edge of town, easy to reach on foot from the hotel. Bring your camera for flamingos, ducks and dozens of other birds against the backdrop of Lake Argentino."
+      },
+      {
+        "name": "El Chaltén & Mount Fitz Roy",
+        "distance": "~210 km · 3 h",
+        "description": "Argentina's trekking capital, crowned by the dramatic spires of Mount Fitz Roy. It makes a spectacular long day trip, though staying overnight gives you time to enjoy the trails at a gentler pace."
+      },
+      {
+        "name": "Estancias & Patagonian asado",
+        "distance": "Around town",
+        "description": "Traditional ranches just outside El Calafate welcome visitors for slow-cooked lamb barbecue, horseback rides and a genuine taste of country life. A warm, relaxed way to spend a day away from the glaciers."
+      }
+    ],
+    "planning": {
+      "title": "Need a hand planning your days?",
+      "text": "Our reception is always happy to help you make the most of your stay. We can talk through which outings suit the time you have, point you toward the buses and operators that run each route, and share a few local tips we have picked up over the years. Just ask whenever you arrive."
+    },
+    "cta": {
+      "book": "Book your stay",
+      "contact": "Ask us anything"
+    }
+  }
+}

@@ -9,6 +9,18 @@
       "heading": "Dirección",
       "openInMaps": "Abrir en Google Maps"
     },
+    "gettingHere": {
+      "heading": "Cómo llegar",
+      "airport": {
+        "title": "Desde el aeropuerto",
+        "text": "El Aeropuerto Internacional de El Calafate (FTE) está a unos 16 km, un viaje de unos 25 minutos. En el arribo vas a encontrar taxis y servicios de traslado."
+      },
+      "bus": {
+        "title": "En bus",
+        "text": "La terminal de ómnibus está a pocos minutos a pie del hotel, con servicios de larga distancia desde El Chaltén, Río Gallegos y Puerto Natales (Chile)."
+      },
+      "note": "Contanos los datos de tu llegada y con gusto te ayudamos desde la recepción a coordinar un traslado privado."
+    },
     "distancesHeading": "Distancias",
     "cta": {
       "book": "Reservar ahora",

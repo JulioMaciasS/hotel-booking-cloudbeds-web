@@ -26,6 +26,10 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 //      api host us.i.posthog.com + lazy-loaded modules from us-assets.i.posthog.com
 //      (the wildcard also covers the eu.* region). Only active when
 //      NEXT_PUBLIC_POSTHOG_KEY is set, so it never showed up in dev capture.
+//    - fonts.googleapis.com / fonts.gstatic.com — Cloudbeds' widget requests
+//      Google-hosted Mulish font assets in addition to its static1 CDN fonts.
+//    - googletagmanager.com / google-analytics.com — Cloudbeds' widget emits
+//      its own booking-engine analytics events after the property loads.
 const enforcedCsp = [
   "base-uri 'self'",
   "object-src 'none'",
@@ -43,14 +47,14 @@ const reportOnlyCsp = [
   // Cloudbeds' bundle injects inline and eval'd chunks and cannot carry a
   // nonce, so script/style need 'unsafe-inline'/'unsafe-eval' for its hosts.
   // PostHog lazy-loads its recorder/surveys modules from *-assets.i.posthog.com.
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static1.cloudbeds.com https://*.cloudbeds.com https://*.i.posthog.com",
-  "style-src 'self' 'unsafe-inline' https://static1.cloudbeds.com https://*.cloudbeds.com",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static1.cloudbeds.com https://*.cloudbeds.com https://*.i.posthog.com https://www.googletagmanager.com",
+  "style-src 'self' 'unsafe-inline' https://static1.cloudbeds.com https://*.cloudbeds.com https://fonts.googleapis.com",
   // Property photos, Cloudbeds media and map tiles come from many hosts.
   "img-src 'self' data: blob: https:",
-  "font-src 'self' data: https://static1.cloudbeds.com https://*.cloudbeds.com",
+  "font-src 'self' data: https://static1.cloudbeds.com https://*.cloudbeds.com https://fonts.gstatic.com",
   // 'self' (our /api/* — the FX rate is proxied server-side to Supabase),
   // Cloudbeds' API hosts, LaunchDarkly (Cloudbeds feature flags), and PostHog.
-  "connect-src 'self' https://*.cloudbeds.com https://*.launchdarkly.com https://*.i.posthog.com",
+  "connect-src 'self' https://*.cloudbeds.com https://*.launchdarkly.com https://*.i.posthog.com https://www.google-analytics.com https://*.google-analytics.com",
   "frame-src 'self' https://*.cloudbeds.com",
   "form-action 'self' https://*.cloudbeds.com",
   "worker-src 'self' blob:",

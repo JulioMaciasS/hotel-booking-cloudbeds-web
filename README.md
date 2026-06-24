@@ -35,6 +35,7 @@ Copy `.env.example` to `.env.local` when you need local overrides.
 
 ```env
 NEXT_PUBLIC_CLOUDBEDS_PROPERTY_CODE=5fdNYA
+NEXT_PUBLIC_CLOUDBEDS_ISLAND=us2
 NEXT_PUBLIC_BASE_CURRENCY=ARS
 NEXT_PUBLIC_DISPLAY_CURRENCY=USD
 NEXT_PUBLIC_VAT_RATE=0.21
@@ -114,6 +115,7 @@ official Cloudbeds script after hydration:
 <cb-immersive-experience
   mode="standard"
   property-code="5fdNYA"
+  island="us2"
   currency="ARS"
   lang="es"  // set dynamically to the active locale (es | en)
   hide-custom-header="yes"
@@ -130,6 +132,12 @@ https://static1.cloudbeds.com/booking-engine/latest/static/js/immersive-experien
 
 Cloudbeds setup reference:
 <https://myfrontdesk.cloudbeds.com/hc/en-us/articles/32048321731739-Cloudbeds-Booking-Engine-Immersive-Experience-2-0-Everything-you-need-to-know>
+
+Cloudbeds Premium Embeds require the website origin to be authorized in
+Cloudbeds PMS under Booking Engine → Embeds → Premium → Whitelisted domains.
+Add the production domain and any stable staging/preview domain used for QA.
+Temporary tunnel hostnames such as `*.trycloudflare.com` may need to be updated
+whenever the tunnel URL changes.
 
 Cloudbeds date picker reference:
 <https://myfrontdesk.cloudbeds.com/hc/en-us/articles/41401465418523-Single-Property-Calendar-Date-Picker-Embed>
@@ -230,9 +238,13 @@ accommodation cards. The current hard-coded mappings cover:
 - Triple Superior (and any unsuffixed standard triple): both triple layouts
 - Matching prefers the most specific room-title match
 
-The selected value is stored in the DOM and in `sessionStorage` with
-`data-hotel-*` attributes. It is not yet persisted into a reservation custom
-field and `postRoomAssign` is not yet run after booking.
+The card-level bedding buttons are treated as a visual preference/default for
+the first room added. Once the Cloudbeds "add room" popover opens, the guest
+can allocate the selected quantity across every compatible bedding layout using
+per-layout counters. The Cloudbeds quantity input is kept as the real total
+room count, while the bedding distribution is stored separately in the DOM and
+`sessionStorage` using `data-hotel-*` attributes. It is not yet persisted into a
+reservation custom field and `postRoomAssign` is not yet run after booking.
 
 On `/reservas?checkin=YYYY-MM-DD&checkout=YYYY-MM-DD`, the browser calls
 `GET /api/bedding-availability`. That server-only route calls Cloudbeds v1.3
@@ -240,12 +252,17 @@ On `/reservas?checkin=YYYY-MM-DD&checkout=YYYY-MM-DD`, the browser calls
 returned physical `roomID` values through the fixed capability map in
 `cloudbeds-bedding-inventory.ts`, and sends only per-room-type option counters
 to the browser. Physical room IDs and the API key never reach the client.
+If the server credentials are missing or Cloudbeds is temporarily unavailable,
+the endpoint returns `source: "static:fallback:..."` with the fixed physical
+capacity map instead of failing the UI with a 5xx response.
 
-Flexible rooms count toward both compatible options. Since a guest can select
-only one bedding option at a time for a Cloudbeds room type, this makes all
-compatible dated availability usable without assigning a specific room during
-shopping. An option with zero compatible rooms is disabled. The quantity input
-is read-only and the `+` control stops at the dated compatible count.
+Flexible rooms count toward both compatible options. The popover shows the
+total selected rooms against the dated `totalAvailable` value for that room
+type, while each bedding counter still stops at its own compatible-room count.
+This intentionally allows mixed bedding requests without assigning a specific
+physical room during shopping. An option with zero compatible rooms is disabled.
+The native Cloudbeds quantity input is read-only/hidden and is synchronized to
+the total selected across all bedding counters.
 
 The following physical capacities remain as a fallback when the live API is
 not configured or temporarily unavailable:

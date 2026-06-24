@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight, ExternalLink, MapPin, Mountain } from "lucide-react";
+import { ArrowRight, ExternalLink, MapPin, Mountain, Plane } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { LocationGallery } from "@/components/LocationGallery";
 import { HotelMapWrapper } from "@/components/HotelMapWrapper";
@@ -50,7 +50,7 @@ export default async function UbicacionPage({
             </div>
 
             {/* Info panel */}
-            <div className="flex flex-col gap-6">
+            <div className="reveal flex flex-col gap-6">
               {/* Address */}
               <div className="rounded-lg bg-white p-5 shadow-sm ring-1 ring-black/5">
                 <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[#38645b]">
@@ -105,6 +105,31 @@ export default async function UbicacionPage({
               </div>
             </div>
           </div>
+
+          {/* Getting here / transfers — full width below the map */}
+          <div className="reveal mt-8 rounded-lg bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-7">
+            <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[#38645b]">
+              <Plane size={16} aria-hidden="true" />
+              {t("page.gettingHere.heading")}
+            </h2>
+            <div className="mt-4 grid gap-x-8 gap-y-3 text-sm leading-6 text-[#5f6e69] sm:grid-cols-2">
+              <p>
+                <span className="font-medium text-[#1f2b27]">
+                  {t("page.gettingHere.airport.title")}
+                </span>{" "}
+                — {t("page.gettingHere.airport.text")}
+              </p>
+              <p>
+                <span className="font-medium text-[#1f2b27]">
+                  {t("page.gettingHere.bus.title")}
+                </span>{" "}
+                — {t("page.gettingHere.bus.text")}
+              </p>
+            </div>
+            <p className="mt-4 text-xs leading-5 text-[#8fa09a]">
+              {t("page.gettingHere.note")}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -116,7 +141,7 @@ export default async function UbicacionPage({
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="flex flex-wrap gap-3">
             <Link
-              className="inline-flex items-center gap-2 rounded-lg bg-[#38645b] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#2e5049]"
+              className="inline-flex items-center gap-2 rounded-lg btn-book px-5 py-3 text-sm font-semibold transition"
               href={BOOKING_HREF}
             >
               {t("page.cta.book")}

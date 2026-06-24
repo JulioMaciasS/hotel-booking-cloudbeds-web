@@ -6,6 +6,7 @@
     "hotel": "The Hotel",
     "experiences": "Experiences",
     "location": "Location",
+    "guide": "What to do",
     "contact": "Contact",
     "reviews": "Reviews"
   },
@@ -33,7 +34,15 @@
     "viewOnGoogleMaps": "View on Google Maps",
     "copyright": "© 2026 {name} · El Calafate, Patagonia, Argentina",
     "terms": "Terms & Conditions",
-    "privacy": "Privacy Policy"
+    "privacy": "Privacy Policy",
+    "regretButton": "Botón de Arrepentimiento",
+    "cookieSettings": "Cookie settings"
+  },
+  "cookies": {
+    "title": "Cookies",
+    "body": "We use necessary cookies to make the site work and, with your permission, analytics cookies (Google Analytics and PostHog) to understand how the site is used and improve it. None are activated until you choose, and you can change your decision at any time. Read more in our <link>Privacy Policy</link>.",
+    "accept": "Accept",
+    "reject": "Reject"
   },
   "mobileBar": {
     "title": "Book your stay",

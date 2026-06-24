@@ -51,7 +51,13 @@ function renderCard(id: string, title: string) {
     `;
 
     const input = popover.querySelector<HTMLInputElement>("input");
+    const minus = popover.querySelector<HTMLButtonElement>("[aria-label='minus']");
     const plus = popover.querySelector<HTMLButtonElement>("[aria-label='add']");
+    minus?.addEventListener("click", () => {
+      if (input) {
+        input.value = String(Math.max(1, Number(input.value) - 1));
+      }
+    });
     plus?.addEventListener("click", () => {
       if (input) {
         input.value = String(Number(input.value) + 1);
@@ -87,11 +93,37 @@ function openQuantityPopover(card: HTMLElement, id: string) {
   };
 }
 
+function getCounterButton(
+  option: string,
+  action: "decrement" | "increment",
+) {
+  return document.querySelector<HTMLButtonElement>(
+    `[data-hotel-bedding-counter-option="${option}"][data-hotel-bedding-counter-action="${action}"]`,
+  )!;
+}
+
+function getCounterCount(option: string) {
+  return document.querySelector<HTMLElement>(
+    `[data-hotel-bedding-counter-count="${option}"]`,
+  )!.textContent;
+}
+
+function getTotalSelected() {
+  return document.querySelector<HTMLElement>("[data-hotel-bedding-total]")!
+    .dataset.selected;
+}
+
+function getTotalMax() {
+  return document.querySelector<HTMLElement>("[data-hotel-bedding-total]")!
+    .dataset.max;
+}
+
 describe("Cloudbeds bedding quantity limits", () => {
   beforeEach(() => {
     document.body.innerHTML = "";
     setCloudbedsBeddingAvailability(null, document);
     document.documentElement.removeAttribute("data-hotel-active-rate-plan-test-id");
+    document.documentElement.removeAttribute("data-hotel-active-bedding-selector");
     document.documentElement.removeAttribute("data-hotel-active-bedding-max-rooms");
     document.documentElement.removeAttribute("data-hotel-active-bedding-label");
     window.sessionStorage.clear();
@@ -100,17 +132,20 @@ describe("Cloudbeds bedding quantity limits", () => {
   it("limits Doble Estandar matrimonial rooms to two", () => {
     const id = "227179928547456";
     const card = renderCard(id, "Doble Estandar");
-    const { input, plus } = openQuantityPopover(card, id);
+    const { input } = openQuantityPopover(card, id);
+    const matrimonialPlus = getCounterButton("matrimonial", "increment");
 
     expect(input.readOnly).toBe(true);
-    expect(input.max).toBe("2");
-    expect(document.body.textContent).toContain(
-      "Máximo para Matrimonial: 2 habitaciones",
-    );
+    expect(input.max).toBe("4");
+    expect(getCounterCount("matrimonial")).toBe("1");
+    expect(getTotalSelected()).toBe("1");
+    expect(getTotalMax()).toBe("4");
 
-    plus.click();
+    matrimonialPlus.click();
+    expect(getCounterCount("matrimonial")).toBe("2");
     expect(input.value).toBe("2");
-    plus.click();
+    matrimonialPlus.click();
+    expect(getCounterCount("matrimonial")).toBe("2");
     expect(input.value).toBe("2");
   });
 
@@ -124,18 +159,22 @@ describe("Cloudbeds bedding quantity limits", () => {
       )
       ?.click();
 
-    const { input, plus } = openQuantityPopover(card, id);
+    const { input } = openQuantityPopover(card, id);
+    const twinPlus = getCounterButton("dos_camas_separadas", "increment");
 
     expect(input.max).toBe("4");
-    plus.click();
-    plus.click();
-    plus.click();
+    expect(getCounterCount("dos_camas_separadas")).toBe("1");
+    twinPlus.click();
+    twinPlus.click();
+    twinPlus.click();
+    expect(getCounterCount("dos_camas_separadas")).toBe("4");
+    expect(getTotalSelected()).toBe("4");
     expect(input.value).toBe("4");
-    plus.click();
+    twinPlus.click();
     expect(input.value).toBe("4");
   });
 
-  it("limits Doble Superior twin rooms to three", () => {
+  it("limits Doble Superior twin rooms to three while allowing a mixed total", () => {
     const id = "229741541683392";
     const card = renderCard(id, "Doble Superior");
 
@@ -145,14 +184,25 @@ describe("Cloudbeds bedding quantity limits", () => {
       )
       ?.click();
 
-    const { input, plus } = openQuantityPopover(card, id);
+    const { input } = openQuantityPopover(card, id);
+    const matrimonialPlus = getCounterButton("matrimonial", "increment");
+    const twinPlus = getCounterButton("dos_camas_separadas", "increment");
 
-    expect(input.max).toBe("3");
-    plus.click();
-    plus.click();
+    expect(input.max).toBe("5");
+    expect(getCounterCount("dos_camas_separadas")).toBe("1");
+    twinPlus.click();
+    twinPlus.click();
+    expect(getCounterCount("dos_camas_separadas")).toBe("3");
     expect(input.value).toBe("3");
-    plus.click();
+    twinPlus.click();
+    expect(getCounterCount("dos_camas_separadas")).toBe("3");
     expect(input.value).toBe("3");
+
+    matrimonialPlus.click();
+    expect(getCounterCount("matrimonial")).toBe("1");
+    expect(getCounterCount("dos_camas_separadas")).toBe("3");
+    expect(getTotalSelected()).toBe("4");
+    expect(input.value).toBe("4");
   });
 
   it("uses dated backend counters and disables an unavailable layout", () => {
@@ -179,10 +229,16 @@ describe("Cloudbeds bedding quantity limits", () => {
       "[data-hotel-bedding-option='dos_camas_separadas']",
     );
     const { input, plus } = openQuantityPopover(card, id);
+    const twinPlus = getCounterButton("dos_camas_separadas", "increment");
+    const matrimonialPlus = getCounterButton("matrimonial", "increment");
 
     expect(twinButton?.disabled).toBe(true);
     expect(input.max).toBe("2");
-    plus.click();
+    expect(twinPlus.disabled).toBe(true);
+    expect(getCounterCount("matrimonial")).toBe("1");
+    matrimonialPlus.click();
+    expect(getCounterCount("matrimonial")).toBe("2");
+    expect(input.value).toBe("2");
     plus.click();
     expect(input.value).toBe("2");
   });

@@ -45,6 +45,14 @@
           "q": "¿El desayuno está incluido?",
           "a": "Sí. Todas las tarifas incluyen un desayuno continental casero: pan, tostadas, café, té, leche, yogures, jugos, cereales, mermelada, queso y fiambre."
         },
+        "arrival": {
+          "q": "¿Puedo hacer el check-in temprano, llegar de noche o dejar el equipaje?",
+          "a": "La recepción está abierta las 24 horas, así que podés llegar a cualquier hora, de día o de noche. El check-in temprano y el check-out tardío dependen de la disponibilidad —consultanos y haremos lo posible— y con gusto guardamos tu equipaje si llegás antes de que tu habitación esté lista o tenés una salida tarde."
+        },
+        "family": {
+          "q": "¿Son bienvenidos los niños y las familias?",
+          "a": "Por supuesto: somos un pequeño hotel familiar y las familias se sienten como en casa. Nuestras habitaciones triples son ideales; contanos quiénes viajan al reservar y te ayudamos a elegir la habitación adecuada."
+        },
         "vat": {
           "q": "Soy turista extranjero, ¿pago el IVA?",
           "a": "No. Las personas residentes en el exterior están exentas del IVA (21%) sobre el alojamiento cuando abonan con medios de pago del exterior. Al reservar podés indicar tu condición y, al hacer el check-in, verificamos tu DNI o pasaporte."

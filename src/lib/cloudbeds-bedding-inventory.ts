@@ -186,3 +186,18 @@ export function calculateBeddingAvailability(
 
   return result;
 }
+
+/** Static fallback used only when live Cloudbeds availability cannot be read. */
+export function calculateStaticBeddingAvailability(): BeddingAvailability {
+  return calculateBeddingAvailability(
+    Object.entries(ROOM_BEDDING_CAPABILITIES).map(
+      ([roomID, capability]) =>
+        ({
+          roomID,
+          roomTypeID: capability.roomTypeID,
+          isVirtual: false,
+          roomBlocked: false,
+        }) satisfies CloudbedsRoom,
+    ),
+  );
+}
