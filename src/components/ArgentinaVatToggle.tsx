@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import { Info, X } from "lucide-react";
 import {
@@ -38,6 +39,9 @@ export function ArgentinaVatToggle() {
       return;
     }
 
+    const previousBodyOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setInfoOpen(false);
@@ -45,7 +49,10 @@ export function ArgentinaVatToggle() {
     };
 
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
   }, [infoOpen]);
 
   const pillClass = (active: boolean) =>
@@ -103,21 +110,29 @@ export function ArgentinaVatToggle() {
         <Info size={16} />
       </button>
 
-      {infoOpen ? (
+      {/* Portal to <body>: the reservation header uses backdrop-blur, whose
+          backdrop-filter makes it the containing block for fixed descendants —
+          so a modal rendered inline would be clipped to the 85px header bar
+          instead of covering the viewport. Rendering at the body root frees the
+          overlay to mask the whole page. */}
+      {infoOpen ? createPortal(
         <div
           aria-labelledby="vat-info-title"
           aria-modal="true"
-          className="fixed inset-0 z-[80] flex items-center justify-center p-4"
+          className="fixed inset-0 isolate flex min-h-[100dvh] w-screen items-center justify-center overflow-y-auto bg-black/55 p-4 backdrop-blur-sm"
+          data-testid="vat-info-dialog"
           role="dialog"
+          style={{ zIndex: 2147483647 }}
         >
           <button
             aria-label={t("vat.closeLabel")}
-            className="absolute inset-0 cursor-default bg-black/40"
+            className="absolute inset-0 cursor-default"
+            data-testid="vat-info-backdrop"
             onClick={() => setInfoOpen(false)}
             tabIndex={-1}
             type="button"
           />
-          <div className="relative z-10 w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
+          <div className="relative z-10 max-h-[calc(100dvh-2rem)] w-full max-w-md overflow-y-auto rounded-2xl bg-white p-6 shadow-xl">
             <button
               aria-label={t("vat.closeLabel")}
               className="absolute right-4 top-4 rounded-full p-1.5 text-[#66736f] transition-colors hover:bg-[#edf3ef] hover:text-[#1f2b27]"
@@ -177,7 +192,8 @@ export function ArgentinaVatToggle() {
               {t("vat.understood")}
             </button>
           </div>
-        </div>
+        </div>,
+        document.body,
       ) : null}
     </div>
   );

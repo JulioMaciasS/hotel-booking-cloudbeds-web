@@ -87,6 +87,7 @@ NEXT_PUBLIC_CB_FIELD_VAT_USD=cf_iva_usd
 NEXT_PUBLIC_CB_FIELD_PRICE_ARS=cf_precio_ars_con_iva
 NEXT_PUBLIC_CB_FIELD_PRICE_USD=cf_precio_usd_con_iva
 NEXT_PUBLIC_CB_FIELD_FACTURA_T=cf_factura_t
+NEXT_PUBLIC_CB_FIELD_BEDDING_PREFERENCE=cf_bedding_preference
 ```
 
 If the custom fields are not present, recording silently no-ops.
@@ -243,8 +244,10 @@ the first room added. Once the Cloudbeds "add room" popover opens, the guest
 can allocate the selected quantity across every compatible bedding layout using
 per-layout counters. The Cloudbeds quantity input is kept as the real total
 room count, while the bedding distribution is stored separately in the DOM and
-`sessionStorage` using `data-hotel-*` attributes. It is not yet persisted into a
-reservation custom field and `postRoomAssign` is not yet run after booking.
+`sessionStorage` using `data-hotel-*` attributes. During checkout it is also
+written to the hidden Cloudbeds custom field configured by
+`NEXT_PUBLIC_CB_FIELD_BEDDING_PREFERENCE` in a compact server-readable format,
+for example `227179928547456=matrimonial:1,dos_camas_separadas:1`.
 
 On `/reservas?checkin=YYYY-MM-DD&checkout=YYYY-MM-DD`, the browser calls
 `GET /api/bedding-availability`. That server-only route calls Cloudbeds v1.3
@@ -277,9 +280,32 @@ transactional hold or a guarantee of sellable inventory. The counter is a live
 snapshot and may change before checkout. Unknown room IDs fail closed (they are
 not counted) and `mappingComplete: false` is logged so the server-side map can
 be updated. The map must be checked after rooms are added, deleted, reordered,
-or moved between room types. The four Doble Estandar roomID suffixes must be
-confirmed once against an undated `getRooms` response because the supplied
-dated payload contained no rooms of that type.
+or moved between room types.
+
+## Cloudbeds physical-room assignment
+
+After booking completion, Cloudbeds should call:
+
+```text
+POST /api/cloudbeds/reservation-created?secret=<CLOUDBEDS_WEBHOOK_SECRET>
+```
+
+Subscribe this URL to the Cloudbeds `reservation/created` webhook for this
+property. The webhook payload provides the reservation ID and stay dates. The
+route then:
+
+1. reads the stored `cf_bedding_preference` custom field from the reservation,
+2. calls dated Cloudbeds `getRooms` to get unassigned physical rooms,
+3. plans compatible physical-room assignments from
+   `ROOM_BEDDING_CAPABILITIES`, preserving any already-compatible assignment,
+4. calls Cloudbeds v1.3 `postRoomAssign` for rooms that need assignment or
+   reassignment.
+
+The webhook route requires `CLOUDBEDS_WEBHOOK_SECRET`, `CLOUDBEDS_PROPERTY_ID`
+and `CLOUDBEDS_API_KEY`. The API key needs at least reservation read access,
+room read access and room-assignment write access. If no compatible room is
+available at assignment time, the route leaves Cloudbeds' current assignment in
+place and reports the skipped item instead of forcing an incorrect room.
 
 ## Currency Conversion Limitations
 

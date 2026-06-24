@@ -41,3 +41,14 @@ export const cloudbedsFxCustomFields = {
    */
   facturaT: process.env.NEXT_PUBLIC_CB_FIELD_FACTURA_T ?? "cf_factura_t",
 } as const;
+
+export const cloudbedsBookingCustomFields = {
+  /**
+   * Compact bedding distribution persisted on the reservation for the
+   * server-side room-assignment webhook. Example:
+   * 227179928547456=matrimonial:1,dos_camas_separadas:1
+   */
+  beddingPreference:
+    process.env.NEXT_PUBLIC_CB_FIELD_BEDDING_PREFERENCE ??
+    "cf_bedding_preference",
+} as const;

@@ -1,5 +1,11 @@
+import type { BeddingKey } from "@/lib/cloudbeds-bedding-inventory";
+import {
+  serializeBeddingPreference,
+  type BeddingPreference,
+} from "@/lib/cloudbeds-bedding-preference";
+
 type BeddingOption = {
-  key: string;
+  key: BeddingKey;
   label: string;
   /** Maximum number of physical rooms that can provide this layout. */
   maxRooms: number;
@@ -499,6 +505,50 @@ function updateHiddenBeddingInput(wrapper: HTMLElement, value: string) {
   if (hiddenInput) {
     hiddenInput.value = value;
   }
+}
+
+function parseSerializedBeddingCounts(value: string | undefined) {
+  const counts: Partial<Record<BeddingKey, number>> = {};
+
+  if (!value) {
+    return counts;
+  }
+
+  for (const entry of value.split(";")) {
+    const [key, rawCount] = entry.split(":");
+    const count = clampCount(rawCount);
+
+    if (count > 0) {
+      counts[key as BeddingKey] = count;
+    }
+  }
+
+  return counts;
+}
+
+export function readCloudbedsBeddingPreference(
+  documentRef: Document = document,
+) {
+  const preference: BeddingPreference = {};
+
+  documentRef
+    .querySelectorAll<HTMLElement>("[data-hotel-bedding-selector]")
+    .forEach((wrapper) => {
+      const roomTypeID = wrapper.dataset.hotelBeddingSelector;
+      const counts = parseSerializedBeddingCounts(
+        wrapper.dataset.hotelBeddingCounts,
+      );
+      const totalSelected = Object.values(counts).reduce(
+        (total, count) => total + (count ?? 0),
+        0,
+      );
+
+      if (roomTypeID && totalSelected > 0) {
+        preference[roomTypeID] = counts;
+      }
+    });
+
+  return serializeBeddingPreference(preference);
 }
 
 function updateSelectedOption(wrapper: HTMLElement, selectedKey: string) {

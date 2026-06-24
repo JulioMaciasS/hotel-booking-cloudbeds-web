@@ -22,7 +22,11 @@ const HotelMap = dynamic(
   },
 );
 
-export function HotelMapWrapper() {
+type HotelMapWrapperProps = {
+  className?: string;
+};
+
+export function HotelMapWrapper({ className = "h-120" }: HotelMapWrapperProps) {
   const t = useTranslations("location.map");
   const [expanded, setExpanded] = useState(false);
 
@@ -51,7 +55,7 @@ export function HotelMapWrapper() {
       {/* Inline map — `isolate` creates a stacking context that contains all of
           Leaflet's internal z-indices (200–800) so they can't bleed above the
           site navbar (z-50) or the expanded modal. */}
-      <div className="relative isolate h-120 w-full">
+      <div className={`relative isolate w-full ${className}`}>
         <HotelMap />
         <button
           aria-label={t("expand")}

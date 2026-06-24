@@ -113,6 +113,10 @@ export const ROOM_BEDDING_CAPABILITIES: Readonly<
   },
 };
 
+export function getRoomBeddingCapability(roomID: string) {
+  return ROOM_BEDDING_CAPABILITIES[roomID] ?? null;
+}
+
 const ROOM_TYPE_OPTIONS: Readonly<
   Record<string, readonly BeddingKey[]>
 > = {

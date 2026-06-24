@@ -45,8 +45,8 @@ export default async function UbicacionPage({
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-8 lg:grid-cols-[1fr_360px]">
             {/* Map */}
-            <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5">
-              <HotelMapWrapper />
+            <div className="h-full min-h-[30rem] overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5">
+              <HotelMapWrapper className="h-full min-h-[30rem]" />
             </div>
 
             {/* Info panel */}

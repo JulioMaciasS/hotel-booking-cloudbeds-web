@@ -1,4 +1,8 @@
-import { cloudbedsFxCustomFields } from "@/lib/config";
+import {
+  cloudbedsBookingCustomFields,
+  cloudbedsFxCustomFields,
+} from "@/lib/config";
+import { readCloudbedsBeddingPreference } from "@/lib/cloudbeds-bedding-selector";
 import { readCloudbedsSummaryUsd } from "@/lib/cloudbeds-vat-adjust";
 import { reportFxDiagnostic } from "@/lib/fx-diagnostics";
 import { VAT_RATE } from "@/lib/vat";
@@ -204,7 +208,10 @@ export function recordFxCustomFields({
   // hide every configured field as soon as it renders, filled or not.
   let fieldsOnPage = 0;
 
-  for (const fieldName of Object.values(cloudbedsFxCustomFields)) {
+  for (const fieldName of [
+    ...Object.values(cloudbedsFxCustomFields),
+    ...Object.values(cloudbedsBookingCustomFields),
+  ]) {
     const control = findFieldControl(documentRef, fieldName);
 
     if (control) {
@@ -223,6 +230,14 @@ export function recordFxCustomFields({
   const values: Array<[string, string]> = [
     [cloudbedsFxCustomFields.facturaT, fromArgentina ? "NO" : "SI"],
   ];
+  const beddingPreference = readCloudbedsBeddingPreference(documentRef);
+
+  if (beddingPreference) {
+    values.push([
+      cloudbedsBookingCustomFields.beddingPreference,
+      beddingPreference,
+    ]);
+  }
 
   const hasRate =
     typeof arsPerUsd === "number" &&
