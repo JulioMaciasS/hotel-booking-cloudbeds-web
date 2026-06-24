@@ -186,6 +186,23 @@ function pickString(record: Record<string, unknown>, keys: string[]) {
   return null;
 }
 
+function customFieldLookupNames(fieldName: string) {
+  const trimmed = fieldName.trim();
+  const withoutCloudbedsPrefix = trimmed.replace(/^cf_/i, "");
+
+  return new Set([trimmed, withoutCloudbedsPrefix].filter(Boolean));
+}
+
+function customFieldNameMatches(candidate: unknown, fieldName: string) {
+  const value = stringValue(candidate);
+
+  if (!value) {
+    return false;
+  }
+
+  return customFieldLookupNames(fieldName).has(value.replace(/^cf_/i, ""));
+}
+
 function findReservationInPayload(
   payload: unknown,
   reservationID: string,
@@ -229,6 +246,7 @@ function findReservationInPayload(
 function extractCustomFieldValue(payload: unknown, fieldName: string) {
   const stack = [payload];
   const seen = new Set<unknown>();
+  const lookupNames = customFieldLookupNames(fieldName);
 
   while (stack.length > 0) {
     const current = stack.pop();
@@ -250,22 +268,38 @@ function extractCustomFieldValue(payload: unknown, fieldName: string) {
       continue;
     }
 
-    const direct = stringValue(record[fieldName]);
+    const direct = [...lookupNames]
+      .map((lookupName) => stringValue(record[lookupName]))
+      .find(Boolean);
 
     if (direct) {
       return direct;
     }
 
-    const internalName = pickString(record, [
+    const fieldIdentifiers = [
       "internalName",
       "fieldName",
       "name",
       "key",
       "code",
-    ]);
+      "customFieldName",
+      "shortcode",
+    ]
+      .map((key) => stringValue(record[key]))
+      .filter(Boolean);
 
-    if (internalName === fieldName) {
-      const value = pickString(record, ["value", "fieldValue", "text"]);
+    if (
+      fieldIdentifiers.some((identifier) =>
+        customFieldNameMatches(identifier, fieldName),
+      )
+    ) {
+      const value = pickString(record, [
+        "value",
+        "fieldValue",
+        "text",
+        "customFieldValue",
+        "answer",
+      ]);
 
       if (value) {
         return value;
