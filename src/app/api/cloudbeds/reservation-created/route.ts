@@ -48,10 +48,27 @@ function getPropertyID(payload: CloudbedsReservationWebhookPayload) {
   );
 }
 
+export async function GET() {
+  return NextResponse.json({
+    ok: true,
+    route: "cloudbeds/reservation-created",
+    serverEnv: {
+      apiKeyConfigured: Boolean(
+        process.env.CLOUDBEDS_API_KEY ?? process.env.CLOUDBEDS_API_KEY2,
+      ),
+      propertyIDConfigured: Boolean(process.env.CLOUDBEDS_PROPERTY_ID),
+      webhookSecretConfigured: Boolean(process.env.CLOUDBEDS_WEBHOOK_SECRET),
+    },
+  });
+}
+
 export async function POST(request: Request) {
   if (!isAuthorized(request)) {
     return NextResponse.json(
-      { error: "Unauthorized Cloudbeds webhook request." },
+      {
+        error: "Unauthorized Cloudbeds webhook request.",
+        webhookSecretConfigured: Boolean(process.env.CLOUDBEDS_WEBHOOK_SECRET),
+      },
       { status: 401 },
     );
   }
