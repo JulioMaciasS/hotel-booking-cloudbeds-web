@@ -4,6 +4,11 @@ import {
   CloudbedsConfigurationError,
   CloudbedsUpstreamError,
 } from "@/lib/cloudbeds-rooms";
+import {
+  getCloudbedsServerApiKey,
+  getCloudbedsServerPropertyID,
+  getCloudbedsWebhookSecret,
+} from "@/lib/cloudbeds-server-env";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -25,7 +30,7 @@ function stringValue(value: unknown) {
 }
 
 function isAuthorized(request: Request) {
-  const secret = process.env.CLOUDBEDS_WEBHOOK_SECRET;
+  const secret = getCloudbedsWebhookSecret();
 
   if (!secret) {
     return false;
@@ -53,11 +58,9 @@ export async function GET() {
     ok: true,
     route: "cloudbeds/reservation-created",
     serverEnv: {
-      apiKeyConfigured: Boolean(
-        process.env.CLOUDBEDS_API_KEY ?? process.env.CLOUDBEDS_API_KEY2,
-      ),
-      propertyIDConfigured: Boolean(process.env.CLOUDBEDS_PROPERTY_ID),
-      webhookSecretConfigured: Boolean(process.env.CLOUDBEDS_WEBHOOK_SECRET),
+      apiKeyConfigured: Boolean(getCloudbedsServerApiKey()),
+      propertyIDConfigured: Boolean(getCloudbedsServerPropertyID()),
+      webhookSecretConfigured: Boolean(getCloudbedsWebhookSecret()),
     },
   });
 }
@@ -67,7 +70,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error: "Unauthorized Cloudbeds webhook request.",
-        webhookSecretConfigured: Boolean(process.env.CLOUDBEDS_WEBHOOK_SECRET),
+        webhookSecretConfigured: Boolean(getCloudbedsWebhookSecret()),
       },
       { status: 401 },
     );
@@ -89,7 +92,7 @@ export async function POST(request: Request) {
   }
 
   const propertyID = getPropertyID(payload);
-  const expectedPropertyID = process.env.CLOUDBEDS_PROPERTY_ID;
+  const expectedPropertyID = getCloudbedsServerPropertyID();
 
   if (
     expectedPropertyID &&

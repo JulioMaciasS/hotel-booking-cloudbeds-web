@@ -17,6 +17,12 @@ import {
   CloudbedsUpstreamError,
   getCloudbedsRooms,
 } from "@/lib/cloudbeds-rooms";
+import {
+  getCloudbedsAssignmentRetryAttempts,
+  getCloudbedsAssignmentRetryDelayMs,
+  getCloudbedsServerApiKey,
+  getCloudbedsServerPropertyID,
+} from "@/lib/cloudbeds-server-env";
 
 const CLOUDBEDS_API_BASE = "https://api.cloudbeds.com/api/v1.3";
 const CLOUDBEDS_GET_RESERVATION_URL = `${CLOUDBEDS_API_BASE}/getReservation`;
@@ -88,8 +94,8 @@ type PostRoomAssignOptions = CloudbedsApiOptions & {
 };
 
 function getCloudbedsCredentials({
-  apiKey = process.env.CLOUDBEDS_API_KEY ?? process.env.CLOUDBEDS_API_KEY2,
-  propertyID = process.env.CLOUDBEDS_PROPERTY_ID,
+  apiKey = getCloudbedsServerApiKey(),
+  propertyID = getCloudbedsServerPropertyID(),
 }: CloudbedsApiOptions) {
   if (!apiKey || !propertyID) {
     throw new CloudbedsConfigurationError(
@@ -760,11 +766,11 @@ function shouldRetryAssignment(result: AssignReservationBeddingResult) {
  */
 export async function assignReservationBeddingWithRetry({
   retryAttempts = positiveInteger(
-    process.env.CLOUDBEDS_ASSIGNMENT_RETRY_ATTEMPTS,
+    getCloudbedsAssignmentRetryAttempts(),
     5,
   ),
   retryDelayMs = positiveInteger(
-    process.env.CLOUDBEDS_ASSIGNMENT_RETRY_DELAY_MS,
+    getCloudbedsAssignmentRetryDelayMs(),
     1500,
   ),
   sleep = wait,

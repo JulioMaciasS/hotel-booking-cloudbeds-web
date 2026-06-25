@@ -1,4 +1,8 @@
 import type { CloudbedsRoom } from "@/lib/cloudbeds-bedding-inventory";
+import {
+  getCloudbedsServerApiKey,
+  getCloudbedsServerPropertyID,
+} from "@/lib/cloudbeds-server-env";
 
 const CLOUDBEDS_GET_ROOMS_URL =
   "https://api.cloudbeds.com/api/v1.3/getRooms";
@@ -70,8 +74,8 @@ export type GetCloudbedsRoomsOptions = {
 export async function getCloudbedsRooms({
   checkin,
   checkout,
-  apiKey = process.env.CLOUDBEDS_API_KEY ?? process.env.CLOUDBEDS_API_KEY2,
-  propertyID = process.env.CLOUDBEDS_PROPERTY_ID,
+  apiKey = getCloudbedsServerApiKey(),
+  propertyID = getCloudbedsServerPropertyID(),
   fetchImpl = fetch,
 }: GetCloudbedsRoomsOptions): Promise<CloudbedsRoom[]> {
   if (!apiKey || !propertyID) {

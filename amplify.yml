@@ -17,6 +17,26 @@ frontend:
             printf "CLOUDBEDS_ASSIGNMENT_RETRY_ATTEMPTS=%s\n" "${CLOUDBEDS_ASSIGNMENT_RETRY_ATTEMPTS:-5}"
             printf "CLOUDBEDS_ASSIGNMENT_RETRY_DELAY_MS=%s\n" "${CLOUDBEDS_ASSIGNMENT_RETRY_DELAY_MS:-1500}"
           } > .env.production.local
+        - |
+          node <<'NODE'
+          const fs = require("node:fs");
+
+          const config = {
+            apiKey: process.env.CLOUDBEDS_API_KEY || "",
+            apiKey2: process.env.CLOUDBEDS_API_KEY2 || "",
+            assignmentRetryAttempts:
+              process.env.CLOUDBEDS_ASSIGNMENT_RETRY_ATTEMPTS || "5",
+            assignmentRetryDelayMs:
+              process.env.CLOUDBEDS_ASSIGNMENT_RETRY_DELAY_MS || "1500",
+            propertyID: process.env.CLOUDBEDS_PROPERTY_ID || "",
+            webhookSecret: process.env.CLOUDBEDS_WEBHOOK_SECRET || "",
+          };
+
+          fs.writeFileSync(
+            "src/lib/cloudbeds-server-env.generated.ts",
+            `export const generatedCloudbedsServerEnv = ${JSON.stringify(config, null, 2)} as const;\n`,
+          );
+          NODE
         - pnpm build
   artifacts:
     baseDirectory: .next
