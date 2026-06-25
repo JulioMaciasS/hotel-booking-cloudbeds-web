@@ -526,10 +526,97 @@ function parseSerializedBeddingCounts(value: string | undefined) {
   return counts;
 }
 
+function mergeBeddingPreferenceCounts(
+  preference: BeddingPreference,
+  roomTypeID: string,
+  counts: Partial<Record<BeddingKey, number>>,
+) {
+  const entries = Object.entries(counts)
+    .map(([key, count]) => [key as BeddingKey, clampCount(count)] as const)
+    .filter(([, count]) => count > 0);
+
+  if (entries.length === 0) {
+    return;
+  }
+
+  preference[roomTypeID] = Object.fromEntries(entries);
+}
+
+function getCartRoomTypeIDs(documentRef: Document) {
+  const roomTypeIDs = new Set<string>();
+
+  documentRef
+    .querySelectorAll<HTMLElement>(
+      "[data-testid^='shopping-cart-item-accommodation-']",
+    )
+    .forEach((element) => {
+      const match = element
+        .getAttribute("data-testid")
+        ?.match(/^shopping-cart-item-accommodation-([^-]+)/);
+
+      if (match?.[1]) {
+        roomTypeIDs.add(match[1]);
+      }
+    });
+
+  return roomTypeIDs;
+}
+
+function getSessionStorage(documentRef: Document) {
+  try {
+    return documentRef.defaultView?.sessionStorage ?? window.sessionStorage;
+  } catch {
+    return null;
+  }
+}
+
+function readStoredBeddingPreference(documentRef: Document) {
+  const preference: BeddingPreference = {};
+  const storage = getSessionStorage(documentRef);
+
+  if (!storage) {
+    return preference;
+  }
+
+  const cartRoomTypeIDs = getCartRoomTypeIDs(documentRef);
+
+  for (let index = 0; index < storage.length; index += 1) {
+    const key = storage.key(index);
+
+    if (!key?.startsWith(COUNTS_STORAGE_PREFIX)) {
+      continue;
+    }
+
+    const roomTypeID = key.slice(COUNTS_STORAGE_PREFIX.length);
+
+    if (cartRoomTypeIDs.size > 0 && !cartRoomTypeIDs.has(roomTypeID)) {
+      continue;
+    }
+
+    const config = BEDDING_CONFIGS.find((entry) => entry.id === roomTypeID);
+
+    if (!config) {
+      continue;
+    }
+
+    const counts = readStoredCounts(roomTypeID, config);
+
+    if (counts && getCountsTotal(counts) > 0) {
+      mergeBeddingPreferenceCounts(
+        preference,
+        roomTypeID,
+        counts as Partial<Record<BeddingKey, number>>,
+      );
+    }
+  }
+
+  return preference;
+}
+
 export function readCloudbedsBeddingPreference(
   documentRef: Document = document,
 ) {
-  const preference: BeddingPreference = {};
+  const preference = readStoredBeddingPreference(documentRef);
 
   documentRef
     .querySelectorAll<HTMLElement>("[data-hotel-bedding-selector]")
@@ -544,7 +631,7 @@ export function readCloudbedsBeddingPreference(
       );
 
       if (roomTypeID && totalSelected > 0) {
-        preference[roomTypeID] = counts;
+        mergeBeddingPreferenceCounts(preference, roomTypeID, counts);
       }
     });
 

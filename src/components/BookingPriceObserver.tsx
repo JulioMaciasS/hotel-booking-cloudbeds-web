@@ -66,6 +66,20 @@ function isOnlyHotelDomAdjustmentMutation(mutation: MutationRecord) {
   return Array.from(mutation.addedNodes).every(isHotelDomAdjustmentNode);
 }
 
+function shouldScanMutationBatch(mutations: MutationRecord[]) {
+  for (const mutation of mutations) {
+    if (isOnlyHotelDomAdjustmentMutation(mutation)) {
+      continue;
+    }
+
+    if (mutation.type === "characterData" || mutation.addedNodes.length > 0) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 function replacePricesInTextNode(
   textNode: Text,
   arsPerUsd: number,
@@ -255,6 +269,19 @@ export function BookingPriceObserver() {
       // re-render fallout cannot restart the loop.
       let isApplyingAdjustments = false;
       let cooldownTimer: ReturnType<typeof setTimeout> | null = null;
+      let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+      let pendingScanAfterCooldown = false;
+
+      const scheduleSettledAdjustments = () => {
+        if (debounceTimer !== null) {
+          clearTimeout(debounceTimer);
+        }
+
+        debounceTimer = setTimeout(() => {
+          debounceTimer = null;
+          applyAdjustments();
+        }, 300);
+      };
 
       const applyAdjustments = () => {
         isApplyingAdjustments = true;
@@ -272,6 +299,18 @@ export function BookingPriceObserver() {
             cooldownTimer = null;
             observer?.takeRecords();
             isApplyingAdjustments = false;
+
+            // Cloudbeds can re-render the checkout/add-ons step while our
+            // previous conversion pass is still inside this cooldown. Those
+            // mutations are not self-inflicted DOM adjustments; dropping them
+            // leaves the freshly-rendered cart in raw ARS until the user does
+            // something else (for example toggling VAT). Queue one trailing
+            // pass so the settled Cloudbeds DOM is converted.
+            if (pendingScanAfterCooldown) {
+              pendingScanAfterCooldown = false;
+              applyAdjustments();
+              scheduleSettledAdjustments();
+            }
           }, 250);
         }
       };
@@ -284,36 +323,18 @@ export function BookingPriceObserver() {
         signal: abortController.signal,
       });
 
-      // Debounce timer: after rapid Cloudbeds DOM updates settle we run one
-      // final pass. This ensures the VAT/price adjustments land on the final
-      // rendered state rather than an intermediate skeleton.
-      let debounceTimer: ReturnType<typeof setTimeout> | null = null;
-
       observer = new MutationObserver((mutations) => {
-        // Mutations that arrive while we're applying our own adjustments (and
-        // during the brief cooldown after) are self-inflicted — ignore them
-        // so they can't re-enter the convert pass.
-        if (isApplyingAdjustments) {
+        if (!shouldScanMutationBatch(mutations)) {
           return;
         }
 
-        let shouldScan = false;
-
-        for (const mutation of mutations) {
-          if (isOnlyHotelDomAdjustmentMutation(mutation)) {
-            continue;
-          }
-
-          if (
-            mutation.type === "characterData" ||
-            mutation.addedNodes.length > 0
-          ) {
-            shouldScan = true;
-            break;
-          }
-        }
-
-        if (!shouldScan) {
+        // Mutations that arrive while we're applying our own adjustments (and
+        // during the brief cooldown after) cannot be handled immediately
+        // without risking a conversion/re-render loop. Do not drop meaningful
+        // Cloudbeds updates, though: process one trailing pass once the
+        // cooldown releases.
+        if (isApplyingAdjustments) {
+          pendingScanAfterCooldown = true;
           return;
         }
 
@@ -323,13 +344,7 @@ export function BookingPriceObserver() {
         // Also schedule a follow-up in case Cloudbeds does a final render
         // after we've already adjusted (e.g. summary card settling after
         // the add-to-cart animation finishes).
-        if (debounceTimer !== null) {
-          clearTimeout(debounceTimer);
-        }
-        debounceTimer = setTimeout(() => {
-          debounceTimer = null;
-          applyAdjustments();
-        }, 300);
+        scheduleSettledAdjustments();
       });
 
       observer.observe(document.body, {

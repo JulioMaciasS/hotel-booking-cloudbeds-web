@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { assignReservationBedding } from "@/lib/cloudbeds-room-assignment";
+import { assignReservationBeddingWithRetry } from "@/lib/cloudbeds-room-assignment";
 import {
   CloudbedsConfigurationError,
   CloudbedsUpstreamError,
@@ -98,7 +98,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const result = await assignReservationBedding({
+    const result = await assignReservationBeddingWithRetry({
       checkin,
       checkout,
       reservationID,

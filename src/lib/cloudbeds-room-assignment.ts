@@ -1,4 +1,7 @@
-import { cloudbedsBookingCustomFields } from "@/lib/config";
+import {
+  cloudbedsBookingCustomFieldAliases,
+  cloudbedsBookingCustomFields,
+} from "@/lib/config";
 import {
   type BeddingKey,
   type CloudbedsRoom,
@@ -71,6 +74,13 @@ type AssignReservationBeddingOptions = CloudbedsApiOptions & {
   dryRun?: boolean;
   reservationID: string;
 };
+
+type AssignReservationBeddingWithRetryOptions =
+  AssignReservationBeddingOptions & {
+    retryAttempts?: number;
+    retryDelayMs?: number;
+    sleep?: (delayMs: number) => Promise<void>;
+  };
 
 type PostRoomAssignOptions = CloudbedsApiOptions & {
   assignment: PlannedRoomAssignment;
@@ -188,9 +198,20 @@ function pickString(record: Record<string, unknown>, keys: string[]) {
 
 function customFieldLookupNames(fieldName: string) {
   const trimmed = fieldName.trim();
-  const withoutCloudbedsPrefix = trimmed.replace(/^cf_/i, "");
+  const names = new Set<string>();
+  let current = trimmed;
 
-  return new Set([trimmed, withoutCloudbedsPrefix].filter(Boolean));
+  while (current) {
+    names.add(current);
+
+    if (!/^cf_/i.test(current)) {
+      break;
+    }
+
+    current = current.replace(/^cf_/i, "");
+  }
+
+  return names;
 }
 
 function customFieldNameMatches(candidate: unknown, fieldName: string) {
@@ -200,7 +221,11 @@ function customFieldNameMatches(candidate: unknown, fieldName: string) {
     return false;
   }
 
-  return customFieldLookupNames(fieldName).has(value.replace(/^cf_/i, ""));
+  const lookupNames = customFieldLookupNames(fieldName);
+
+  return [...customFieldLookupNames(value)].some((candidate) =>
+    lookupNames.has(candidate),
+  );
 }
 
 function findReservationInPayload(
@@ -372,13 +397,19 @@ function extractReservationRooms(
         "reservationId",
         "reservation_id",
       ]);
+      const explicitSubReservationBelongsToReservation =
+        explicitSubReservationID === reservationID ||
+        explicitSubReservationID?.startsWith(`${reservationID}-`);
       const subReservationID =
         explicitSubReservationID ??
-        (linkedReservationID === reservationID || reservationRoomID
-          ? reservationID
-          : null);
+        (linkedReservationID === reservationID ? reservationID : null);
 
-      if (roomTypeID && subReservationID) {
+      if (
+        roomTypeID &&
+        subReservationID &&
+        (linkedReservationID === reservationID ||
+          explicitSubReservationBelongsToReservation)
+      ) {
         const key = `${subReservationID}:${roomTypeID}:${oldRoomID ?? ""}`;
 
         if (!seen.has(key)) {
@@ -628,6 +659,13 @@ export async function assignReservationBedding({
   );
   const storedPreference =
     beddingPreference ||
+    cloudbedsBookingCustomFieldAliases.beddingPreference
+      .map(
+        (fieldName) =>
+          extractCustomFieldValue(reservationListPayload, fieldName) ||
+          extractCustomFieldValue(reservationPayload, fieldName),
+      )
+      .find(Boolean) ||
     extractCustomFieldValue(
       reservationListPayload,
       cloudbedsBookingCustomFields.beddingPreference,
@@ -692,4 +730,57 @@ export async function assignReservationBedding({
     reservationID,
     skipped: assignmentsToExecute.length === 0,
   };
+}
+
+function wait(delayMs: number) {
+  return new Promise<void>((resolve) => {
+    setTimeout(resolve, delayMs);
+  });
+}
+
+function positiveInteger(value: unknown, fallback: number) {
+  const number = Number(value);
+
+  return Number.isInteger(number) && number > 0 ? number : fallback;
+}
+
+function shouldRetryAssignment(result: AssignReservationBeddingResult) {
+  return result.issues.some((issue) =>
+    [
+      "missing_bedding_preference",
+      "missing_reservation_room",
+    ].includes(issue.reason),
+  );
+}
+
+/**
+ * Cloudbeds can emit reservation/created before the reservation custom fields
+ * and room rows are visible through the public API. Retrying here avoids a
+ * permanent skip caused by that short eventual-consistency window.
+ */
+export async function assignReservationBeddingWithRetry({
+  retryAttempts = positiveInteger(
+    process.env.CLOUDBEDS_ASSIGNMENT_RETRY_ATTEMPTS,
+    5,
+  ),
+  retryDelayMs = positiveInteger(
+    process.env.CLOUDBEDS_ASSIGNMENT_RETRY_DELAY_MS,
+    1500,
+  ),
+  sleep = wait,
+  ...options
+}: AssignReservationBeddingWithRetryOptions): Promise<AssignReservationBeddingResult> {
+  let lastResult: AssignReservationBeddingResult | null = null;
+
+  for (let attempt = 1; attempt <= retryAttempts; attempt += 1) {
+    lastResult = await assignReservationBedding(options);
+
+    if (!shouldRetryAssignment(lastResult) || attempt === retryAttempts) {
+      return lastResult;
+    }
+
+    await sleep(retryDelayMs);
+  }
+
+  return lastResult as AssignReservationBeddingResult;
 }

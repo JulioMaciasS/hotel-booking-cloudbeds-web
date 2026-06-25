@@ -1,5 +1,5 @@
 import {
-  cloudbedsBookingCustomFields,
+  cloudbedsBookingCustomFieldAliases,
   cloudbedsFxCustomFields,
 } from "@/lib/config";
 import { readCloudbedsBeddingPreference } from "@/lib/cloudbeds-bedding-selector";
@@ -158,6 +158,20 @@ function fillCustomField(
   return true;
 }
 
+function fillAnyCustomField(
+  documentRef: Document,
+  fieldNames: readonly string[],
+  value: string,
+) {
+  let filledAny = false;
+
+  for (const fieldName of fieldNames) {
+    filledAny = fillCustomField(documentRef, fieldName, value) || filledAny;
+  }
+
+  return filledAny;
+}
+
 const ADDITIONAL_INFO_PATTERN =
   /^\s*(?:informaci[oó]n adicional|additional information)\s*$/i;
 
@@ -210,7 +224,7 @@ export function recordFxCustomFields({
 
   for (const fieldName of [
     ...Object.values(cloudbedsFxCustomFields),
-    ...Object.values(cloudbedsBookingCustomFields),
+    ...cloudbedsBookingCustomFieldAliases.beddingPreference,
   ]) {
     const control = findFieldControl(documentRef, fieldName);
 
@@ -227,14 +241,14 @@ export function recordFxCustomFields({
 
   // The residency flag drives Comfiar's "Factura T": "SI" = IVA-exempt
   // resident abroad (Comfiar runs the tax post-adjustment), "NO" = resident.
-  const values: Array<[string, string]> = [
+  const values: Array<[string | readonly string[], string]> = [
     [cloudbedsFxCustomFields.facturaT, fromArgentina ? "NO" : "SI"],
   ];
   const beddingPreference = readCloudbedsBeddingPreference(documentRef);
 
   if (beddingPreference) {
     values.push([
-      cloudbedsBookingCustomFields.beddingPreference,
+      cloudbedsBookingCustomFieldAliases.beddingPreference,
       beddingPreference,
     ]);
   }
@@ -280,10 +294,12 @@ export function recordFxCustomFields({
   const missing: string[] = [];
 
   for (const [fieldName, value] of values) {
-    if (fillCustomField(documentRef, fieldName, value)) {
+    const fieldNames = Array.isArray(fieldName) ? fieldName : [fieldName];
+
+    if (fillAnyCustomField(documentRef, fieldNames, value)) {
       filledAny = true;
     } else {
-      missing.push(fieldName);
+      missing.push(fieldNames[0] ?? "");
     }
   }
 

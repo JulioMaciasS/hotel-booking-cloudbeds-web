@@ -3,6 +3,16 @@ function parseRate(value: string | undefined, fallback: number): number {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }
 
+function uniqueStrings(values: string[]) {
+  return [...new Set(values.map((value) => value.trim()).filter(Boolean))];
+}
+
+function cloudbedsGeneratedInternalName(value: string) {
+  const normalized = value.trim();
+
+  return normalized ? `cf_${normalized.slice(0, 20)}` : "";
+}
+
 export const publicConfig = {
   propertyCode: process.env.NEXT_PUBLIC_CLOUDBEDS_PROPERTY_CODE ?? "5fdNYA",
   cloudbedsIsland: process.env.NEXT_PUBLIC_CLOUDBEDS_ISLAND ?? "us2",
@@ -51,4 +61,21 @@ export const cloudbedsBookingCustomFields = {
   beddingPreference:
     process.env.NEXT_PUBLIC_CB_FIELD_BEDDING_PREFERENCE ??
     "cf_bedding_preference",
+} as const;
+
+export const cloudbedsBookingCustomFieldAliases = {
+  /**
+   * Cloudbeds can auto-generate an internal name from the visible title by
+   * prefixing `cf_` and truncating the base value. In the current property UI,
+   * a field titled `cf_bedding_preference` rendered as
+   * `cf_cf_bedding_preferenc`, so keep that alias while still honoring the
+   * explicitly configured internal name.
+   */
+  beddingPreference: uniqueStrings([
+    cloudbedsBookingCustomFields.beddingPreference,
+    cloudbedsGeneratedInternalName(
+      cloudbedsBookingCustomFields.beddingPreference,
+    ),
+    "cf_cf_bedding_preferenc",
+  ]),
 } as const;

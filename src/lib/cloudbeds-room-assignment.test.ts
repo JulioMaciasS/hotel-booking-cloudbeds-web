@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   assignReservationBedding,
+  assignReservationBeddingWithRetry,
   planBeddingRoomAssignments,
 } from "./cloudbeds-room-assignment";
 
@@ -138,7 +139,7 @@ describe("Cloudbeds room assignment planner", () => {
                   customFieldName: "Preferencia de camas",
                   customFieldValue:
                     "227179928547456=dos_camas_separadas:1",
-                  shortcode: "bedding_preference",
+                  shortcode: "cf_bedding_preferenc",
                 },
               ],
               reservationID: "res-1",
@@ -200,6 +201,102 @@ describe("Cloudbeds room assignment planner", () => {
       newRoomID: "227179928547456-2",
       status: "planned",
       subReservationID: "res-1-1",
+    });
+    expect(calls).toContain("POST /api/v1.3/postRoomAssign");
+  });
+
+  it("retries assignment when Cloudbeds has not exposed custom fields yet", async () => {
+    let getReservationsCalls = 0;
+    const calls: string[] = [];
+    const fetchImpl = async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = new URL(String(input));
+      calls.push(`${init?.method ?? "GET"} ${url.pathname}`);
+
+      if (url.pathname.endsWith("/getReservation")) {
+        return Response.json({
+          success: true,
+          data: {
+            reservationID: "res-1",
+          },
+        });
+      }
+
+      if (url.pathname.endsWith("/getReservations")) {
+        getReservationsCalls += 1;
+
+        return Response.json({
+          success: true,
+          data: [
+            {
+              customFields:
+                getReservationsCalls === 1
+                  ? []
+                  : [
+                      {
+                        customFieldName: "Preferencia de camas",
+                        customFieldValue:
+                          "229741541683392=dos_camas_separadas:1",
+                        shortcode: "cf_bedding_preferenc",
+                      },
+                    ],
+              reservationID: "res-1",
+              rooms: [
+                {
+                  reservationID: "res-1",
+                  roomID: "229741541683392-0",
+                  roomTypeID: "229741541683392",
+                  subReservationID: "res-1",
+                },
+              ],
+            },
+          ],
+        });
+      }
+
+      if (url.pathname.endsWith("/getRooms")) {
+        return Response.json({
+          success: true,
+          data: [
+            {
+              propertyID: "property-1",
+              rooms: [
+                {
+                  roomID: "229741541683392-3",
+                  roomTypeID: "229741541683392",
+                },
+              ],
+            },
+          ],
+          total: 1,
+        });
+      }
+
+      if (url.pathname.endsWith("/postRoomAssign")) {
+        return Response.json({ success: true });
+      }
+
+      throw new Error(`Unexpected Cloudbeds URL: ${url.href}`);
+    };
+
+    const result = await assignReservationBeddingWithRetry({
+      apiKey: "test-key",
+      checkin: "2026-07-03",
+      checkout: "2026-07-05",
+      fetchImpl: fetchImpl as typeof fetch,
+      propertyID: "property-1",
+      reservationID: "res-1",
+      retryDelayMs: 1,
+      sleep: async () => {},
+    });
+
+    expect(getReservationsCalls).toBe(2);
+    expect(result.skipped).toBe(false);
+    expect(result.assigned[0]).toMatchObject({
+      bedding: "dos_camas_separadas",
+      newRoomID: "229741541683392-3",
+      oldRoomID: "229741541683392-0",
+      status: "planned",
+      subReservationID: "res-1",
     });
     expect(calls).toContain("POST /api/v1.3/postRoomAssign");
   });

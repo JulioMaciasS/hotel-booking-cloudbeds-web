@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import {
   injectCloudbedsBeddingSelectors,
+  readCloudbedsBeddingPreference,
   setCloudbedsBeddingAvailability,
   syncCloudbedsBeddingSelections,
 } from "./cloudbeds-bedding-selector";
@@ -241,5 +242,53 @@ describe("Cloudbeds bedding quantity limits", () => {
     expect(input.value).toBe("2");
     plus.click();
     expect(input.value).toBe("2");
+  });
+
+  it("reads stored bedding counts after room cards unmount on checkout", () => {
+    window.sessionStorage.setItem(
+      "hotel-bedding-counts:227179928547456",
+      JSON.stringify({
+        dos_camas_separadas: 2,
+        matrimonial: 1,
+      }),
+    );
+    document.body.innerHTML = `
+      <div data-testid="shopping-cart-card">
+        <div data-testid="shopping-cart-item-accommodation-227179928547456-236350098788544">
+          Doble Estándar
+        </div>
+      </div>
+    `;
+
+    expect(readCloudbedsBeddingPreference(document)).toBe(
+      "227179928547456=matrimonial:1,dos_camas_separadas:2",
+    );
+  });
+
+  it("does not serialize stale stored bedding counts for removed cart items", () => {
+    window.sessionStorage.setItem(
+      "hotel-bedding-counts:227179928547456",
+      JSON.stringify({
+        dos_camas_separadas: 2,
+        matrimonial: 1,
+      }),
+    );
+    window.sessionStorage.setItem(
+      "hotel-bedding-counts:229741541683392",
+      JSON.stringify({
+        matrimonial: 1,
+      }),
+    );
+    document.body.innerHTML = `
+      <div data-testid="shopping-cart-card">
+        <div data-testid="shopping-cart-item-accommodation-229741541683392-236350098788544">
+          Doble Superior
+        </div>
+      </div>
+    `;
+
+    expect(readCloudbedsBeddingPreference(document)).toBe(
+      "229741541683392=matrimonial:1",
+    );
   });
 });
