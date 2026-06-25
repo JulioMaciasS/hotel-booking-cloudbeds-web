@@ -9,6 +9,14 @@ frontend:
         - pnpm install --frozen-lockfile
     build:
       commands:
+        - |
+          {
+            printf "CLOUDBEDS_PROPERTY_ID=%s\n" "$CLOUDBEDS_PROPERTY_ID"
+            printf "CLOUDBEDS_API_KEY2=%s\n" "$CLOUDBEDS_API_KEY2"
+            printf "CLOUDBEDS_WEBHOOK_SECRET=%s\n" "$CLOUDBEDS_WEBHOOK_SECRET"
+            printf "CLOUDBEDS_ASSIGNMENT_RETRY_ATTEMPTS=%s\n" "${CLOUDBEDS_ASSIGNMENT_RETRY_ATTEMPTS:-5}"
+            printf "CLOUDBEDS_ASSIGNMENT_RETRY_DELAY_MS=%s\n" "${CLOUDBEDS_ASSIGNMENT_RETRY_DELAY_MS:-1500}"
+          } > .env.production.local
         - pnpm build
   artifacts:
     baseDirectory: .next
