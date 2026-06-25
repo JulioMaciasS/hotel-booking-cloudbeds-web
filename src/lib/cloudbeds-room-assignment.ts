@@ -88,12 +88,12 @@ type PostRoomAssignOptions = CloudbedsApiOptions & {
 };
 
 function getCloudbedsCredentials({
-  apiKey = process.env.CLOUDBEDS_API_KEY,
+  apiKey = process.env.CLOUDBEDS_API_KEY ?? process.env.CLOUDBEDS_API_KEY2,
   propertyID = process.env.CLOUDBEDS_PROPERTY_ID,
 }: CloudbedsApiOptions) {
   if (!apiKey || !propertyID) {
     throw new CloudbedsConfigurationError(
-      "CLOUDBEDS_API_KEY and CLOUDBEDS_PROPERTY_ID must be configured.",
+      "CLOUDBEDS_API_KEY or CLOUDBEDS_API_KEY2, and CLOUDBEDS_PROPERTY_ID must be configured.",
     );
   }
 
