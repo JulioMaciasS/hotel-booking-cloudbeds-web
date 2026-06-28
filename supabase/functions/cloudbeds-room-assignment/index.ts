@@ -67,10 +67,36 @@ type Settings = {
   webhookSecret?: string;
 };
 
+type AssignmentClaim = {
+  completedAt?: string;
+  event?: string | null;
+  reason?: string;
+  reservationID: string;
+  runID: string;
+  status: "processing" | "complete" | "retryable" | "failed";
+  updatedAt: string;
+};
+
+type AssignmentClaimResult =
+  | {
+      acquired: true;
+      key: string;
+      runID: string;
+    }
+  | {
+      acquired: false;
+      key: string;
+      reason: "already_complete" | "already_processing" | "claim_race";
+      state?: AssignmentClaim;
+    };
+
 const DEFAULT_API_BASE_URL = "https://api.cloudbeds.com/api/v1.3";
 const PAGE_SIZE = 100;
 const MAX_PAGES = 20;
 const REQUEST_TIMEOUT_MS = 12_000;
+const PROCESSING_CLAIM_TTL_MS = 60_000;
+const DEFAULT_RETRY_ATTEMPTS = 8;
+const DEFAULT_RETRY_DELAY_MS = 2_500;
 
 const DOUBLE_STANDARD = "227179928547456";
 const TRIPLE_STANDARD_TWIN = "229741180768384";
@@ -152,6 +178,11 @@ const BEDDING_CUSTOM_FIELD_ALIASES = [
   "cf_bedding_preferenc",
   "bedding_preference",
 ];
+
+const RETRYABLE_ISSUE_REASONS = new Set<RoomAssignmentIssue["reason"]>([
+  "missing_bedding_preference",
+  "missing_reservation_room",
+]);
 
 const corsHeaders = {
   "access-control-allow-headers":
@@ -364,6 +395,117 @@ function extractCustomFieldValue(payload: unknown, fieldName: string) {
   }
 
   return null;
+}
+
+function findChangedCustomFields(payload: unknown) {
+  const fields: Array<{
+    identifiers: string[];
+    value: string;
+    valueProvided: boolean;
+  }> = [];
+  const stack = [payload];
+  const seen = new Set<unknown>();
+
+  while (stack.length > 0) {
+    const current = stack.pop();
+
+    if (!current || seen.has(current)) {
+      continue;
+    }
+
+    seen.add(current);
+
+    if (Array.isArray(current)) {
+      stack.push(...current);
+      continue;
+    }
+
+    const record = asRecord(current);
+
+    if (!record) {
+      continue;
+    }
+
+    for (const [key, value] of Object.entries(record)) {
+      const normalizedKey = key.replace(/[^a-z]/gi, "").toLowerCase();
+
+      if (
+        !["createdcustomfields", "updatedcustomfields"].includes(
+          normalizedKey,
+        ) ||
+        !Array.isArray(value)
+      ) {
+        continue;
+      }
+
+      for (const entry of value) {
+        const field = asRecord(entry);
+
+        if (!field) {
+          continue;
+        }
+
+        const identifiers = [
+          "id",
+          "customFieldID",
+          "customFieldId",
+          "internalName",
+          "name",
+          "fieldName",
+          "customFieldName",
+          "shortcode",
+          "shortCode",
+          "key",
+          "code",
+        ]
+          .map((fieldKey) => field[fieldKey])
+          .filter((identifier) => identifier !== undefined && identifier !== null)
+          .map(String);
+        const rawValue =
+          field.value ??
+          field.newValue ??
+          field.new_value ??
+          field.fieldValue ??
+          field.field_value ??
+          field.customFieldValue ??
+          field.custom_field_value;
+
+        fields.push({
+          identifiers,
+          value: rawValue === undefined || rawValue === null
+            ? ""
+            : String(rawValue),
+          valueProvided: rawValue !== undefined,
+        });
+      }
+    }
+
+    stack.push(...Object.values(record));
+  }
+
+  return fields;
+}
+
+function fieldMatchesAnyBeddingAlias(field: { identifiers: string[] }) {
+  return BEDDING_CUSTOM_FIELD_ALIASES.some((alias) =>
+    field.identifiers.some((identifier) =>
+      customFieldNameMatches(identifier, alias)
+    )
+  );
+}
+
+function extractChangedBeddingPreference(payload: unknown) {
+  const changedField = findChangedCustomFields(payload).find((field) =>
+    field.valueProvided && fieldMatchesAnyBeddingAlias(field)
+  );
+
+  if (changedField?.value) {
+    return changedField.value;
+  }
+
+  return BEDDING_CUSTOM_FIELD_ALIASES
+    .map((fieldName) => extractCustomFieldValue(payload, fieldName))
+    .find(Boolean) ?? null;
 }
 
 function isBeddingKey(value: string): value is BeddingKey {
@@ -803,12 +945,12 @@ async function loadSettings(supabase: ReturnType<typeof createClient>) {
     retryAttempts: positiveInteger(
       Deno.env.get("CLOUDBEDS_ASSIGNMENT_RETRY_ATTEMPTS") ??
         settings.get("cloudbeds_assignment_retry_attempts"),
-      5,
+      DEFAULT_RETRY_ATTEMPTS,
     ),
     retryDelayMs: positiveInteger(
       Deno.env.get("CLOUDBEDS_ASSIGNMENT_RETRY_DELAY_MS") ??
         settings.get("cloudbeds_assignment_retry_delay_ms"),
-      1500,
+      DEFAULT_RETRY_DELAY_MS,
     ),
     webhookSecret:
       Deno.env.get("CLOUDBEDS_WEBHOOK_SECRET") ||
@@ -870,7 +1012,16 @@ async function cloudbedsGetJson(
     );
   }
 
-  return response.json();
+  const payload = await response.json();
+  const record = asRecord(payload);
+
+  if (record?.success === false) {
+    throw new Error(
+      `Cloudbeds ${path} returned success=false: ${JSON.stringify(payload).slice(0, 500)}`,
+    );
+  }
+
+  return payload;
 }
 
 async function getReservationPayload(
@@ -904,6 +1055,50 @@ async function findReservationListPayload(
   });
 
   return findReservationInPayload(payload, reservationID);
+}
+
+async function resolveStayDates(
+  settings: Settings,
+  {
+    checkin,
+    checkout,
+    reservationID,
+  }: {
+    checkin?: string | null;
+    checkout?: string | null;
+    reservationID: string;
+  },
+) {
+  if (checkin && checkout) {
+    return { checkin, checkout };
+  }
+
+  const reservationPayload = await getReservationPayload(settings, reservationID);
+  const resolvedCheckin =
+    checkin ||
+    findFirstString(reservationPayload, [
+      "startDate",
+      "checkin",
+      "checkIn",
+      "check_in",
+      "dateStart",
+      "arrivalDate",
+    ]);
+  const resolvedCheckout =
+    checkout ||
+    findFirstString(reservationPayload, [
+      "endDate",
+      "checkout",
+      "checkOut",
+      "check_out",
+      "dateEnd",
+      "departureDate",
+    ]);
+
+  return {
+    checkin: resolvedCheckin,
+    checkout: resolvedCheckout,
+  };
 }
 
 async function getCloudbedsRooms(
@@ -983,7 +1178,16 @@ async function postRoomAssign({
     );
   }
 
-  return response.json();
+  const payload = await response.json();
+  const record = asRecord(payload);
+
+  if (record?.success === false) {
+    throw new Error(
+      `Cloudbeds postRoomAssign returned success=false: ${JSON.stringify(payload).slice(0, 500)}`,
+    );
+  }
+
+  return payload;
 }
 
 async function assignReservationBedding({
@@ -1262,12 +1466,203 @@ async function updateAssignmentEvent(
   }
 }
 
+function assignmentClaimKey(reservationID: string) {
+  return `cloudbeds_room_assignment_claim:${reservationID}`;
+}
+
+function parseAssignmentClaim(value: unknown): AssignmentClaim | null {
+  const record = asRecord(value);
+
+  if (!record) {
+    return null;
+  }
+
+  const reservationID = stringValue(record.reservationID);
+  const runID = stringValue(record.runID);
+  const status = stringValue(record.status) as AssignmentClaim["status"] | null;
+  const updatedAt = stringValue(record.updatedAt);
+
+  if (
+    !reservationID ||
+    !runID ||
+    !updatedAt ||
+    !["processing", "complete", "retryable", "failed"].includes(status ?? "")
+  ) {
+    return null;
+  }
+
+  return {
+    completedAt: stringValue(record.completedAt) ?? undefined,
+    event: stringValue(record.event),
+    reason: stringValue(record.reason) ?? undefined,
+    reservationID,
+    runID,
+    status,
+    updatedAt,
+  };
+}
+
+function isProcessingClaimFresh(claim: AssignmentClaim) {
+  if (claim.status !== "processing") {
+    return false;
+  }
+
+  const updatedAtMs = Date.parse(claim.updatedAt);
+
+  return Number.isFinite(updatedAtMs)
+    ? Date.now() - updatedAtMs < PROCESSING_CLAIM_TTL_MS
+    : false;
+}
+
+async function acquireAssignmentClaim(
+  supabase: ReturnType<typeof createClient>,
+  {
+    event,
+    reservationID,
+  }: {
+    event?: string | null;
+    reservationID: string;
+  },
+): Promise<AssignmentClaimResult> {
+  const key = assignmentClaimKey(reservationID);
+  const now = new Date().toISOString();
+  const runID = crypto.randomUUID();
+  const nextValue: AssignmentClaim = {
+    event,
+    reservationID,
+    runID,
+    status: "processing",
+    updatedAt: now,
+  };
+  const insert = await supabase
+    .from("app_settings")
+    .insert({
+      key,
+      updated_at: now,
+      value: nextValue,
+    })
+    .select("key")
+    .maybeSingle();
+
+  if (!insert.error) {
+    return { acquired: true, key, runID };
+  }
+
+  if (insert.error.code !== "23505") {
+    throw insert.error;
+  }
+
+  const { data, error } = await supabase
+    .from("app_settings")
+    .select("value, updated_at")
+    .eq("key", key)
+    .maybeSingle();
+
+  if (error) {
+    throw error;
+  }
+
+  const currentUpdatedAt =
+    typeof data?.updated_at === "string" ? data.updated_at : null;
+  const currentClaim = parseAssignmentClaim(data?.value);
+
+  if (currentClaim?.status === "complete") {
+    return {
+      acquired: false,
+      key,
+      reason: "already_complete",
+      state: currentClaim,
+    };
+  }
+
+  if (currentClaim && isProcessingClaimFresh(currentClaim)) {
+    return {
+      acquired: false,
+      key,
+      reason: "already_processing",
+      state: currentClaim,
+    };
+  }
+
+  let update = supabase
+    .from("app_settings")
+    .update({
+      updated_at: now,
+      value: nextValue,
+    })
+    .eq("key", key);
+
+  if (currentUpdatedAt) {
+    update = update.eq("updated_at", currentUpdatedAt);
+  }
+
+  const { data: updated, error: updateError } = await update
+    .select("key")
+    .maybeSingle();
+
+  if (updateError) {
+    throw updateError;
+  }
+
+  if (!updated) {
+    return {
+      acquired: false,
+      key,
+      reason: "claim_race",
+      state: currentClaim ?? undefined,
+    };
+  }
+
+  return { acquired: true, key, runID };
+}
+
+async function completeAssignmentClaim(
+  supabase: ReturnType<typeof createClient>,
+  {
+    claim,
+    reason,
+    status,
+  }: {
+    claim: Extract<AssignmentClaimResult, { acquired: true }>;
+    reason?: string;
+    status: AssignmentClaim["status"];
+  },
+) {
+  const now = new Date().toISOString();
+  const value: AssignmentClaim = {
+    reservationID: claim.key.replace("cloudbeds_room_assignment_claim:", ""),
+    runID: claim.runID,
+    status,
+    updatedAt: now,
+    ...(reason ? { reason } : {}),
+    ...(status === "complete" || status === "failed"
+      ? { completedAt: now }
+      : {}),
+  };
+  const { error } = await supabase
+    .from("app_settings")
+    .update({
+      updated_at: now,
+      value,
+    })
+    .eq("key", claim.key)
+    .filter("value->>runID", "eq", claim.runID);
+
+  if (error) {
+    console.error("Failed to complete room-assignment claim.", error);
+  }
+}
+
 function eventStatus(result: AssignmentResult): "success" | "noop" | "failed" {
   if (result.issues.length > 0) {
     return "failed";
   }
 
   return result.assigned.length > 0 ? "success" : "noop";
+}
+
+function isRetryableAssignmentResult(result: AssignmentResult) {
+  return result.issues.some((issue) => RETRYABLE_ISSUE_REASONS.has(issue.reason));
 }
 
 Deno.serve(async (req) => {
@@ -1333,9 +1728,13 @@ Deno.serve(async (req) => {
     "propertyId_str",
     "property_id",
   ]);
-  const beddingPreference = BEDDING_CUSTOM_FIELD_ALIASES
-    .map((fieldName) => extractCustomFieldValue(payload, fieldName))
-    .find(Boolean) ?? undefined;
+  const changedBeddingPreference = extractChangedBeddingPreference(payload);
+  const beddingPreference =
+    changedBeddingPreference ??
+    BEDDING_CUSTOM_FIELD_ALIASES
+      .map((fieldName) => extractCustomFieldValue(payload, fieldName))
+      .find(Boolean) ??
+    undefined;
   const logID = await insertCloudbedsLog(supabase, {
     requestPayload: payload,
     reservationID,
@@ -1347,9 +1746,30 @@ Deno.serve(async (req) => {
     requestPayload: payload,
     reservationID,
   });
+  const isReservationCreated = event === "reservation/created";
+  const isReservationCustomFieldsChanged =
+    event === "reservation/custom_fields_changed";
 
-  if (event !== "reservation/created") {
+  if (!isReservationCreated && !isReservationCustomFieldsChanged) {
     const responsePayload = { ok: true, skipped: "unsupported_event", event };
+    await updateCloudbedsLog(supabase, logID, {
+      responsePayload,
+      status: "success",
+    });
+    await updateAssignmentEvent(supabase, auditID, {
+      responsePayload,
+      status: "ignored",
+    });
+
+    return jsonResponse(responsePayload);
+  }
+
+  if (isReservationCustomFieldsChanged && !changedBeddingPreference) {
+    const responsePayload = {
+      ok: true,
+      skipped: "unrelated_custom_field_change",
+      event,
+    };
     await updateCloudbedsLog(supabase, logID, {
       responsePayload,
       status: "success",
@@ -1380,10 +1800,10 @@ Deno.serve(async (req) => {
     return jsonResponse(responsePayload);
   }
 
-  if (!reservationID || !checkin || !checkout) {
+  if (!reservationID) {
     const responsePayload = {
       error:
-        "Cloudbeds reservation/created webhook payload is missing reservationID, startDate or endDate.",
+        "Cloudbeds reservation webhook payload is missing reservationID.",
     };
     await updateCloudbedsLog(supabase, logID, {
       errorMessage: responsePayload.error,
@@ -1399,15 +1819,125 @@ Deno.serve(async (req) => {
     return jsonResponse(responsePayload, 400);
   }
 
+  let resolvedCheckin = checkin;
+  let resolvedCheckout = checkout;
+
+  if (!resolvedCheckin || !resolvedCheckout) {
+    try {
+      const resolvedDates = await resolveStayDates(settings, {
+        checkin,
+        checkout,
+        reservationID,
+      });
+
+      resolvedCheckin = resolvedDates.checkin;
+      resolvedCheckout = resolvedDates.checkout;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      const responsePayload = {
+        error: `Could not resolve reservation stay dates: ${message}`,
+        ok: false,
+        reservationID,
+      };
+      await updateCloudbedsLog(supabase, logID, {
+        errorMessage: responsePayload.error,
+        responsePayload,
+        status: "failed",
+      });
+      await updateAssignmentEvent(supabase, auditID, {
+        errorMessage: responsePayload.error,
+        responsePayload,
+        status: "failed",
+      });
+
+      return jsonResponse(responsePayload, 502);
+    }
+  }
+
+  if (!resolvedCheckin || !resolvedCheckout) {
+    const responsePayload = {
+      error:
+        "Cloudbeds reservation webhook payload is missing startDate/endDate and they could not be resolved from getReservation.",
+      ok: false,
+      reservationID,
+    };
+    await updateCloudbedsLog(supabase, logID, {
+      errorMessage: responsePayload.error,
+      responsePayload,
+      status: "failed",
+    });
+    await updateAssignmentEvent(supabase, auditID, {
+      errorMessage: responsePayload.error,
+      responsePayload,
+      status: "failed",
+    });
+
+    return jsonResponse(responsePayload, 400);
+  }
+
+  let claim: AssignmentClaimResult;
+
+  try {
+    claim = await acquireAssignmentClaim(supabase, {
+      event,
+      reservationID,
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    const responsePayload = {
+      error: `Could not acquire room-assignment claim: ${message}`,
+      ok: false,
+      reservationID,
+    };
+    await updateCloudbedsLog(supabase, logID, {
+      errorMessage: responsePayload.error,
+      responsePayload,
+      status: "failed",
+    });
+    await updateAssignmentEvent(supabase, auditID, {
+      errorMessage: responsePayload.error,
+      responsePayload,
+      status: "failed",
+    });
+
+    return jsonResponse(responsePayload, 503);
+  }
+
+  if (!claim.acquired) {
+    const responsePayload = {
+      ok: true,
+      reservationID,
+      skipped: claim.reason,
+      state: claim.state
+        ? {
+            reason: claim.state.reason,
+            status: claim.state.status,
+            updatedAt: claim.state.updatedAt,
+          }
+        : null,
+    };
+    await updateCloudbedsLog(supabase, logID, {
+      responsePayload,
+      status: "success",
+    });
+    await updateAssignmentEvent(supabase, auditID, {
+      responsePayload,
+      status: "ignored",
+    });
+
+    return jsonResponse(responsePayload);
+  }
+
   try {
     const { attemptCount, result } = await assignReservationBeddingWithRetry({
       beddingPreference,
-      checkin,
-      checkout,
+      checkin: resolvedCheckin,
+      checkout: resolvedCheckout,
       reservationID,
       settings,
     });
     const status = eventStatus(result);
+    const retryable = status === "failed" && isRetryableAssignmentResult(result);
     const responsePayload = {
       ok: status !== "failed",
       result: {
@@ -1440,6 +1970,11 @@ Deno.serve(async (req) => {
       responsePayload,
       status,
     });
+    await completeAssignmentClaim(supabase, {
+      claim,
+      reason: status === "failed" ? JSON.stringify(result.issues) : undefined,
+      status: status === "failed" ? (retryable ? "retryable" : "failed") : "complete",
+    });
 
     return jsonResponse(responsePayload);
   } catch (error) {
@@ -1459,6 +1994,11 @@ Deno.serve(async (req) => {
       errorMessage: message,
       responsePayload,
       status: message.includes("not configured") ? "misconfigured" : "failed",
+    });
+    await completeAssignmentClaim(supabase, {
+      claim,
+      reason: message,
+      status: message.includes("not configured") ? "failed" : "retryable",
     });
 
     return jsonResponse(responsePayload, message.includes("not configured") ? 503 : 502);
