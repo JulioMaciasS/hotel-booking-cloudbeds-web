@@ -992,7 +992,7 @@ function stepNativeQuantityTowardTarget(
   const button =
     targetTotal > currentTotal ? controls.plusButton : controls.minusButton;
 
-  if (isNativeQuantityButtonDisabled(button)) {
+  if (!button || isNativeQuantityButtonDisabled(button)) {
     delete input.dataset.hotelBeddingQuantitySyncPending;
     return;
   }
@@ -1007,6 +1007,17 @@ function stepNativeQuantityTowardTarget(
   }
 
   button.click();
+
+  // Some test/runtime steppers update the input synchronously. In that case we
+  // can continue immediately and keep the UI feeling instant. Cloudbeds' React
+  // stepper updates asynchronously; when the value is still unchanged here, we
+  // wait before sending the next step so duplicate rapid clicks do not collapse
+  // into a single native room quantity.
+  if (clampCount(input.value) !== currentTotal) {
+    stepNativeQuantityTowardTarget(documentRef, input, attempt + 1);
+    return;
+  }
+
   scheduleNativeQuantitySyncStep(documentRef, input, attempt + 1);
 }
 

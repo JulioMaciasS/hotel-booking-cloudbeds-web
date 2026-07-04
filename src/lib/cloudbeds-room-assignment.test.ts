@@ -88,6 +88,61 @@ describe("Cloudbeds room assignment planner", () => {
     });
   });
 
+  it("preserves a mixed bedding request when Cloudbeds exposes fewer room-stays than the custom counter total", () => {
+    const result = planBeddingRoomAssignments({
+      availableRooms: [
+        {
+          roomID: "227179928547456-0",
+          roomTypeID: "227179928547456",
+        },
+      ],
+      preference: {
+        "227179928547456": {
+          matrimonial: 1,
+          dos_camas_separadas: 2,
+        },
+      },
+      reservationRooms: [
+        {
+          oldRoomID: "227179928547456-2",
+          roomTypeID: "227179928547456",
+          subReservationID: "res-1",
+        },
+        {
+          oldRoomID: "227179928547456-3",
+          roomTypeID: "227179928547456",
+          subReservationID: "res-1-1",
+        },
+      ],
+    });
+
+    expect(result.planned).toEqual([
+      {
+        bedding: "matrimonial",
+        newRoomID: "227179928547456-0",
+        oldRoomID: "227179928547456-2",
+        roomTypeID: "227179928547456",
+        status: "planned",
+        subReservationID: "res-1",
+      },
+      {
+        bedding: "dos_camas_separadas",
+        newRoomID: "227179928547456-3",
+        oldRoomID: "227179928547456-3",
+        roomTypeID: "227179928547456",
+        status: "already_compatible",
+        subReservationID: "res-1-1",
+      },
+    ]);
+    expect(result.issues).toEqual([
+      {
+        bedding: "dos_camas_separadas",
+        reason: "missing_reservation_room",
+        roomTypeID: "227179928547456",
+      },
+    ]);
+  });
+
   it("reports a graceful issue when no compatible room is available", () => {
     const result = planBeddingRoomAssignments({
       availableRooms: [],
