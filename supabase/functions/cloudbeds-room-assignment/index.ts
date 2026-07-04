@@ -819,6 +819,7 @@ function planBeddingRoomAssignments({
       )
       .sort(
         (left, right) =>
+          (counts[left] ?? 0) - (counts[right] ?? 0) ||
           countCompatibleCandidates(availableRooms, roomTypeID, left) -
             countCompatibleCandidates(availableRooms, roomTypeID, right) ||
           left.localeCompare(right),

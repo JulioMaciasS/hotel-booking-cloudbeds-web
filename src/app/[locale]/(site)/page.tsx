@@ -356,8 +356,7 @@ export default async function HomePage({
                   alt="Google Maps"
                   width={20}
                   height={28}
-                  className="object-contain"
-                  style={{ width: "auto", height: "auto" }}
+                  className="h-7 w-auto object-contain"
                 />
                 <div>
                   <div className="flex items-baseline gap-1.5">

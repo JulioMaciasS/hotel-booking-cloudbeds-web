@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   injectCloudbedsBeddingSelectors,
   readCloudbedsBeddingPreference,
@@ -6,7 +6,11 @@ import {
   syncCloudbedsBeddingSelections,
 } from "./cloudbeds-bedding-selector";
 
-function renderCard(id: string, title: string) {
+function renderCard(
+  id: string,
+  title: string,
+  options: { asyncQuantityStepper?: boolean } = {},
+) {
   document.body.innerHTML = `
     <article class="cb-accommodation-card" data-testid="accommodation-card-${id}">
       <h3>${title}</h3>
@@ -54,14 +58,32 @@ function renderCard(id: string, title: string) {
     const input = popover.querySelector<HTMLInputElement>("input");
     const minus = popover.querySelector<HTMLButtonElement>("[aria-label='minus']");
     const plus = popover.querySelector<HTMLButtonElement>("[aria-label='add']");
+    const updateQuantity = (nextValue: number) => {
+      if (!input) {
+        return;
+      }
+
+      const apply = () => {
+        input.value = String(nextValue);
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+      };
+
+      if (options.asyncQuantityStepper) {
+        setTimeout(apply, 0);
+      } else {
+        apply();
+      }
+    };
+
     minus?.addEventListener("click", () => {
       if (input) {
-        input.value = String(Math.max(1, Number(input.value) - 1));
+        updateQuantity(Math.max(1, Number(input.value) - 1));
       }
     });
     plus?.addEventListener("click", () => {
       if (input) {
-        input.value = String(Number(input.value) + 1);
+        updateQuantity(Number(input.value) + 1);
       }
     });
 
@@ -128,6 +150,10 @@ describe("Cloudbeds bedding quantity limits", () => {
     document.documentElement.removeAttribute("data-hotel-active-bedding-max-rooms");
     document.documentElement.removeAttribute("data-hotel-active-bedding-label");
     window.sessionStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
   });
 
   it("limits Doble Estandar matrimonial rooms to two", () => {
@@ -204,6 +230,34 @@ describe("Cloudbeds bedding quantity limits", () => {
     expect(getCounterCount("dos_camas_separadas")).toBe("3");
     expect(getTotalSelected()).toBe("4");
     expect(input.value).toBe("4");
+  });
+
+  it("syncs Cloudbeds native quantity one step at a time when its stepper updates asynchronously", () => {
+    vi.useFakeTimers();
+
+    const id = "227179928547456";
+    const card = renderCard(id, "Doble Estandar", {
+      asyncQuantityStepper: true,
+    });
+
+    card
+      .querySelector<HTMLButtonElement>(
+        "[data-hotel-bedding-option='dos_camas_separadas']",
+      )
+      ?.click();
+
+    const { input } = openQuantityPopover(card, id);
+    const twinPlus = getCounterButton("dos_camas_separadas", "increment");
+
+    twinPlus.click();
+    twinPlus.click();
+
+    expect(getCounterCount("dos_camas_separadas")).toBe("3");
+    expect(getTotalSelected()).toBe("3");
+
+    vi.runAllTimers();
+
+    expect(input.value).toBe("3");
   });
 
   it("uses dated backend counters and disables an unavailable layout", () => {

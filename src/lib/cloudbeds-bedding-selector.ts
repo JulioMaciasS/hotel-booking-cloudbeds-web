@@ -142,6 +142,7 @@ function escapeHtml(value: string): string {
 type BeddingLocaleStrings = {
   bedTypeTitle: string;
   optionLabels: Record<string, string>;
+  counterOptionLabels: Record<string, string>;
   decrease: (label: string) => string;
   increase: (label: string) => string;
   total: (selected: number, max: number) => string;
@@ -161,6 +162,14 @@ const BEDDING_STRINGS: Record<"es" | "en", BeddingLocaleStrings> = {
       matrimonial_cama_individual: "Matrimonial y cama individual",
       tres_camas_individuales: "Tres camas individuales",
     },
+    counterOptionLabels: {
+      matrimonial: "Habitaciones con cama matrimonial",
+      dos_camas_separadas: "Habitaciones con dos camas separadas",
+      matrimonial_cama_individual:
+        "Habitaciones con matrimonial y cama individual",
+      tres_camas_individuales:
+        "Habitaciones con tres camas individuales",
+    },
     decrease: (label) => `Restar ${label}`,
     increase: (label) => `Sumar ${label}`,
     total: (selected, max) =>
@@ -177,6 +186,12 @@ const BEDDING_STRINGS: Record<"es" | "en", BeddingLocaleStrings> = {
       dos_camas_separadas: "Two single beds",
       matrimonial_cama_individual: "Double + single bed",
       tres_camas_individuales: "Three single beds",
+    },
+    counterOptionLabels: {
+      matrimonial: "Rooms with double bed",
+      dos_camas_separadas: "Rooms with two single beds",
+      matrimonial_cama_individual: "Rooms with double + single bed",
+      tres_camas_individuales: "Rooms with three single beds",
     },
     decrease: (label) => `Decrease ${label}`,
     increase: (label) => `Increase ${label}`,
@@ -880,6 +895,9 @@ function getQuantityControls(documentRef: Document, input: HTMLInputElement) {
   };
 }
 
+const NATIVE_QUANTITY_SYNC_DELAY_MS = 80;
+const NATIVE_QUANTITY_SYNC_MAX_ATTEMPTS = 20;
+
 function setInputValue(input: HTMLInputElement, value: number) {
   const nextValue = String(value);
   const ownValueSetter = Object.getOwnPropertyDescriptor(input, "value")?.set;
@@ -905,38 +923,91 @@ function syncNativeQuantityValue(
   nextTotal: number,
   maxRooms: number,
 ) {
-  const controls = getQuantityControls(documentRef, input);
-
-  if (!controls || !Number.isFinite(maxRooms) || maxRooms < 1) {
+  if (!Number.isFinite(maxRooms) || maxRooms < 1) {
     return;
   }
 
   const targetTotal = Math.min(Math.max(1, nextTotal), maxRooms);
+
+  input.dataset.hotelBeddingQuantityTarget = String(targetTotal);
+  input.dataset.hotelBeddingQuantityMaxRooms = String(maxRooms);
+
+  if (input.dataset.hotelBeddingQuantitySyncPending === "true") {
+    return;
+  }
+
+  stepNativeQuantityTowardTarget(documentRef, input, 0);
+}
+
+function isNativeQuantityButtonDisabled(button: HTMLButtonElement | null) {
+  return (
+    !button ||
+    button.disabled ||
+    button.getAttribute("aria-disabled") === "true"
+  );
+}
+
+function scheduleNativeQuantitySyncStep(
+  documentRef: Document,
+  input: HTMLInputElement,
+  attempt: number,
+) {
+  input.dataset.hotelBeddingQuantitySyncPending = "true";
+
+  const schedule =
+    documentRef.defaultView?.setTimeout.bind(documentRef.defaultView) ??
+    setTimeout;
+
+  schedule(
+    () => stepNativeQuantityTowardTarget(documentRef, input, attempt),
+    NATIVE_QUANTITY_SYNC_DELAY_MS,
+  );
+}
+
+function stepNativeQuantityTowardTarget(
+  documentRef: Document,
+  input: HTMLInputElement,
+  attempt: number,
+) {
+  const maxRooms = clampCount(input.dataset.hotelBeddingQuantityMaxRooms);
+  const targetTotal = Math.min(
+    Math.max(1, clampCount(input.dataset.hotelBeddingQuantityTarget)),
+    maxRooms,
+  );
   const currentTotal = clampCount(input.value);
 
-  if (targetTotal > currentTotal) {
-    for (let count = currentTotal; count < targetTotal; count += 1) {
-      controls.plusButton?.click();
-    }
-  } else if (targetTotal < currentTotal) {
-    for (let count = currentTotal; count > targetTotal; count -= 1) {
-      controls.minusButton?.click();
-    }
+  if (!Number.isFinite(maxRooms) || maxRooms < 1 || currentTotal === targetTotal) {
+    delete input.dataset.hotelBeddingQuantitySyncPending;
+    return;
   }
 
-  // If the stepper buttons exist we trust them. When Cloudbeds caps the
-  // quantity at its real availability (below our computed limit), force-setting
-  // the value here is futile — Cloudbeds reverts it on its next render, and
-  // that revert re-triggers the observer, producing an endless tug-of-war.
-  // Only force the value when there are no buttons to drive (so we are the
-  // sole writer of the field).
-  if (
-    clampCount(input.value) !== targetTotal &&
-    !controls.plusButton &&
-    !controls.minusButton
-  ) {
+  const controls = getQuantityControls(documentRef, input);
+
+  if (!controls) {
     setInputValue(input, targetTotal);
+    delete input.dataset.hotelBeddingQuantitySyncPending;
+    return;
   }
+
+  const button =
+    targetTotal > currentTotal ? controls.plusButton : controls.minusButton;
+
+  if (isNativeQuantityButtonDisabled(button)) {
+    delete input.dataset.hotelBeddingQuantitySyncPending;
+    return;
+  }
+
+  if (attempt >= NATIVE_QUANTITY_SYNC_MAX_ATTEMPTS) {
+    // Last resort for controlled inputs that accepted the custom counter but
+    // never reflected the native stepper update. This keeps the submitted
+    // Cloudbeds room quantity aligned with the visible bedding-room total.
+    setInputValue(input, targetTotal);
+    delete input.dataset.hotelBeddingQuantitySyncPending;
+    return;
+  }
+
+  button.click();
+  scheduleNativeQuantitySyncStep(documentRef, input, attempt + 1);
 }
 
 function applyNativeQuantityLimit(
@@ -1214,7 +1285,10 @@ function buildCounterPanelHtml(
     <div class="hotel-bedding-counter-list">
       ${config.options
         .map((option) => {
-          const label = strings.optionLabels[option.key] ?? option.label;
+          const label =
+            strings.counterOptionLabels[option.key] ??
+            strings.optionLabels[option.key] ??
+            option.label;
 
           return `
           <div
