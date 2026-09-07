@@ -6,6 +6,7 @@ import { routing, type Locale } from "@/i18n/routing";
 import { buildPageMetadata, siteUrl } from "@/i18n/metadata";
 import { Analytics } from "@/components/Analytics";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
+import "maplibre-gl/dist/maplibre-gl.css";
 import "../globals.css";
 
 export function generateStaticParams() {

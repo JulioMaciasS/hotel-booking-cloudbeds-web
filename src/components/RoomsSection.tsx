@@ -72,7 +72,8 @@ export function RoomsSection() {
   const t = useTranslations("rooms");
   const [roomIdx, setRoomIdx] = useState(0);
   const [photoIdx, setPhotoIdx] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const progressRef = useRef<HTMLSpanElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -94,7 +95,7 @@ export function RoomsSection() {
     // SSR, so it has to land in an effect (photoIdx already defaults to 0).
     /* eslint-disable react-hooks/set-state-in-effect */
     setRoomIdx(idx);
-    setIsPaused(true);
+    setHasInteracted(true);
     /* eslint-enable react-hooks/set-state-in-effect */
 
     // Drop the hint so a manual tab change followed by a refresh isn't sticky.
@@ -110,12 +111,15 @@ export function RoomsSection() {
     setPhotoIdx(0);
   }, []);
 
-  // Auto-rotate the room selection until the user hovers/interacts.
+  const autoRotatePaused = isHovered || hasInteracted;
+
+  // Auto-rotate until the visitor interacts. Hovering only pauses temporarily;
+  // clicking, tapping or using the keyboard stops rotation for the visit.
   useEffect(() => {
-    if (isPaused) return;
+    if (autoRotatePaused) return;
     const timer = window.setInterval(goNextRoom, AUTO_ROTATE_MS);
     return () => window.clearInterval(timer);
-  }, [goNextRoom, isPaused, roomIdx]);
+  }, [autoRotatePaused, goNextRoom, roomIdx]);
 
   // Restart the progress-bar animation whenever the active room (or pause) changes.
   useEffect(() => {
@@ -124,14 +128,11 @@ export function RoomsSection() {
     el.style.animation = "none";
     void el.offsetHeight; // force reflow so the animation can restart
     el.style.animation = "";
-  }, [roomIdx, isPaused]);
+  }, [autoRotatePaused, roomIdx]);
 
   function selectRoom(i: number) {
     setRoomIdx(i);
     setPhotoIdx(0);
-    // Briefly pause so the timer doesn't immediately advance off the user's pick.
-    setIsPaused(true);
-    window.setTimeout(() => setIsPaused(false), 120);
   }
 
   function prev() {
@@ -146,8 +147,10 @@ export function RoomsSection() {
     <div
       ref={sectionRef}
       className="scroll-mt-28"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setHasInteracted(true)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onPointerDownCapture={() => setHasInteracted(true)}
     >
       <style>{`
         @keyframes room-progress-grow { from { width: 0%; } to { width: 100%; } }
@@ -182,7 +185,7 @@ export function RoomsSection() {
                   ref={progressRef}
                   aria-hidden="true"
                   className={`room-progress absolute bottom-0 left-0 h-0.5 bg-white/50 ${
-                    isPaused ? "room-progress-paused" : ""
+                    autoRotatePaused ? "room-progress-paused" : ""
                   }`}
                 />
               )}

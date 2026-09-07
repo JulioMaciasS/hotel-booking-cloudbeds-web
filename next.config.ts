@@ -6,7 +6,7 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 // Content-Security-Policy is shipped in two parts on purpose:
 //
 //  - An ENFORCED policy limited to directives that cannot break the embedded
-//    Cloudbeds engine or the Leaflet map. The site uses no <object>/<embed>,
+//    Cloudbeds engine or the MapLibre map. The site uses no <object>/<embed>,
 //    never sets a <base>, and must never be framed by a third party, so these
 //    are safe to block outright and give real clickjacking protection today.
 //
@@ -34,9 +34,10 @@ const enforcedCsp = [
   "base-uri 'self'",
   "object-src 'none'",
   "frame-ancestors 'self'",
-  // Auto-upgrade any stray http subresource to https (the site is https-only).
-  // Lives here, not in Report-Only, where this directive is ignored per spec.
-  "upgrade-insecure-requests",
+  // Auto-upgrade stray HTTP subresources only on the deployed HTTPS site.
+  // Enabling this in development breaks physical-device testing over a LAN:
+  // the phone upgrades /_next assets to HTTPS while the local server is HTTP.
+  ...(process.env.NODE_ENV === "production" ? ["upgrade-insecure-requests"] : []),
 ].join("; ");
 
 const reportOnlyCsp = [
@@ -54,7 +55,7 @@ const reportOnlyCsp = [
   "font-src 'self' data: https://static1.cloudbeds.com https://*.cloudbeds.com https://fonts.gstatic.com",
   // 'self' (our /api/* — the FX rate is proxied server-side to Supabase),
   // Cloudbeds' API hosts, LaunchDarkly (Cloudbeds feature flags), and PostHog.
-  "connect-src 'self' https://*.cloudbeds.com https://*.launchdarkly.com https://*.i.posthog.com https://www.google-analytics.com https://*.google-analytics.com",
+  "connect-src 'self' https://tiles.openfreemap.org https://*.cloudbeds.com https://*.launchdarkly.com https://*.i.posthog.com https://www.google-analytics.com https://*.google-analytics.com",
   "frame-src 'self' https://*.cloudbeds.com",
   "form-action 'self' https://*.cloudbeds.com",
   "worker-src 'self' blob:",
@@ -83,12 +84,25 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const nextConfig: NextConfig = {
-  allowedDevOrigins: ["127.0.0.1", "*.loslagoshotel.com.ar", "*.trycloudflare.com"],
+  allowedDevOrigins: [
+    "127.0.0.1",
+    "192.168.87.71",
+    "*.loslagoshotel.com.ar",
+    "*.trycloudflare.com",
+  ],
   images: {
     qualities: [75, 90],
   },
   async headers() {
     return [
+      {
+        source: "/sw.js",
+        headers: [
+          ...securityHeaders,
+          { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
+          { key: "Service-Worker-Allowed", value: "/" },
+        ],
+      },
       {
         source: "/(.*)",
         headers: securityHeaders,

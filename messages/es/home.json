@@ -2,11 +2,11 @@
   "hero": {
     "eyebrow": "Hotel familiar · El Calafate, Patagonia",
     "title": "Los Lagos Hotel",
-    "subtitle": "Un hotel familiar en el corazón de El Calafate, a 3 minutos andando del centro. Te recibimos como en casa y te ayudamos a organizar tus glaciares, navegaciones y excursiones por la Patagonia austral.",
+    "subtitle": "Un pequeño hotel familiar en el corazón de El Calafate que combina sencillez, calidez, tranquilidad, confort y servicio personalizado e integral, a tan solo 3 minutos del centro de la ciudad, bares, restaurantes y agencias de viajes.",
     "badgeLocation": "A 3 min del centro",
     "badgeBreakfast": "Desayuno incluido",
     "badgeDirect": "Reserva directa",
-    "socialProof": "<strong>4.3</strong> · +400 opiniones verificadas"
+    "socialProof": "<strong>{rating}/5</strong> · +{count} opiniones verificadas"
   },
   "heroSlideshow": {
     "tablistLabel": "Imágenes del hotel",
@@ -26,12 +26,12 @@
   },
   "booking": {
     "buttonLabel": "Buscar disponibilidad",
-    "helper": "Reservá directo y conseguí la mejor tarifa, sin comisiones ni intermediarios. Con desayuno casero incluido siempre."
+    "helper": "Reservá directo y conseguí la mejor tarifa, sin comisiones ni intermediarios. Con desayuno incluido siempre."
   },
   "about": {
     "eyebrow": "El Calafate, Patagonia Austral",
-    "title": "Una base tranquila para conocer la Patagonia austral.",
-    "paragraph": "Somos un pequeño hotel familiar de excepcional ubicación, a tan solo 3 minutos andando del centro de la ciudad, bares, restaurantes y agencias de viajes. Un alojamiento que combina sencillez, calidez, confort y servicio personalizado integral.",
+    "title": "Una base tranquila para conocer la Patagonia Austral.",
+    "paragraph": "El hotel cuenta con 14 habitaciones dobles y triples con baño privado, equipadas con TV de pantalla plana, calefacción central, Wi-Fi gratis, ropa de cama, toallas y amenities. Los huéspedes pueden relajarse en el jardín. Nuestro desayuno seco incluye infusiones, pan, medialunas, mantequilla y mermeladas. El servicio de lavandería es bajo petición. En las zonas comunes contamos con nevera, microondas y té de cortesía. Te recibimos como en casa y te ayudamos a organizar tus excursiones.",
     "checkIn": "Check-in",
     "checkOut": "Check-out",
     "rooms": "Habitaciones",
@@ -55,7 +55,7 @@
   "whyDirect": {
     "eyebrow": "Reservá directo",
     "title": "Reservá directo y aprovechá todo lo que somos.",
-    "paragraph": "Tratás directamente con la familia que atiende el hotel: la mejor tarifa, desayuno casero y una mano de verdad para armar tu viaje por la Patagonia."
+    "paragraph": "Tratás directamente con la familia que atiende el hotel: la mejor tarifa, desayuno incluido y una mano de verdad para armar tu viaje por la Patagonia."
   },
   "benefits": {
     "bestRate": {
@@ -63,8 +63,8 @@
       "text": "El precio más bajo lo conseguís acá, tratando directo con el hotel."
     },
     "breakfast": {
-      "title": "Desayuno casero incluido",
-      "text": "Todas las tarifas incluyen nuestro desayuno casero para arrancar bien el día."
+      "title": "Desayuno incluido",
+      "text": "Todas las tarifas incluyen nuestro desayuno seco para arrancar bien el día."
     },
     "excursions": {
       "title": "Te ayudamos con las excursiones",
@@ -78,14 +78,14 @@
   "reviews": {
     "eyebrow": "Opiniones verificadas",
     "title": "Lo que dicen nuestros huéspedes.",
-    "tripadvisorCount": "{count} opiniones · TripAdvisor",
+    "expediaCount": "{count} opiniones · Expedia",
     "googleCount": "{count} opiniones · Google",
     "bookingCount": "{count} opiniones · Booking"
   },
   "location": {
     "eyebrow": "Cómo llegar",
     "title": "En el corazón de El Calafate.",
-    "paragraph": "A solo 3 minutos a pie de la Av. del Libertador y a pasos del Lago Argentino. El punto de partida perfecto hacia el Glaciar Perito Moreno y toda la Patagonia austral.",
+    "paragraph": "Entre los lugares de interés cercanos al hotel se incluyen la Laguna Nimez, la costanera del Lago Argentino, el Centro de Interpretación Histórica y la Avenida del Libertador (a 200 m), donde se encuentran la Intendencia de Parques Nacionales, el Bar de Hielo, restaurantes y negocios. El aeropuerto de El Calafate está a 22 km. La Terminal de Ómnibus queda a 1,8 km.",
     "addressLabel": "Dirección",
     "viewDistances": "Ver distancias y cómo llegar"
   },

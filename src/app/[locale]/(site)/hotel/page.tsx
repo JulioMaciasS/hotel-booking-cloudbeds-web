@@ -86,6 +86,7 @@ export default async function HotelPage({
           <div className="mt-6 space-y-5 text-base leading-8 text-[#5f6e69]">
             <p>{t("page.story.paragraph1")}</p>
             <p>{t("page.story.paragraph2")}</p>
+            <p>{t("page.story.paragraph3")}</p>
           </div>
 
           <dl className="mt-10 grid grid-cols-3 gap-4">

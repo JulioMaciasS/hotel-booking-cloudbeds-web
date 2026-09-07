@@ -3,19 +3,29 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Menu, X } from "lucide-react";
+import { Menu, Search, SlidersHorizontal, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { BOOKING_HREF, NAV_LINKS } from "@/lib/nav";
+import {
+  MAP_EXPANDED_EVENT,
+  MAP_TOOL_EVENT,
+  type MapExpandedEventDetail,
+  type MapTool,
+  type MapToolEventDetail,
+} from "@/lib/map-events";
 import logoImage from "@assets/old-web-images/logo-sin-fondo-270.png";
 
 const SCROLL_THRESHOLD = 64;
 
 export function SiteHeader() {
   const t = useTranslations("common");
+  const mapT = useTranslations("location.map");
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mapExpanded, setMapExpanded] = useState(false);
+  const [activeMapTool, setActiveMapTool] = useState<MapTool>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -28,6 +38,36 @@ export function SiteHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const onMapExpanded = (event: Event) => {
+      const detail = (event as CustomEvent<MapExpandedEventDetail>).detail;
+      const nextExpanded = detail?.expanded === true;
+      setMapExpanded(nextExpanded);
+      if (nextExpanded) setMobileOpen(false);
+      else setActiveMapTool(null);
+    };
+    const onMapTool = (event: Event) => {
+      const detail = (event as CustomEvent<MapToolEventDetail>).detail;
+      setActiveMapTool(detail?.tool ?? null);
+    };
+
+    window.addEventListener(MAP_EXPANDED_EVENT, onMapExpanded);
+    window.addEventListener(MAP_TOOL_EVENT, onMapTool);
+    return () => {
+      window.removeEventListener(MAP_EXPANDED_EVENT, onMapExpanded);
+      window.removeEventListener(MAP_TOOL_EVENT, onMapTool);
+    };
+  }, []);
+
+  const toggleMapTool = (tool: Exclude<MapTool, null>) => {
+    const nextTool = activeMapTool === tool ? null : tool;
+    window.dispatchEvent(
+      new CustomEvent<MapToolEventDetail>(MAP_TOOL_EVENT, {
+        detail: { tool: nextTool },
+      }),
+    );
+  };
 
   useEffect(() => {
     const onResize = () => {
@@ -98,20 +138,53 @@ export function SiteHeader() {
             <LanguageSwitcher />
           </div>
           <Link
-            className="rounded-lg btn-book px-4 py-2 text-sm font-semibold transition-all duration-300"
+            className={`rounded-lg btn-book py-2 text-sm font-semibold transition-all duration-300 ${
+              mapExpanded ? "px-3" : "px-4"
+            }`}
             href={BOOKING_HREF}
           >
             {t("actions.book")}
           </Link>
-          <button
-            aria-expanded={mobileOpen}
-            aria-label={mobileOpen ? t("actions.closeMenu") : t("actions.openMenu")}
-            className="rounded-lg p-2 text-[#1f2b27] transition-colors hover:bg-[#edf3ef] lg:hidden"
-            onClick={() => setMobileOpen((prev) => !prev)}
-            type="button"
-          >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          {mapExpanded ? (
+            <div className="flex items-center gap-1 lg:hidden">
+              <button
+                aria-label={mapT("search.label")}
+                aria-pressed={activeMapTool === "search"}
+                className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors ${
+                  activeMapTool === "search"
+                    ? "bg-[#38645b] text-white"
+                    : "text-[#1f2b27] hover:bg-[#edf3ef]"
+                }`}
+                onClick={() => toggleMapTool("search")}
+                type="button"
+              >
+                <Search aria-hidden="true" size={20} />
+              </button>
+              <button
+                aria-label={mapT("filters.button")}
+                aria-pressed={activeMapTool === "filters"}
+                className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors ${
+                  activeMapTool === "filters"
+                    ? "bg-[#38645b] text-white"
+                    : "text-[#1f2b27] hover:bg-[#edf3ef]"
+                }`}
+                onClick={() => toggleMapTool("filters")}
+                type="button"
+              >
+                <SlidersHorizontal aria-hidden="true" size={20} />
+              </button>
+            </div>
+          ) : (
+            <button
+              aria-expanded={mobileOpen}
+              aria-label={mobileOpen ? t("actions.closeMenu") : t("actions.openMenu")}
+              className="rounded-lg p-2 text-[#1f2b27] transition-colors hover:bg-[#edf3ef] lg:hidden"
+              onClick={() => setMobileOpen((prev) => !prev)}
+              type="button"
+            >
+              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          )}
         </div>
       </div>
 

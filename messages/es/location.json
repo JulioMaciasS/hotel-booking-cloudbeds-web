@@ -13,11 +13,11 @@
       "heading": "Cómo llegar",
       "airport": {
         "title": "Desde el aeropuerto",
-        "text": "El Aeropuerto Internacional de El Calafate (FTE) está a unos 16 km, un viaje de unos 25 minutos. En el arribo vas a encontrar taxis y servicios de traslado."
+        "text": "El Aeropuerto Internacional de El Calafate (FTE) está a unos 22 km, un viaje de unos 25 minutos. En el arribo vas a encontrar taxis y servicios de traslado."
       },
       "bus": {
         "title": "En bus",
-        "text": "La terminal de ómnibus está a pocos minutos a pie del hotel, con servicios de larga distancia desde El Chaltén, Río Gallegos y Puerto Natales (Chile)."
+        "text": "La Terminal de Ómnibus está a pocos minutos del hotel, con servicios de larga distancia desde El Chaltén, Río Gallegos y Puerto Natales (Chile)."
       },
       "note": "Contanos los datos de tu llegada y con gusto te ayudamos desde la recepción a coordinar un traslado privado."
     },
@@ -47,8 +47,8 @@
   },
   "distances": [
     { "label": "Centro — Av. del Libertador", "modeLabel": "Caminando" },
-    { "label": "Terminal de Ómnibus", "modeLabel": "Caminando" },
     { "label": "Lago Argentino (orilla)", "modeLabel": "Caminando" },
+    { "label": "Terminal de Ómnibus", "modeLabel": "En auto" },
     { "label": "Glaciarium", "modeLabel": "En auto" },
     { "label": "Aeropuerto El Calafate (FTE)", "modeLabel": "En auto" },
     { "label": "Glaciar Perito Moreno", "modeLabel": "En bus" }
@@ -59,8 +59,45 @@
     "close": "Cerrar mapa",
     "expandedLabel": "Mapa ampliado",
     "viewOnGoogleMaps": "Ver en Google Maps ↗",
+    "details": {
+      "expand": "Ampliar detalles",
+      "collapse": "Reducir detalles",
+      "close": "Cerrar detalles",
+      "returnToPlace": "Volver a {place}"
+    },
+    "search": {
+      "label": "Buscar lugares en el mapa",
+      "placeholder": "Buscar restaurantes, lugares o servicios…",
+      "clear": "Borrar búsqueda",
+      "resultsLabel": "Resultados de la búsqueda",
+      "noResults": "No encontramos ningún lugar con esa búsqueda."
+    },
+    "filters": {
+      "label": "Filtrar lugares por categoría",
+      "button": "Filtros",
+      "all": "Todos"
+    },
+    "guide": {
+      "eyebrow": "Guía local",
+      "title": "Tu mapa de El Calafate",
+      "subtitle": "Lugares prácticos y recomendaciones seleccionadas por Los Lagos Hotel.",
+      "offline": {
+        "preparing": "Guardando guía offline… {progress}%",
+        "ready": "Guía lista para usar sin conexión",
+        "using": "Consultando la guía sin conexión",
+        "error": "No se pudo completar la copia offline"
+      }
+    },
+    "fallback": {
+      "title": "Mapa de El Calafate",
+      "note": "Mostramos una versión compatible del mapa porque este dispositivo no admite el modo gráfico avanzado.",
+      "openInGoogleMaps": "Abrir en Google Maps ↗"
+    },
     "hotel": {
-      "address": "25 de Mayo 220, El Calafate"
+      "label": "Los Lagos Hotel",
+      "category": "Hotel",
+      "address": "25 de Mayo 220, El Calafate",
+      "searchTerms": "alojamiento hospedaje hostería habitación habitaciones dormir estadía reserva reservar recepción desayuno wifi estacionamiento parking check-in check-out"
     },
     "centreLabel": "Centro",
     "categories": {
@@ -146,11 +183,11 @@
       },
       "terminal": {
         "label": "Terminal de Ómnibus",
-        "note": "Terminal de buses · ~700 m caminando"
+        "note": "Terminal de Ómnibus · ~1,8 km en auto"
       },
       "aeropuerto": {
         "label": "Aeropuerto FTE",
-        "note": "Aeropuerto Malvinas Argentinas · 16 km en auto"
+        "note": "Aeropuerto Comandante Armando Tola · 22 km en auto"
       },
       "bancoSantaCruz": {
         "label": "Banco Santa Cruz",

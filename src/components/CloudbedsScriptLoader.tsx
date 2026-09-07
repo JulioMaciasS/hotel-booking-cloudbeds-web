@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 
+const DISABLED_IN_DEVELOPMENT = process.env.NODE_ENV === "development";
 const CLOUDBEDS_SCRIPT_ID = "cloudbeds-immersive-experience-script";
 const CLOUDBEDS_ASSET_BASE =
   "https://static1.cloudbeds.com/booking-engine/latest/static/js/immersive-experience/";
@@ -155,6 +156,8 @@ function installCloudbedsChunkErrorReload() {
 
 export function CloudbedsScriptLoader() {
   useEffect(() => {
+    if (DISABLED_IN_DEVELOPMENT) return;
+
     const cacheToken = getCloudbedsCacheToken();
 
     installCloudbedsChunkCacheBuster(cacheToken);

@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
+const DISABLED_IN_DEVELOPMENT = process.env.NODE_ENV === "development";
+
 interface Props {
   /**
    * Watches for this element to appear then disappear (e.g. a third-party
@@ -27,6 +29,8 @@ export function BookingLoader({ waitForRemoval, selector, coverNav = false }: Pr
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    if (DISABLED_IN_DEVELOPMENT) return;
+
     let observer: MutationObserver | null = null;
     let done = false;
     let seenLoader = false;
@@ -65,7 +69,7 @@ export function BookingLoader({ waitForRemoval, selector, coverNav = false }: Pr
     return () => observer?.disconnect();
   }, [waitForRemoval, selector]);
 
-  if (ready) return null;
+  if (DISABLED_IN_DEVELOPMENT || ready) return null;
 
   return (
     <div

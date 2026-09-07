@@ -7,9 +7,10 @@
     },
     "story": {
       "eyebrow": "Nuestra historia",
-      "title": "Una base tranquila para conocer la Patagonia austral.",
-      "paragraph1": "Somos un pequeño hotel familiar de excepcional ubicación, a tan solo 3 minutos andando del centro de la ciudad, bares, restaurantes y agencias de viajes. Un alojamiento que combina sencillez, calidez, confort y servicio personalizado integral.",
-      "paragraph2": "Cada huésped recibe una atención cercana: te ayudamos a planificar tus excursiones, coordinamos traslados y estamos disponibles las 24 horas para que tu estadía en El Calafate sea simple y memorable.",
+      "title": "Tu lugar de descanso en tu visita a los glaciares de la Patagonia Austral.",
+      "paragraph1": "Los Lagos Hotel es un hospedaje pionero en El Calafate y se emplaza en un edificio que originalmente fue la primera panadería industrial de la ciudad. Desde 1991 brinda servicios de alojamiento, con todas las comodidades que necesitas y con una excelente relación calidad-precio.",
+      "paragraph2": "Nos destacamos por el trato cercano y personalizado a nuestros huéspedes.",
+      "paragraph3": "Nuestro equipo de trabajo, formado por gente local y conocedora del lugar, te ayudará a elegir las mejores opciones para visitar el Glaciar Perito Moreno, El Chaltén, las estancias patagónicas, a la vez que a planificar y organizar tus excursiones y coordinar tus traslados para que tu estadía en El Calafate sea simple y memorable. Estamos disponibles las 24 horas.",
       "stats": {
         "checkIn": "Check-in",
         "checkOut": "Check-out",
@@ -19,9 +20,9 @@
     "gallery": {
       "eyebrow": "El hotel por dentro",
       "title": "Calidez patagónica en cada rincón.",
-      "intro": "Desde un desayuno casero para arrancar el día hasta el jardín y los espacios comunes para relajarte después de las excursiones.",
+      "intro": "Desde el desayuno incluido para arrancar el día hasta el jardín y los espacios comunes para relajarte después de las excursiones.",
       "items": {
-        "breakfast": { "alt": "Desayuno casero incluido", "caption": "Desayuno incluido" },
+        "breakfast": { "alt": "Desayuno incluido", "caption": "Desayuno incluido" },
         "diningRoom": { "alt": "Comedor del hotel", "caption": "Comedor" },
         "garden": { "alt": "Jardín del hotel", "caption": "Jardín" },
         "reception": { "alt": "Recepción 24 horas", "caption": "Recepción 24 hs" },
@@ -43,7 +44,7 @@
         },
         "breakfast": {
           "q": "¿El desayuno está incluido?",
-          "a": "Sí. Todas las tarifas incluyen un desayuno continental casero: pan, tostadas, café, té, leche, yogures, jugos, cereales, mermelada, queso y fiambre."
+          "a": "Sí. Todas las tarifas incluyen un desayuno seco: café, té, leche, pan, medialunas, mantequilla, queso y mermeladas."
         },
         "arrival": {
           "q": "¿Puedo hacer el check-in temprano, llegar de noche o dejar el equipaje?",
@@ -59,7 +60,7 @@
         },
         "cancellation": {
           "q": "¿Cómo es la política de cancelación?",
-          "a": "Depende de la tarifa elegida. La tarifa flexible permite cancelar sin cargo hasta 48 horas antes del check-in; la tarifa no reembolsable no admite cancelaciones ni cambios. Las condiciones se muestran claramente al reservar."
+          "a": "Depende de la tarifa elegida. La tarifa flexible permite cancelar sin cargo hasta 72 horas antes del check-in; la tarifa no reembolsable no admite cancelaciones ni cambios. Las condiciones se muestran claramente al reservar."
         },
         "excursions": {
           "q": "¿Organizan excursiones y traslados a los glaciares?",

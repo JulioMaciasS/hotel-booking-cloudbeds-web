@@ -5,6 +5,10 @@ import { useTranslations } from "next-intl";
 import { CalendarDays } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { BOOKING_HREF } from "@/lib/nav";
+import {
+  MAP_EXPANDED_EVENT,
+  type MapExpandedEventDetail,
+} from "@/lib/map-events";
 
 // Reveal the bar after a short scroll — enough to clear the header CTA on the
 // first viewport, but early enough that visitors who barely scroll still get a
@@ -20,6 +24,7 @@ const SHOW_AFTER = 160;
 export function MobileBookingBar() {
   const t = useTranslations("common.mobileBar");
   const [visible, setVisible] = useState(false);
+  const [mapExpanded, setMapExpanded] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > SHOW_AFTER);
@@ -28,10 +33,20 @@ export function MobileBookingBar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const onMapExpanded = (event: Event) => {
+      const detail = (event as CustomEvent<MapExpandedEventDetail>).detail;
+      setMapExpanded(detail?.expanded === true);
+    };
+
+    window.addEventListener(MAP_EXPANDED_EVENT, onMapExpanded);
+    return () => window.removeEventListener(MAP_EXPANDED_EVENT, onMapExpanded);
+  }, []);
+
   return (
     <div
       className={`fixed inset-x-0 bottom-0 z-40 border-t border-black/5 bg-white/90 px-4 py-3 backdrop-blur-lg transition-transform duration-300 lg:hidden ${
-        visible ? "translate-y-0" : "translate-y-full"
+        visible && !mapExpanded ? "translate-y-0" : "translate-y-full"
       }`}
       style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
     >

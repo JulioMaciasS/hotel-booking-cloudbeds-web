@@ -250,3 +250,72 @@ body {
 .btn-book:hover {
   background-color: #3bccab;
 }
+
+/* The map search already provides its own accessible clear button. Hide the
+   WebKit/Chromium control so Android does not render a second × beside it. */
+.map-search-input::-webkit-search-cancel-button {
+  display: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Markers live inside the canvas container while popups are sibling elements.
+   Isolate the marker layer so a marker's inline z-index can never cover a card. */
+.maplibregl-canvas-container {
+  isolation: isolate;
+  z-index: 0;
+}
+
+.maplibregl-popup {
+  z-index: 100 !important;
+}
+
+.maplibregl-popup-content {
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(31, 43, 39, 0.2);
+  padding: 18px 50px 18px 18px;
+}
+
+.maplibregl-popup-close-button {
+  align-items: center;
+  background: #edf3ef !important;
+  border-radius: 999px !important;
+  color: #1f2b27 !important;
+  display: flex;
+  font-family: Arial, sans-serif;
+  font-size: 22px !important;
+  font-weight: 400;
+  height: 36px !important;
+  justify-content: center;
+  line-height: 36px !important;
+  padding: 0 !important;
+  right: 7px !important;
+  top: 7px !important;
+  width: 36px !important;
+}
+
+.maplibregl-popup-close-button:hover {
+  background: #dce9e3 !important;
+}
+
+.hotel-map-marker {
+  cursor: pointer;
+}
+
+.hotel-map-marker .map-marker-visual {
+  transform-origin: 50% 100%;
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.hotel-map-marker:hover .map-marker-visual,
+.hotel-map-marker:focus-visible .map-marker-visual,
+.hotel-map-marker[data-selected="true"] .map-marker-visual {
+  filter: brightness(1.03);
+  transform: translateY(-2px) scale(1.12);
+}
+
+.hotel-map-marker:focus-visible {
+  border-radius: 999px;
+  outline: 3px solid rgba(56, 100, 91, 0.55);
+  outline-offset: 4px;
+}

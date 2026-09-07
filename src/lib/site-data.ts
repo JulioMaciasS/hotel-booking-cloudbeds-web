@@ -42,6 +42,8 @@ export const HOTEL = {
   tripadvisorUrl:
     "https://www.tripadvisor.es/Hotel_Review-g312851-d1883505-Reviews-Los_Lagos_Hotel-El_Calafate_Province_of_Santa_Cruz_Patagonia.html",
   bookingUrl: "https://www.booking.com/hotel/ar/los-lagos-el-calafate.es.html",
+  expediaUrl:
+    "https://www.expedia.mx/El-Calafate-Hoteles-Los-Lagos-Hotel.h31489965.Informacion-Hotel",
 } as const;
 
 // ─── Services ──────────────────────────────────────────────────────────────
@@ -108,9 +110,9 @@ export type Distance = {
 
 export const distances: Distance[] = [
   { value: "200 m", time: "~3 min", modeIcon: Footprints, icon: MapPin },
-  { value: "700 m", time: "~9 min", modeIcon: Footprints, icon: Bus },
   { value: "1.4 km", time: "~17 min", modeIcon: Footprints, icon: Waves },
-  { value: "5 km", time: "~10 min", modeIcon: Car, icon: MountainSnow },
-  { value: "16 km", time: "~30 min", modeIcon: Car, icon: Plane },
+  { value: "1.8 km", time: "~7 min", modeIcon: Car, icon: Bus },
+  { value: "8.6 km", time: "~13 min", modeIcon: Car, icon: MountainSnow },
+  { value: "22 km", time: "~25 min", modeIcon: Car, icon: Plane },
   { value: "80 km", time: "~1.5 h", modeIcon: Bus, icon: Mountain },
 ];

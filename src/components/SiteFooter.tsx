@@ -75,17 +75,6 @@ export function SiteFooter() {
               <li>
                 <a
                   className="flex items-center gap-2 transition hover:text-white"
-                  href={HOTEL.tripadvisorUrl}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <ExternalLink aria-hidden="true" size={13} />
-                  TripAdvisor · 4.1/5
-                </a>
-              </li>
-              <li>
-                <a
-                  className="flex items-center gap-2 transition hover:text-white"
                   href={HOTEL.googleMapsUrl}
                   rel="noopener noreferrer"
                   target="_blank"

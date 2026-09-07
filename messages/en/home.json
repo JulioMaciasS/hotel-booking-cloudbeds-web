@@ -2,11 +2,11 @@
   "hero": {
     "eyebrow": "Family-run hotel · El Calafate, Patagonia",
     "title": "Los Lagos Hotel",
-    "subtitle": "A family-run hotel in the heart of El Calafate, a 3-minute walk from downtown. We welcome you like family and help you plan your glaciers, boat trips and excursions across southern Patagonia.",
+    "subtitle": "A small family-run hotel in the heart of El Calafate, combining simplicity, warmth, tranquillity, comfort and attentive, all-round service, just 3 minutes from the town centre, bars, restaurants and travel agencies.",
     "badgeLocation": "3-minute walk to downtown",
     "badgeBreakfast": "Breakfast included",
     "badgeDirect": "Direct booking",
-    "socialProof": "<strong>4.3</strong> · +400 verified reviews"
+    "socialProof": "<strong>{rating}/5</strong> · +{count} verified reviews"
   },
   "heroSlideshow": {
     "tablistLabel": "Hotel images",
@@ -26,12 +26,12 @@
   },
   "booking": {
     "buttonLabel": "Check availability",
-    "helper": "Book direct for the best rate — no commissions, no middleman. Homemade breakfast always included."
+    "helper": "Book direct for the best rate — no commissions, no middleman. Breakfast is always included."
   },
   "about": {
     "eyebrow": "El Calafate, Southern Patagonia",
-    "title": "A quiet base for exploring southern Patagonia.",
-    "paragraph": "We are a small family-run hotel in an exceptional location, just a 3-minute walk from the town centre, bars, restaurants and travel agencies. A place that combines simplicity, warmth, comfort and attentive, personalised service.",
+    "title": "A quiet base for exploring Southern Patagonia.",
+    "paragraph": "The hotel has 14 double and triple rooms with private bathrooms, equipped with flat-screen TVs, central heating, free Wi-Fi, bed linen, towels and amenities. Guests can relax in the garden. Our simple breakfast includes tea and coffee, bread, croissants, butter and jams. Laundry service is available on request. A refrigerator, microwave and complimentary tea are available in the common areas. We welcome you like family and help you arrange your excursions.",
     "checkIn": "Check-in",
     "checkOut": "Check-out",
     "rooms": "Rooms",
@@ -55,7 +55,7 @@
   "whyDirect": {
     "eyebrow": "Book direct",
     "title": "Book direct and get everything we are.",
-    "paragraph": "You deal directly with the family that runs the hotel: the best rate, homemade breakfast and real help planning your trip across Patagonia."
+    "paragraph": "You deal directly with the family that runs the hotel: the best rate, breakfast included and real help planning your trip across Patagonia."
   },
   "benefits": {
     "bestRate": {
@@ -63,8 +63,8 @@
       "text": "You get the lowest price right here, dealing directly with the hotel."
     },
     "breakfast": {
-      "title": "Homemade breakfast included",
-      "text": "Every rate includes our homemade breakfast to start the day right."
+      "title": "Breakfast included",
+      "text": "Every rate includes our simple breakfast to start the day right."
     },
     "excursions": {
       "title": "We help with your excursions",
@@ -78,14 +78,14 @@
   "reviews": {
     "eyebrow": "Verified reviews",
     "title": "What our guests say.",
-    "tripadvisorCount": "{count} reviews · TripAdvisor",
+    "expediaCount": "{count} reviews · Expedia",
     "googleCount": "{count} reviews · Google",
     "bookingCount": "{count} reviews · Booking"
   },
   "location": {
     "eyebrow": "Getting here",
     "title": "In the heart of El Calafate.",
-    "paragraph": "Just a 3-minute walk from Av. del Libertador and steps from Lago Argentino. The perfect starting point for the Perito Moreno Glacier and all of southern Patagonia.",
+    "paragraph": "Nearby attractions include Laguna Nimez, the Lake Argentino waterfront, the Historical Interpretation Centre and Avenida del Libertador (200 m away), where you will find the National Parks Office, the Ice Bar, restaurants and shops. El Calafate Airport is 22 km away, and the bus terminal is 1.8 km from the hotel.",
     "addressLabel": "Address",
     "viewDistances": "See distances and how to get here"
   },

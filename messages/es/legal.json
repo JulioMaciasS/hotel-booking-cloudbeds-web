@@ -5,7 +5,7 @@
   },
   "eyebrow": "Legal",
   "lastUpdatedLabel": "Última actualización: {date}",
-  "lastUpdated": "24 de junio de 2026",
+  "lastUpdated": "7 de septiembre de 2026",
   "terms": {
     "title": "Términos y Condiciones",
     "toPrivacy": "Política de Privacidad →",
@@ -30,7 +30,7 @@
         "heading": "5. Política de cancelación",
         "intro": "Las condiciones específicas de cancelación se informan en el momento de la reserva y varían según la tarifa seleccionada:",
         "items": [
-          "<strong>Tarifa flexible:</strong> cancelación sin cargo hasta 48 horas antes de la fecha de check-in prevista.",
+          "<strong>Tarifa flexible:</strong> cancelación sin cargo hasta 72 horas antes de la fecha de check-in prevista.",
           "<strong>Tarifa no reembolsable:</strong> sin derecho a reembolso ante cancelación, modificación o no presentación (no show)."
         ],
         "outro": "En todos los casos, el hotel reintegrará los importes correspondientes dentro de los plazos previstos por la Ley 24.240 y sus modificatorias."

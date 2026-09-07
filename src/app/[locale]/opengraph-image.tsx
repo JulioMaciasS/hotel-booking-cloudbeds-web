@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { routing } from "@/i18n/routing";
+import { REVIEW_SUMMARY } from "@/lib/review-summary";
 
 // Applies to this segment and every page beneath it, so every route gets a
 // branded preview card on WhatsApp, Facebook, X and LinkedIn.
@@ -16,6 +17,11 @@ const TAGLINE: Record<string, string> = {
   en: "Direct booking · Best rate guaranteed",
 };
 
+const REVIEWS_LABEL: Record<string, string> = {
+  es: "opiniones",
+  en: "reviews",
+};
+
 export default async function OpengraphImage({
   params,
 }: {
@@ -23,6 +29,7 @@ export default async function OpengraphImage({
 }) {
   const { locale } = await params;
   const tagline = TAGLINE[locale] ?? TAGLINE.es;
+  const reviewsLabel = REVIEWS_LABEL[locale] ?? REVIEWS_LABEL.es;
 
   return new ImageResponse(
     (
@@ -67,7 +74,7 @@ export default async function OpengraphImage({
             ))}
           </div>
           <span style={{ color: "rgba(255,255,255,0.8)" }}>
-            4.3 · +400 reviews · loslagoshotel.com.ar
+            {REVIEW_SUMMARY.rating}/5 · +{REVIEW_SUMMARY.displayedReviewCount} {reviewsLabel} · loslagoshotel.com.ar
           </span>
         </div>
       </div>

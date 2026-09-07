@@ -26,8 +26,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { lodgingBusinessJsonLd } from "@/lib/structured-data";
 import { publicConfig } from "@/lib/config";
 import { HOTEL, reviews } from "@/lib/site-data";
+import { REVIEW_PLATFORMS, REVIEW_SUMMARY } from "@/lib/review-summary";
 import { ROOMS } from "@/lib/rooms";
-import tripadvisorLogo from "@assets/logo/tripadvisor.png";
+import expediaLogo from "@assets/logo/expedia-2023.svg";
 import googleMapsLogo from "@assets/logo/Google_Maps_icon_(2020).png";
 import lobbyImage from "@assets/updated images/otros/recepcion 6 completa.jpg";
 
@@ -98,7 +99,10 @@ export default async function HomePage({
             </div>
 
             {/* Prueba social */}
-            <div className="mt-8 flex items-center gap-2 text-sm text-white/85">
+            <a
+              className="mt-8 flex w-fit items-center gap-2 rounded-sm text-sm text-white/85 transition hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              href="#opiniones"
+            >
               <div className="flex gap-0.5 text-amber-400">
                 {[1, 2, 3, 4, 5].map((i) => (
                   <Star
@@ -112,12 +116,14 @@ export default async function HomePage({
               </div>
               <span>
                 {t.rich("hero.socialProof", {
+                  count: REVIEW_SUMMARY.displayedReviewCount,
+                  rating: REVIEW_SUMMARY.rating,
                   strong: (chunks) => (
                     <strong className="font-semibold text-white">{chunks}</strong>
                   ),
                 })}
               </span>
-            </div>
+            </a>
           </div>
         </div>
       </section>
@@ -322,28 +328,6 @@ export default async function HomePage({
             </div>
             {/* Platform badges */}
             <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-3 lg:flex lg:w-auto lg:shrink-0">
-              {/* TripAdvisor */}
-              <a
-                className="relative flex items-center gap-3 rounded-xl border border-[#00aa6c]/30 bg-[#00aa6c]/5 px-4 py-3 pr-9"
-                href={HOTEL.tripadvisorUrl}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <Image src={tripadvisorLogo} alt="TripAdvisor" width={28} height={28} className="object-contain" />
-                <div>
-                  <div className="flex items-baseline gap-1.5">
-                    <span className="text-xl font-bold text-[#1f2b27]">4.1</span>
-                    <div className="flex gap-0.5 text-[#00aa6c]">
-                      {[1, 2, 3, 4].map((i) => (
-                        <Star key={i} aria-hidden="true" fill="currentColor" size={13} strokeWidth={0} />
-                      ))}
-                      <Star aria-hidden="true" fill="none" size={13} strokeWidth={1.5} />
-                    </div>
-                  </div>
-                  <p className="text-xs text-[#5f6e69]">{t("reviews.tripadvisorCount", { count: 27 })}</p>
-                </div>
-                <ExternalLink aria-hidden="true" className="absolute bottom-2.5 right-2.5 text-[#5f6e69]" size={14} />
-              </a>
               {/* Google Maps */}
               <a
                 className="relative flex items-center gap-3 rounded-xl border border-[#4285F4]/30 bg-[#4285F4]/5 px-4 py-3 pr-9"
@@ -356,11 +340,11 @@ export default async function HomePage({
                   alt="Google Maps"
                   width={20}
                   height={28}
-                  className="h-7 w-auto object-contain"
+                  className="h-7 w-5 object-contain"
                 />
                 <div>
                   <div className="flex items-baseline gap-1.5">
-                    <span className="text-xl font-bold text-[#1f2b27]">4.3</span>
+                    <span className="text-xl font-bold text-[#1f2b27]">{REVIEW_PLATFORMS.google.rating}</span>
                     <div className="flex gap-0.5 text-[#FBBC05]">
                       {[1, 2, 3, 4].map((i) => (
                         <Star key={i} aria-hidden="true" fill="currentColor" size={13} strokeWidth={0} />
@@ -368,7 +352,9 @@ export default async function HomePage({
                       <Star aria-hidden="true" fill="none" size={13} strokeWidth={1.5} />
                     </div>
                   </div>
-                  <p className="text-xs text-[#5f6e69]">{t("reviews.googleCount", { count: 107 })}</p>
+                  <p className="text-xs text-[#5f6e69]">
+                    {t("reviews.googleCount", { count: REVIEW_PLATFORMS.google.reviewCount })}
+                  </p>
                 </div>
                 <ExternalLink aria-hidden="true" className="absolute bottom-2.5 right-2.5 text-[#5f6e69]" size={14} />
               </a>
@@ -388,7 +374,7 @@ export default async function HomePage({
                 </span>
                 <div>
                   <div className="flex items-baseline gap-1.5">
-                    <span className="text-xl font-bold text-[#1f2b27]">8.5</span>
+                    <span className="text-xl font-bold text-[#1f2b27]">{REVIEW_PLATFORMS.booking.rating}</span>
                     <div className="flex gap-0.5 text-[#003580]">
                       {[1, 2, 3, 4].map((i) => (
                         <Star key={i} aria-hidden="true" fill="currentColor" size={13} strokeWidth={0} />
@@ -396,7 +382,39 @@ export default async function HomePage({
                       <Star aria-hidden="true" fill="none" size={13} strokeWidth={1.5} />
                     </div>
                   </div>
-                  <p className="text-xs text-[#5f6e69]">{t("reviews.bookingCount", { count: 295 })}</p>
+                  <p className="text-xs text-[#5f6e69]">
+                    {t("reviews.bookingCount", { count: REVIEW_PLATFORMS.booking.reviewCount })}
+                  </p>
+                </div>
+                <ExternalLink aria-hidden="true" className="absolute bottom-2.5 right-2.5 text-[#5f6e69]" size={14} />
+              </a>
+              {/* Expedia */}
+              <a
+                className="relative flex items-center gap-3 rounded-xl border border-[#191e3b]/25 bg-[#fecf02]/10 px-4 py-3 pr-9"
+                href={HOTEL.expediaUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <Image
+                  src={expediaLogo}
+                  alt="Expedia"
+                  width={80}
+                  height={16}
+                  className="object-contain"
+                />
+                <div>
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-xl font-bold text-[#1f2b27]">{REVIEW_PLATFORMS.expedia.rating}</span>
+                    <div className="flex gap-0.5 text-[#191e3b]">
+                      {[1, 2, 3, 4].map((i) => (
+                        <Star key={i} aria-hidden="true" fill="currentColor" size={13} strokeWidth={0} />
+                      ))}
+                      <Star aria-hidden="true" fill="none" size={13} strokeWidth={1.5} />
+                    </div>
+                  </div>
+                  <p className="text-xs text-[#5f6e69]">
+                    {t("reviews.expediaCount", { count: REVIEW_PLATFORMS.expedia.reviewCount })}
+                  </p>
                 </div>
                 <ExternalLink aria-hidden="true" className="absolute bottom-2.5 right-2.5 text-[#5f6e69]" size={14} />
               </a>

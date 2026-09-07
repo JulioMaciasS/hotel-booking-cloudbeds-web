@@ -1,14 +1,13 @@
 import { HOTEL } from "@/lib/site-data";
+import { REVIEW_SUMMARY } from "@/lib/review-summary";
 import { siteUrl } from "@/i18n/metadata";
 
 /**
  * schema.org `LodgingBusiness` for the hotel. Powers rich results in Google
  * (star rating, address, price band, contact). The aggregate rating is a
- * blend of the hotel's public review platforms, normalised to a 5-point scale:
- *   TripAdvisor 4.1 (27) + Google 4.3 (107) + Booking 8.5/10 = 4.25 (295)
- *   → ~4.3 across 429 reviews.
- * Those same reviews are shown on the page (ReviewsSlider), so the aggregate is
- * substantiated on-page.
+ * review-count-weighted blend of Google, Booking and Expedia, normalised to a
+ * 5-point scale. The source figures live in `site-data.ts` and the exact result
+ * is also displayed on the page.
  */
 export function lodgingBusinessJsonLd() {
   return {
@@ -39,12 +38,12 @@ export function lodgingBusinessJsonLd() {
     checkoutTime: HOTEL.checkOut,
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "4.3",
-      reviewCount: 429,
+      ratingValue: REVIEW_SUMMARY.rating.toFixed(1),
+      reviewCount: REVIEW_SUMMARY.reviewCount,
       bestRating: "5",
       worstRating: "1",
     },
-    sameAs: [HOTEL.tripadvisorUrl, HOTEL.bookingUrl, HOTEL.googleMapsUrl],
+    sameAs: [HOTEL.expediaUrl, HOTEL.bookingUrl, HOTEL.googleMapsUrl],
   };
 }
 

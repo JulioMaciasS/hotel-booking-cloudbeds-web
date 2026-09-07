@@ -13,11 +13,11 @@
       "heading": "Getting here",
       "airport": {
         "title": "From the airport",
-        "text": "El Calafate International Airport (FTE) is about 16 km away — roughly a 25-minute drive. Taxis and transfer services wait at arrivals."
+        "text": "El Calafate International Airport (FTE) is about 22 km away — roughly a 25-minute drive. Taxis and transfer services wait at arrivals."
       },
       "bus": {
         "title": "By bus",
-        "text": "The bus terminal is a short walk from the hotel, with long-distance services from El Chaltén, Río Gallegos and Puerto Natales (Chile)."
+        "text": "The bus terminal is a few minutes from the hotel by car, with long-distance services from El Chaltén, Río Gallegos and Puerto Natales (Chile)."
       },
       "note": "Tell us your arrival details and our reception will gladly help you arrange a private transfer."
     },
@@ -47,8 +47,8 @@
   },
   "distances": [
     { "label": "Centre — Av. del Libertador", "modeLabel": "Walking" },
-    { "label": "Bus Terminal", "modeLabel": "Walking" },
     { "label": "Lake Argentino (shore)", "modeLabel": "Walking" },
+    { "label": "Bus Terminal", "modeLabel": "By car" },
     { "label": "Glaciarium", "modeLabel": "By car" },
     { "label": "El Calafate Airport (FTE)", "modeLabel": "By car" },
     { "label": "Perito Moreno Glacier", "modeLabel": "By bus" }
@@ -59,8 +59,45 @@
     "close": "Close map",
     "expandedLabel": "Expanded map",
     "viewOnGoogleMaps": "View on Google Maps ↗",
+    "details": {
+      "expand": "Expand details",
+      "collapse": "Collapse details",
+      "close": "Close details",
+      "returnToPlace": "Return to {place}"
+    },
+    "search": {
+      "label": "Search places on the map",
+      "placeholder": "Search restaurants, places or services…",
+      "clear": "Clear search",
+      "resultsLabel": "Search results",
+      "noResults": "We couldn't find a place matching that search."
+    },
+    "filters": {
+      "label": "Filter places by category",
+      "button": "Filters",
+      "all": "All"
+    },
+    "guide": {
+      "eyebrow": "Local guide",
+      "title": "Your El Calafate map",
+      "subtitle": "Useful places and recommendations selected by Los Lagos Hotel.",
+      "offline": {
+        "preparing": "Saving offline guide… {progress}%",
+        "ready": "Guide ready to use offline",
+        "using": "Using the guide offline",
+        "error": "The offline copy could not be completed"
+      }
+    },
+    "fallback": {
+      "title": "Map of El Calafate",
+      "note": "We're showing a compatible map because this device doesn't support the advanced graphics mode.",
+      "openInGoogleMaps": "Open in Google Maps ↗"
+    },
     "hotel": {
-      "address": "25 de Mayo 220, El Calafate"
+      "label": "Los Lagos Hotel",
+      "category": "Hotel",
+      "address": "25 de Mayo 220, El Calafate",
+      "searchTerms": "accommodation lodging rooms room stay booking book reception breakfast wifi parking check-in check-out"
     },
     "centreLabel": "Centre",
     "categories": {
@@ -146,11 +183,11 @@
       },
       "terminal": {
         "label": "Bus Terminal",
-        "note": "Bus terminal · ~700 m on foot"
+        "note": "Bus terminal · ~1.8 km by car"
       },
       "aeropuerto": {
         "label": "FTE Airport",
-        "note": "Malvinas Argentinas Airport · 16 km by car"
+        "note": "Comandante Armando Tola Airport · 22 km by car"
       },
       "bancoSantaCruz": {
         "label": "Banco Santa Cruz",
