@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { HOTEL } from "@/lib/site-data";
 
 interface FormState {
   nombre: string;
@@ -42,7 +43,7 @@ export function ContactForm() {
         .join("\n"),
     );
     window.open(
-      `mailto:loslagoshotelcalafate@gmail.com?subject=${subject}&body=${body}`,
+      `mailto:${HOTEL.email}?subject=${subject}&body=${body}`,
     );
     setSent(true);
     setForm(empty);

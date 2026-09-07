@@ -4,8 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { buildPageMetadata } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
-
-const HOTEL_EMAIL = "loslagoshotelcalafate@gmail.com";
+import { HOTEL } from "@/lib/site-data";
 
 export async function generateMetadata({
   params,
@@ -20,10 +19,10 @@ const richTags = {
   strong: (chunks: React.ReactNode) => <strong>{chunks}</strong>,
   email: () => (
     <a
-      href={`mailto:${HOTEL_EMAIL}`}
+      href={`mailto:${HOTEL.email}`}
       className="text-[#38645b] underline underline-offset-2"
     >
-      {HOTEL_EMAIL}
+      {HOTEL.email}
     </a>
   ),
   coprec: (chunks: React.ReactNode) => (

@@ -33,7 +33,7 @@ export const HOTEL = {
   phoneHref: "tel:+542902417738",
   whatsapp: "+54 9 2902 417738",
   whatsappHref: "https://wa.me/5492902417738",
-  email: "loslagoshotelcalafate@gmail.com",
+  email: "info@loslagoshotel.com.ar",
   checkIn: "14:00",
   checkOut: "10:00",
   rooms: 14,
