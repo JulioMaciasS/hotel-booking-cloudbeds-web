@@ -9,9 +9,16 @@ declare global {
 
 function addPicker({ ready = false } = {}) {
   const picker = document.createElement("cb-property-date-picker");
+  const checkin = document.createElement("button");
   const checkout = document.createElement("button");
   const search = document.createElement("button");
 
+  checkin.dataset.testid =
+    "property-date-picker-date-picker-checkin-input";
+  checkin.setAttribute(
+    "aria-label",
+    ready ? "Check-in, 10 sep 2026" : "Check-in",
+  );
   checkout.dataset.testid =
     "property-date-picker-date-picker-checkout-input";
   checkout.setAttribute(
@@ -20,10 +27,10 @@ function addPicker({ ready = false } = {}) {
   );
   search.dataset.testid = "property-date-picker-search-button";
   search.disabled = !ready;
-  picker.append(checkout, search);
+  picker.append(checkin, checkout, search);
   document.body.appendChild(picker);
 
-  return { checkout, search };
+  return { checkin, checkout, search };
 }
 
 function renderComponent() {
@@ -52,14 +59,34 @@ describe("CloudbedsDatePickerAutoSubmit", () => {
   });
 
   it("submits once when checkout completes the date range", async () => {
-    const { checkout, search } = addPicker();
+    const { checkin, checkout, search } = addPicker();
     const click = vi.spyOn(search, "click");
     root = renderComponent();
 
+    checkin.setAttribute("aria-label", "Check-in, 10 sep 2026");
     checkout.setAttribute("aria-label", "Check-out, 12 sep 2026");
     search.disabled = false;
     await act(async () => Promise.resolve());
-    act(() => vi.advanceTimersByTime(100));
+    act(() => vi.advanceTimersByTime(150));
+
+    expect(click).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not click the same range again when Cloudbeds toggles loading", async () => {
+    const { checkin, checkout, search } = addPicker();
+    const click = vi.spyOn(search, "click");
+    root = renderComponent();
+
+    checkin.setAttribute("aria-label", "Check-in, 10 sep 2026");
+    checkout.setAttribute("aria-label", "Check-out, 12 sep 2026");
+    search.disabled = false;
+    await act(async () => Promise.resolve());
+    act(() => vi.advanceTimersByTime(150));
+
+    search.disabled = true;
+    search.disabled = false;
+    await act(async () => Promise.resolve());
+    act(() => vi.advanceTimersByTime(300));
 
     expect(click).toHaveBeenCalledTimes(1);
   });
