@@ -16,12 +16,15 @@ import { routing, type Locale } from "@/i18n/routing";
  * focus return are all wired up, and the popup flips above the trigger when
  * there isn't room below (it sits near the bottom of the mobile menu).
  *
- * Sizing is breakpoint-driven because the two nav placements never show at once:
- * full-width and tappable in the mobile menu (`lg:hidden`), compact in the
- * desktop nav bar (`hidden lg:block`). So the base styles dress the mobile one
- * and the `lg:` styles dress the desktop one.
+ * The default presentation is full-width on mobile and compact on desktop.
+ * `compact` is used by the always-visible mobile header action so the current
+ * locale remains reachable without opening the navigation drawer.
  */
-export function LanguageSwitcher() {
+type LanguageSwitcherProps = {
+  compact?: boolean;
+};
+
+export function LanguageSwitcher({ compact = false }: LanguageSwitcherProps) {
   const t = useTranslations("common.languageSwitcher");
   const activeLocale = useLocale();
   const router = useRouter();
@@ -106,7 +109,7 @@ export function LanguageSwitcher() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full lg:w-auto"
+      className={compact ? "relative w-auto" : "relative w-full lg:w-auto"}
       // Close when focus leaves the switcher entirely (e.g. tabbing past it).
       onBlur={(event) => {
         if (!containerRef.current?.contains(event.relatedTarget as Node)) {
@@ -114,17 +117,23 @@ export function LanguageSwitcher() {
         }
       }}
     >
-      <Globe
-        aria-hidden
-        className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[#52615d]"
-        size={18}
-      />
+      {!compact && (
+        <Globe
+          aria-hidden
+          className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[#52615d]"
+          size={18}
+        />
+      )}
       <button
         ref={buttonRef}
         aria-expanded={open}
         aria-haspopup="listbox"
         aria-label={t("label")}
-        className="w-full cursor-pointer rounded-xl border border-black/10 bg-white px-10 py-3 text-center text-base font-semibold text-[#1f2b27] transition-colors hover:border-black/20 focus:outline-none focus:ring-2 focus:ring-[#6dbfaa] disabled:opacity-60 lg:w-auto lg:rounded-lg lg:py-2 lg:text-sm"
+        className={
+          compact
+            ? "min-h-10 min-w-[52px] cursor-pointer rounded-lg border border-black/10 bg-white py-2 pl-3 pr-7 text-center text-sm font-semibold text-[#1f2b27] transition-colors hover:border-black/20 focus:outline-none focus:ring-2 focus:ring-[#6dbfaa] disabled:opacity-60"
+            : "w-full cursor-pointer rounded-xl border border-black/10 bg-white px-10 py-3 text-center text-base font-semibold text-[#1f2b27] transition-colors hover:border-black/20 focus:outline-none focus:ring-2 focus:ring-[#6dbfaa] disabled:opacity-60 lg:w-auto lg:rounded-lg lg:py-2 lg:text-sm"
+        }
         disabled={isPending}
         onClick={() => (open ? setOpen(false) : openMenu())}
         onKeyDown={onTriggerKeyDown}
@@ -134,16 +143,16 @@ export function LanguageSwitcher() {
       </button>
       <ChevronDown
         aria-hidden
-        className={`pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#52615d] transition-transform duration-200 ${
+        className={`pointer-events-none absolute ${compact ? "right-2" : "right-3"} top-1/2 -translate-y-1/2 text-[#52615d] transition-transform duration-200 ${
           open ? "rotate-180" : ""
         }`}
-        size={18}
+        size={compact ? 15 : 18}
       />
 
       {open && (
         <ul
           aria-label={t("label")}
-          className={`absolute right-0 z-50 w-full overflow-hidden rounded-xl border border-black/10 bg-white p-1 shadow-lg shadow-black/5 lg:w-auto lg:min-w-[11rem] ${
+          className={`absolute right-0 z-50 overflow-hidden rounded-xl border border-black/10 bg-white p-1 shadow-lg shadow-black/5 ${compact ? "min-w-[11rem]" : "w-full lg:w-auto lg:min-w-[11rem]"} ${
             dropUp ? "bottom-full mb-2" : "top-full mt-2"
           }`}
           role="listbox"

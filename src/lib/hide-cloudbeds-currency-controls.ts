@@ -12,7 +12,12 @@ const CURRENCY_CONTROL_PATTERN =
   /(currency|moneda|divisa|selector de moneda|seleccionar moneda|currency selector)/i;
 const FILTER_CONTROL_PATTERN = /\b(filters?|filtros?)\b/i;
 const PROMO_CODE_PATTERN =
-  /^(promo code|c[oó]digo promocional|a[nñ]adir c[oó]digo|add code|promo\/group code)/i;
+  /^(promo code|c[oó]digo promocional|a[nñ]adir c[oó]digo|add (?:promo )?code|promo\/group code)/i;
+const PROMO_CODE_TEST_ID = "header-search-panel-promocode-button";
+const TECHNICAL_ROOM_TYPE_TEST_ID =
+  "accommodation-type-filter-checkbox-258282401603712";
+const TECHNICAL_ROOM_TYPE_PATTERN =
+  /^ajuste t[eé]cnico\s*[\u2014\u2013-]\s*no vender$/i;
 const BRANDED_NAV_PATTERN = /(logo|brand|booking engine)/i;
 const CLOUDBEDS_BRAND_TEXT_PATTERN = /^(cloudbeds|cloudbeds booking engine)$/i;
 const CLOUDBEDS_NAV_ROOT_SELECTOR = [
@@ -60,11 +65,22 @@ export function injectCloudbedsDomAdjustmentStyles(
     }
 
     :is(#cb-bookingengine, .cb-bookingengine-root, .cb-portal)
-      :is([aria-label^="promo code" i], [aria-label*="añadir código" i], [aria-label*="anadir codigo" i]) {
+      :is(
+        [data-testid="${PROMO_CODE_TEST_ID}"],
+        [aria-label^="promo code" i],
+        [aria-label^="add promo code" i],
+        [aria-label*="añadir código" i],
+        [aria-label*="anadir codigo" i]
+      ) {
       display: none !important;
     }
 
     [data-hotel-cloudbeds-promo-hidden="true"] {
+      display: none !important;
+    }
+
+    [data-testid="${TECHNICAL_ROOM_TYPE_TEST_ID}"],
+    [data-hotel-cloudbeds-room-type-hidden="true"] {
       display: none !important;
     }
 
@@ -464,6 +480,7 @@ export function hideCloudbedsCurrencyControls(documentRef: Document = document) 
   injectCloudbedsDomAdjustmentStyles(documentRef);
   hideCloudbedsBrandControls(documentRef);
   ensureCloudbedsFilterControlsVisible(documentRef);
+  hideCloudbedsTechnicalRoomTypeControls(documentRef);
 
   const candidates = documentRef.querySelectorAll(CONTROL_SELECTOR);
 
@@ -596,7 +613,9 @@ export function hideCloudbedsPromoCodeControls(
 ) {
   const candidates = documentRef.querySelectorAll(
     [
+      `[data-testid='${PROMO_CODE_TEST_ID}']`,
       "[aria-label^='Promo code' i]",
+      "[aria-label^='Add promo code' i]",
       "[aria-label*='Añadir código' i]",
       "[aria-label*='Anadir codigo' i]",
       "[data-be-text='true']",
@@ -604,6 +623,8 @@ export function hideCloudbedsPromoCodeControls(
   );
 
   for (const element of candidates) {
+    const isKnownPromoButton =
+      element.getAttribute("data-testid") === PROMO_CODE_TEST_ID;
     const signature = [
       element.getAttribute("aria-label"),
       element.textContent,
@@ -613,12 +634,37 @@ export function hideCloudbedsPromoCodeControls(
       .join(" ")
       .trim();
 
-    if (!PROMO_CODE_PATTERN.test(signature)) {
+    if (!isKnownPromoButton && !PROMO_CODE_PATTERN.test(signature)) {
       continue;
     }
 
     const target = getPromoCodeTarget(element);
     target.setAttribute("data-hotel-cloudbeds-promo-hidden", "true");
     target.setAttribute("hidden", "");
+  }
+}
+
+export function hideCloudbedsTechnicalRoomTypeControls(
+  documentRef: Document = document,
+) {
+  const candidates = documentRef.querySelectorAll(
+    [
+      `[data-testid='${TECHNICAL_ROOM_TYPE_TEST_ID}']`,
+      "[data-testid='accommodation-type-filter-options-list'] label",
+    ].join(","),
+  );
+
+  for (const element of candidates) {
+    const isKnownTechnicalRoom =
+      element.getAttribute("data-testid") === TECHNICAL_ROOM_TYPE_TEST_ID;
+    const label = element.textContent?.replace(/\s+/g, " ").trim() ?? "";
+
+    if (!isKnownTechnicalRoom && !TECHNICAL_ROOM_TYPE_PATTERN.test(label)) {
+      continue;
+    }
+
+    element.removeAttribute("data-hotel-cloudbeds-filter-visible");
+    element.setAttribute("data-hotel-cloudbeds-room-type-hidden", "true");
+    element.setAttribute("hidden", "");
   }
 }

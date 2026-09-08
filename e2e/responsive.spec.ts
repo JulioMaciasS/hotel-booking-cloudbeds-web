@@ -101,17 +101,23 @@ test.describe("site header navigation", () => {
     const hamburger = page.getByRole("button", { name: /Abrir menú|Cerrar menú/ });
     const desktopNav = page.locator("header nav").first();
     const reservarCta = page.getByRole("link", { name: "Reservar", exact: true });
+    const languageSwitcher = page
+      .locator("header")
+      .getByRole("button", { name: /Cambiar idioma|Change language/ })
+      .first();
 
     // The booking CTA is always reachable.
     await expect(reservarCta).toBeVisible();
 
     if (isDesktop) {
       await expect(desktopNav).toBeVisible();
+      await expect(languageSwitcher).toBeVisible();
       await expect(desktopNav.getByRole("link", { name: "El Hotel" })).toBeVisible();
       await expect(hamburger).toBeHidden();
     } else {
       await expect(hamburger).toBeVisible();
       await expect(desktopNav).toBeHidden();
+      await expect(languageSwitcher).toBeVisible();
 
       // Opening the hamburger reveals the drawer links.
       await hamburger.click();

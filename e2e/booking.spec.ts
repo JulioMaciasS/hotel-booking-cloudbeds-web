@@ -74,7 +74,9 @@ test.beforeEach(async ({ page }) => {
                     <a data-testid="mock-cloudbeds-logo" href="https://hotels.cloudbeds.com/reservation/5fdNYA">Cloudbeds</a>
                     <a data-testid="mock-cloudbeds-nav-item" href="#rooms">Habitaciones</a>
                     <button type="button" aria-label="Seleccionar moneda">ARS</button>
-                    <p class="chakra-text cb-text d-16ge5kn" data-be-text="true" aria-label="Promo code: Añadir código">Añadir código</p>
+                    <button data-testid="header-search-panel-promocode-button" type="button">
+                      <p class="chakra-text cb-text d-16ge5kn" data-be-text="true" aria-label="Add promo code">Añadir código</p>
+                    </button>
                   </header>
                   <article class="cb-accommodation-card" data-testid="accommodation-card-227179928547456">
                     <button
@@ -121,7 +123,12 @@ test.beforeEach(async ({ page }) => {
 
               const portal = document.createElement("div");
               portal.className = "cb-portal";
-              portal.innerHTML = '<button type="button" aria-label="Currency selector">USD</button>';
+              portal.innerHTML = \
+                '<button type="button" aria-label="Currency selector">USD</button>' +
+                '<div data-testid="accommodation-type-filter-options-list">' +
+                  '<label data-testid="accommodation-type-filter-checkbox-227179928547456">Doble Estándar</label>' +
+                  '<label data-testid="accommodation-type-filter-checkbox-258282401603712">Ajuste técnico — no vender</label>' +
+                '</div>';
               document.body.append(portal);
             }
           }
@@ -254,8 +261,15 @@ test("reservas page keeps Cloudbeds nav visible while hiding brand, currency, an
   await expect(
     page.getByRole("button", { name: "Currency selector" }),
   ).toBeHidden();
-  await expect(page.getByLabel("Promo code: Añadir código")).toBeHidden();
+  await expect(page.getByTestId("header-search-panel-promocode-button")).toBeHidden();
+  await expect(page.getByLabel("Add promo code")).toBeHidden();
   await expect(page.getByText("Añadir código")).toBeHidden();
+  await expect(
+    page.getByTestId("accommodation-type-filter-checkbox-227179928547456"),
+  ).toBeVisible();
+  await expect(
+    page.getByTestId("accommodation-type-filter-checkbox-258282401603712"),
+  ).toBeHidden();
 });
 
 test("reservas page converts mocked Cloudbeds ARS prices to dollars once", async ({

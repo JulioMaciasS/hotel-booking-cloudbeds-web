@@ -145,6 +145,11 @@ export function SiteHeader() {
           >
             {t("actions.book")}
           </Link>
+          {!mapExpanded && (
+            <div className="lg:hidden">
+              <LanguageSwitcher compact />
+            </div>
+          )}
           {mapExpanded ? (
             <div className="flex items-center gap-1 lg:hidden">
               <button
@@ -219,9 +224,6 @@ export function SiteHeader() {
                 </Link>
               );
             })}
-            <div className="mt-4 w-full">
-              <LanguageSwitcher />
-            </div>
           </div>
         </nav>
       </div>
