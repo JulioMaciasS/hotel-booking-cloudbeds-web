@@ -246,6 +246,25 @@ test("reservas page renders the Cloudbeds immersive component with official hide
   await expect(embed).toHaveAttribute("currency", "ARS");
 });
 
+test("review badges do not send direct-booking traffic to OTAs", async ({
+  page,
+}) => {
+  await page.goto("/#opiniones", { waitUntil: "domcontentloaded" });
+
+  const reviews = page.locator("#opiniones");
+  await expect(
+    reviews.getByRole("link", { name: /Google Maps/i }),
+  ).toBeVisible();
+  await expect(
+    reviews.getByRole("link", { name: /Booking\.com/i }),
+  ).toHaveCount(0);
+  await expect(
+    reviews.getByRole("link", { name: /Expedia/i }),
+  ).toHaveCount(0);
+  await expect(reviews.getByLabel("Booking.com")).toBeVisible();
+  await expect(reviews.getByAltText("Expedia")).toBeVisible();
+});
+
 test("reservas page keeps Cloudbeds nav visible while hiding brand, currency, and promo controls", async ({
   page,
 }) => {

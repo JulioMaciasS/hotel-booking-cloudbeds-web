@@ -330,7 +330,7 @@ export default async function HomePage({
             <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-3 lg:flex lg:w-auto lg:shrink-0">
               {/* Google Maps */}
               <a
-                className="relative flex items-center gap-3 rounded-xl border border-[#4285F4]/30 bg-[#4285F4]/5 px-4 py-3 pr-9"
+                className="relative grid grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-x-3 rounded-xl border border-[#4285F4]/30 bg-[#4285F4]/5 px-4 py-3 pr-9 sm:flex"
                 href={HOTEL.googleMapsUrl}
                 rel="noopener noreferrer"
                 target="_blank"
@@ -359,12 +359,7 @@ export default async function HomePage({
                 <ExternalLink aria-hidden="true" className="absolute bottom-2.5 right-2.5 text-[#5f6e69]" size={14} />
               </a>
               {/* Booking.com */}
-              <a
-                className="relative flex items-center gap-3 rounded-xl border border-[#003580]/20 bg-[#003580]/5 px-4 py-3 pr-9"
-                href={HOTEL.bookingUrl}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
+              <div className="grid grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-x-3 rounded-xl border border-[#003580]/20 bg-[#003580]/5 px-4 py-3 sm:flex">
                 <span
                   aria-label="Booking.com"
                   className="flex h-7 items-center rounded px-2 text-xs font-bold tracking-tight text-white"
@@ -386,15 +381,9 @@ export default async function HomePage({
                     {t("reviews.bookingCount", { count: REVIEW_PLATFORMS.booking.reviewCount })}
                   </p>
                 </div>
-                <ExternalLink aria-hidden="true" className="absolute bottom-2.5 right-2.5 text-[#5f6e69]" size={14} />
-              </a>
+              </div>
               {/* Expedia */}
-              <a
-                className="relative flex items-center gap-3 rounded-xl border border-[#191e3b]/25 bg-[#fecf02]/10 px-4 py-3 pr-9"
-                href={HOTEL.expediaUrl}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
+              <div className="grid grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-x-3 rounded-xl border border-[#191e3b]/25 bg-[#fecf02]/10 px-4 py-3 sm:flex">
                 <Image
                   src={expediaLogo}
                   alt="Expedia"
@@ -416,8 +405,7 @@ export default async function HomePage({
                     {t("reviews.expediaCount", { count: REVIEW_PLATFORMS.expedia.reviewCount })}
                   </p>
                 </div>
-                <ExternalLink aria-hidden="true" className="absolute bottom-2.5 right-2.5 text-[#5f6e69]" size={14} />
-              </a>
+              </div>
             </div>
           </div>
 

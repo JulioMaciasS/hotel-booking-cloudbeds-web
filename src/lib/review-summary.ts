@@ -8,7 +8,7 @@ export type ReviewPlatformValue = {
 // The hero, platform cards, footer, share image and structured data all derive
 // their values automatically from this single block.
 export const REVIEW_PLATFORMS = {
-  google: { rating: 4.3, bestRating: 5, reviewCount: 107 },
+  google: { rating: 4.3, bestRating: 5, reviewCount: 110 },
   booking: { rating: 8.6, bestRating: 10, reviewCount: 298 },
   expedia: { rating: 8.4, bestRating: 10, reviewCount: 48 },
 } as const satisfies Record<string, ReviewPlatformValue>;
