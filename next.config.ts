@@ -93,6 +93,15 @@ const nextConfig: NextConfig = {
   images: {
     qualities: [75, 90],
   },
+  async redirects() {
+    return [
+      {
+        source: "/review",
+        destination: "https://review.loslagoshotel.com.ar/review",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
