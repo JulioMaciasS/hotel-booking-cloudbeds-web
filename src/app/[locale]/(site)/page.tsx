@@ -20,6 +20,7 @@ import { ScrollCenterHandler } from "@/components/ScrollCenterHandler";
 import { BookingLoader } from "@/components/BookingLoader";
 import { BookingPriceObserver } from "@/components/BookingPriceObserver";
 import { CloudbedsScriptLoader } from "@/components/CloudbedsScriptLoader";
+import { CloudbedsPropertyDatePicker } from "@/components/CloudbedsPropertyDatePicker";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { BookingIntentHandler } from "@/components/BookingIntentHandler";
 import { JsonLd } from "@/components/JsonLd";
@@ -131,16 +132,12 @@ export default async function HomePage({
       {/* ── BOOKING WIDGET ── */}
       <section className="relative z-20 flow-root bg-white px-5 sm:px-8" id="reservar">
         <div className="relative -mt-20 mx-auto max-w-5xl">
-          <cb-property-date-picker
-            button-label={t("booking.buttonLabel")}
+          <CloudbedsPropertyDatePicker
+            buttonLabel={t("booking.buttonLabel")}
             currency={publicConfig.baseCurrency}
-            custom-url={locale === "en" ? "/en/reservas" : "/reservas"}
-            data-testid="cloudbeds-date-picker"
             island={publicConfig.cloudbedsIsland}
-            lang={locale}
-            layout="horizontal"
-            open-in-new-tab="false"
-            property-code={publicConfig.propertyCode}
+            locale={locale}
+            propertyCode={publicConfig.propertyCode}
           />
           <p className="mt-4 flex items-center justify-center gap-2 text-center text-sm font-medium text-[#38645b]">
             <BadgePercent size={16} aria-hidden="true" className="shrink-0" />

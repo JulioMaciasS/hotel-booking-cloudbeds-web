@@ -92,15 +92,17 @@ NEXT_PUBLIC_CB_FIELD_BEDDING_PREFERENCE=cf_bedding_preference
 
 If the custom fields are not present, recording silently no-ops.
 
-The homepage date picker uses `custom-url="/reservas"` so selected dates are
-passed into the in-site booking page:
+The homepage date picker builds an absolute `custom-url` from the current
+browser origin so selected dates are passed into the in-site booking page.
+This keeps localhost, Amplify, and the final hotel domain working without a
+hard-coded host:
 
 ```html
 <cb-property-date-picker
   property-code="5fdNYA"
   layout="horizontal"
   button-label="Buscar disponibilidad"
-  custom-url="/reservas"
+  custom-url="https://current-origin.example/reservas"
   open-in-new-tab="false"
 />
 ```

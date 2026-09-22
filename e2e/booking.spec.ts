@@ -176,12 +176,28 @@ test("home page date picker sends guests to /reservas without a hosted Cloudbeds
 }) => {
   await page.goto("/", { waitUntil: "domcontentloaded" });
 
+  await expect(page.getByTestId("cloudbeds-date-picker")).toHaveAttribute(
+    "custom-url",
+    "http://localhost:3100/reservas",
+  );
+
   await page.getByRole("button", { name: "Buscar disponibilidad" }).click();
   await expect(page).toHaveURL(/\/reservas\?/);
   expect(new URL(page.url()).origin).toBe("http://localhost:3100");
   await expect(page).toHaveURL(/checkin=2026-06-01/);
   await expect(page).toHaveURL(/checkout=2026-06-03/);
   await expect(page.getByTestId("cloudbeds-standard-embed")).toBeVisible();
+});
+
+test("English home page uses an absolute localized booking URL", async ({
+  page,
+}) => {
+  await page.goto("/en", { waitUntil: "domcontentloaded" });
+
+  await expect(page.getByTestId("cloudbeds-date-picker")).toHaveAttribute(
+    "custom-url",
+    "http://localhost:3100/en/reservas",
+  );
 });
 
 test("reservas page without booking params redirects back to the home date picker", async ({
