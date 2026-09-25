@@ -11,7 +11,6 @@ const CONFIG: FxEvaluationConfig = {
   minRate: 200,
   maxRate: 100_000,
   staleAfterHours: 48,
-  inactiveAfterHours: 168,
 };
 
 function hoursAgo(hours: number): string {
@@ -46,14 +45,14 @@ describe("evaluateFxUpstream", () => {
     expect(result).toMatchObject({ ok: true, arsPerUsd: 1460, stale: true });
   });
 
-  it("rejects a rate older than the hard ceiling", () => {
+  it("keeps a valid rate usable even when it was confirmed five years ago", () => {
     const result = evaluateFxUpstream(
-      { status: "ok", usdArsRate: 1460, confirmedAt: hoursAgo(200) },
+      { status: "ok", usdArsRate: 1530, confirmedAt: hoursAgo(24 * 365 * 5) },
       NOW,
       CONFIG,
     );
 
-    expect(result).toEqual({ ok: false, reason: "rate-too-old" });
+    expect(result).toMatchObject({ ok: true, arsPerUsd: 1530, stale: true });
   });
 
   it("rejects rates outside the sanity band", () => {
@@ -125,13 +124,11 @@ describe("fxConfigFromEnv", () => {
       minRate: 200,
       maxRate: 100_000,
       staleAfterHours: 48,
-      inactiveAfterHours: 168,
     });
     expect(fxConfigFromEnv({ FX_RATE_MIN: "abc", FX_RATE_MAX: "-1" })).toEqual({
       minRate: 200,
       maxRate: 100_000,
       staleAfterHours: 48,
-      inactiveAfterHours: 168,
     });
   });
 
@@ -141,13 +138,11 @@ describe("fxConfigFromEnv", () => {
         FX_RATE_MIN: "500",
         FX_RATE_MAX: "20000",
         FX_RATE_MAX_AGE_HOURS: "24",
-        FX_RATE_HARD_MAX_AGE_HOURS: "96",
       }),
     ).toEqual({
       minRate: 500,
       maxRate: 20_000,
       staleAfterHours: 24,
-      inactiveAfterHours: 96,
     });
   });
 });

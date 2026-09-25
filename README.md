@@ -197,12 +197,14 @@ policy ([fx-rate.ts](src/lib/fx-rate.ts)):
 - **Sanity band** — rates outside `[FX_RATE_MIN, FX_RATE_MAX]` (defaults
   200–100000) are rejected, so a corrupt upstream value can never reach the UI.
 - **Freshness** — rates older than `FX_RATE_MAX_AGE_HOURS` (48) are served
-  flagged `stale: true`; older than `FX_RATE_HARD_MAX_AGE_HOURS` (168) they are
-  rejected outright.
+  flagged `stale: true` for diagnostics, but age never disables an otherwise
+  valid rate. The upstream endpoint remains the source of truth even when it
+  keeps returning the same confirmed rate for a long time.
 - **Last-known-good** — if the upstream fails, the route serves the last
-  accepted rate (flagged stale) instead of going dark; the browser additionally
-  keeps its own copy in `localStorage` for up to 72 h
-  ([fx-rate-client.ts](src/lib/fx-rate-client.ts), with retry + backoff).
+  accepted rate (flagged stale, without a server-side age cutoff) instead of
+  going dark; the browser additionally keeps its own copy in `localStorage` for
+  up to 72 h ([fx-rate-client.ts](src/lib/fx-rate-client.ts), with retry +
+  backoff).
 - **Degraded mode** — with no usable rate anywhere, `active: false` is returned
   and the client leaves prices in ARS (it never converts with a guessed rate).
   Rate-independent adjustments (bedding selectors, currency-control hiding, the

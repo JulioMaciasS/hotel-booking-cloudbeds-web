@@ -5,9 +5,9 @@
  * Policy:
  *  - The rate must be a finite number inside a configurable sanity band, so a
  *    corrupt upstream value (1, 0, 1e9…) can never reach the UI.
- *  - The rate carries a confirmation timestamp. Past `staleAfterHours` it is
- *    served flagged `stale: true` (an old rate beats no rate); past
- *    `inactiveAfterHours` it is rejected outright.
+ *  - The confirmation timestamp is informational. Past `staleAfterHours` the
+ *    rate is served flagged `stale: true`, but age alone never deactivates a
+ *    valid rate: the upstream endpoint remains the source of truth.
  */
 
 export type FxUpstreamPayload = {
@@ -22,14 +22,12 @@ export type FxEvaluationConfig = {
   minRate: number;
   maxRate: number;
   staleAfterHours: number;
-  inactiveAfterHours: number;
 };
 
 export type FxRejectionReason =
   | "invalid-status"
   | "invalid-rate"
-  | "rate-out-of-band"
-  | "rate-too-old";
+  | "rate-out-of-band";
 
 export type FxEvaluation =
   | {
@@ -55,7 +53,6 @@ export function fxConfigFromEnv(
     minRate: parseEnvNumber(env.FX_RATE_MIN, 200),
     maxRate: parseEnvNumber(env.FX_RATE_MAX, 100_000),
     staleAfterHours: parseEnvNumber(env.FX_RATE_MAX_AGE_HOURS, 48),
-    inactiveAfterHours: parseEnvNumber(env.FX_RATE_HARD_MAX_AGE_HOURS, 168),
   };
 }
 
@@ -101,10 +98,6 @@ export function evaluateFxUpstream(
   }
 
   const ageHours = (now.getTime() - Date.parse(asOf)) / 3_600_000;
-
-  if (ageHours > config.inactiveAfterHours) {
-    return { ok: false, reason: "rate-too-old" };
-  }
 
   return {
     ok: true,

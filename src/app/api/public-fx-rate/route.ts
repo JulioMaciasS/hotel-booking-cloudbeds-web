@@ -24,8 +24,8 @@ export const dynamic = "force-dynamic";
  * Last accepted rate, kept per server instance. Served (flagged stale) when the
  * upstream fails or returns an invalid value, so a transient outage degrades to
  * "slightly old rate" instead of "no conversion for everyone for 2 minutes".
- * The hard age ceiling still applies. Clients keep their own last-known-good
- * copy in localStorage as a second layer.
+ * It does not expire by age: the source controls when a rate is superseded.
+ * Clients keep their own last-known-good copy in localStorage as a second layer.
  */
 let lastGood: { arsPerUsd: number; asOf: string | null; savedAt: number } | null =
   null;
@@ -62,14 +62,10 @@ function lastGoodFallback(now: Date): NextResponse | null {
     return null;
   }
 
-  const config = fxConfigFromEnv();
-  const referenceMs = lastGood.asOf ? Date.parse(lastGood.asOf) : lastGood.savedAt;
+  const referenceMs = lastGood.asOf
+    ? Date.parse(lastGood.asOf)
+    : lastGood.savedAt;
   const ageHours = (now.getTime() - referenceMs) / 3_600_000;
-
-  if (ageHours > config.inactiveAfterHours) {
-    lastGood = null;
-    return null;
-  }
 
   return NextResponse.json(
     buildBody({
