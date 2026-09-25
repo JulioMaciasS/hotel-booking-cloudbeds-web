@@ -28,6 +28,9 @@
   "loader": {
     "loading": "Loading"
   },
+  "ghs": {
+    "priceReference": "Price shown on Google: {googlePrice}. The booking engine shows and charges the final amount in {displayCurrency}."
+  },
   "priceObserver": {
     "convertedFrom": "{value}, visually converted from {original}"
   }

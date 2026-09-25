@@ -5,12 +5,38 @@ import { ArgentinaVatToggle } from "@/components/ArgentinaVatToggle";
 import { BookingLoader } from "@/components/BookingLoader";
 import { BookingPriceObserver } from "@/components/BookingPriceObserver";
 import { CloudbedsScriptLoader } from "@/components/CloudbedsScriptLoader";
+import { GhsRatePlanGuard } from "@/components/GhsRatePlanGuard";
 import { VatPreferencePrompt } from "@/components/VatPreferencePrompt";
 import { Link, redirect } from "@/i18n/navigation";
 import { publicConfig } from "@/lib/config";
 import { buildPageMetadata } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
 import logoImage from "@assets/old-web-images/logo-sin-fondo-270.png";
+
+function firstSearchParam(value: string | string[] | undefined) {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+function formatGooglePrice(
+  amount: string,
+  currency: string,
+  locale: string,
+) {
+  const numericAmount = Number(amount);
+
+  if (!Number.isFinite(numericAmount) || !/^[A-Z]{3}$/.test(currency)) {
+    return `${amount} ${currency}`.trim();
+  }
+
+  try {
+    return new Intl.NumberFormat(locale, {
+      currency,
+      style: "currency",
+    }).format(numericAmount);
+  } catch {
+    return `${amount} ${currency}`;
+  }
+}
 
 export async function generateMetadata({
   params,
@@ -47,8 +73,18 @@ export default async function ReservasPage({
     redirect({ href: "/?book=1", locale });
   }
 
+  const isGhsVisit = firstSearchParam(search.origin) === "gha";
+  const googleCurrency = firstSearchParam(search.gha_user_currency)?.toUpperCase();
+  const googleTotal = firstSearchParam(search.gha_price_displayed_total);
+  const showGooglePriceReference =
+    isGhsVisit &&
+    googleCurrency &&
+    googleTotal &&
+    googleCurrency !== publicConfig.displayCurrency;
+
   return (
     <main className="reservation-page bg-[#F6F5F5] text-[#1f2b27]">
+      <GhsRatePlanGuard />
       <CloudbedsScriptLoader />
       <BookingPriceObserver />
       <VatPreferencePrompt />
@@ -75,6 +111,22 @@ export default async function ReservasPage({
           <ArgentinaVatToggle />
         </div>
       </header>
+
+      {showGooglePriceReference ? (
+        <aside
+          className="border-b border-[#dfe5e2] bg-[#eef5f2] px-4 py-2 text-center text-xs font-medium text-[#38645b]"
+          data-testid="ghs-price-reference"
+        >
+          {t("ghs.priceReference", {
+            displayCurrency: publicConfig.displayCurrency,
+            googlePrice: formatGooglePrice(
+              googleTotal,
+              googleCurrency,
+              locale,
+            ),
+          })}
+        </aside>
+      ) : null}
 
       <section className="cloudbeds-host reservation-embed-host" data-testid="cloudbeds-host" style={{ minHeight: "calc(100vh - 85px)" }}>
         <cb-immersive-experience

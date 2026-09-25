@@ -1,3 +1,8 @@
+import {
+  CLOUDBEDS_PUBLIC_RATE_PLAN_ID,
+  CLOUDBEDS_TECHNICAL_GHS_RATE_PLAN_ID,
+} from "@/lib/cloudbeds-rate-plan-guard";
+
 const STYLE_ID = "hotel-cloudbeds-dom-adjustments";
 const CONTROL_SELECTOR = [
   "button",
@@ -18,6 +23,8 @@ const TECHNICAL_ROOM_TYPE_TEST_ID =
   "accommodation-type-filter-checkbox-258282401603712";
 const TECHNICAL_ROOM_TYPE_PATTERN =
   /^ajuste t[eé]cnico\s*[\u2014\u2013-]\s*no vender$/i;
+const TECHNICAL_RATE_PLAN_PATTERN =
+  /(?:tarifa t[eé]cnica ghs|ghs neto sin iva\s*[\u2014\u2013-]\s*no vender)/i;
 const BRANDED_NAV_PATTERN = /(logo|brand|booking engine)/i;
 const CLOUDBEDS_BRAND_TEXT_PATTERN = /^(cloudbeds|cloudbeds booking engine)$/i;
 const CLOUDBEDS_NAV_ROOT_SELECTOR = [
@@ -82,6 +89,13 @@ export function injectCloudbedsDomAdjustmentStyles(
     [data-testid="${TECHNICAL_ROOM_TYPE_TEST_ID}"],
     [data-hotel-cloudbeds-room-type-hidden="true"] {
       display: none !important;
+    }
+
+    [data-testid^="rate-plan-"][data-testid$="-${CLOUDBEDS_TECHNICAL_GHS_RATE_PLAN_ID}"],
+    [data-testid^="shopping-cart-item-accommodation-"][data-testid$="-${CLOUDBEDS_TECHNICAL_GHS_RATE_PLAN_ID}"],
+    [data-hotel-cloudbeds-rate-plan-hidden="true"] {
+      display: none !important;
+      pointer-events: none !important;
     }
 
     [data-hotel-cloudbeds-brand-hidden="true"] {
@@ -481,6 +495,7 @@ export function hideCloudbedsCurrencyControls(documentRef: Document = document) 
   hideCloudbedsBrandControls(documentRef);
   ensureCloudbedsFilterControlsVisible(documentRef);
   hideCloudbedsTechnicalRoomTypeControls(documentRef);
+  protectCloudbedsTechnicalRatePlan(documentRef);
 
   const candidates = documentRef.querySelectorAll(CONTROL_SELECTOR);
 
@@ -642,6 +657,141 @@ export function hideCloudbedsPromoCodeControls(
     target.setAttribute("data-hotel-cloudbeds-promo-hidden", "true");
     target.setAttribute("hidden", "");
   }
+}
+
+function ratePlanSelector(ratePlanId: string) {
+  return `[data-testid^="rate-plan-"][data-testid$="-${ratePlanId}"]`;
+}
+
+function isTechnicalRatePlanText(element: Element) {
+  const label = element.textContent?.replace(/\s+/g, " ").trim() ?? "";
+  return TECHNICAL_RATE_PLAN_PATTERN.test(label);
+}
+
+function removeTechnicalRatePlanFromCart(documentRef: Document) {
+  const removeButtons = documentRef.querySelectorAll<HTMLButtonElement>(
+    `[data-testid^="shopping-cart-item-remove-button-accommodation-"][data-testid$="-${CLOUDBEDS_TECHNICAL_GHS_RATE_PLAN_ID}"]`,
+  );
+
+  for (const button of removeButtons) {
+    if (button.dataset.hotelTechnicalRateRemovalAttempted === "true") {
+      continue;
+    }
+
+    button.dataset.hotelTechnicalRateRemovalAttempted = "true";
+    button.click();
+  }
+}
+
+function copyBestRateBadge(
+  technicalRow: Element,
+  publicRow: HTMLElement,
+) {
+  if (
+    publicRow.querySelector(
+      "[data-testid^='bestrate-badge-'], [data-hotel-cloudbeds-best-rate-badge='true']",
+    )
+  ) {
+    return;
+  }
+
+  const technicalBadge = technicalRow.querySelector<HTMLElement>(
+    "[data-testid^='bestrate-badge-']",
+  );
+  const publicPlanName = publicRow.querySelector<HTMLElement>(
+    `[data-testid^="package-display-name-"][data-testid$="-${CLOUDBEDS_PUBLIC_RATE_PLAN_ID}"]`,
+  );
+
+  if (!technicalBadge || !publicPlanName) {
+    return;
+  }
+
+  const copiedBadge = technicalBadge.cloneNode(true) as HTMLElement;
+  copiedBadge.removeAttribute("id");
+  copiedBadge
+    .querySelectorAll<HTMLElement>("[id]")
+    .forEach((element) => element.removeAttribute("id"));
+  copiedBadge.dataset.hotelCloudbedsBestRateBadge = "true";
+  copiedBadge.setAttribute(
+    "data-testid",
+    `hotel-bestrate-badge-${CLOUDBEDS_PUBLIC_RATE_PLAN_ID}`,
+  );
+
+  publicPlanName.after(copiedBadge);
+}
+
+/**
+ * Defence in depth for the private GHS rate. Cloudbeds can return every rate
+ * even when another `rpid` is supplied, so the URL guard alone is insufficient.
+ * Hide the technical row by its stable id, remove it if it ever reached the
+ * cart, and open the public offers panel when Cloudbeds featured the technical
+ * rate. We deliberately use Cloudbeds' own accordion button rather than moving
+ * React-owned nodes around the DOM.
+ */
+export function protectCloudbedsTechnicalRatePlan(
+  documentRef: Document = document,
+) {
+  const technicalRows = new Set<Element>(
+    documentRef.querySelectorAll(
+      ratePlanSelector(CLOUDBEDS_TECHNICAL_GHS_RATE_PLAN_ID),
+    ),
+  );
+
+  documentRef.querySelectorAll<HTMLElement>(".cb-rate-plan").forEach((row) => {
+    if (isTechnicalRatePlanText(row)) {
+      technicalRows.add(row);
+    }
+  });
+
+  for (const technicalRow of technicalRows) {
+    technicalRow.setAttribute("data-hotel-cloudbeds-rate-plan-hidden", "true");
+    technicalRow.setAttribute("hidden", "");
+
+    const card = technicalRow.closest(
+      "[data-testid^='accommodation-card-']",
+    );
+    const publicRow = card?.querySelector<HTMLElement>(
+      ratePlanSelector(CLOUDBEDS_PUBLIC_RATE_PLAN_ID),
+    );
+
+    if (publicRow) {
+      publicRow.dataset.hotelCloudbedsPublicRatePromoted = "true";
+      copyBestRateBadge(technicalRow, publicRow);
+    }
+
+    if (publicRow && publicRow.parentElement !== technicalRow.parentElement) {
+
+      const accordionItem = publicRow.closest(".chakra-accordion__item");
+      const toggle = accordionItem?.querySelector<HTMLButtonElement>(
+        "button[aria-expanded='false']",
+      );
+
+      if (
+        toggle &&
+        toggle.dataset.hotelPublicRateExpansionAttempted !== "true"
+      ) {
+        toggle.dataset.hotelPublicRateExpansionAttempted = "true";
+        toggle.click();
+      }
+    }
+  }
+
+  const textCandidates = documentRef.querySelectorAll<HTMLElement>(
+    "[role='option'], label, button, [data-testid*='package' i]",
+  );
+
+  for (const element of textCandidates) {
+    if (!isTechnicalRatePlanText(element)) {
+      continue;
+    }
+
+    const target =
+      element.closest("[role='option'], label, .cb-rate-plan") ?? element;
+    target.setAttribute("data-hotel-cloudbeds-rate-plan-hidden", "true");
+    target.setAttribute("hidden", "");
+  }
+
+  removeTechnicalRatePlanFromCart(documentRef);
 }
 
 export function hideCloudbedsTechnicalRoomTypeControls(
