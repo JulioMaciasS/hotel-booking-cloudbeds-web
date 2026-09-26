@@ -28,9 +28,6 @@
   "loader": {
     "loading": "Cargando"
   },
-  "ghs": {
-    "priceReference": "Precio mostrado en Google: {googlePrice}. El motor muestra y cobra el importe final en {displayCurrency}."
-  },
   "priceObserver": {
     "convertedFrom": "{value}, convertido visualmente desde {original}"
   }
