@@ -74,6 +74,35 @@ describe("Cloudbeds DOM adjustments", () => {
     expect(technicalRoom?.hasAttribute("hidden")).toBe(true);
   });
 
+  it("adds a localized best-price badge when Cloudbeds omits its native badge", () => {
+    document.documentElement.lang = "en";
+    document.body.innerHTML = `
+      <article data-testid="accommodation-card-227179928547456">
+        <section
+          class="cb-rate-plan"
+          data-testid="rate-plan-227179928547456-${CLOUDBEDS_TECHNICAL_GHS_RATE_PLAN_ID}"
+        >Tarifa técnica GHS</section>
+        <section
+          class="cb-rate-plan"
+          data-testid="rate-plan-227179928547456-${CLOUDBEDS_PUBLIC_RATE_PLAN_ID}"
+        >
+          <h4
+            data-testid="package-display-name-227179928547456-${CLOUDBEDS_PUBLIC_RATE_PLAN_ID}"
+          >No reembolsable</h4>
+        </section>
+      </article>
+    `;
+
+    protectCloudbedsTechnicalRatePlan(document);
+    protectCloudbedsTechnicalRatePlan(document);
+
+    const badges = document.querySelectorAll(
+      "[data-hotel-cloudbeds-best-rate-badge='true']",
+    );
+    expect(badges).toHaveLength(1);
+    expect(badges[0]?.textContent).toBe("Best price");
+  });
+
   it("hides the technical rate and opens the public offers panel", () => {
     document.body.innerHTML = `
       <article data-testid="accommodation-card-227179928547456">

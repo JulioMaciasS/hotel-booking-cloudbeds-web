@@ -98,6 +98,20 @@ export function injectCloudbedsDomAdjustmentStyles(
       pointer-events: none !important;
     }
 
+    [data-hotel-cloudbeds-best-rate-badge="true"] {
+      align-items: center !important;
+      background: #9fe4d5 !important;
+      border-radius: 9999px !important;
+      color: #155f52 !important;
+      display: inline-flex !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      line-height: 1 !important;
+      margin-inline-start: 8px !important;
+      padding: 7px 12px !important;
+      white-space: nowrap !important;
+    }
+
     [data-hotel-cloudbeds-brand-hidden="true"] {
       display: none !important;
     }
@@ -702,11 +716,22 @@ function copyBestRateBadge(
     `[data-testid^="package-display-name-"][data-testid$="-${CLOUDBEDS_PUBLIC_RATE_PLAN_ID}"]`,
   );
 
-  if (!technicalBadge || !publicPlanName) {
+  if (!publicPlanName) {
     return;
   }
 
-  const copiedBadge = technicalBadge.cloneNode(true) as HTMLElement;
+  const copiedBadge = technicalBadge
+    ? (technicalBadge.cloneNode(true) as HTMLElement)
+    : publicRow.ownerDocument.createElement("span");
+
+  if (!technicalBadge) {
+    const language =
+      publicRow.ownerDocument.documentElement.lang.toLowerCase();
+    copiedBadge.textContent = language.startsWith("en")
+      ? "Best price"
+      : "Mejor precio";
+  }
+
   copiedBadge.removeAttribute("id");
   copiedBadge
     .querySelectorAll<HTMLElement>("[id]")
