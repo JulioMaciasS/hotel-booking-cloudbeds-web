@@ -9,7 +9,7 @@ describe("review summary", () => {
   it("combines the current three platforms on a five-point scale", () => {
     expect(REVIEW_SUMMARY).toEqual({
       rating: 4.3,
-      reviewCount: 456,
+      reviewCount: 464,
       displayedReviewCount: 450,
     });
   });

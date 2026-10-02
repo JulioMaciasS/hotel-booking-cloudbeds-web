@@ -20,7 +20,7 @@ const richTags = {
   email: () => (
     <a
       href={`mailto:${HOTEL.email}`}
-      className="text-[#38645b] underline underline-offset-2"
+      className="break-all text-[#38645b] underline underline-offset-2"
     >
       {HOTEL.email}
     </a>
@@ -30,7 +30,7 @@ const richTags = {
       href="https://www.argentina.gob.ar/aaip"
       target="_blank"
       rel="noopener noreferrer"
-      className="text-[#38645b] underline underline-offset-2"
+      className="break-all text-[#38645b] underline underline-offset-2"
     >
       {chunks}
     </a>

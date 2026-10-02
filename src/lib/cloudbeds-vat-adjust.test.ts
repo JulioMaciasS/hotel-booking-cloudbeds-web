@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { applyCloudbedsVatDisplay } from "./cloudbeds-vat-adjust";
 
 /** A converted price span, as produced by BookingPriceObserver. */
@@ -56,8 +56,13 @@ function taxRowHidden(): boolean {
   return hidden?.textContent?.includes("Taxes and fees") ?? false;
 }
 
+beforeEach(() => {
+  document.documentElement.lang = "es";
+});
+
 afterEach(() => {
   document.body.innerHTML = "";
+  document.documentElement.lang = "es";
 });
 
 describe("confirmation page VAT display", () => {
@@ -169,5 +174,45 @@ describe("booking page VAT display (regression)", () => {
     expect(taxRowHidden()).toBe(false);
     expect(valueByLabel("Total")).toBe("$121.00");
     expect(valueByLabel("Deposit")).toBe("$60.50");
+  });
+});
+
+describe("localized VAT summaries", () => {
+  it.each(["Impostos e taxas", "Impostos", "Taxas e impostos"])("adjusts Portuguese %s, deposit and balance with the same tax rules", (taxLabel) => {
+    document.documentElement.lang = "pt-BR";
+    document.body.innerHTML = `<aside class="cb-rows">
+      ${row("Subtotal", usd("$100.00", "ARS 145,000.00"))}
+      ${row(taxLabel, usd("$21.00", "ARS 30,450.00"))}
+      ${row("Total", usd("$121.00", "ARS 175,450.00"))}
+      ${row("Saldo a pagar", usd("$121.00", "ARS 175,450.00"))}
+      ${row("Pagar agora", usd("$60.50", "ARS 87,725.00"))}
+      ${row("Valor pago", usd("$0.00", "ARS 0.00"))}
+    </aside><article><p>Preço a partir de</p>${usd("$100.00", "ARS 145,000.00")}</article>`;
+    applyCloudbedsVatDisplay(false);
+    applyCloudbedsVatDisplay(false);
+    expect(valueByLabel("Total")).toBe("$100.00");
+    expect(valueByLabel("Saldo a pagar")).toBe("$100.00");
+    expect(valueByLabel("Pagar agora")).toBe("$50.00");
+    expect(valueByLabel("Valor pago")).toBe("$0.00");
+    expect(document.querySelector('[data-hotel-iva-hidden="true"]')?.textContent).toContain(taxLabel);
+    expect(document.querySelector(".hotel-iva-card-tag")?.textContent).toBe("Isento de IVA");
+    expect(document.querySelector(".hotel-iva-note")?.textContent).toBe("Isento de IVA — residente no exterior (não paga IVA de 21%).");
+    applyCloudbedsVatDisplay(true);
+    expect(valueByLabel("Total")).toBe("$121.00");
+    expect(valueByLabel("Saldo a pagar")).toBe("$121.00");
+    expect(valueByLabel("Pagar agora")).toBe("$60.50");
+    expect(document.querySelector(".hotel-iva-note")).toBeNull();
+    expect(document.querySelector(".hotel-iva-card-tag")?.textContent).toBe("+ IVA 21%");
+  });
+
+  it("updates the existing exemption note after a locale change", () => {
+    document.body.innerHTML = bookingCart();
+    applyCloudbedsVatDisplay(false);
+    expect(document.querySelector(".hotel-iva-note")?.textContent).toContain("IVA exento");
+    document.documentElement.lang = "en";
+    applyCloudbedsVatDisplay(false);
+    expect(document.querySelectorAll(".hotel-iva-note")).toHaveLength(1);
+    expect(document.querySelector(".hotel-iva-note")?.textContent).toBe("VAT exempt — resident abroad (no 21% VAT).");
+    expect(valueByLabel("Total")).toBe("$100.00");
   });
 });

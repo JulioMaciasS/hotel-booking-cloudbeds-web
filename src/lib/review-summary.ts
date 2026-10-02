@@ -8,9 +8,9 @@ export type ReviewPlatformValue = {
 // The hero, platform cards, footer, share image and structured data all derive
 // their values automatically from this single block.
 export const REVIEW_PLATFORMS = {
-  google: { rating: 4.3, bestRating: 5, reviewCount: 110 },
-  booking: { rating: 8.6, bestRating: 10, reviewCount: 298 },
-  expedia: { rating: 8.4, bestRating: 10, reviewCount: 48 },
+  google: { rating: 4.4, bestRating: 5, reviewCount: 111 },
+  booking: { rating: 8.7, bestRating: 10, reviewCount: 304 },
+  expedia: { rating: 8.4, bestRating: 10, reviewCount: 49 },
 } as const satisfies Record<string, ReviewPlatformValue>;
 
 export function calculateReviewSummary(platforms: readonly ReviewPlatformValue[]) {

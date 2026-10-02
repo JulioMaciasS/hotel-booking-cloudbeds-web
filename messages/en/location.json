@@ -59,6 +59,15 @@
     "close": "Close map",
     "expandedLabel": "Expanded map",
     "viewOnGoogleMaps": "View on Google Maps ↗",
+    "controls": {
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "resetBearing": "Reset orientation",
+      "attribution": "Show map attribution",
+      "gesturesDesktop": "Use Ctrl + scroll to zoom the map",
+      "gesturesMac": "Use ⌘ + scroll to zoom the map",
+      "gesturesMobile": "Use two fingers to move the map"
+    },
     "details": {
       "expand": "Expand details",
       "collapse": "Collapse details",

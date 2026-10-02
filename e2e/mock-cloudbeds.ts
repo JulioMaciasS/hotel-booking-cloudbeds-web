@@ -41,7 +41,7 @@ export async function mockFxRate(
  */
 export async function mockCloudbeds(page: Page): Promise<void> {
   await mockFxRate(page);
-  await page.route(cloudbedsScriptUrl, async (route) => {
+  await page.route(`${cloudbedsScriptUrl}*`, async (route) => {
     await route.fulfill({
       contentType: "application/javascript",
       body: `
@@ -50,7 +50,7 @@ export async function mockCloudbeds(page: Page): Promise<void> {
             connectedCallback() {
               this.innerHTML = \`
                 <form data-testid="mock-date-picker" style="display:flex;gap:8px;flex-wrap:wrap;max-width:100%">
-                  <button data-testid="mock-checkin-button" type="button">Check-in</button>
+                  <span data-testid="property-date-picker-date-picker-checkin-input"><button data-testid="mock-checkin-button" type="button">Check-in</button></span>
                   <button type="button">Buscar disponibilidad</button>
                 </form>
               \`;
@@ -65,6 +65,7 @@ export async function mockCloudbeds(page: Page): Promise<void> {
               this.innerHTML = \`
                 <section id="cb-bookingengine" class="cb-bookingengine-root" data-testid="mock-cloudbeds" style="max-width:100%">
                   <h2>Doble Estandar</h2>
+                  <input data-testid="landing-search-panel-date-picker-checkin-input" aria-label="Check-in" />
                   <button class="cb-view-details-button" type="button">Ver detalles</button>
                 </section>
               \`;

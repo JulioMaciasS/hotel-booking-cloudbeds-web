@@ -1,0 +1,223 @@
+{
+  "page": {
+    "hero": {
+      "eyebrow": "Como chegar",
+      "title": "No coração de El Calafate.",
+      "subtitle": "A apenas 3 minutos a pé da Av. del Libertador e a poucos passos do Lago Argentino. O ponto de partida perfeito para a Patagônia Austral."
+    },
+    "address": {
+      "heading": "Endereço",
+      "openInMaps": "Abrir no Google Maps"
+    },
+    "gettingHere": {
+      "heading": "Como chegar",
+      "airport": {
+        "title": "Do aeroporto",
+        "text": "O Aeroporto Internacional de El Calafate (FTE) fica a cerca de 22 km, uma viagem de aproximadamente 25 minutos. Na chegada, você encontra táxis e serviços de traslado."
+      },
+      "bus": {
+        "title": "De ônibus",
+        "text": "O Terminal de Ómnibus fica a poucos minutos do hotel, com linhas de longa distância saindo de El Chaltén, Río Gallegos e Puerto Natales (Chile)."
+      },
+      "note": "Informe os detalhes da sua chegada e nossa recepção terá prazer em ajudar a organizar um traslado privativo."
+    },
+    "distancesHeading": "Distâncias",
+    "cta": {
+      "book": "Reservar agora",
+      "contact": "Entrar em contato com o hotel"
+    },
+    "gallery": {
+      "eyebrow": "Galeria",
+      "title": "Conheça um pouco do hotel",
+      "subtitle": "Do jardim à porta de entrada: os cantinhos que fazem do nosso pequeno hotel familiar um lugar para se sentir em casa.",
+      "open": "Abrir imagem",
+      "close": "Fechar galeria",
+      "previous": "Imagem anterior",
+      "next": "Próxima imagem",
+      "counter": "{current} de {total}",
+      "alts": [
+        "Fachada principal do Los Lagos Hotel",
+        "O jardim do hotel",
+        "Vista lateral do hotel",
+        "Um cantinho tranquilo do jardim",
+        "Placa do Los Lagos Hotel na entrada",
+        "O jardim à luz da tarde"
+      ]
+    }
+  },
+  "distances": [
+    { "label": "Centro — Av. del Libertador", "modeLabel": "A pé" },
+    { "label": "Lago Argentino (orla)", "modeLabel": "A pé" },
+    { "label": "Terminal de Ómnibus", "modeLabel": "De carro" },
+    { "label": "Glaciarium", "modeLabel": "De carro" },
+    { "label": "Aeroporto de El Calafate (FTE)", "modeLabel": "De carro" },
+    { "label": "Glaciar Perito Moreno", "modeLabel": "De ônibus" }
+  ],
+  "map": {
+    "loading": "Carregando mapa…",
+    "expand": "Ampliar mapa",
+    "close": "Fechar mapa",
+    "expandedLabel": "Mapa ampliado",
+    "viewOnGoogleMaps": "Ver no Google Maps ↗",
+    "controls": {
+      "zoomIn": "Aumentar zoom",
+      "zoomOut": "Diminuir zoom",
+      "resetBearing": "Redefinir orientação",
+      "attribution": "Mostrar créditos do mapa",
+      "gesturesDesktop": "Use Ctrl + rolagem para ampliar o mapa",
+      "gesturesMac": "Use ⌘ + rolagem para ampliar o mapa",
+      "gesturesMobile": "Use dois dedos para mover o mapa"
+    },
+    "details": {
+      "expand": "Ampliar detalhes",
+      "collapse": "Recolher detalhes",
+      "close": "Fechar detalhes",
+      "returnToPlace": "Voltar a {place}"
+    },
+    "search": {
+      "label": "Buscar lugares no mapa",
+      "placeholder": "Buscar restaurantes, lugares ou serviços…",
+      "clear": "Limpar busca",
+      "resultsLabel": "Resultados da busca",
+      "noResults": "Não encontramos nenhum lugar com essa busca."
+    },
+    "filters": {
+      "label": "Filtrar lugares por categoria",
+      "button": "Filtros",
+      "all": "Todos"
+    },
+    "guide": {
+      "eyebrow": "Guia local",
+      "title": "Seu mapa de El Calafate",
+      "subtitle": "Lugares úteis e recomendações selecionadas pelo Los Lagos Hotel.",
+      "offline": {
+        "preparing": "Salvando guia offline… {progress}%",
+        "ready": "Guia pronto para usar sem conexão",
+        "using": "Consultando o guia sem conexão",
+        "error": "Não foi possível concluir a cópia offline"
+      }
+    },
+    "fallback": {
+      "title": "Mapa de El Calafate",
+      "note": "Exibimos uma versão compatível do mapa porque este dispositivo não oferece suporte ao modo gráfico avançado.",
+      "openInGoogleMaps": "Abrir no Google Maps ↗"
+    },
+    "hotel": {
+      "label": "Los Lagos Hotel",
+      "category": "Hotel",
+      "address": "25 de Mayo 220, El Calafate",
+      "searchTerms": "hospedagem pousada hotel quarto quartos dormir estadia reserva reservar recepção café da manhã wifi estacionamento parking check-in check-out"
+    },
+    "centreLabel": "Centro",
+    "categories": {
+      "restaurant": "Restaurante",
+      "bar": "Bar",
+      "cafe": "Café",
+      "attraction": "Atração",
+      "transport": "Transporte",
+      "nature": "Natureza",
+      "shop": "Loja",
+      "bank": "Banco",
+      "tourism": "Agência de turismo",
+      "centre": "Centro da cidade"
+    },
+    "pois": {
+      "centro": {
+        "label": "Centro de El Calafate",
+        "note": "Coração comercial e gastronômico da cidade"
+      },
+      "laTablita": {
+        "label": "La Tablita",
+        "note": "Tradicional parrilla da Patagônia desde 1965 · Cnel. Rosales 28"
+      },
+      "casimiroBigua": {
+        "label": "Casimiro Biguá",
+        "note": "Gourmet e parrilla · Av. Libertador 963"
+      },
+      "miViejo": {
+        "label": "Mi Viejo",
+        "note": "Parrilla argentina · Av. Libertador 1111"
+      },
+      "mako": {
+        "label": "Mako Fuegos y Vinos",
+        "note": "Cozinha autoral e vinhos · Av. Libertador 1223"
+      },
+      "laZaina": {
+        "label": "La Zaina Cocina Patagónica",
+        "note": "Cozinha regional · Gregores 1057"
+      },
+      "laLechuza": {
+        "label": "La Lechuza",
+        "note": "Pizzas e massas · Av. Libertador 1301"
+      },
+      "laZorra": {
+        "label": "La Zorra Taproom",
+        "note": "Cerveja artesanal da Patagônia · Av. Libertador 832"
+      },
+      "yetiIceBar": {
+        "label": "Yeti Ice Bar",
+        "note": "Bar de gelo · Av. Libertador 1359"
+      },
+      "vivaLaPepa": {
+        "label": "Viva la Pepa",
+        "note": "Creperia e café · Amado 833"
+      },
+      "ovejitas": {
+        "label": "Chocolates Ovejitas",
+        "note": "Chocolateria e café da Patagônia · Av. Libertador 1197"
+      },
+      "libertador": {
+        "label": "Av. del Libertador",
+        "note": "Principal rua de pedestres · ~200 m a pé"
+      },
+      "centroInterpretacion": {
+        "label": "Centro de Interpretación Histórica",
+        "note": "Museu local · Alte. Brown 1175 · ~700 m"
+      },
+      "glaciarium": {
+        "label": "Glaciarium",
+        "note": "Museu de geleiras · Ruta 11 · 5 km de carro"
+      },
+      "peritoMoreno": {
+        "label": "Glaciar Perito Moreno",
+        "note": "Maravilha natural · 80 km · 1,5 h de ônibus"
+      },
+      "lagoArgentino": {
+        "label": "Lago Argentino (orla)",
+        "note": "Orla do lago · ~400 m a pé"
+      },
+      "lagunaNimez": {
+        "label": "Laguna Nimez",
+        "note": "Reserva de aves · ~1,2 km a pé"
+      },
+      "terminal": {
+        "label": "Terminal de Ómnibus",
+        "note": "Terminal de Ómnibus · ~1,8 km de carro"
+      },
+      "aeropuerto": {
+        "label": "Aeroporto FTE",
+        "note": "Aeroporto Comandante Armando Tola · 22 km de carro"
+      },
+      "bancoSantaCruz": {
+        "label": "Banco Santa Cruz",
+        "note": "Agência bancária e caixa eletrônico · Av. Libertador 1285"
+      },
+      "bancoNacion": {
+        "label": "Banco Nación Argentina",
+        "note": "Agência bancária e caixa eletrônico · Av. Libertador 1408"
+      },
+      "patagoniaChic": {
+        "label": "PatagoniaChic Excursiones",
+        "note": "Agência de passeios · Av. Libertador 932"
+      },
+      "calTur": {
+        "label": "Cal-Tur",
+        "note": "Agência de turismo · Av. Libertador 1080"
+      },
+      "laAnonima": {
+        "label": "Supermercado La Anónima",
+        "note": "Supermercado · centro"
+      }
+    }
+  }
+}

@@ -11,7 +11,7 @@ import { routing, type Locale } from "@/i18n/routing";
  * the site's styling on every platform. It swaps the locale while preserving the
  * current page and any query params, so the booking engine keeps its dates.
  *
- * The trigger keeps the compact code (ES/EN); the popup lists the full language
+ * The trigger keeps the compact code (ES/EN/PT); the popup lists the full language
  * names with a check on the active one. Keyboard, Escape, click-outside and
  * focus return are all wired up, and the popup flips above the trigger when
  * there isn't room below (it sits near the bottom of the mobile menu).

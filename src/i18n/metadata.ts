@@ -7,6 +7,7 @@ import { routing, type Locale } from "@/i18n/routing";
 const OG_LOCALE: Record<Locale, string> = {
   es: "es_AR",
   en: "en_US",
+  pt: "pt_BR",
 };
 
 /**
@@ -22,7 +23,7 @@ export const siteUrl = (
 /**
  * Build per-page `alternates` for multilingual SEO. Given the active locale and
  * a locale-agnostic href (e.g. "/habitaciones"), it returns the canonical URL
- * for the current locale plus a `languages` map pointing Google at the es/en
+ * for the current locale plus a `languages` map pointing Google at all locale
  * counterparts of the same page, with `x-default` falling back to the default
  * (Spanish) locale.
  *

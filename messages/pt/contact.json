@@ -1,0 +1,38 @@
+{
+  "page": {
+    "eyebrow": "Contato",
+    "title": "Estamos aqui para ajudar.",
+    "subtitle": "Escreva para a gente e responderemos em breve. Ajudamos com sua reserva e com o planejamento das visitas às geleiras e dos passeios. Você também pode ligar ou falar com a gente pelo WhatsApp."
+  },
+  "info": {
+    "reservations": "Reservas",
+    "reservationsPhone": "Telefone e WhatsApp",
+    "reservationsEmail": "E-mail de reservas",
+    "receptionContact": "Recepção",
+    "receptionPhone": "Telefone da recepção",
+    "receptionEmail": "E-mail da recepção",
+    "reception": "Recepção das 07:00 às 22:00",
+    "receptionNote": "Todos os dias do ano. Chegadas fora do horário devem ser combinadas previamente."
+  },
+  "form": {
+    "nameLabel": "Nome",
+    "namePlaceholder": "Seu nome completo",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "seu@email.com",
+    "phoneLabel": "Telefone",
+    "phoneOptional": "(opcional)",
+    "phonePlaceholder": "+54 9 ...",
+    "messageLabel": "Mensagem",
+    "messagePlaceholder": "Como podemos ajudar?",
+    "submit": "Enviar mensagem",
+    "privacyNotice": "Ao enviar, usamos seus dados apenas para responder à sua consulta, conforme nossa <link>Política de Privacidade</link>.",
+    "successTitle": "Obrigado por entrar em contato!",
+    "successBody": "Seu aplicativo de e-mail foi aberto com a mensagem pronta. Responderemos em breve.",
+    "sendAnother": "Enviar outra mensagem",
+    "mailSubject": "Consulta de {name}",
+    "mailName": "Nome: {name}",
+    "mailEmail": "E-mail: {email}",
+    "mailPhone": "Telefone: {phone}",
+    "mailMessageLabel": "Mensagem:"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "page": {
+    "hero": {
+      "eyebrow": "Descubra El Calafate",
+      "title": "O que ver e fazer em El Calafate.",
+      "subtitle": "Geleiras, lagos e a imensidão da estepe da Patagônia, tudo perto do hotel. Estes são os lugares que mais gostamos de recomendar aos nossos hóspedes."
+    },
+    "intro": "El Calafate é a porta de entrada para o Parque Nacional Los Glaciares e um dos lugares mais impressionantes da Patagônia. Seja por uma tarde ou uma semana inteira, há muito para aproveitar. Estes são os passeios imperdíveis que nossa família mais recomenda.",
+    "distanceLabel": "Distância",
+    "items": [
+      {
+        "name": "Glaciar Perito Moreno",
+        "distance": "~80 km · 1,5 h",
+        "description": "O ícone da região: uma geleira enorme e em constante avanço, dentro do Parque Nacional Los Glaciares. As passarelas colocam você diante de paredes gigantes de gelo e, com sorte, você vai ouvir o gelo estalar e se desprender sobre o lago."
+      },
+      {
+        "name": "Navegações pelo Lago Argentino",
+        "distance": "Saída de Puerto Bandera",
+        "description": "Embarque em Puerto Bandera e navegue entre icebergs até as geleiras Upsala e Spegazzini. Ver esses gigantes da água, com o vento e o azul profundo do gelo ao redor, é inesquecível."
+      },
+      {
+        "name": "Glaciarium",
+        "distance": "~6 km",
+        "description": "Um museu moderno de glaciologia, muito bem organizado, que explica como se formaram os campos de gelo da Patagônia e por que são tão importantes. Dentro dele fica o famoso bar de gelo, ideal para uma parada divertida antes ou depois de visitar a geleira."
+      },
+      {
+        "name": "Reserva Laguna Nimez",
+        "distance": "~15 min a pé",
+        "description": "Uma reserva natural tranquila à beira do lago, na borda da cidade e a poucos minutos a pé do hotel. Leve a câmera para fotografar flamingos, patos e dezenas de aves com o Lago Argentino ao fundo."
+      },
+      {
+        "name": "El Chaltén e o Fitz Roy",
+        "distance": "~210 km · 3 h",
+        "description": "A capital nacional do trekking, coroada pelos imponentes picos do Cerro Fitz Roy. É um passeio de dia inteiro espetacular, mas passar a noite por lá dá tempo para aproveitar as trilhas com mais calma."
+      },
+      {
+        "name": "Estâncias e churrasco da Patagônia",
+        "distance": "Nos arredores",
+        "description": "As estâncias tradicionais perto de El Calafate recebem visitantes com cordeiro assado, cavalgadas e uma autêntica experiência da vida no campo. Uma forma acolhedora e tranquila de passar um dia longe das geleiras."
+      }
+    ],
+    "planning": {
+      "title": "Podemos ajudar a organizar seus dias?",
+      "text": "Na recepção, estamos sempre prontos para ajudar você a aproveitar ao máximo sua estadia. Podemos conversar sobre os passeios mais adequados ao tempo que você tem, orientar sobre os ônibus e operadores de cada roteiro e compartilhar dicas locais que reunimos ao longo dos anos. Fale com a gente assim que chegar."
+    },
+    "cta": {
+      "book": "Reserve sua estadia",
+      "contact": "Fale com a gente"
+    }
+  }
+}

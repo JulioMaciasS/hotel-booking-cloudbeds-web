@@ -1,0 +1,69 @@
+{
+  "page": {
+    "hero": {
+      "eyebrow": "Quartos",
+      "title": "Quartos para cada viagem.",
+      "subtitle": "Duplo ou triplo, standard ou superior. Ambientes acolhedores e bem equipados, com café da manhã incluído, pensados para descansar depois de um dia entre geleiras."
+    },
+    "selector": {
+      "eyebrow": "Escolha seu quarto",
+      "title": "Quatro tipos, o mesmo acolhimento.",
+      "description": "Veja as fotos e as configurações de camas disponíveis em cada categoria. Quando quiser, consulte disponibilidade e tarifas em tempo real.",
+      "accessibilityNote": "Alguns quartos ficam no andar superior, com acesso por escadas; o hotel não tem elevador. Se você tiver necessidades de mobilidade, entre em contato antes de reservar para ajudarmos a escolher um quarto adequado."
+    },
+    "included": {
+      "eyebrow": "Incluído em todos os quartos"
+    },
+    "cta": {
+      "title": "Consulte disponibilidade e tarifas",
+      "description": "Reserve diretamente neste site e garanta sempre a melhor tarifa, com café da manhã incluído e atendimento direto do hotel. A reserva fica pendente de confirmação até o hotel receber o pagamento exigido pela tarifa escolhida."
+    }
+  },
+  "section": {
+    "tablistLabel": "Tipos de quarto",
+    "photoOf": "{name} — foto {index}",
+    "prevPhoto": "Foto anterior",
+    "nextPhoto": "Próxima foto",
+    "goToPhoto": "Foto {index}",
+    "bedTypeLabel": "Tipo de cama",
+    "bedSeparator": "ou",
+    "bedConfigurationNote": "As opções correspondem a configurações fixas dentro da categoria e são atribuídas conforme a disponibilidade; nem todos os quartos podem ter a configuração alterada.",
+    "viewAvailability": "Ver disponibilidade"
+  },
+  "guests": "{count} hóspedes",
+  "items": {
+    "doubleStandard": {
+      "name": "Duplo Standard",
+      "blurb": "Confortável e funcional, com cama de casal ou duas camas de solteiro, conforme o quarto atribuído e a disponibilidade."
+    },
+    "tripleStandard": {
+      "name": "Triplo Standard",
+      "blurb": "Para famílias ou grupos de amigos. A categoria inclui duas configurações fixas: uma cama de casal e uma de solteiro, ou três camas de solteiro."
+    },
+    "doubleSuperior": {
+      "name": "Duplo Superior",
+      "blurb": "Com acabamento cuidadoso e banheiro privativo renovado. Pode ter cama de casal ou duas camas de solteiro, conforme o quarto atribuído e a disponibilidade."
+    },
+    "tripleSuperior": {
+      "name": "Triplo Superior",
+      "blurb": "Uma alternativa confortável para famílias, com acabamento cuidadoso e banheiro privativo renovado, mantendo a localização central."
+    }
+  },
+  "tiers": {
+    "standard": "Standard",
+    "superior": "Superior"
+  },
+  "features": {
+    "wifi": "Wi-Fi gratuito",
+    "tv": "TV a cabo",
+    "heating": "Aquecimento central",
+    "bathroom": "Banheiro privativo com produtos de higiene pessoal",
+    "breakfast": "Café da manhã incluído"
+  },
+  "bedOptions": {
+    "matrimonial": "Cama de casal",
+    "twin": "Duas camas de solteiro",
+    "matrimonialSingle": "Cama de casal e cama de solteiro",
+    "threeSingles": "Três camas de solteiro"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "items": [
+    {
+      "text": "Boas instalações. A equipe da recepção é muito simpática, especialmente o rapaz do turno da tarde/noite. Café da manhã bem completo. Bom custo-benefício.",
+      "origin": "Sevilla, Espanha",
+      "date": "Dezembro de 2025",
+      "trip": "Viagem em casal"
+    },
+    {
+      "text": "Uma ótima opção em El Calafate. Aconchegante, limpo e bem localizado. O café da manhã é bem completo e a equipe está sempre disposta a ajudar com passeios e traslados.",
+      "origin": "Santiago, Chile",
+      "date": "Janeiro de 2025",
+      "trip": "Viagem em família"
+    },
+    {
+      "text": "Excelente custo-benefício. O aquecimento, o chuveiro, os colchões e a roupa de cama estavam impecáveis. A gentileza e a disposição de Juan para ajudar merecem destaque. Nos sentimos muito à vontade neste hotel.",
+      "origin": "Avellaneda, Argentina",
+      "date": "Fevereiro de 2023",
+      "trip": "Viagem em casal"
+    },
+    {
+      "text": "O quarto estava limpo, era arrumado todos os dias e as camas eram confortáveis. Café da manhã incluído: pão, café, leite, iogurtes, sucos, cereais, geleia, queijo e presunto. Com certeza me hospedaria aqui novamente.",
+      "origin": "Europa",
+      "date": "Dezembro de 2018",
+      "trip": "Viagem em casal"
+    },
+    {
+      "text": "Hotel charmoso, pequeno, mas muito bonito. Fica perto do centro e dá para fazer os trajetos a pé. Lindas vistas das montanhas cobertas de neve. Bom café da manhã incluído.",
+      "origin": "Asunción, Paraguai",
+      "date": "Julho de 2023",
+      "trip": "Viagem em casal"
+    },
+    {
+      "text": "Super bem localizado, a 3 quadras da rua principal. O chuveiro tem boa pressão e água bem quente. O Wi-Fi funciona muito bem. A equipe é sempre muito simpática.",
+      "origin": "Bahía Blanca, Argentina",
+      "date": "Fevereiro de 2023",
+      "trip": "Viagem solo"
+    },
+    {
+      "text": "Ótimo custo-benefício. Localização excelente para conhecer o centro e o lago. O café da manhã é bem variado e a equipe está sempre atenta. Quartos simples, mas confortáveis e com bom aquecimento para as noites frias.",
+      "origin": "Córdoba, Argentina",
+      "date": "Abril de 2025",
+      "trip": "Viagem em casal"
+    },
+    {
+      "text": "Localização perfeita, a poucos minutos a pé do centro e do lago. O café da manhã foi excelente, com bastante variedade. A equipe nos ajudou muito com as reservas de passeios ao Perito Moreno. Sem dúvida voltaríamos.",
+      "origin": "Alemanha",
+      "date": "Novembro de 2024",
+      "trip": "Viagem em casal"
+    },
+    {
+      "text": "Quarto limpo e bem aquecido, o que é essencial em El Calafate. A equipe nos ajudou a organizar os passeios. Bom custo-benefício para a Patagônia. Recomendo para quem busca conforto e uma localização central.",
+      "origin": "Montevideo, Uruguai",
+      "date": "Janeiro de 2024",
+      "trip": "Viagem em casal"
+    }
+  ],
+  "ui": {
+    "rating": "{rating} de 5 estrelas",
+    "tablistLabel": "Avaliações",
+    "prev": "Avaliação anterior",
+    "next": "Próxima avaliação",
+    "goTo": "Avaliação {index}"
+  }
+}

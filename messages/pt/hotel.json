@@ -1,0 +1,116 @@
+{
+  "page": {
+    "hero": {
+      "eyebrow": "O hotel",
+      "title": "Um hotel familiar no coração de El Calafate.",
+      "subtitle": "Simplicidade, acolhimento e a atenção pessoal da família que cuida do hotel, a 3 minutos a pé do centro da cidade."
+    },
+    "story": {
+      "eyebrow": "Nossa história",
+      "title": "Seu lugar para descansar ao visitar as geleiras da Patagônia Austral.",
+      "paragraph1": "O Los Lagos Hotel é uma hospedagem pioneira em El Calafate e ocupa um prédio que originalmente abrigou a primeira padaria industrial da cidade. Desde 1991, oferece hospedagem com todas as comodidades de que você precisa e uma excelente relação entre qualidade e preço.",
+      "paragraph2": "Nos destacamos pelo atendimento próximo e personalizado aos nossos hóspedes.",
+      "paragraph3": "Nossa equipe, formada por moradores que conhecem bem a região, ajuda você a escolher as melhores opções para visitar o Glaciar Perito Moreno, El Chaltén e as estâncias da Patagônia, além de planejar e organizar seus passeios e coordenar seus traslados para que sua estadia em El Calafate seja simples e memorável. A recepção funciona todos os dias das 07:00 às 22:00.",
+      "stats": {
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "rooms": "Quartos"
+      }
+    },
+    "gallery": {
+      "eyebrow": "O hotel por dentro",
+      "title": "Acolhimento da Patagônia em cada canto.",
+      "intro": "Do café da manhã incluído para começar o dia ao jardim e às áreas comuns para relaxar depois dos passeios.",
+      "items": {
+        "breakfast": { "alt": "Café da manhã incluído", "caption": "Café da manhã incluído" },
+        "diningRoom": { "alt": "Sala de refeições do hotel", "caption": "Sala de refeições" },
+        "garden": { "alt": "Jardim do hotel", "caption": "Jardim" },
+        "reception": { "alt": "Recepção do hotel", "caption": "Recepção das 07:00 às 22:00" },
+        "library": { "alt": "Cantinho de leitura", "caption": "Áreas comuns" },
+        "outdoor": { "alt": "Área externa e jardim", "caption": "Ao ar livre" }
+      }
+    },
+    "servicesSection": {
+      "eyebrow": "Serviços do hotel",
+      "title": "Tudo pensado para uma estadia sem preocupações."
+    },
+    "faq": {
+      "eyebrow": "Perguntas frequentes",
+      "title": "Tudo o que você precisa saber.",
+      "items": {
+        "schedule": {
+          "q": "Quais são os horários de check-in e check-out?",
+          "a": "O check-in é a partir das 14:00 e o check-out até as 10:00. A recepção funciona das 07:00 às 22:00 todos os dias do ano. Se você for chegar fora desse horário, combine sua chegada com o hotel com antecedência."
+        },
+        "breakfast": {
+          "q": "O café da manhã está incluído?",
+          "a": "Sim. Todas as tarifas incluem um café da manhã simples: café, chá, leite, pão, medialunas, manteiga, queijo e geleias. É servido na sala de café da manhã das 07:00 às 09:30. Se precisar sair mais cedo, você pode solicitar e combinar com a recepção para que fique preparado para retirada antes do horário habitual."
+        },
+        "arrival": {
+          "q": "Posso fazer check-in antecipado, chegar à noite ou deixar a bagagem?",
+          "a": "A recepção funciona das 07:00 às 22:00. Chegadas fora desse horário devem ser combinadas previamente com o hotel. O check-in antecipado, o check-out tardio e a guarda de bagagem estão sujeitos a disponibilidade e confirmação: consulte a gente antes da sua chegada."
+        },
+        "family": {
+          "q": "Crianças e famílias são bem-vindas?",
+          "a": "Com certeza: somos um pequeno hotel familiar e as famílias se sentem em casa. Nossos quartos triplos são ideais; conte quem vai viajar ao reservar e ajudamos a escolher o quarto adequado."
+        },
+        "vat": {
+          "q": "Sou turista estrangeiro. Preciso pagar o IVA?",
+          "a": "Não. Pessoas residentes no exterior são isentas do IVA (21%) sobre a hospedagem quando pagam com meios de pagamento do exterior. Ao reservar, você pode informar sua condição e, no check-in, verificamos seu documento de identidade ou passaporte."
+        },
+        "cancellation": {
+          "q": "Como funciona a política de cancelamento?",
+          "a": "Depende da tarifa escolhida. A tarifa flexível permite cancelar sem custo até 7 dias antes do check-in e exige um depósito de uma diária, que deve ser pago no máximo até 7 dias antes da chegada. Se você reservar dentro desse prazo, consulte o hotel sobre o vencimento do pagamento. A tarifa não reembolsável não permite cancelamentos nem alterações. Confira as condições da sua tarifa e a confirmação da reserva."
+        },
+        "accessibility": {
+          "q": "O hotel tem elevador ou quartos com acesso sem escadas?",
+          "a": "O hotel não tem elevador. Alguns quartos ficam no andar superior e têm acesso por escadas. Se você tiver necessidades de mobilidade, entre em contato antes de reservar para orientarmos sobre a opção mais adequada."
+        },
+        "excursions": {
+          "q": "Vocês organizam passeios e traslados às geleiras?",
+          "a": "Sim. Coordenamos passeios ao Glaciar Perito Moreno, navegações pelo Lago Argentino, El Chaltén e outros destinos, com saídas de ônibus do centro. Nossa recepção ajuda você a planejar e reservar."
+        },
+        "parking": {
+          "q": "Vocês têm estacionamento?",
+          "a": "Sim, temos estacionamento ao ar livre em frente ao hotel, monitorado por câmeras de segurança, sem custo adicional para os hóspedes."
+        },
+        "directBooking": {
+          "q": "Por que vale a pena reservar diretamente neste site?",
+          "a": "Reservando aqui, você garante sempre a melhor tarifa disponível, sem comissões de intermediários nem cobranças ocultas, e atendimento direto do hotel. A reserva fica pendente de confirmação até o hotel receber o pagamento exigido pela tarifa escolhida."
+        }
+      },
+      "ctaBook": "Reservar agora",
+      "ctaContact": "Tire suas dúvidas"
+    }
+  },
+  "services": {
+    "housekeeping": {
+      "name": "Serviço diário de limpeza",
+      "description": "Limpeza diária dos quartos. Troca de toalhas a cada 2 dias e de lençóis a cada 7 dias."
+    },
+    "parking": {
+      "name": "Estacionamento monitorado",
+      "description": "Estacionamento ao ar livre em frente ao hotel, monitorado por câmeras de segurança."
+    },
+    "luggage": {
+      "name": "Guarda de bagagem",
+      "description": "Serviço de guarda de bagagem disponível antes do check-in e depois do check-out."
+    },
+    "laundry": {
+      "name": "Serviço de lavanderia",
+      "description": "Serviço de lavanderia disponível para os hóspedes."
+    },
+    "concierge": {
+      "name": "Concierge",
+      "description": "Assistência personalizada para organizar passeios, traslados e reservas locais."
+    },
+    "family": {
+      "name": "Ideal para famílias",
+      "description": "Quartos triplos e configurações especiais para famílias com crianças."
+    },
+    "nonSmoking": {
+      "name": "Quartos para não fumantes",
+      "description": "Todos os quartos e áreas comuns são livres de fumaça."
+    }
+  }
+}

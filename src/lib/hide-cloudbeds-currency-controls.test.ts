@@ -14,6 +14,25 @@ describe("Cloudbeds DOM adjustments", () => {
   beforeEach(() => {
     document.head.innerHTML = "";
     document.body.innerHTML = "";
+    document.documentElement.lang = "es";
+  });
+
+  it("recognizes Portuguese currency and promo controls without hiding filters or booking actions", () => {
+    document.documentElement.lang = "pt-BR";
+    document.body.innerHTML = `
+      <section id="cb-bookingengine">
+        <button aria-label="Selecionar moeda">USD</button>
+        <button aria-label="Adicionar código promocional">Adicionar código</button>
+        <button aria-label="Cupom de desconto">Cupom</button>
+        <button aria-label="Filtros">Filtros</button>
+        <button aria-label="Reservar">Reservar</button>
+      </section>`;
+    hideCloudbedsCurrencyControls(document);
+    for (const label of ["Selecionar moeda", "Adicionar código promocional", "Cupom de desconto"]) {
+      expect(document.querySelector(`[aria-label="${label}"]`)?.hasAttribute("hidden")).toBe(true);
+    }
+    expect(document.querySelector('[aria-label="Filtros"]')?.hasAttribute("hidden")).toBe(false);
+    expect(document.querySelector('[aria-label="Reservar"]')?.hasAttribute("hidden")).toBe(false);
   });
 
   it("hides the current mobile promo-code button markup", () => {
@@ -74,8 +93,8 @@ describe("Cloudbeds DOM adjustments", () => {
     expect(technicalRoom?.hasAttribute("hidden")).toBe(true);
   });
 
-  it("adds a localized best-price badge when Cloudbeds omits its native badge", () => {
-    document.documentElement.lang = "en";
+  it.each([["es", "Mejor precio"], ["en", "Best price"], ["pt-BR", "Melhor preço"]])("adds a localized best-price badge in %s when Cloudbeds omits its native badge", (language, badge) => {
+    document.documentElement.lang = language;
     document.body.innerHTML = `
       <article data-testid="accommodation-card-227179928547456">
         <section
@@ -100,7 +119,7 @@ describe("Cloudbeds DOM adjustments", () => {
       "[data-hotel-cloudbeds-best-rate-badge='true']",
     );
     expect(badges).toHaveLength(1);
-    expect(badges[0]?.textContent).toBe("Best price");
+    expect(badges[0]?.textContent).toBe(badge);
   });
 
   it("hides the technical rate and opens the public offers panel", () => {

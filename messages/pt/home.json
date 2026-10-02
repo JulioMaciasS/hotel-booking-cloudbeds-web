@@ -1,0 +1,97 @@
+{
+  "hero": {
+    "eyebrow": "Hotel familiar · El Calafate, Patagônia",
+    "title": "Los Lagos Hotel",
+    "subtitle": "Um pequeno hotel familiar no coração de El Calafate que combina simplicidade, acolhimento, tranquilidade, conforto e atendimento personalizado em cada etapa da sua estadia, a apenas 3 minutos do centro da cidade, bares, restaurantes e agências de viagem.",
+    "badgeLocation": "A 3 min do centro",
+    "badgeBreakfast": "Café da manhã incluído",
+    "badgeDirect": "Reserva direta",
+    "socialProof": "<strong>{rating}/5</strong> · +{count} avaliações verificadas"
+  },
+  "heroSlideshow": {
+    "tablistLabel": "Imagens do hotel",
+    "goToSlide": "Ver imagem {index}",
+    "slides": [
+      "Fachada do Los Lagos Hotel, El Calafate",
+      "Lateral do hotel com placa",
+      "Lateral do hotel com jardim",
+      "Recepção do Los Lagos Hotel",
+      "Quarto triplo standard",
+      "Sala de refeições do Los Lagos Hotel",
+      "Quarto duplo superior com duas camas",
+      "Café da manhã no Los Lagos Hotel",
+      "Quarto duplo superior",
+      "Quarto triplo superior"
+    ]
+  },
+  "booking": {
+    "buttonLabel": "Consultar disponibilidade",
+    "helper": "Reserve diretamente e garanta a melhor tarifa, sem comissões nem intermediários. Sempre com café da manhã incluído."
+  },
+  "about": {
+    "eyebrow": "El Calafate, Patagônia Austral",
+    "title": "Uma base tranquila para conhecer a Patagônia Austral.",
+    "paragraph": "O hotel conta com 14 quartos duplos e triplos com banheiro privativo, equipados com TV de tela plana, aquecimento central, Wi-Fi gratuito, roupa de cama, toalhas e produtos de higiene pessoal. Os hóspedes podem relaxar no jardim. Nosso café da manhã simples inclui bebidas quentes, pão, medialunas, manteiga e geleias. O serviço de lavanderia está disponível mediante solicitação. Nas áreas comuns, oferecemos geladeira, micro-ondas e chá de cortesia. Recebemos você como em casa e ajudamos a organizar seus passeios.",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "rooms": "Quartos",
+    "knowHotel": "Conheça o hotel",
+    "contact": "Entrar em contato",
+    "imageAlt": "Interior do Los Lagos Hotel"
+  },
+  "rooms": {
+    "eyebrow": "Quartos",
+    "title": "Duplo ou triplo, standard ou superior.",
+    "paragraph": "4 tipos de quarto com aquecimento, Wi-Fi, TV e café da manhã incluído. Escolha o que mais combina com sua viagem.",
+    "viewAll": "Ver todos os quartos",
+    "viewDetail": "Ver detalhes"
+  },
+  "experiences": {
+    "eyebrow": "Experiências",
+    "title": "O Glaciar Perito Moreno ao seu alcance.",
+    "paragraph": "Somos sua base em El Calafate. O hotel organiza traslados e ajuda você a planejar cada passeio pela Patagônia.",
+    "viewAll": "Ver todas as experiências"
+  },
+  "whyDirect": {
+    "eyebrow": "Reserve diretamente",
+    "title": "Reserve diretamente e aproveite tudo o que oferecemos.",
+    "paragraph": "Você fala diretamente com a família que cuida do hotel: a melhor tarifa, café da manhã incluído e ajuda de verdade para planejar sua viagem pela Patagônia."
+  },
+  "benefits": {
+    "bestRate": {
+      "title": "Melhor tarifa, sem comissões",
+      "text": "O menor preço você encontra aqui, reservando diretamente com o hotel."
+    },
+    "breakfast": {
+      "title": "Café da manhã incluído",
+      "text": "Servido das 07:00 às 09:30. Se você sair mais cedo, combine com a recepção para retirá-lo já preparado."
+    },
+    "excursions": {
+      "title": "Ajudamos com os passeios",
+      "text": "Organizamos visitas às geleiras, navegações e traslados, e ajudamos você a aproveitar cada dia."
+    },
+    "personalCare": {
+      "title": "Atendimento próximo e personalizado",
+      "text": "Você fala diretamente com a gente pelo WhatsApp. A recepção funciona das 07:00 às 22:00; combine com antecedência se for chegar fora desse horário."
+    }
+  },
+  "reviews": {
+    "eyebrow": "Avaliações verificadas",
+    "title": "O que dizem nossos hóspedes.",
+    "expediaCount": "{count} avaliações · Expedia",
+    "googleCount": "{count} avaliações · Google",
+    "bookingCount": "{count} avaliações · Booking"
+  },
+  "location": {
+    "eyebrow": "Como chegar",
+    "title": "No coração de El Calafate.",
+    "paragraph": "Entre os pontos de interesse próximos ao hotel estão a Laguna Nimez, a orla do Lago Argentino, o Centro de Interpretación Histórica e a Avenida del Libertador (a 200 m), onde ficam a Intendencia de Parques Nacionales, o bar de gelo, restaurantes e lojas. O aeroporto de El Calafate está a 22 km. O Terminal de Ómnibus fica a 1,8 km.",
+    "addressLabel": "Endereço",
+    "viewDistances": "Ver distâncias e como chegar"
+  },
+  "cta": {
+    "title": "Pronto para viver a Patagônia?",
+    "paragraph": "Reserve diretamente com a família do Los Lagos: melhor tarifa, café da manhã incluído e ajuda para organizar suas visitas às geleiras e seus passeios.",
+    "button": "Buscar datas disponíveis"
+  }
+}

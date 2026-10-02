@@ -14,10 +14,10 @@ const CONTROL_SELECTOR = [
 ].join(",");
 
 const CURRENCY_CONTROL_PATTERN =
-  /(currency|moneda|divisa|selector de moneda|seleccionar moneda|currency selector)/i;
+  /(currency|moneda|moeda|divisa|selector de moneda|seleccionar moneda|currency selector)/i;
 const FILTER_CONTROL_PATTERN = /\b(filters?|filtros?)\b/i;
 const PROMO_CODE_PATTERN =
-  /^(promo code|c[oó]digo promocional|a[nñ]adir c[oó]digo|add (?:promo )?code|promo\/group code)/i;
+  /^(promo code|c[oó]digo promocional|a[nñ]adir c[oó]digo|adicionar (?:c[oó]digo|cupom)|cupom(?: de desconto)?|add (?:promo )?code|promo\/group code)/i;
 const PROMO_CODE_TEST_ID = "header-search-panel-promocode-button";
 const TECHNICAL_ROOM_TYPE_TEST_ID =
   "accommodation-type-filter-checkbox-258282401603712";
@@ -63,7 +63,7 @@ export function injectCloudbedsDomAdjustmentStyles(
   style.dataset.cbImmersiveExperienceRoot = "true";
   style.textContent = `
     :is(#cb-bookingengine, .cb-bookingengine-root, .cb-portal)
-      :is([aria-label*="currency" i], [aria-label*="moneda" i], [title*="currency" i], [title*="moneda" i], [data-testid*="currency" i]) {
+      :is([aria-label*="currency" i], [aria-label*="moneda" i], [aria-label*="moeda" i], [title*="currency" i], [title*="moneda" i], [title*="moeda" i], [data-testid*="currency" i]) {
       display: none !important;
     }
 
@@ -647,6 +647,10 @@ export function hideCloudbedsPromoCodeControls(
       "[aria-label^='Add promo code' i]",
       "[aria-label*='Añadir código' i]",
       "[aria-label*='Anadir codigo' i]",
+      "[aria-label*='Adicionar código' i]",
+      "[aria-label*='Adicionar codigo' i]",
+      "[aria-label*='Código promocional' i]",
+      "[aria-label*='Cupom' i]",
       "[data-be-text='true']",
     ].join(","),
   );
@@ -727,9 +731,9 @@ function copyBestRateBadge(
   if (!technicalBadge) {
     const language =
       publicRow.ownerDocument.documentElement.lang.toLowerCase();
-    copiedBadge.textContent = language.startsWith("en")
-      ? "Best price"
-      : "Mejor precio";
+    copiedBadge.textContent = language.startsWith("pt")
+      ? "Melhor preço"
+      : language.startsWith("en") ? "Best price" : "Mejor precio";
   }
 
   copiedBadge.removeAttribute("id");

@@ -1,0 +1,46 @@
+{
+  "home": {
+    "title": "Los Lagos Hotel | Reservas diretas",
+    "description": "Site de reservas diretas do Los Lagos Hotel em El Calafate."
+  },
+  "rooms": {
+    "title": "Quartos | Los Lagos Hotel, El Calafate",
+    "description": "Quartos duplos e triplos, standard e superior, no Los Lagos Hotel, El Calafate. Aquecimento, Wi-Fi, TV e café da manhã incluído em todas as tarifas."
+  },
+  "hotel": {
+    "title": "O hotel | Los Lagos Hotel, El Calafate",
+    "description": "Conheça o Los Lagos Hotel: um pequeno hotel familiar no centro de El Calafate, com serviços pensados para descansar entre passeios pelas geleiras."
+  },
+  "experiences": {
+    "title": "Experiências | Los Lagos Hotel, El Calafate",
+    "description": "Passeios saindo de El Calafate: Glaciar Perito Moreno, minitrekking, navegação pelo Lago Argentino e El Chaltén. O hotel ajuda você a organizar tudo."
+  },
+  "location": {
+    "title": "Localização | Los Lagos Hotel, El Calafate",
+    "description": "O Los Lagos Hotel fica a 200 m do centro de El Calafate. Distâncias até o aeroporto, a rodoviária, o Lago Argentino e o Glaciar Perito Moreno."
+  },
+  "guide": {
+    "title": "O que fazer em El Calafate | Los Lagos Hotel",
+    "description": "Guia local de El Calafate: Glaciar Perito Moreno, navegações pelo Lago Argentino, Glaciarium, Laguna Nimez, El Chaltén e as estâncias da Patagônia."
+  },
+  "contact": {
+    "title": "Contato | Los Lagos Hotel, El Calafate",
+    "description": "Entre em contato com o Los Lagos Hotel em El Calafate por telefone, WhatsApp ou e-mail. Ajudamos com sua reserva e o planejamento da sua viagem."
+  },
+  "reservas": {
+    "title": "Reservar | Los Lagos Hotel, El Calafate",
+    "description": "Reserve diretamente com o Los Lagos Hotel e garanta sempre a melhor tarifa, com café da manhã incluído e atendimento direto do hotel."
+  },
+  "privacy": {
+    "title": "Política de Privacidade | Los Lagos Hotel",
+    "description": "Política de privacidade do Los Lagos Hotel, El Calafate."
+  },
+  "terms": {
+    "title": "Termos e Condições | Los Lagos Hotel",
+    "description": "Termos e condições do Los Lagos Hotel, El Calafate."
+  },
+  "notFound": {
+    "title": "Página não encontrada | Los Lagos Hotel",
+    "description": "A página que você procura não existe ou foi movida. Volte à página inicial do Los Lagos Hotel, El Calafate."
+  }
+}

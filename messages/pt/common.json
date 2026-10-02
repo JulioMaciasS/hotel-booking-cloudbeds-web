@@ -1,0 +1,59 @@
+{
+  "brand": "Los Lagos Hotel",
+  "nav": {
+    "home": "Início",
+    "rooms": "Quartos",
+    "hotel": "O hotel",
+    "experiences": "Experiências",
+    "location": "Localização",
+    "guide": "O que fazer",
+    "contact": "Contato",
+    "reviews": "Avaliações"
+  },
+  "actions": {
+    "book": "Reservar",
+    "bookNow": "Reservar agora",
+    "searchAvailability": "Consultar disponibilidade",
+    "searchDates": "Buscar datas disponíveis",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu"
+  },
+  "languageSwitcher": {
+    "label": "Mudar idioma",
+    "es": "Español",
+    "en": "English",
+    "pt": "Português",
+    "short": {
+      "es": "ES",
+      "en": "EN",
+      "pt": "PT"
+    }
+  },
+  "footer": {
+    "tagline": "Pequeno hotel familiar em El Calafate, Patagônia. A 200 metros do centro, com café da manhã incluído e atendimento personalizado para cada hóspede.",
+    "navHeading": "Navegação",
+    "reviewsHeading": "Avaliações e mapas",
+    "viewOnGoogleMaps": "Ver no Google Maps",
+    "copyright": "© 2026 {name} · El Calafate, Patagônia, Argentina",
+    "terms": "Termos e Condições",
+    "privacy": "Política de Privacidade",
+    "regretButton": "Botão de Arrependimento",
+    "cookieSettings": "Configurar cookies"
+  },
+  "cookies": {
+    "title": "Cookies",
+    "body": "Usamos cookies necessários para o funcionamento do site e, com sua permissão, cookies de análise (Google Analytics e PostHog) para entender como o site é usado e melhorá-lo. Nenhum cookie de análise é ativado até você escolher, e você pode mudar sua decisão quando quiser. Saiba mais em nossa <link>Política de Privacidade</link>.",
+    "accept": "Aceitar",
+    "reject": "Recusar"
+  },
+  "mobileBar": {
+    "title": "Reserve sua estadia",
+    "subtitle": "Melhor tarifa · sem comissões",
+    "cta": "Buscar datas"
+  },
+  "chatWidget": {
+    "title": "Chat com Los Lagos Hotel",
+    "button": "Fale com a gente",
+    "placeholder": "Escreva uma mensagem..."
+  }
+}

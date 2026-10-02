@@ -3,6 +3,7 @@ import Image from "next/image";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { ArgentinaVatToggle } from "@/components/ArgentinaVatToggle";
 import { BookingLoader } from "@/components/BookingLoader";
+import { getCloudbedsLanguage } from "@/lib/cloudbeds-language";
 import { BookingPriceObserver } from "@/components/BookingPriceObserver";
 import { CloudbedsScriptLoader } from "@/components/CloudbedsScriptLoader";
 import { GhsRatePlanGuard } from "@/components/GhsRatePlanGuard";
@@ -86,7 +87,7 @@ export default async function ReservasPage({
           hide-custom-header="yes"
           hide-property-info="yes"
           island={publicConfig.cloudbedsIsland}
-          lang={locale}
+        lang={getCloudbedsLanguage(locale)}
           mode="standard"
           property-code={publicConfig.propertyCode}
           style={{ display: "block", minHeight: "calc(100vh - 85px)" }}

@@ -9,22 +9,22 @@ const VAT_PERCENT = Math.round(VAT_RATE * 100);
 // summary, so allow optional trailing punctuation/whitespace.
 const SUBTOTAL_PATTERN = /^\s*subtotal\s*[:：]?\s*$/i;
 const TAX_PATTERN =
-  /^\s*(?:impuestos(?:\s+y\s+tasas)?|taxes(?:\s+(?:and|&)\s+fees)?|iva|vat)\s*[:：]?\s*$/i;
+  /^\s*(?:impuestos(?:\s+y\s+tasas)?|impostos(?:\s+(?:e|&)\s+taxas)?|taxas(?:\s+e\s+impostos)?|taxes(?:\s+(?:and|&)\s+fees)?|iva|vat)\s*[:：]?\s*$/i;
 const TOTAL_PATTERN = /^\s*total\s*[:：]?\s*$/i;
 // The confirmation "Charges" card has no Subtotal line; instead it shows a
 // "Balance Due" row (= grand total when nothing has been paid yet). Recognised
 // as a second gross line so the IVA reduction reaches it too. Deliberately does
 // NOT match "Amount Paid" / "Importe pagado", which reflects real money paid.
 const BALANCE_PATTERN =
-  /^\s*(?:balance(?:\s+due)?|saldo(?:\s+(?:pendiente|adeudado|a\s+pagar))?)\s*[:：]?\s*$/i;
+  /^\s*(?:balance(?:\s+due)?|saldo(?:\s+(?:pendiente|pendente|adeudado|devedor|a\s+pagar))?)\s*[:：]?\s*$/i;
 const DEPOSIT_PATTERN =
-  /^\s*(?:dep[oó]sito|deposit|pagar\s+ahora|pay\s+now)\s*[:：]?\s*$/i;
+  /^\s*(?:dep[oó]sito|deposit|pagar\s+(?:ahora|agora)|pay\s+now)\s*[:：]?\s*$/i;
 
 const CONVERTED_VALUE_SELECTOR = "[data-hotel-currency-converted='true']";
 const TAX_TESTID_SELECTOR = "[data-testid$='taxes-and-fees']";
 const GRAND_TOTAL_TESTID_SELECTOR = "[data-testid$='grand-total']";
 const SUBTOTAL_TESTID_SELECTOR = "[data-testid$='summary-total']";
-const PRICE_LABEL_PATTERN = /(precio\s+desde|price\s+from)/i;
+const PRICE_LABEL_PATTERN = /(precio\s+desde|price\s+from|pre[cç]o\s+(?:a\s+partir\s+de|desde)|a\s+partir\s+de)/i;
 // Words that mark another summary line. We never hide a container that also
 // holds one of these — it would remove the whole breakdown, not just the tax.
 const SUMMARY_BOUNDARY_PATTERN =
@@ -35,6 +35,29 @@ type LabeledRow = {
   row: Element;
   valueEl: Element | null;
 };
+
+function getVatCopy(documentRef: Document) {
+  const language = documentRef.documentElement.lang.toLowerCase();
+  if (language.startsWith("pt")) {
+    return {
+      exempt: "Isento de IVA",
+      included: `+ IVA ${VAT_PERCENT}%`,
+      note: `Isento de IVA — residente no exterior (não paga IVA de ${VAT_PERCENT}%).`,
+    };
+  }
+  if (language.startsWith("en")) {
+    return {
+      exempt: "VAT exempt",
+      included: `+ VAT ${VAT_PERCENT}%`,
+      note: `VAT exempt — resident abroad (no ${VAT_PERCENT}% VAT).`,
+    };
+  }
+  return {
+    exempt: "IVA exento",
+    included: `+ IVA ${VAT_PERCENT}%`,
+    note: `IVA exento — residente en el exterior (no paga IVA ${VAT_PERCENT}%).`,
+  };
+}
 
 /** Text contributed directly by an element, ignoring descendant elements. */
 function directText(element: Element): string {
@@ -188,6 +211,7 @@ function setGlobalIvaNote(
   for (const note of existing) {
     if (!kept && note.parentElement === container) {
       kept = true;
+      note.textContent = getVatCopy(documentRef).note;
     } else {
       note.remove();
     }
@@ -197,7 +221,7 @@ function setGlobalIvaNote(
     const note = documentRef.createElement("p");
     note.className = "hotel-iva-note";
     note.dataset.noCurrencyConversion = "true";
-    note.textContent = `IVA exento — residente en el exterior (no paga IVA ${VAT_PERCENT}%).`;
+    note.textContent = getVatCopy(documentRef).note;
     container.appendChild(note);
   }
 }
@@ -445,7 +469,8 @@ function adjustSummary(documentRef: Document, fromArgentina: boolean) {
 }
 
 function annotateRoomCards(documentRef: Document, fromArgentina: boolean) {
-  const tagText = fromArgentina ? `+ IVA ${VAT_PERCENT}%` : "IVA exento";
+  const copy = getVatCopy(documentRef);
+  const tagText = fromArgentina ? copy.included : copy.exempt;
   const labels = documentRef.querySelectorAll<HTMLElement>("*");
 
   for (const element of labels) {

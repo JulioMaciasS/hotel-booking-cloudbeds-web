@@ -153,7 +153,7 @@ type BeddingLocaleStrings = {
 // use next-intl directly. We follow the page language (the `lang` set on the
 // <html> element) the same way Cloudbeds localises its own controls, defaulting
 // to Spanish.
-const BEDDING_STRINGS: Record<"es" | "en", BeddingLocaleStrings> = {
+const BEDDING_STRINGS: Record<"es" | "en" | "pt", BeddingLocaleStrings> = {
   es: {
     bedTypeTitle: "Tipo de cama",
     optionLabels: {
@@ -200,11 +200,33 @@ const BEDDING_STRINGS: Record<"es" | "en", BeddingLocaleStrings> = {
     maxTotal: (rooms) =>
       `Maximum total: ${rooms} ${rooms === 1 ? "room" : "rooms"}`,
   },
+  pt: {
+    bedTypeTitle: "Tipo de cama",
+    optionLabels: {
+      matrimonial: "Cama de casal",
+      dos_camas_separadas: "Duas camas de solteiro",
+      matrimonial_cama_individual: "Cama de casal e cama de solteiro",
+      tres_camas_individuales: "Três camas de solteiro",
+    },
+    counterOptionLabels: {
+      matrimonial: "Quartos com cama de casal",
+      dos_camas_separadas: "Quartos com duas camas de solteiro",
+      matrimonial_cama_individual: "Quartos com cama de casal e cama de solteiro",
+      tres_camas_individuales: "Quartos com três camas de solteiro",
+    },
+    decrease: (label) => `Diminuir ${label}`,
+    increase: (label) => `Aumentar ${label}`,
+    total: (selected, max) =>
+      `Total: ${selected} de ${max} ${max === 1 ? "quarto disponível" : "quartos disponíveis"}`,
+    maxTotal: (rooms) =>
+      `Máximo total: ${rooms} ${rooms === 1 ? "quarto" : "quartos"}`,
+  },
 };
 
 function getBeddingStrings(documentRef: Document): BeddingLocaleStrings {
   const lang = (documentRef.documentElement.lang || "").toLowerCase();
 
+  if (lang.startsWith("pt")) return BEDDING_STRINGS.pt;
   return lang.startsWith("en") ? BEDDING_STRINGS.en : BEDDING_STRINGS.es;
 }
 
@@ -1175,6 +1197,7 @@ function renderBeddingCounterPanel(
   emitChange = false,
 ) {
   const totalSelected = getCountsTotal(counts);
+  const strings = getBeddingStrings(documentRef);
 
   for (const option of config.options) {
     const optionMaxRooms = getOptionMaxRooms(config, option);
@@ -1193,6 +1216,14 @@ function renderBeddingCounterPanel(
     );
 
     row?.classList.toggle("is-unavailable", optionMaxRooms <= 0);
+    const label = strings.counterOptionLabels[option.key] ?? option.label;
+    setTextIfChanged(row?.querySelector(".hotel-bedding-counter-name") ?? null, label);
+    if (minusButton?.getAttribute("aria-label") !== strings.decrease(label)) {
+      minusButton?.setAttribute("aria-label", strings.decrease(label));
+    }
+    if (plusButton?.getAttribute("aria-label") !== strings.increase(label)) {
+      plusButton?.setAttribute("aria-label", strings.increase(label));
+    }
 
     setTextIfChanged(countElement, String(count));
 
@@ -1618,6 +1649,16 @@ export function syncCloudbedsBeddingSelections(
       const config = card ? getBeddingConfig(card) : undefined;
 
       if (config) {
+        const strings = getBeddingStrings(documentRef);
+        setTextIfChanged(wrapper.querySelector(".hotel-bedding-title"), strings.bedTypeTitle);
+        for (const option of config.options) {
+          const button = wrapper.querySelector<HTMLElement>(`[data-hotel-bedding-option="${option.key}"]`);
+          const label = strings.optionLabels[option.key] ?? option.label;
+          if (button && button.dataset.hotelBeddingLabel !== label) {
+            button.dataset.hotelBeddingLabel = label;
+            setTextIfChanged(button.querySelector(".hotel-bedding-name"), label);
+          }
+        }
         syncWrapperAvailability(wrapper, config);
       }
 

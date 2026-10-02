@@ -1,0 +1,51 @@
+{
+  "page": {
+    "hero": {
+      "eyebrow": "Experiências",
+      "title": "Geleiras, lagos e montanhas.",
+      "subtitle": "Somos sua base em El Calafate. Ajudamos a coordenar os traslados às principais atrações e a planejar cada passeio."
+    },
+    "intro": {
+      "eyebrow": "Passeios de ônibus",
+      "title": "Os passeios que você não pode perder.",
+      "description": "Saídas diárias durante a temporada, a partir do centro da cidade. Nossa equipe da recepção ajuda você a planejar e reservar cada passeio.",
+      "transfersBadge": "Traslados a partir do hotel"
+    },
+    "help": {
+      "title": "Quer ajuda para montar seu roteiro?",
+      "description": "Consulte disponibilidade e preços dos passeios diretamente na recepção do hotel ou pelo WhatsApp. Reserve seu quarto e ajudamos com o resto.",
+      "bookCta": "Reservar sua estadia",
+      "whatsappCta": "Fale com a gente pelo WhatsApp"
+    }
+  },
+  "trips": {
+    "peritoMoreno": {
+      "name": "Glaciar Perito Moreno",
+      "description": "A geleira mais famosa da Patagônia. Passeio de dia inteiro em ônibus, com passarelas de madeira e vistas privilegiadas da geleira em movimento.",
+      "duration": "Dia inteiro",
+      "distance": "80 km · 1,5 h de ônibus",
+      "highlight": "Passeio imperdível"
+    },
+    "minitrekking": {
+      "name": "Minitrekking sobre a geleira",
+      "description": "Caminhada sobre o gelo do Perito Moreno com crampons e guias certificados. Uma experiência única que combina navegação e trekking.",
+      "duration": "Dia inteiro",
+      "distance": "80 km · 1,5 h de ônibus",
+      "highlight": "Experiência única"
+    },
+    "navigation": {
+      "name": "Navegação pelo Lago Argentino",
+      "description": "Passeio de barco pelo Lago Argentino com vistas das geleiras Upsala, Spegazzini e Onelli. Saída de Puerto Bandera.",
+      "duration": "Dia inteiro",
+      "distance": "45 km · 45 min de ônibus",
+      "highlight": "Navegação entre geleiras"
+    },
+    "chalten": {
+      "name": "El Chaltén – Fitz Roy",
+      "description": "A capital nacional do trekking. Trilhas com vistas do Cerro Fitz Roy e do Cerro Torre no Parque Nacional Los Glaciares.",
+      "duration": "Dia inteiro",
+      "distance": "220 km · 2,5 h de ônibus",
+      "highlight": "Trekking lendário"
+    }
+  }
+}

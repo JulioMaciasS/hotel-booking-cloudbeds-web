@@ -1,6 +1,10 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { hasLocale } from "next-intl";
+import { getPathname } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
+import { getCloudbedsLanguage } from "@/lib/cloudbeds-language";
 
 interface CloudbedsPropertyDatePickerProps {
   buttonLabel: string;
@@ -27,7 +31,10 @@ export function CloudbedsPropertyDatePicker({
   const customUrl = useSyncExternalStore(
     subscribeToOrigin,
     () => {
-      const pathname = locale === "en" ? "/en/reservas" : "/reservas";
+      const pathname = getPathname({
+        locale: hasLocale(routing.locales, locale) ? locale : routing.defaultLocale,
+        href: "/reservas",
+      });
       return new URL(pathname, window.location.origin).toString();
     },
     () => null,
@@ -42,7 +49,7 @@ export function CloudbedsPropertyDatePicker({
       custom-url={customUrl}
       data-testid="cloudbeds-date-picker"
       island={island}
-      lang={locale}
+      lang={getCloudbedsLanguage(locale)}
       layout="horizontal"
       open-in-new-tab="false"
       property-code={propertyCode}

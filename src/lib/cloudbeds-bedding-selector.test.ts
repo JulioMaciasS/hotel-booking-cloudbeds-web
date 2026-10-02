@@ -144,6 +144,7 @@ function getTotalMax() {
 describe("Cloudbeds bedding quantity limits", () => {
   beforeEach(() => {
     document.body.innerHTML = "";
+    document.documentElement.lang = "es";
     setCloudbedsBeddingAvailability(null, document);
     document.documentElement.removeAttribute("data-hotel-active-rate-plan-test-id");
     document.documentElement.removeAttribute("data-hotel-active-bedding-selector");
@@ -154,6 +155,24 @@ describe("Cloudbeds bedding quantity limits", () => {
 
   afterEach(() => {
     vi.useRealTimers();
+  });
+
+  it.each(["pt", "pt-BR"])("localizes bedding and quantity controls in %s without changing capacity", (language) => {
+    document.documentElement.lang = language;
+    const id = "227179928547456";
+    const card = renderCard(id, "Quarto duplo standard");
+    expect(card.querySelector("[data-hotel-bedding-option='matrimonial']")?.textContent).toContain("Cama de casal");
+    expect(card.querySelector("[data-hotel-bedding-option='dos_camas_separadas']")?.textContent).toContain("Duas camas de solteiro");
+    const { input } = openQuantityPopover(card, id);
+    const plus = getCounterButton("matrimonial", "increment");
+    expect(plus.getAttribute("aria-label")).toBe("Aumentar Quartos com cama de casal");
+    expect(getCounterButton("matrimonial", "decrement").getAttribute("aria-label")).toBe("Diminuir Quartos com cama de casal");
+    expect(document.querySelector("[data-hotel-bedding-total]")?.textContent).toBe("Total: 1 de 4 quartos disponíveis");
+    plus.click();
+    plus.click();
+    expect(input.value).toBe("2");
+    expect(getCounterCount("matrimonial")).toBe("2");
+    expect(getTotalMax()).toBe("4");
   });
 
   it("limits Doble Estandar matrimonial rooms to two", () => {
@@ -173,6 +192,19 @@ describe("Cloudbeds bedding quantity limits", () => {
     expect(input.value).toBe("2");
     matrimonialPlus.click();
     expect(getCounterCount("matrimonial")).toBe("2");
+    expect(input.value).toBe("2");
+  });
+
+  it("refreshes existing injected controls after a locale change while retaining the booking quantity", () => {
+    const id = "227179928547456";
+    const card = renderCard(id, "Doble Estandar");
+    const { input } = openQuantityPopover(card, id);
+    getCounterButton("matrimonial", "increment").click();
+    document.documentElement.lang = "pt-BR";
+    syncCloudbedsBeddingSelections(document);
+    expect(card.querySelector("[data-hotel-bedding-option='matrimonial']")?.textContent).toContain("Cama de casal");
+    expect(getCounterButton("matrimonial", "increment").getAttribute("aria-label")).toBe("Aumentar Quartos com cama de casal");
+    expect(document.querySelector("[data-hotel-bedding-total]")?.textContent).toBe("Total: 2 de 4 quartos disponíveis");
     expect(input.value).toBe("2");
   });
 

@@ -76,7 +76,7 @@
         },
         "directBooking": {
           "q": "Why is it best to book directly on this site?",
-          "a": "Booking here you always get the best available rate, with no third-party commissions or hidden fees, with instant confirmation and direct service from the hotel."
+          "a": "Booking here you always get the best available rate, with no third-party commissions or hidden fees, and direct service from the hotel. Your booking remains pending confirmation until the hotel receives the payment required for your chosen rate."
         }
       },
       "ctaBook": "Book now",

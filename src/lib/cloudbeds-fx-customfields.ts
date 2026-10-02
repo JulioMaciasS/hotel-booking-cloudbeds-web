@@ -173,7 +173,7 @@ function fillAnyCustomField(
 }
 
 const ADDITIONAL_INFO_PATTERN =
-  /^\s*(?:informaci[oó]n adicional|additional information)\s*$/i;
+  /^\s*(?:informaci[oó]n adicional|additional information|informaç(?:ões adicionais|ão adicional))\s*$/i;
 
 /** Hides the "Información adicional" heading once all our fields are hidden. */
 function hideAdditionalInfoHeading(documentRef: Document) {

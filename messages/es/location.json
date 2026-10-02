@@ -59,6 +59,15 @@
     "close": "Cerrar mapa",
     "expandedLabel": "Mapa ampliado",
     "viewOnGoogleMaps": "Ver en Google Maps ↗",
+    "controls": {
+      "zoomIn": "Acercar mapa",
+      "zoomOut": "Alejar mapa",
+      "resetBearing": "Restablecer orientación",
+      "attribution": "Mostrar créditos del mapa",
+      "gesturesDesktop": "Usa Ctrl + desplazamiento para ampliar el mapa",
+      "gesturesMac": "Usa ⌘ + desplazamiento para ampliar el mapa",
+      "gesturesMobile": "Usa dos dedos para mover el mapa"
+    },
     "details": {
       "expand": "Ampliar detalles",
       "collapse": "Reducir detalles",

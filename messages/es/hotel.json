@@ -76,7 +76,7 @@
         },
         "directBooking": {
           "q": "¿Por qué conviene reservar directo en este sitio?",
-          "a": "Reservando acá conseguís siempre la mejor tarifa disponible, sin comisiones de intermediarios ni cargos ocultos, con confirmación inmediata y atención directa del hotel."
+          "a": "Reservando acá conseguís siempre la mejor tarifa disponible, sin comisiones de intermediarios ni cargos ocultos, y atención directa del hotel. La reserva queda pendiente de confirmación hasta recibir el pago requerido según la tarifa elegida."
         }
       },
       "ctaBook": "Reservar ahora",
