@@ -24,7 +24,10 @@ const CONVERTED_VALUE_SELECTOR = "[data-hotel-currency-converted='true']";
 const TAX_TESTID_SELECTOR = "[data-testid$='taxes-and-fees']";
 const GRAND_TOTAL_TESTID_SELECTOR = "[data-testid$='grand-total']";
 const SUBTOTAL_TESTID_SELECTOR = "[data-testid$='summary-total']";
-const PRICE_LABEL_PATTERN = /(precio\s+desde|price\s+from|pre[cç]o\s+(?:a\s+partir\s+de|desde)|a\s+partir\s+de)/i;
+const RATE_ROW_SELECTOR = ".cb-rate-plan, [data-testid^='rate-plan-']";
+const RATE_ROW_TESTID_PATTERN = /^rate-plan-\d+-(?:\d+|base)$/;
+const HIDDEN_RATE_SELECTOR =
+  "[hidden], [aria-hidden='true'], [data-hotel-iva-hidden='true'], [data-hotel-cloudbeds-rate-plan-hidden='true']";
 // Words that mark another summary line. We never hide a container that also
 // holds one of these — it would remove the whole breakdown, not just the tax.
 const SUMMARY_BOUNDARY_PATTERN =
@@ -468,54 +471,78 @@ function adjustSummary(documentRef: Document, fromArgentina: boolean) {
   setGlobalIvaNote(documentRef, false, null);
 }
 
+function isRateRow(element: Element): boolean {
+  return (
+    element.matches(".cb-rate-plan") ||
+    RATE_ROW_TESTID_PATTERN.test(element.getAttribute("data-testid") ?? "")
+  );
+}
+
+function nearestRateRow(element: Element): Element | null {
+  let ancestor: Element | null = element;
+  while (ancestor) {
+    if (isRateRow(ancestor)) {
+      return ancestor;
+    }
+    ancestor = ancestor.parentElement;
+  }
+  return null;
+}
+
 function annotateRoomCards(documentRef: Document, fromArgentina: boolean) {
   const copy = getVatCopy(documentRef);
   const tagText = fromArgentina ? copy.included : copy.exempt;
-  const labels = documentRef.querySelectorAll<HTMLElement>("*");
+  const retainedTags = new Set<HTMLElement>();
+  const rows = documentRef.querySelectorAll<HTMLElement>(RATE_ROW_SELECTOR);
 
-  for (const element of labels) {
-    if (!PRICE_LABEL_PATTERN.test(directText(element).trim())) {
+  for (const row of rows) {
+    // The testid prefix also matches quantity controls. Only complete rate-row
+    // IDs (or Cloudbeds' semantic class) constitute an annotation boundary.
+    if (!isRateRow(row)) {
       continue;
     }
 
-    if (element.closest("[data-hotel-iva-hidden='true']")) {
+    if (row.closest(HIDDEN_RATE_SELECTOR)) {
       continue;
     }
 
-    // Anchor the tag to the RIGHT of the converted price; fall back to right
-    // after the "Precio desde" label until the price has been converted.
-    const priceEl = valueNearLabel(element);
-    const anchor: Element = priceEl ?? element;
-
-    // Reuse a tag already created for this rate plan (it may currently sit after
-    // the label from a previous render) and move it next to the price.
-    let tag: HTMLElement | null = null;
-
-    for (const sibling of [
-      element.nextElementSibling,
-      priceEl?.nextElementSibling,
-    ]) {
-      if (
-        sibling instanceof HTMLElement &&
-        sibling.classList.contains("hotel-iva-card-tag")
-      ) {
-        tag = sibling;
-        break;
-      }
+    // Annotate only the converted, current selling price. Never ascend from a
+    // text label: Next.js hydration scripts include phrases such as "a partir
+    // de las 14:00", which previously sent that search up to the entire body
+    // and attached IVA to the first calendar day (or a crossed-out price).
+    const priceContainer = row.querySelector(".cb-rate-plan-price");
+    const priceEl = getConvertedSpan(priceContainer);
+    if (
+      !priceEl ||
+      nearestRateRow(priceEl) !== row ||
+      priceEl.closest(HIDDEN_RATE_SELECTOR)
+    ) {
+      continue;
     }
 
-    if (!tag) {
-      tag = documentRef.createElement("span");
-      tag.className = "hotel-iva-card-tag";
-      tag.dataset.noCurrencyConversion = "true";
-    }
+    const tag =
+      row.querySelector<HTMLElement>(".hotel-iva-card-tag") ??
+      documentRef.createElement("span");
+    tag.className = "hotel-iva-card-tag";
+    tag.dataset.noCurrencyConversion = "true";
 
-    if (anchor.nextElementSibling !== tag) {
-      anchor.after(tag);
+    if (priceEl.nextElementSibling !== tag) {
+      priceEl.after(tag);
     }
 
     if (tag.textContent !== tagText) {
       tag.textContent = tagText;
+    }
+    retainedTags.add(tag);
+  }
+
+  // Remove stale calendar/body tags from older passes, duplicates, and tags
+  // whose rate/price was removed, replaced or hidden by Cloudbeds.
+  for (const tag of documentRef.querySelectorAll<HTMLElement>(
+    ".hotel-iva-card-tag",
+  )) {
+    if (!retainedTags.has(tag)) {
+      tag.remove();
     }
   }
 }

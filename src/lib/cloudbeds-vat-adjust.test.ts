@@ -187,7 +187,7 @@ describe("localized VAT summaries", () => {
       ${row("Saldo a pagar", usd("$121.00", "ARS 175,450.00"))}
       ${row("Pagar agora", usd("$60.50", "ARS 87,725.00"))}
       ${row("Valor pago", usd("$0.00", "ARS 0.00"))}
-    </aside><article><p>Preço a partir de</p>${usd("$100.00", "ARS 145,000.00")}</article>`;
+    </aside><article class="cb-rate-plan"><p>Preço a partir de</p><p class="cb-rate-plan-price">${usd("$100.00", "ARS 145,000.00")}</p></article>`;
     applyCloudbedsVatDisplay(false);
     applyCloudbedsVatDisplay(false);
     expect(valueByLabel("Total")).toBe("$100.00");
@@ -214,5 +214,112 @@ describe("localized VAT summaries", () => {
     expect(document.querySelectorAll(".hotel-iva-note")).toHaveLength(1);
     expect(document.querySelector(".hotel-iva-note")?.textContent).toBe("VAT exempt — resident abroad (no 21% VAT).");
     expect(valueByLabel("Total")).toBe("$100.00");
+  });
+});
+
+function rateRow(id: string, price = usd("$45.00", "ARS 68,850.00")) {
+  return `<div class="cb-rate-plan" data-testid="rate-plan-227179928547456-${id}">
+    <p>Precio desde</p>
+    <p class="cb-rate-plan-price">${price}</p>
+    <button data-testid="rate-plan-guest-quantity-select-227179928547456-${id}">Añadir</button>
+  </div>`;
+}
+
+describe("VAT tags are scoped to real Cloudbeds rate prices", () => {
+  it.each([
+    ["es", "Precio desde", "+ IVA 21%", "IVA exento"],
+    ["en", "Price from", "+ VAT 21%", "VAT exempt"],
+    ["pt-BR", "Preço a partir de", "+ IVA 21%", "Isento de IVA"],
+  ])("never annotates a calendar, hydration script or unrelated copy in %s", (locale, label, included, exempt) => {
+    document.documentElement.lang = locale;
+    document.body.innerHTML = `
+      <script>self.__next_f.push([1, 'check-in a partir de las 14:00; ${label}'])</script>
+      <style>/* ${label} */</style>
+      <template><p>${label}</p>${usd("$39", "60 K")}</template>
+      <section><p>Check-in a partir de las 14:00</p><p>${label}</p></section>
+      <div class="cb-calendar-days" role="grid">
+        <div class="cb-calendar-day" role="gridcell"><p data-testid="day-2026-10-02-lowest-rate-74970">${usd("$49", "75 K")}</p></div>
+      </div>
+      ${rateRow("236350098788544").replace("Precio desde", label)}
+      ${rateRow("236350098788545").replace("Precio desde", label)}
+    `;
+
+    applyCloudbedsVatDisplay(true);
+    applyCloudbedsVatDisplay(true);
+    expect(document.querySelectorAll(".hotel-iva-card-tag")).toHaveLength(2);
+    expect(document.querySelector(".cb-calendar-days .hotel-iva-card-tag")).toBeNull();
+    expect(document.querySelector("section .hotel-iva-card-tag")).toBeNull();
+    expect(document.querySelector("[data-testid*='lowest-rate']")?.textContent).toBe("$49");
+    for (const price of document.querySelectorAll(".cb-rate-plan-price")) {
+      expect(price.querySelector(".hotel-iva-card-tag")?.textContent).toBe(included);
+      expect(price.querySelector("[data-hotel-currency-converted]")?.nextElementSibling?.className).toBe("hotel-iva-card-tag");
+    }
+    applyCloudbedsVatDisplay(false);
+    expect(document.querySelectorAll(".hotel-iva-card-tag")).toHaveLength(2);
+    expect(Array.from(document.querySelectorAll(".hotel-iva-card-tag")).map(el => el.textContent)).toEqual([exempt, exempt]);
+  });
+
+  it("cleans orphaned and duplicate tags and anchors only to the selling price", () => {
+    const staleTag = '<span class="hotel-iva-card-tag">+ IVA 21%</span>';
+    document.body.innerHTML = `
+      <div class="cb-calendar-day"><p>${usd("$49", "75 K")}${staleTag}</p></div>
+      ${staleTag}
+      <div class="cb-rate-plan">
+        <p>Precio desde${staleTag}</p>
+        <p class="text-decoration">${usd("$50.00", "76,500.00")}${staleTag}</p>
+        <p class="cb-rate-plan-price">${usd("$45.00", "68,850.00")}${staleTag}${staleTag}</p>
+        <span data-hotel-cloudbeds-best-rate-badge="true">Mejor precio</span>
+      </div>`;
+
+    applyCloudbedsVatDisplay(true);
+    applyCloudbedsVatDisplay(true);
+    expect(document.querySelectorAll(".hotel-iva-card-tag")).toHaveLength(1);
+    expect(document.querySelector(".cb-rate-plan-price")?.textContent).toBe("$45.00+ IVA 21%");
+    expect(document.querySelector(".text-decoration")?.textContent).toBe("$50.00");
+    expect(document.querySelector("[data-hotel-cloudbeds-best-rate-badge]")?.textContent).toBe("Mejor precio");
+  });
+
+  it("waits for a converted rate price instead of falling back to the calendar", () => {
+    document.body.innerHTML = `<div class="cb-calendar-day">${usd("$49", "75 K")}</div>${rateRow("236350098788544", "68,850.00")}`;
+    applyCloudbedsVatDisplay(true);
+    expect(document.querySelector(".hotel-iva-card-tag")).toBeNull();
+    document.querySelector(".cb-rate-plan-price")!.innerHTML = usd("$45.00", "68,850.00");
+    applyCloudbedsVatDisplay(true);
+    expect(document.querySelectorAll(".hotel-iva-card-tag")).toHaveLength(1);
+
+    // Cloudbeds replaces only the price while streaming its next results.
+    document.querySelector(".cb-rate-plan-price")!.innerHTML = "73,440.00";
+    applyCloudbedsVatDisplay(true);
+    expect(document.querySelector(".hotel-iva-card-tag")).toBeNull();
+    document.querySelector(".cb-rate-plan-price")!.innerHTML = usd("$48.00", "73,440.00");
+    applyCloudbedsVatDisplay(true);
+    expect(document.querySelector(".cb-rate-plan-price")?.textContent).toBe("$48.00+ IVA 21%");
+  });
+
+  it.each(["hidden", 'aria-hidden="true"', 'data-hotel-cloudbeds-rate-plan-hidden="true"'])("skips %s rate rows and removes their old tags", (hiddenAttribute) => {
+    document.body.innerHTML = `<section ${hiddenAttribute}>${rateRow("278686453629056")}</section>${rateRow("236350098788544")}`;
+    document.querySelector("section .cb-rate-plan-price")!.insertAdjacentHTML("beforeend", '<span class="hotel-iva-card-tag">+ IVA 21%</span>');
+    applyCloudbedsVatDisplay(true);
+    expect(document.querySelector("section .hotel-iva-card-tag")).toBeNull();
+    expect(document.querySelectorAll(".hotel-iva-card-tag")).toHaveLength(1);
+  });
+
+  it("accepts complete rate-row testids without misidentifying quantity controls", () => {
+    document.body.innerHTML = rateRow("base").replace('class="cb-rate-plan"', "") +
+      `<div data-testid="rate-plan-quantity-select-227179928547456-236350098788544"><p class="cb-rate-plan-price">${usd("$45.00", "68,850.00")}</p></div>`;
+    applyCloudbedsVatDisplay(true);
+    expect(document.querySelectorAll(".hotel-iva-card-tag")).toHaveLength(1);
+    expect(document.querySelector("[data-testid='rate-plan-227179928547456-base'] .hotel-iva-card-tag")).not.toBeNull();
+    expect(document.querySelector("[data-testid^='rate-plan-quantity-select'] .hotel-iva-card-tag")).toBeNull();
+  });
+
+  it("does not mistake a price testid inside a real rate row for another row", () => {
+    document.body.innerHTML = rateRow("236350098788544").replace(
+      'class="cb-rate-plan-price"',
+      'class="cb-rate-plan-price" data-testid="rate-plan-price-227179928547456-236350098788544"',
+    );
+    applyCloudbedsVatDisplay(true);
+    expect(document.querySelectorAll(".hotel-iva-card-tag")).toHaveLength(1);
+    expect(document.querySelector(".cb-rate-plan-price")?.textContent).toBe("$45.00+ IVA 21%");
   });
 });
