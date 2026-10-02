@@ -37,6 +37,37 @@ describe("Booking confirmation copy", () => {
   });
 });
 
+describe("Breakfast description copy", () => {
+  it.each(routing.locales)("describes the included breakfast without misclassifying it in %s", (locale) => {
+    const load = (namespace: string) => flatten(JSON.parse(readFileSync(
+      resolve(messageRoot, locale, `${namespace}.json`), "utf8",
+    )));
+    // Guest reviews are attributed accounts, not the hotel's current service description.
+    const misleadingCategory = /\b(?:dry|continental)\s+breakfast\b|desayuno\s+continental|café da manhã\s+(?:seco|continental)/i;
+    for (const namespace of namespaces.filter((name) => name !== "reviews.json")) {
+      for (const message of Object.values(load(namespace.replace(/\.json$/, "")))) {
+        expect(message).not.toMatch(misleadingCategory);
+      }
+    }
+    const home = load("home");
+    const faq = load("hotel")["page.faq.items.breakfast.a"];
+    const benefit = home["benefits.breakfast.text"];
+    for (const text of [faq, benefit]) {
+      expect(text).toContain("07:00");
+      expect(text).toContain("09:30");
+      expect(text).toMatch(/recepción|reception|recepção/);
+    }
+    for (const text of [home["about.paragraph"], faq]) {
+      expect(text).toContain("medialunas");
+      expect(text).not.toMatch(/simple breakfast|café da manhã simples/i);
+    }
+    if (locale === "es") {
+      expect(home["about.paragraph"]).toContain("desayuno seco");
+      expect(faq).toContain("desayuno seco");
+    }
+  });
+});
+
 describe("Portuguese message completeness", () => {
   for (const namespace of namespaces) {
     it(`preserves all keys and formatting tokens in ${namespace}`, () => {
