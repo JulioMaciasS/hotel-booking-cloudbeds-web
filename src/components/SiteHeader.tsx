@@ -197,6 +197,7 @@ export function SiteHeader() {
           opacity/visibility so it's fully inert (no pointer/scroll capture)
           when closed. The body scroll-lock keeps the page fixed behind it. */}
       <div
+        data-runnr-overlay={mobileOpen ? "true" : undefined}
         className={`fixed inset-x-0 bottom-0 top-[85px] z-40 bg-white transition-all duration-300 ease-in-out lg:hidden ${
           mobileOpen ? "visible opacity-100" : "invisible opacity-0"
         }`}

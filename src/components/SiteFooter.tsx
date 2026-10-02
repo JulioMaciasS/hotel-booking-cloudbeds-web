@@ -32,13 +32,13 @@ export function SiteFooter() {
                 <MapPin aria-hidden="true" className="mt-0.5 shrink-0 text-[#6dbfaa]" size={14} />
                 {HOTEL.street}, {HOTEL.cityLine}
               </p>
-              <a className="flex items-center gap-2 transition hover:text-white" href={HOTEL.phoneHref}>
+              <a className="flex items-center gap-2 transition hover:text-white" href={HOTEL.reservationsPhoneHref}>
                 <Phone aria-hidden="true" className="shrink-0 text-[#6dbfaa]" size={14} />
-                {HOTEL.phone}
+                {HOTEL.reservationsPhone}
               </a>
-              <a className="flex items-center gap-2 transition hover:text-white" href={`mailto:${HOTEL.email}`}>
+              <a className="flex items-center gap-2 transition hover:text-white" href={`mailto:${HOTEL.reservationsEmail}`}>
                 <Mail aria-hidden="true" className="shrink-0 text-[#6dbfaa]" size={14} />
-                {HOTEL.email}
+                {HOTEL.reservationsEmail}
               </a>
             </address>
           </div>

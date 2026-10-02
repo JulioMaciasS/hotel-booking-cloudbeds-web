@@ -43,7 +43,7 @@ export function ContactForm() {
         .join("\n"),
     );
     window.open(
-      `mailto:${HOTEL.email}?subject=${subject}&body=${body}`,
+      `mailto:${HOTEL.reservationsEmail}?subject=${subject}&body=${body}`,
     );
     setSent(true);
     setForm(empty);

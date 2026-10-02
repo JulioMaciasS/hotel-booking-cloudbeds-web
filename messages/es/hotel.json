@@ -10,7 +10,7 @@
       "title": "Tu lugar de descanso en tu visita a los glaciares de la Patagonia Austral.",
       "paragraph1": "Los Lagos Hotel es un hospedaje pionero en El Calafate y se emplaza en un edificio que originalmente fue la primera panadería industrial de la ciudad. Desde 1991 brinda servicios de alojamiento, con todas las comodidades que necesitas y con una excelente relación calidad-precio.",
       "paragraph2": "Nos destacamos por el trato cercano y personalizado a nuestros huéspedes.",
-      "paragraph3": "Nuestro equipo de trabajo, formado por gente local y conocedora del lugar, te ayudará a elegir las mejores opciones para visitar el Glaciar Perito Moreno, El Chaltén, las estancias patagónicas, a la vez que a planificar y organizar tus excursiones y coordinar tus traslados para que tu estadía en El Calafate sea simple y memorable. Estamos disponibles las 24 horas.",
+      "paragraph3": "Nuestro equipo de trabajo, formado por gente local y conocedora del lugar, te ayudará a elegir las mejores opciones para visitar el Glaciar Perito Moreno, El Chaltén, las estancias patagónicas, a la vez que a planificar y organizar tus excursiones y coordinar tus traslados para que tu estadía en El Calafate sea simple y memorable. La recepción atiende todos los días de 07:00 a 22:00.",
       "stats": {
         "checkIn": "Check-in",
         "checkOut": "Check-out",
@@ -25,7 +25,7 @@
         "breakfast": { "alt": "Desayuno incluido", "caption": "Desayuno incluido" },
         "diningRoom": { "alt": "Comedor del hotel", "caption": "Comedor" },
         "garden": { "alt": "Jardín del hotel", "caption": "Jardín" },
-        "reception": { "alt": "Recepción 24 horas", "caption": "Recepción 24 hs" },
+        "reception": { "alt": "Recepción del hotel", "caption": "Recepción de 07:00 a 22:00" },
         "library": { "alt": "Rincón de lectura", "caption": "Espacios comunes" },
         "outdoor": { "alt": "Exterior y jardín", "caption": "Aire libre" }
       }
@@ -40,15 +40,15 @@
       "items": {
         "schedule": {
           "q": "¿Cuáles son los horarios de check-in y check-out?",
-          "a": "El check-in es a partir de las 14:00 y el check-out hasta las 10:00. La recepción está abierta las 24 horas, todos los días del año, así que podés llegar a cualquier hora."
+          "a": "El check-in es a partir de las 14:00 y el check-out hasta las 10:00. La recepción atiende de 07:00 a 22:00 todos los días del año. Si vas a llegar fuera de ese horario, coordiná tu llegada con el hotel con antelación."
         },
         "breakfast": {
           "q": "¿El desayuno está incluido?",
-          "a": "Sí. Todas las tarifas incluyen un desayuno seco: café, té, leche, pan, medialunas, mantequilla, queso y mermeladas."
+          "a": "Sí. Todas las tarifas incluyen un desayuno seco: café, té, leche, pan, medialunas, mantequilla, queso y mermeladas. Se sirve en el desayunador de 07:00 a 09:30. Si necesitás salir antes, podés solicitar y coordinar con recepción que quede preparado para recogerlo antes del horario habitual."
         },
         "arrival": {
           "q": "¿Puedo hacer el check-in temprano, llegar de noche o dejar el equipaje?",
-          "a": "La recepción está abierta las 24 horas, así que podés llegar a cualquier hora, de día o de noche. El check-in temprano y el check-out tardío dependen de la disponibilidad —consultanos y haremos lo posible— y con gusto guardamos tu equipaje si llegás antes de que tu habitación esté lista o tenés una salida tarde."
+          "a": "La recepción atiende de 07:00 a 22:00. Las llegadas fuera de ese horario deben coordinarse previamente con el hotel. El check-in temprano, el check-out tardío y el guardaequipaje están sujetos a disponibilidad y confirmación: consultanos antes de tu llegada."
         },
         "family": {
           "q": "¿Son bienvenidos los niños y las familias?",
@@ -60,7 +60,11 @@
         },
         "cancellation": {
           "q": "¿Cómo es la política de cancelación?",
-          "a": "Depende de la tarifa elegida. La tarifa flexible permite cancelar sin cargo hasta 72 horas antes del check-in; la tarifa no reembolsable no admite cancelaciones ni cambios. Las condiciones se muestran claramente al reservar."
+          "a": "Depende de la tarifa elegida. La tarifa flexible permite cancelar sin cargo hasta 7 días antes del check-in y requiere un depósito de una noche, que debe pagarse como máximo 7 días antes de la llegada. Si reservás dentro de ese plazo, consultá al hotel sobre el vencimiento del pago. La tarifa no reembolsable no admite cancelaciones ni cambios. Revisá las condiciones de tu tarifa y la confirmación de la reserva."
+        },
+        "accessibility": {
+          "q": "¿El hotel tiene ascensor o habitaciones con acceso sin escaleras?",
+          "a": "El hotel no dispone de ascensor. Algunas habitaciones están en la planta superior y se accede a ellas por escaleras. Si tenés necesidades de movilidad, consultanos antes de reservar para que podamos orientarte sobre la opción más adecuada."
         },
         "excursions": {
           "q": "¿Organizan excursiones y traslados a los glaciares?",

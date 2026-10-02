@@ -5,14 +5,14 @@
   },
   "eyebrow": "Legal",
   "lastUpdatedLabel": "Last updated: {date}",
-  "lastUpdated": "September 7, 2026",
+  "lastUpdated": "2 October 2026",
   "terms": {
     "title": "Terms and Conditions",
     "toPrivacy": "Privacy Policy →",
     "sections": [
       {
         "heading": "1. Provider information",
-        "body": "This website and the accommodation service are provided by <strong>Los Lagos Hotel</strong>, located at 25 de Mayo 220, Z9405 El Calafate, Province of Santa Cruz, Argentine Republic. Contact: <email></email> / +54 2902 417738."
+        "body": "This website and the accommodation service are provided by <strong>Los Lagos Hotel</strong>, located at 25 de Mayo 220, Z9405 El Calafate, Province of Santa Cruz, Argentine Republic. Reservations contact: <email></email> / +54 9 2902 417738."
       },
       {
         "heading": "2. Purpose",
@@ -30,7 +30,7 @@
         "heading": "5. Cancellation policy",
         "intro": "The specific cancellation conditions are provided at the time of booking and vary according to the rate selected:",
         "items": [
-          "<strong>Flexible rate:</strong> free cancellation up to 72 hours before the scheduled check-in date.",
+          "<strong>Flexible rate:</strong> free cancellation until 7 days before the scheduled check-in date, according to the conditions of the booked rate.",
           "<strong>Non-refundable rate:</strong> no right to a refund in the event of cancellation, modification, or no-show."
         ],
         "outro": "In all cases, the hotel will refund the corresponding amounts within the timeframes set out by Law 24,240 and its amendments."
@@ -43,9 +43,9 @@
       {
         "heading": "7. Check-in and check-out",
         "items": [
-          "<strong>Check-in:</strong> from 2:00 PM. A valid ID (national ID or passport) will be requested upon arrival, in accordance with the guest registration regulations in force.",
+          "<strong>Check-in:</strong> from 2:00 PM. Reception is staffed from 07:00 to 22:00; arrivals outside these hours must be arranged in advance. A valid ID (national ID or passport) will be requested upon arrival, in accordance with the guest registration regulations in force.",
           "<strong>Check-out:</strong> until 10:00 AM. Staying beyond that time may be billed as an additional night.",
-          "An advance deposit or the full amount of the booking may be required at check-in as a guarantee."
+          "The flexible rate requires a deposit equivalent to one night, payable no later than 7 days before check-in. For bookings made within that period, contact the hotel to confirm the payment deadline. Other rates and bookings through third parties follow their specific conditions."
         ]
       },
       {
@@ -96,7 +96,7 @@
       "address": "25 de Mayo 220, Z9405 El Calafate, Province of Santa Cruz, Argentine Republic",
       "emailLabel": "Email:",
       "phoneLabel": "Phone:",
-      "phone": "+54 2902 417738"
+      "phone": "+54 9 2902 417738"
     },
     "sections": [
       {
@@ -104,6 +104,7 @@
         "intro": "We collect personal data in the following contexts:",
         "items": [
           "<strong>Contact form:</strong> first and last name, email address, phone number (optional), and the content of the message.",
+          "<strong>Web chat:</strong> the content of the conversation and an anonymous technical identifier needed to maintain the session when you use the Runnr chat.",
           "<strong>Online bookings:</strong> first and last name, email, phone, ID or passport number, nationality, credit/debit card details (processed directly by the payment processor), stay dates, and room preferences.",
           "<strong>On-site check-in:</strong> ID or passport number, as required by the provincial police guest registration regulations.",
           "<strong>Web browsing:</strong> IP address, browser type, pages visited, and time spent, through technical cookies and —only with your consent— analytics cookies (see section 7)."
@@ -115,6 +116,7 @@
         "items": [
           "To manage and confirm accommodation bookings.",
           "To respond to inquiries and requests made through the contact form, email, or phone.",
+          "To respond to inquiries started through the web chat.",
           "To comply with legal guest registration obligations before the provincial police authority.",
           "To issue tax receipts in accordance with AFIP requirements.",
           "To improve the user experience on the website through aggregate traffic analysis.",
@@ -137,6 +139,7 @@
         "items": [
           "<strong>Cloudbeds, Inc.</strong> (United States): hotel management platform and booking engine. Cloudbeds processes data in the United States, a country that does not have an adequacy declaration from the AAIP. The hotel has entered into a data processing agreement with Cloudbeds that includes the appropriate safeguards set out in Art. 12 of Law 25,326.",
           "<strong>Payment processors:</strong> card data is processed directly by the payment provider integrated into the booking engine under PCI-DSS standards. The hotel does not store card numbers.",
+          "<strong>Runnr:</strong> provider of the web chat and the support inbox used by the hotel. It processes the content you submit and the technical identifiers needed to deliver and retain the conversation.",
           "<strong>Web analytics providers:</strong> Google Analytics (Google LLC) and PostHog (PostHog, Inc.), based in the United States. They are only activated if the user consents to analytics cookies (see section 7) and process pseudonymised browsing data to produce usage statistics. Transfers to the United States rely on contractual clauses with adequate safeguards under Art. 12 of Law 25,326.",
           "<strong>Competent authorities:</strong> Provincial Police, AFIP, or other authorities when there is a legal obligation to report."
         ],
@@ -147,6 +150,7 @@
         "items": [
           "<strong>Booking and stay data:</strong> kept for 5 (five) years from the check-out date, in compliance with the contractual statute-of-limitations periods set out by the Civil and Commercial Code of Argentina, and with tax obligations before AFIP.",
           "<strong>Contact form data:</strong> kept for as long as necessary to resolve the inquiry and, at most, 1 (one) year after the last communication.",
+          "<strong>Chat conversations:</strong> kept for as long as necessary to manage and follow up on the inquiry.",
           "<strong>Police guest register:</strong> in accordance with the periods required by the applicable provincial regulations."
         ]
       },
@@ -154,7 +158,7 @@
         "heading": "7. Cookies and similar technologies",
         "intro": "We use two categories of cookies and browser local storage:",
         "items": [
-          "<strong>Necessary (always on):</strong> essential for the website and the booking engine to work. They include your language preference, your VAT/residency preference, the state of the Cloudbeds booking engine, and the record of your own cookie choice. They require no consent because the requested service cannot be provided without them.",
+          "<strong>Necessary (always on):</strong> essential for the website and the booking engine to work. They include your language preference, your VAT/residency preference, the state of the Cloudbeds booking engine, and the record of your own cookie choice. When you use the chat, Runnr stores an anonymous identifier and local history needed to maintain the conversation. They are not used for advertising.",
           "<strong>Analytics (require your consent):</strong> Google Analytics 4 and PostHog. They let us understand, in aggregate, how the site is used (page views, traffic sources and, in PostHog's case, session replay to spot usability issues). They do not load or set any cookie until you give your consent."
         ],
         "outro": "On your first visit you'll see a notice to accept or reject analytics cookies; nothing is activated until you choose, and rejecting is as simple as accepting. You can change or withdraw your consent at any time from the \"Configurar cookies\" (Cookie settings) link in the footer, without affecting your use of the site. We do not use behavioural advertising cookies. These analytics services may involve the transfer of pseudonymised data to the United States (see section 5)."

@@ -5,11 +5,14 @@
     "subtitle": "Write to us and we'll reply as soon as possible. We'll help with your booking and with planning your glaciers and excursions. You can also call or message us on WhatsApp."
   },
   "info": {
-    "phone": "Calls",
-    "whatsapp": "WhatsApp",
-    "email": "Email",
-    "reception": "24-hour reception",
-    "receptionNote": "Every day of the year"
+    "reservations": "Reservations",
+    "reservationsPhone": "Phone and WhatsApp",
+    "reservationsEmail": "Reservations email",
+    "receptionContact": "Reception",
+    "receptionPhone": "Reception phone",
+    "receptionEmail": "Reception email",
+    "reception": "Reception from 07:00 to 22:00",
+    "receptionNote": "Every day of the year. Arrivals outside these hours must be arranged in advance."
   },
   "form": {
     "nameLabel": "Name",

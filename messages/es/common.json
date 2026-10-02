@@ -48,5 +48,10 @@
     "title": "Reservá tu estadía",
     "subtitle": "Mejor tarifa · sin comisiones",
     "cta": "Buscar fechas"
+  },
+  "chatWidget": {
+    "title": "Chat con Los Lagos Hotel",
+    "button": "Hablá con nosotros",
+    "placeholder": "Escribí un mensaje..."
   }
 }

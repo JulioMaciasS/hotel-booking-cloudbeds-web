@@ -45,18 +45,21 @@ export default async function ContactoPage({
               beside the form — a single continuous card (seam matches the row
               dividers), unchanged from before. */}
           <div className="reveal grid gap-x-10 gap-y-6 lg:grid-cols-2 lg:gap-y-0">
-            {/* Quick contact — phone, WhatsApp, email (the tappable actions) */}
+            {/* Reservations and reception are separate operational contacts. */}
             <div className="order-1 flex flex-col divide-y divide-black/5 overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-black/5 lg:order-none lg:col-start-1 lg:row-start-1 lg:rounded-b-none">
+              <div className="px-5 py-3 text-xs font-semibold uppercase tracking-widest text-[#38645b]">
+                {t("info.reservations")}
+              </div>
               <a
                 className="flex flex-1 items-center gap-4 px-5 py-4 transition hover:bg-[#f7faf8]"
-                href={HOTEL.phoneHref}
+                href={HOTEL.reservationsPhoneHref}
               >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#edf3ef] text-[#38645b]">
                   <Phone aria-hidden="true" size={18} />
                 </span>
                 <div>
-                  <p className="text-sm font-semibold text-[#1f2b27]">{HOTEL.phone}</p>
-                  <p className="text-xs text-[#66736f]">{t("info.phone")}</p>
+                  <p className="text-sm font-semibold text-[#1f2b27]">{HOTEL.reservationsPhone}</p>
+                  <p className="text-xs text-[#66736f]">{t("info.reservationsPhone")}</p>
                 </div>
               </a>
               <a
@@ -70,19 +73,46 @@ export default async function ContactoPage({
                 </span>
                 <div>
                   <p className="text-sm font-semibold text-[#1f2b27]">{HOTEL.whatsapp}</p>
-                  <p className="text-xs text-[#66736f]">{t("info.whatsapp")}</p>
+                  <p className="text-xs text-[#66736f]">WhatsApp</p>
                 </div>
               </a>
               <a
                 className="flex flex-1 items-center gap-4 px-5 py-4 transition hover:bg-[#f7faf8]"
-                href={`mailto:${HOTEL.email}`}
+                href={`mailto:${HOTEL.reservationsEmail}`}
               >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#edf3ef] text-[#38645b]">
                   <Mail aria-hidden="true" size={18} />
                 </span>
                 <div>
-                  <p className="text-sm font-semibold text-[#1f2b27]">{HOTEL.email}</p>
-                  <p className="text-xs text-[#66736f]">{t("info.email")}</p>
+                  <p className="text-sm font-semibold text-[#1f2b27]">{HOTEL.reservationsEmail}</p>
+                  <p className="text-xs text-[#66736f]">{t("info.reservationsEmail")}</p>
+                </div>
+              </a>
+              <div className="px-5 py-3 text-xs font-semibold uppercase tracking-widest text-[#38645b]">
+                {t("info.receptionContact")}
+              </div>
+              <a
+                className="flex flex-1 items-center gap-4 px-5 py-4 transition hover:bg-[#f7faf8]"
+                href={HOTEL.receptionPhoneHref}
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#edf3ef] text-[#38645b]">
+                  <Phone aria-hidden="true" size={18} />
+                </span>
+                <div>
+                  <p className="text-sm font-semibold text-[#1f2b27]">{HOTEL.receptionPhone}</p>
+                  <p className="text-xs text-[#66736f]">{t("info.receptionPhone")}</p>
+                </div>
+              </a>
+              <a
+                className="flex flex-1 items-center gap-4 px-5 py-4 transition hover:bg-[#f7faf8]"
+                href={`mailto:${HOTEL.receptionEmail}`}
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#edf3ef] text-[#38645b]">
+                  <Mail aria-hidden="true" size={18} />
+                </span>
+                <div>
+                  <p className="text-sm font-semibold text-[#1f2b27]">{HOTEL.receptionEmail}</p>
+                  <p className="text-xs text-[#66736f]">{t("info.receptionEmail")}</p>
                 </div>
               </a>
             </div>

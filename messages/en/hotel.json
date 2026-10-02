@@ -10,7 +10,7 @@
       "title": "Your place to rest while visiting the glaciers of Southern Patagonia.",
       "paragraph1": "Los Lagos Hotel is one of El Calafate's pioneering lodging establishments and occupies a building that originally housed the town's first industrial bakery. It has welcomed guests since 1991, offering all the comforts you need and excellent value for money.",
       "paragraph2": "We stand out for the warm, personal attention we give our guests.",
-      "paragraph3": "Our team is made up of local people who know the area well. They will help you choose the best options for visiting Perito Moreno Glacier, El Chaltén and the Patagonian ranches, as well as plan and organise your excursions and arrange transfers so that your stay in El Calafate is simple and memorable. We are available 24 hours a day.",
+      "paragraph3": "Our team is made up of local people who know the area well. They will help you choose the best options for visiting Perito Moreno Glacier, El Chaltén and the Patagonian ranches, as well as plan and organise your excursions and arrange transfers so that your stay in El Calafate is simple and memorable. Reception is staffed daily from 07:00 to 22:00.",
       "stats": {
         "checkIn": "Check-in",
         "checkOut": "Check-out",
@@ -25,7 +25,7 @@
         "breakfast": { "alt": "Breakfast included", "caption": "Breakfast included" },
         "diningRoom": { "alt": "Hotel dining room", "caption": "Dining room" },
         "garden": { "alt": "Hotel garden", "caption": "Garden" },
-        "reception": { "alt": "24-hour reception", "caption": "24-hour reception" },
+        "reception": { "alt": "Hotel reception", "caption": "Reception from 07:00 to 22:00" },
         "library": { "alt": "Reading nook", "caption": "Common areas" },
         "outdoor": { "alt": "Exterior and garden", "caption": "Outdoors" }
       }
@@ -40,15 +40,15 @@
       "items": {
         "schedule": {
           "q": "What are the check-in and check-out times?",
-          "a": "Check-in is from 14:00 and check-out is until 10:00. Reception is open 24 hours a day, every day of the year, so you can arrive at any time."
+          "a": "Check-in is from 14:00 and check-out is until 10:00. Reception is staffed from 07:00 to 22:00 every day of the year. If you will arrive outside these hours, arrange your arrival with the hotel in advance."
         },
         "breakfast": {
           "q": "Is breakfast included?",
-          "a": "Yes. All rates include a simple breakfast with coffee, tea, milk, bread, croissants, butter, cheese and jams."
+          "a": "Yes. Every rate includes a simple continental breakfast: coffee, tea, milk, bread, croissants, butter, cheese and jams. It is served in the breakfast room from 07:00 to 09:30. If you need to leave earlier, you can ask reception in advance to have it prepared for collection before the usual breakfast hours."
         },
         "arrival": {
           "q": "Can I check in early, arrive late at night, or leave my luggage?",
-          "a": "Reception is open 24 hours, so you can arrive at any time, day or night. Early check-in and late check-out depend on availability — just ask and we'll do our best — and we're glad to store your luggage if you arrive before your room is ready or have a late departure."
+          "a": "Reception is staffed from 07:00 to 22:00. Arrivals outside these hours must be arranged with the hotel in advance. Early check-in, late check-out and luggage storage are subject to availability and confirmation: please contact us before arrival."
         },
         "family": {
           "q": "Are children and families welcome?",
@@ -60,7 +60,11 @@
         },
         "cancellation": {
           "q": "What is the cancellation policy?",
-          "a": "It depends on the rate you choose. The flexible rate allows free cancellation up to 72 hours before check-in; the non-refundable rate does not allow cancellations or changes. The conditions are shown clearly when you book."
+          "a": "It depends on the selected rate. The flexible rate allows free cancellation until 7 days before check-in and requires a one-night deposit, payable no later than 7 days before arrival. If you book within that period, contact the hotel to confirm the payment deadline. The non-refundable rate does not allow cancellations or changes. Check your rate conditions and booking confirmation."
+        },
+        "accessibility": {
+          "q": "Does the hotel have a lift or rooms that can be reached without stairs?",
+          "a": "The hotel does not have a lift. Some rooms are on the upper floor and are reached by stairs. If you have mobility requirements, please contact us before booking so we can advise you on the most suitable option."
         },
         "excursions": {
           "q": "Do you organise excursions and transfers to the glaciers?",

@@ -319,3 +319,29 @@ body {
   outline: 3px solid rgba(56, 100, 91, 0.55);
   outline-offset: 4px;
 }
+
+/* Runnr injects its stylesheet after ours and uses a near-maximum z-index.
+   Keep its launcher clear of our mobile booking CTA and suppress it while a
+   first-party modal/menu/map owns the viewport. The chat remains mounted, so
+   conversation state and the WebSocket session are preserved. */
+@media (max-width: 1023px) {
+  #runnrai-container .wdc-launcher {
+    bottom: calc(1rem + env(safe-area-inset-bottom)) !important;
+    right: max(0.75rem, env(safe-area-inset-right)) !important;
+  }
+
+  body:has([data-runnr-mobile-booking-bar="visible"])
+    #runnrai-container
+    .wdc-launcher {
+    bottom: calc(6.25rem + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+body:has([data-runnr-overlay="true"]) #runnrai-container .wdc-launcher,
+body:has([data-runnr-overlay="true"]) #runnrai-container .wdc-chat-window,
+html[data-runnr-map-expanded="true"] #runnrai-container .wdc-launcher,
+html[data-runnr-map-expanded="true"] #runnrai-container .wdc-chat-window {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}

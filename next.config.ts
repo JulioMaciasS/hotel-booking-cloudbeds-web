@@ -48,14 +48,14 @@ const reportOnlyCsp = [
   // Cloudbeds' bundle injects inline and eval'd chunks and cannot carry a
   // nonce, so script/style need 'unsafe-inline'/'unsafe-eval' for its hosts.
   // PostHog lazy-loads its recorder/surveys modules from *-assets.i.posthog.com.
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static1.cloudbeds.com https://*.cloudbeds.com https://*.i.posthog.com https://www.googletagmanager.com",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static1.cloudbeds.com https://*.cloudbeds.com https://*.i.posthog.com https://www.googletagmanager.com https://webchat.runnr.ai",
   "style-src 'self' 'unsafe-inline' https://static1.cloudbeds.com https://*.cloudbeds.com https://fonts.googleapis.com",
   // Property photos, Cloudbeds media and map tiles come from many hosts.
   "img-src 'self' data: blob: https:",
   "font-src 'self' data: https://static1.cloudbeds.com https://*.cloudbeds.com https://fonts.gstatic.com",
   // 'self' (our /api/* — the FX rate is proxied server-side to Supabase),
   // Cloudbeds' API hosts, LaunchDarkly (Cloudbeds feature flags), and PostHog.
-  "connect-src 'self' https://tiles.openfreemap.org https://*.cloudbeds.com https://*.launchdarkly.com https://*.i.posthog.com https://www.google-analytics.com https://*.google-analytics.com",
+  "connect-src 'self' https://tiles.openfreemap.org https://*.cloudbeds.com https://*.launchdarkly.com https://*.i.posthog.com https://www.google-analytics.com https://*.google-analytics.com https://webchat.runnr.ai wss://webchat.runnr.ai",
   "frame-src 'self' https://*.cloudbeds.com",
   "form-action 'self' https://*.cloudbeds.com",
   "worker-src 'self' blob:",

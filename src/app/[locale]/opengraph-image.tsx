@@ -1,6 +1,10 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { ImageResponse } from "next/og";
 import { routing } from "@/i18n/routing";
-import { REVIEW_SUMMARY } from "@/lib/review-summary";
+
+/* next/image cannot be rendered inside an ImageResponse. */
+/* eslint-disable @next/next/no-img-element */
 
 // Applies to this segment and every page beneath it, so every route gets a
 // branded preview card on WhatsApp, Facebook, X and LinkedIn.
@@ -12,24 +16,11 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-const TAGLINE: Record<string, string> = {
-  es: "Reserva directa · Mejor tarifa garantizada",
-  en: "Direct booking · Best rate guaranteed",
-};
-
-const REVIEWS_LABEL: Record<string, string> = {
-  es: "opiniones",
-  en: "reviews",
-};
-
-export default async function OpengraphImage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  const tagline = TAGLINE[locale] ?? TAGLINE.es;
-  const reviewsLabel = REVIEWS_LABEL[locale] ?? REVIEWS_LABEL.es;
+export default async function OpengraphImage() {
+  const logo = await readFile(
+    path.join(process.cwd(), "assets", "old-web-images", "logo-sin-fondo.png"),
+  );
+  const logoDataUrl = `data:image/png;base64,${logo.toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -38,45 +29,56 @@ export default async function OpengraphImage({
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          background: "linear-gradient(135deg, #1f2b27 0%, #2e5049 100%)",
-          color: "white",
-          padding: "80px",
-          fontFamily: "sans-serif",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+          overflow: "hidden",
+          background: "linear-gradient(135deg, #fbf8f1 0%, #f0eadf 100%)",
         }}
       >
         <div
           style={{
-            fontSize: 30,
-            letterSpacing: 4,
-            textTransform: "uppercase",
-            color: "#6dbfaa",
-            fontWeight: 600,
+            position: "absolute",
+            left: -70,
+            right: -70,
+            bottom: -180,
+            height: 320,
+            borderRadius: "50% 50% 0 0",
+            background: "rgba(11, 167, 173, 0.075)",
           }}
-        >
-          El Calafate · Patagonia
-        </div>
+        />
 
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 110, fontWeight: 700, lineHeight: 1 }}>
-            Los Lagos Hotel
-          </div>
-          <div style={{ fontSize: 40, marginTop: 28, color: "rgba(255,255,255,0.85)" }}>
-            {tagline}
-          </div>
-        </div>
+        <div
+          style={{
+            position: "absolute",
+            right: -65,
+            bottom: -95,
+            width: 390,
+            height: 390,
+            transform: "rotate(45deg)",
+            border: "5px solid rgba(100, 84, 72, 0.07)",
+          }}
+        />
 
-        <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 30 }}>
-          <div style={{ display: "flex", gap: 4, color: "#fbbf24" }}>
-            {"★★★★".split("").map((s, i) => (
-              <span key={i}>{s}</span>
-            ))}
-          </div>
-          <span style={{ color: "rgba(255,255,255,0.8)" }}>
-            {REVIEW_SUMMARY.rating}/5 · +{REVIEW_SUMMARY.displayedReviewCount} {reviewsLabel} · loslagoshotel.com.ar
-          </span>
-        </div>
+        <div
+          style={{
+            position: "absolute",
+            top: 18,
+            left: 18,
+            width: 1164,
+            height: 594,
+            border: "3px solid rgba(49, 91, 82, 0.25)",
+            borderRadius: 28,
+          }}
+        />
+
+        <img
+          alt="Los Lagos Hotel"
+          src={logoDataUrl}
+          width={520}
+          height={420}
+          style={{ objectFit: "contain" }}
+        />
       </div>
     ),
     size,

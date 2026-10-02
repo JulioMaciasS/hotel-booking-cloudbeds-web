@@ -8,7 +8,8 @@
     "selector": {
       "eyebrow": "Choose your room",
       "title": "Four types, the same warmth.",
-      "description": "Browse the photos and bed options for each room type. Whenever you like, check real-time availability and rates."
+      "description": "Browse the photos and bed configurations available within each category. Whenever you like, check real-time availability and rates.",
+      "accessibilityNote": "Some rooms are on the upper floor, which is reached by stairs; the hotel does not have a lift. If you have mobility requirements, please contact us before booking so we can help you choose a suitable room."
     },
     "included": {
       "eyebrow": "Included in every room"
@@ -26,25 +27,26 @@
     "goToPhoto": "Photo {index}",
     "bedTypeLabel": "Bed type",
     "bedSeparator": "or",
+    "bedConfigurationNote": "These are fixed configurations within the category and are assigned subject to availability; not every room can be reconfigured.",
     "viewAvailability": "Check availability"
   },
   "guests": "{count} guests",
   "items": {
     "doubleStandard": {
       "name": "Standard Double",
-      "blurb": "Comfortable and bright, ideal for couples or travellers looking for a warm, affordable base in the centre of El Calafate."
+      "blurb": "Comfortable and practical, with either one double bed or two single beds depending on the room assigned and availability."
     },
     "tripleStandard": {
       "name": "Standard Triple",
-      "blurb": "Extra space for families or groups of friends, with flexible bed setups and everything you need to rest."
+      "blurb": "For families or groups of friends. This category has two fixed configurations: one double and one single bed, or three single beds."
     },
     "doubleSuperior": {
       "name": "Superior Double",
-      "blurb": "Our largest, best-equipped double room, with refined finishes and a renovated private bathroom."
+      "blurb": "Carefully finished, with a renovated private bathroom. It may have one double bed or two single beds depending on the room assigned and availability."
     },
     "tripleSuperior": {
       "name": "Superior Triple",
-      "blurb": "The best choice for families: space, superior comfort and a renovated private bathroom, without giving up the central location."
+      "blurb": "A comfortable option for families, with carefully considered finishes and a renovated private bathroom, without giving up the central location."
     }
   },
   "tiers": {

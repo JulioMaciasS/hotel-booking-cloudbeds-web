@@ -336,6 +336,9 @@ export function RoomsSection() {
                         </Fragment>
                       ))}
                     </div>
+                    <p className="mt-2 text-xs leading-5 text-[#7a8783]">
+                      {t("section.bedConfigurationNote")}
+                    </p>
                   </div>
                 </div>
 

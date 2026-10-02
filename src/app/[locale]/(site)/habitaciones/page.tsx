@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { ArrowRight } from "lucide-react";
+import { Accessibility, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { PageHero } from "@/components/PageHero";
 import { RoomsSection } from "@/components/RoomsSection";
@@ -55,6 +55,11 @@ export default async function HabitacionesPage({
 
           <div className="mt-10">
             <RoomsSection />
+          </div>
+
+          <div className="mt-6 flex max-w-3xl items-start gap-3 rounded-xl border border-[#c8d4ce] bg-white px-5 py-4 text-sm leading-6 text-[#4f5f5a]">
+            <Accessibility aria-hidden="true" className="mt-0.5 shrink-0 text-[#38645b]" size={20} />
+            <p>{t("page.selector.accessibilityNote")}</p>
           </div>
         </div>
       </section>

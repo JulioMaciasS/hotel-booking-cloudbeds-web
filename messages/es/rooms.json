@@ -8,7 +8,8 @@
     "selector": {
       "eyebrow": "Elegí tu habitación",
       "title": "Cuatro tipos, una misma calidez.",
-      "description": "Mirá las fotos y las configuraciones de cama de cada tipo. Cuando quieras, consultá disponibilidad y tarifas en tiempo real."
+      "description": "Mirá las fotos y las configuraciones de cama disponibles en cada categoría. Cuando quieras, consultá disponibilidad y tarifas en tiempo real.",
+      "accessibilityNote": "Algunas habitaciones están en la planta superior, a la que se accede por escaleras; el hotel no dispone de ascensor. Si tenés necesidades de movilidad, consultanos antes de reservar para ayudarte a elegir una habitación adecuada."
     },
     "included": {
       "eyebrow": "Incluido en todas las habitaciones"
@@ -26,25 +27,26 @@
     "goToPhoto": "Foto {index}",
     "bedTypeLabel": "Tipo de cama",
     "bedSeparator": "o",
+    "bedConfigurationNote": "Las opciones corresponden a configuraciones fijas dentro de la categoría y se asignan según disponibilidad; no todas las habitaciones pueden reconfigurarse.",
     "viewAvailability": "Ver disponibilidad"
   },
   "guests": "{count} huéspedes",
   "items": {
     "doubleStandard": {
       "name": "Doble Estándar",
-      "blurb": "Cómoda y luminosa, ideal para parejas o viajeros que buscan una base cálida y económica en el centro de El Calafate."
+      "blurb": "Cómoda y funcional, con cama matrimonial o dos camas individuales según la unidad asignada y la disponibilidad."
     },
     "tripleStandard": {
       "name": "Triple Estándar",
-      "blurb": "Espacio extra para familias o grupos de amigos, con configuraciones de cama flexibles y todo lo necesario para descansar."
+      "blurb": "Para familias o grupos de amigos. La categoría incluye dos configuraciones fijas: una cama matrimonial y una individual, o tres camas individuales."
     },
     "doubleSuperior": {
       "name": "Doble Superior",
-      "blurb": "Nuestra habitación doble más amplia y equipada, con terminaciones cuidadas y baño privado renovado."
+      "blurb": "Con terminaciones cuidadas y baño privado renovado. Puede disponer de cama matrimonial o dos individuales según la unidad asignada y la disponibilidad."
     },
     "tripleSuperior": {
       "name": "Triple Superior",
-      "blurb": "Lo mejor para familias: amplitud, confort superior y baño privado renovado, sin resignar la ubicación céntrica."
+      "blurb": "Una alternativa confortable para familias, con terminaciones cuidadas y baño privado renovado, sin resignar la ubicación céntrica."
     }
   },
   "tiers": {

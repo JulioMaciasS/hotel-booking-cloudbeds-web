@@ -58,6 +58,7 @@ function CookieConsentBannerInner() {
   return (
     <div
       aria-label={t("title")}
+      data-runnr-overlay="true"
       role="dialog"
       className="fixed inset-x-0 bottom-0 z-[70] border-t border-black/10 bg-white/95 px-4 py-4 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] backdrop-blur-lg sm:px-6"
       style={{ paddingBottom: "calc(1rem + env(safe-area-inset-bottom))" }}

@@ -48,5 +48,10 @@
     "title": "Book your stay",
     "subtitle": "Best rate · no commissions",
     "cta": "Find dates"
+  },
+  "chatWidget": {
+    "title": "Chat with Los Lagos Hotel",
+    "button": "Chat with us",
+    "placeholder": "Send a message..."
   }
 }

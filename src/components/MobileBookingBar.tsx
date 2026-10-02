@@ -45,6 +45,9 @@ export function MobileBookingBar() {
 
   return (
     <div
+      data-runnr-mobile-booking-bar={
+        visible && !mapExpanded ? "visible" : "hidden"
+      }
       className={`fixed inset-x-0 bottom-0 z-40 border-t border-black/5 bg-white/90 px-4 py-3 backdrop-blur-lg transition-transform duration-300 lg:hidden ${
         visible && !mapExpanded ? "translate-y-0" : "translate-y-full"
       }`}

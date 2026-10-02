@@ -91,6 +91,7 @@ export function LocationGallery() {
         <div
           aria-label={t("title")}
           aria-modal="true"
+          data-runnr-overlay="true"
           className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4"
           role="dialog"
         >

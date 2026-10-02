@@ -72,6 +72,7 @@ export function VatPreferencePrompt() {
     <div
       aria-labelledby="vat-prompt-title"
       aria-modal="true"
+      data-runnr-overlay="true"
       className="fixed inset-0 z-[90] flex items-center justify-center p-4"
       role="dialog"
     >

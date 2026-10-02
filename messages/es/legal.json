@@ -5,14 +5,14 @@
   },
   "eyebrow": "Legal",
   "lastUpdatedLabel": "Última actualización: {date}",
-  "lastUpdated": "7 de septiembre de 2026",
+  "lastUpdated": "2 de octubre de 2026",
   "terms": {
     "title": "Términos y Condiciones",
     "toPrivacy": "Política de Privacidad →",
     "sections": [
       {
         "heading": "1. Datos del prestador",
-        "body": "El presente sitio web y el servicio de alojamiento son prestados por <strong>Los Lagos Hotel</strong>, con domicilio en 25 de Mayo 220, Z9405 El Calafate, Provincia de Santa Cruz, República Argentina. Contacto: <email></email> / +54 2902 417738."
+        "body": "El presente sitio web y el servicio de alojamiento son prestados por <strong>Los Lagos Hotel</strong>, con domicilio en 25 de Mayo 220, Z9405 El Calafate, Provincia de Santa Cruz, República Argentina. Contacto de reservas: <email></email> / +54 9 2902 417738."
       },
       {
         "heading": "2. Objeto",
@@ -30,7 +30,7 @@
         "heading": "5. Política de cancelación",
         "intro": "Las condiciones específicas de cancelación se informan en el momento de la reserva y varían según la tarifa seleccionada:",
         "items": [
-          "<strong>Tarifa flexible:</strong> cancelación sin cargo hasta 72 horas antes de la fecha de check-in prevista.",
+          "<strong>Tarifa flexible:</strong> cancelación sin cargo hasta 7 días antes de la fecha de check-in prevista, según las condiciones de la tarifa reservada.",
           "<strong>Tarifa no reembolsable:</strong> sin derecho a reembolso ante cancelación, modificación o no presentación (no show)."
         ],
         "outro": "En todos los casos, el hotel reintegrará los importes correspondientes dentro de los plazos previstos por la Ley 24.240 y sus modificatorias."
@@ -43,9 +43,9 @@
       {
         "heading": "7. Check-in y check-out",
         "items": [
-          "<strong>Check-in:</strong> a partir de las 14:00 hs. Se solicitará documento de identidad (DNI o pasaporte) al momento del ingreso, de conformidad con la normativa de registro de huéspedes vigente.",
+          "<strong>Check-in:</strong> a partir de las 14:00 hs. La recepción atiende de 07:00 a 22:00; las llegadas fuera de ese horario deben coordinarse previamente. Se solicitará documento de identidad (DNI o pasaporte) al momento del ingreso, de conformidad con la normativa de registro de huéspedes vigente.",
           "<strong>Check-out:</strong> hasta las 10:00 hs. La permanencia más allá de ese horario podrá ser facturada como una noche adicional.",
-          "El depósito anticipado o el importe total de la reserva podrá ser requerido al momento del check-in como garantía."
+          "La tarifa flexible requiere un depósito equivalente a una noche, pagadero como máximo 7 días antes del check-in. Para reservas realizadas dentro de ese plazo, se deberá consultar al hotel sobre el vencimiento del pago. Otras tarifas y reservas a través de terceros se rigen por sus condiciones específicas."
         ]
       },
       {
@@ -96,7 +96,7 @@
       "address": "25 de Mayo 220, Z9405 El Calafate, Provincia de Santa Cruz, República Argentina",
       "emailLabel": "Correo electrónico:",
       "phoneLabel": "Teléfono:",
-      "phone": "+54 2902 417738"
+      "phone": "+54 9 2902 417738"
     },
     "sections": [
       {
@@ -104,6 +104,7 @@
         "intro": "Recolectamos datos personales en los siguientes contextos:",
         "items": [
           "<strong>Formulario de contacto:</strong> nombre y apellido, dirección de correo electrónico, número de teléfono (opcional) y el contenido del mensaje.",
+          "<strong>Chat web:</strong> contenido de la conversación y un identificador técnico anónimo necesario para mantener la sesión cuando utilizás el chat de Runnr.",
           "<strong>Reservas en línea:</strong> nombre y apellido, correo electrónico, teléfono, número de documento o pasaporte, nacionalidad, datos de tarjeta de crédito/débito (procesados directamente por el procesador de pagos), fechas de estadía y preferencias de habitación.",
           "<strong>Check-in presencial:</strong> número de documento o pasaporte, según lo exigido por la normativa policial provincial de registro de huéspedes.",
           "<strong>Navegación web:</strong> dirección IP, tipo de navegador, páginas visitadas y tiempo de permanencia, a través de cookies técnicas y —únicamente con tu consentimiento— cookies de análisis (ver sección 7)."
@@ -115,6 +116,7 @@
         "items": [
           "Gestionar y confirmar reservas de alojamiento.",
           "Responder consultas y solicitudes realizadas a través del formulario de contacto, correo electrónico o teléfono.",
+          "Atender consultas iniciadas mediante el chat web.",
           "Cumplir obligaciones legales de registro de huéspedes ante la autoridad policial provincial.",
           "Emitir comprobantes fiscales conforme a las exigencias de la AFIP.",
           "Mejorar la experiencia del usuario en el sitio web mediante el análisis agregado del tráfico.",
@@ -137,6 +139,7 @@
         "items": [
           "<strong>Cloudbeds, Inc.</strong> (Estados Unidos): plataforma de gestión hotelera y motor de reservas. Cloudbeds procesa datos en los Estados Unidos, país que no cuenta con declaración de nivel adecuado de protección por parte de la AAIP. El hotel ha celebrado con Cloudbeds un acuerdo de procesamiento de datos que incluye las garantías adecuadas previstas por el Art. 12 de la Ley 25.326.",
           "<strong>Procesadores de pago:</strong> los datos de tarjeta son procesados directamente por el proveedor de pagos integrado en el motor de reservas bajo estándares PCI-DSS. El hotel no almacena números de tarjeta.",
+          "<strong>Runnr:</strong> proveedor del chat web y de la bandeja de atención utilizada por el hotel. Procesa el contenido que enviás y los identificadores técnicos necesarios para entregar y conservar la conversación.",
           "<strong>Proveedores de analítica web:</strong> Google Analytics (Google LLC) y PostHog (PostHog, Inc.), con sede en los Estados Unidos. Sólo se activan si el usuario presta su consentimiento a las cookies de análisis (ver sección 7) y tratan datos de navegación seudonimizados con el fin de elaborar estadísticas de uso. Las transferencias a los Estados Unidos se amparan en cláusulas contractuales con garantías adecuadas conforme al Art. 12 de la Ley 25.326.",
           "<strong>Autoridades competentes:</strong> Policía Provincial, AFIP u otras autoridades cuando exista obligación legal de informar."
         ],
@@ -147,6 +150,7 @@
         "items": [
           "<strong>Datos de reservas y estadías:</strong> se conservan durante 5 (cinco) años desde la fecha de check-out, en cumplimiento de los plazos de prescripción contractual previstos por el Código Civil y Comercial de la Nación, y de las obligaciones impositivas ante la AFIP.",
           "<strong>Datos del formulario de contacto:</strong> se conservan durante el tiempo necesario para resolver la consulta y, como máximo, 1 (un) año posterior a la última comunicación.",
+          "<strong>Conversaciones del chat:</strong> se conservan durante el tiempo necesario para gestionar la consulta y su seguimiento.",
           "<strong>Registro policial de huéspedes:</strong> conforme a los plazos exigidos por la normativa provincial aplicable."
         ]
       },
@@ -154,7 +158,7 @@
         "heading": "7. Cookies y tecnologías similares",
         "intro": "Utilizamos dos categorías de cookies y almacenamiento local en el navegador:",
         "items": [
-          "<strong>Necesarias (siempre activas):</strong> imprescindibles para el funcionamiento del sitio y del motor de reservas. Incluyen la preferencia de idioma, la preferencia de IVA/residencia, el estado del motor de reservas de Cloudbeds y el registro de tu propia elección de cookies. No requieren consentimiento porque sin ellas no puede prestarse el servicio solicitado.",
+          "<strong>Necesarias (siempre activas):</strong> imprescindibles para el funcionamiento del sitio y del motor de reservas. Incluyen la preferencia de idioma, la preferencia de IVA/residencia, el estado del motor de reservas de Cloudbeds y el registro de tu propia elección de cookies. Al usar el chat, Runnr guarda un identificador anónimo y el historial local necesarios para mantener la conversación. No se utilizan con fines publicitarios.",
           "<strong>De análisis (requieren tu consentimiento):</strong> Google Analytics 4 y PostHog. Nos permiten entender de forma agregada cómo se usa el sitio (páginas vistas, origen del tráfico y, en el caso de PostHog, repetición de sesión para detectar problemas de usabilidad). No se cargan ni instalan ninguna cookie hasta que prestás tu consentimiento."
         ],
         "outro": "Al ingresar por primera vez verás un aviso para aceptar o rechazar las cookies de análisis; nada se activa hasta que elijas, y rechazar es tan simple como aceptar. Podés cambiar o retirar tu consentimiento en cualquier momento desde el enlace «Configurar cookies» del pie de página, sin que ello afecte el uso del sitio. No utilizamos cookies de publicidad comportamental. Estos servicios de análisis pueden implicar la transferencia de datos seudonimizados a los Estados Unidos (ver sección 5)."
