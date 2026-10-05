@@ -6,6 +6,7 @@ import { BookingLoader } from "@/components/BookingLoader";
 import { getCloudbedsLanguage } from "@/lib/cloudbeds-language";
 import { BookingPriceObserver } from "@/components/BookingPriceObserver";
 import { CloudbedsScriptLoader } from "@/components/CloudbedsScriptLoader";
+import { CloudbedsResourceHints } from "@/components/CloudbedsResourceHints";
 import { GhsRatePlanGuard } from "@/components/GhsRatePlanGuard";
 import { VatPreferencePrompt } from "@/components/VatPreferencePrompt";
 import { Link, redirect } from "@/i18n/navigation";
@@ -52,6 +53,7 @@ export default async function ReservasPage({
   return (
     <main className="reservation-page bg-[#F6F5F5] text-[#1f2b27]">
       <GhsRatePlanGuard />
+      <CloudbedsResourceHints />
       <CloudbedsScriptLoader />
       <BookingPriceObserver />
       <VatPreferencePrompt />

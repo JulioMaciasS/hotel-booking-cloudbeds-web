@@ -1,76 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
+import { appendCloudbedsLoader, CLOUDBEDS_SCRIPT_ID } from "@/lib/cloudbeds-loader";
 
 const DISABLED_IN_DEVELOPMENT = process.env.NODE_ENV === "development";
-const CLOUDBEDS_SCRIPT_ID = "cloudbeds-immersive-experience-script";
-const CLOUDBEDS_ASSET_BASE =
-  "https://static1.cloudbeds.com/booking-engine/latest/static/js/immersive-experience/";
-const CLOUDBEDS_SCRIPT_SRC =
-  `${CLOUDBEDS_ASSET_BASE}cb-immersive-experience.js`;
 const CLOUDBEDS_CHUNK_RELOAD_KEY = "hotel:cloudbeds-chunk-reload-at";
-const CLOUDBEDS_CACHE_BUST_PARAM = "_hotel_cb";
 
 type CloudbedsWindow = Window & {
-  __hotelCloudbedsAssetCacheToken?: string;
-  __hotelCloudbedsChunkCacheBusterInstalled?: boolean;
   __hotelCloudbedsChunkErrorReloadInstalled?: boolean;
 };
-
-function getCloudbedsCacheToken() {
-  return Date.now().toString(36);
-}
-
-function isCloudbedsAssetUrl(source: string) {
-  try {
-    const url = new URL(source);
-
-    return url.href.startsWith(CLOUDBEDS_ASSET_BASE);
-  } catch {
-    return false;
-  }
-}
-
-function withCloudbedsCacheToken(source: string, token: string) {
-  if (!isCloudbedsAssetUrl(source)) {
-    return source;
-  }
-
-  const url = new URL(source);
-  url.searchParams.set(CLOUDBEDS_CACHE_BUST_PARAM, token);
-
-  return url.toString();
-}
-
-function installCloudbedsChunkCacheBuster(token: string) {
-  const scopedWindow = window as CloudbedsWindow;
-
-  scopedWindow.__hotelCloudbedsAssetCacheToken = token;
-
-  if (scopedWindow.__hotelCloudbedsChunkCacheBusterInstalled) {
-    return;
-  }
-
-  scopedWindow.__hotelCloudbedsChunkCacheBusterInstalled = true;
-
-  const originalAppendChild = Node.prototype.appendChild;
-
-  Node.prototype.appendChild = function appendChild<T extends Node>(
-    node: T,
-  ): T {
-    const activeToken = scopedWindow.__hotelCloudbedsAssetCacheToken;
-
-    if (
-      activeToken &&
-      node instanceof HTMLScriptElement &&
-      isCloudbedsAssetUrl(node.src)
-    ) {
-      node.src = withCloudbedsCacheToken(node.src, activeToken);
-    }
-
-    return originalAppendChild.call(this, node) as T;
-  };
-}
 
 function reloadOnceAfterCloudbedsChunkError() {
   try {
@@ -90,7 +28,8 @@ function reloadOnceAfterCloudbedsChunkError() {
       String(Date.now()),
     );
   } catch {
-    // Storage may be unavailable; still attempt one normal reload.
+    // Without persistent storage, reloading could produce an endless loop.
+    return;
   }
 
   window.location.reload();
@@ -119,11 +58,14 @@ function installCloudbedsChunkErrorReload() {
 
       if (
         target instanceof HTMLScriptElement &&
-        isCloudbedsAssetUrl(target.src)
+        target.id === CLOUDBEDS_SCRIPT_ID
       ) {
         reloadOnceAfterCloudbedsChunkError();
         return;
       }
+
+      // Entry-script failures belong to the official loader: it retries the
+      // other Cloudbeds CDNs. Do not reload before that fallback can complete.
 
       if (
         event.message &&
@@ -158,24 +100,8 @@ export function CloudbedsScriptLoader() {
   useEffect(() => {
     if (DISABLED_IN_DEVELOPMENT) return;
 
-    const cacheToken = getCloudbedsCacheToken();
-
-    installCloudbedsChunkCacheBuster(cacheToken);
     installCloudbedsChunkErrorReload();
-
-    if (document.getElementById(CLOUDBEDS_SCRIPT_ID)) {
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.async = true;
-    script.dataset.cloudbedsImmersive = "true";
-    script.dataset.cookieconsent = "ignore";
-    script.id = CLOUDBEDS_SCRIPT_ID;
-    script.src = withCloudbedsCacheToken(CLOUDBEDS_SCRIPT_SRC, cacheToken);
-    script.type = "text/javascript";
-
-    document.head.append(script);
+    appendCloudbedsLoader();
   }, []);
 
   return null;

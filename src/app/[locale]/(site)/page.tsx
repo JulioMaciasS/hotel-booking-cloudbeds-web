@@ -20,6 +20,7 @@ import { ScrollCenterHandler } from "@/components/ScrollCenterHandler";
 import { BookingLoader } from "@/components/BookingLoader";
 import { BookingPriceObserver } from "@/components/BookingPriceObserver";
 import { CloudbedsScriptLoader } from "@/components/CloudbedsScriptLoader";
+import { CloudbedsResourceHints } from "@/components/CloudbedsResourceHints";
 import { CloudbedsPropertyDatePicker } from "@/components/CloudbedsPropertyDatePicker";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { BookingIntentHandler } from "@/components/BookingIntentHandler";
@@ -59,6 +60,7 @@ export default async function HomePage({
         <BookingIntentHandler />
       </Suspense>
       <ScrollCenterHandler />
+      <CloudbedsResourceHints />
       <CloudbedsScriptLoader />
       <BookingPriceObserver />
       <BookingLoader
