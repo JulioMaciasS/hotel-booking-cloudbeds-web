@@ -62,6 +62,32 @@ export function injectCloudbedsDomAdjustmentStyles(
   style.id = STYLE_ID;
   style.dataset.cbImmersiveExperienceRoot = "true";
   style.textContent = `
+    /* hotel-accommodation-order: use Cloudbeds' existing column flex list.
+       Never reparent its React-owned cards or change rates/availability. */
+    :is(#cb-bookingengine, .cb-bookingengine-root) ul > li:has(> .cb-accommodation-card[data-testid^="accommodation-card-"]) {
+      order: 99;
+    }
+
+    :is(#cb-bookingengine, .cb-bookingengine-root) ul > li:has(> .cb-accommodation-card[data-testid="accommodation-card-227179928547456"]) {
+      order: 1;
+    }
+
+    :is(#cb-bookingengine, .cb-bookingengine-root) ul > li:has(> .cb-accommodation-card[data-testid="accommodation-card-229741541683392"]) {
+      order: 2;
+    }
+
+    :is(#cb-bookingengine, .cb-bookingengine-root) ul > li:has(> .cb-accommodation-card[data-testid="accommodation-card-229741180768384"]) {
+      order: 3;
+    }
+
+    :is(#cb-bookingengine, .cb-bookingengine-root) ul > li:has(> .cb-accommodation-card[data-testid="accommodation-card-239441314484352"]) {
+      order: 4;
+    }
+
+    :is(#cb-bookingengine, .cb-bookingengine-root) ul > li:has(> .cb-accommodation-card[data-testid="accommodation-card-229741711368385"]) {
+      order: 5;
+    }
+
     :is(#cb-bookingengine, .cb-bookingengine-root, .cb-portal)
       :is([aria-label*="currency" i], [aria-label*="moneda" i], [aria-label*="moeda" i], [title*="currency" i], [title*="moneda" i], [title*="moeda" i], [data-testid*="currency" i]) {
       display: none !important;

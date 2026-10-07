@@ -3,6 +3,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import {
   hideCloudbedsCurrencyControls,
+  injectCloudbedsDomAdjustmentStyles,
   protectCloudbedsTechnicalRatePlan,
 } from "./hide-cloudbeds-currency-controls";
 import {
@@ -15,6 +16,35 @@ describe("Cloudbeds DOM adjustments", () => {
     document.head.innerHTML = "";
     document.body.innerHTML = "";
     document.documentElement.lang = "es";
+  });
+
+  it.each(["es", "en", "pt-BR"])("orders room categories by stable IDs in %s without replacing native nodes", (language) => {
+    document.documentElement.lang = language;
+    const nativeIds = ["227179928547456", "229741180768384", "239441314484352", "229741541683392", "229741711368385"];
+    document.body.innerHTML = `<section class="cb-bookingengine-root"><ul style="display:flex;flex-direction:column">${nativeIds.map(id => `<li><div class="cb-accommodation-card" data-testid="accommodation-card-${id}"><button type="button">Select</button></div></li>`).join("")}</ul></section><ul><li id="unrelated">Other content</li></ul>`;
+    const originalItems = Array.from(document.querySelectorAll(".cb-bookingengine-root li"));
+    const button = originalItems[3].querySelector("button")!;
+    let clicks = 0;
+    button.addEventListener("click", () => { clicks += 1; });
+
+    injectCloudbedsDomAdjustmentStyles(document);
+    injectCloudbedsDomAdjustmentStyles(document);
+
+    expect(originalItems.map(item => getComputedStyle(item).order)).toEqual(["1", "3", "4", "2", "5"]);
+    expect(Array.from(document.querySelectorAll(".cb-bookingengine-root li"))).toEqual(originalItems);
+    expect(originalItems.every(item => item.isConnected)).toBe(true);
+    button.click();
+    expect(clicks).toBe(1);
+    expect(getComputedStyle(document.getElementById("unrelated")!).order).not.toBe("99");
+    expect(document.querySelectorAll("#hotel-cloudbeds-dom-adjustments")).toHaveLength(1);
+  });
+
+  it("keeps ordering replacement and filtered lists without another observer pass", () => {
+    injectCloudbedsDomAdjustmentStyles(document);
+    document.body.innerHTML = `<section id="cb-bookingengine"><ul><li><div class="cb-accommodation-card" data-testid="accommodation-card-229741711368385"></div></li><li><div class="cb-accommodation-card" data-testid="accommodation-card-229741541683392"></div></li><li><div class="cb-accommodation-card" data-testid="accommodation-card-new-category"></div></li></ul></section>`;
+    expect(Array.from(document.querySelectorAll("li"), item => getComputedStyle(item).order)).toEqual(["5", "2", "99"]);
+    document.querySelector("ul")!.innerHTML = `<li><div class="cb-accommodation-card" data-testid="accommodation-card-227179928547456"></div></li>`;
+    expect(getComputedStyle(document.querySelector("li")!).order).toBe("1");
   });
 
   it("recognizes Portuguese currency and promo controls without hiding filters or booking actions", () => {
