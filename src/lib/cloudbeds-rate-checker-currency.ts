@@ -11,6 +11,19 @@ const STYLE_ID = "hotel-rate-checker-currency";
 const displays = new WeakMap<Element, HTMLElement>();
 const sources = new WeakMap<Element, HTMLElement>();
 
+function quoteLabel(source: HTMLElement) {
+  return (source.previousElementSibling?.textContent ?? "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function isDirectQuote(source: HTMLElement) {
+  return /^(?:tarifa directa|tarifa direta|direct rate)$/.test(quoteLabel(source));
+}
+
 export function injectRateCheckerCurrencyStyles(documentRef: Document = document) {
   if (documentRef.getElementById(STYLE_ID)) return;
   const style = documentRef.createElement("style");
@@ -50,9 +63,17 @@ export function convertRateCheckerPrices(
     }
 
     const priceElements = body.querySelectorAll<HTMLElement>(NATIVE_PRICE_SELECTOR);
+    const googleQuote = Array.from(priceElements).find(
+      (source) => quoteLabel(source) === "google hotel search",
+    );
     let ready = priceElements.length > 0;
     for (const source of priceElements) {
-      const original = source.textContent?.trim() ?? "";
+      // Cloudbeds' cheapest direct quote includes our non-bookable technical
+      // plan. Only this comparator display mirrors its GHS reference instead.
+      // Keep both vendor text nodes untouched and never fall back to that plan.
+      const direct = isDirectQuote(source);
+      const quoteSource = direct ? googleQuote : source;
+      const original = quoteSource?.textContent?.trim() ?? "";
       const converted = convertArsToUsd(parseArsMoney(original), arsPerUsd);
       let display = displays.get(source);
       if (!display || display.parentElement !== source.parentElement) {
@@ -72,9 +93,14 @@ export function convertRateCheckerPrices(
       display.setAttribute("aria-label", convertedLabel(value, original));
       display.dataset.originalCurrencyText = original;
       display.dataset.arsPerUsd = String(arsPerUsd);
+      display.dataset.hotelRateCheckerQuoteSource = direct
+        ? "google-hotel-search"
+        : "native";
       // Invalid/partial vendor prices fail closed; never keep an old quote or
       // expose ARS while a category/date change is still rendering.
-      ready &&= converted !== null;
+      // An absent GHS row leaves a dash, not the private technical quote or an
+      // endless loading state that prevents choosing a different category.
+      ready &&= converted !== null || (direct && !googleQuote);
     }
     body.dataset.hotelRateCheckerReady = String(ready);
   }

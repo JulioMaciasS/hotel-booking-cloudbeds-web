@@ -33,21 +33,22 @@ describe("isolated rate checker currency display", () => {
     expect(native.isConnected).toBe(true);
     expect(native.parentNode).toBe(source);
     expect(source.textContent).toBe("ARS 136,554.34");
-    expect(quotes()[0].textContent).toBe("$89.25");
+    expect(quotes()[0].textContent).toBe("$108.00");
     expect(source.getAttribute("aria-hidden")).toBe("true");
     expect(getComputedStyle(source).display).toBe("none");
   });
 
   it("refreshes the display when Cloudbeds updates the retained text node", () => {
-    const source = render();
-    const native = source.firstChild!;
+    render();
+    const native = document.getElementById("google")!.firstChild!;
     convertRateCheckerPrices(1530, label, document);
     const mirror = quotes()[0];
-    native.nodeValue = "ARS 218,486.94";
+    native.nodeValue = "ARS 264,384.00";
     convertRateCheckerPrices(1530, label, document);
     expect(quotes()[0]).toBe(mirror);
-    expect(mirror.textContent).toBe("$142.80");
-    expect(mirror.getAttribute("aria-label")).toBe("$142.80 from ARS 218,486.94");
+    expect(mirror.textContent).toBe("$172.80");
+    expect(quotes()[1].textContent).toBe("$172.80");
+    expect(mirror.getAttribute("aria-label")).toBe("$172.80 from ARS 264,384.00");
     expect(native.isConnected).toBe(true);
   });
 
@@ -67,7 +68,7 @@ describe("isolated rate checker currency display", () => {
     injectRateCheckerCurrencyStyles(document);
     expect(getComputedStyle(source).display).toBe("none");
     convertRateCheckerPrices(1530, label, document);
-    source.firstChild!.nodeValue = "—";
+    document.getElementById("google")!.firstChild!.nodeValue = "—";
     convertRateCheckerPrices(1530, label, document);
     expect(quotes()[0].textContent).toBe("USD —");
     expect(document.querySelector("[data-testid='rate-checker-body']")!.getAttribute(
@@ -84,7 +85,48 @@ describe("isolated rate checker currency display", () => {
     source.replaceWith(replacement);
     convertRateCheckerPrices(1530, label, document);
     expect(quotes()).toHaveLength(2);
-    expect(quotes()[0].textContent).toBe("$116.03");
+    expect(quotes()[0].textContent).toBe("$108.00");
     expect(replacement.firstChild!.isConnected).toBe(true);
+  });
+
+  it.each(["Tarifa directa", "Direct rate", "Tarifa direta"])(
+    "mirrors GHS for the localized direct label %s, regardless of row order",
+    (directLabel) => {
+      const source = render();
+      source.previousElementSibling!.textContent = directLabel;
+      const body = source.parentElement!.parentElement!;
+      body.prepend(document.getElementById("google")!.parentElement!);
+      convertRateCheckerPrices(1530, label, document);
+      const mirror = source.nextElementSibling as HTMLElement;
+      expect(mirror.textContent).toBe("$108.00");
+      expect(mirror.dataset.hotelRateCheckerQuoteSource).toBe("google-hotel-search");
+      expect(source.textContent).toBe("ARS 136,554.34");
+    },
+  );
+
+  it("clears the direct display when GHS disappears, without exposing the technical price", () => {
+    const source = render();
+    convertRateCheckerPrices(1530, label, document);
+    const mirror = source.nextElementSibling;
+    document.getElementById("google")!.parentElement!.remove();
+    convertRateCheckerPrices(1530, label, document);
+    expect(quotes()).toHaveLength(1);
+    expect(mirror!.textContent).toBe("USD —");
+    expect(source.textContent).toBe("ARS 136,554.34");
+    expect(getComputedStyle(source).display).toBe("none");
+    expect(source.parentElement!.parentElement!.getAttribute("data-hotel-rate-checker-ready")).toBe("true");
+  });
+
+  it("does not change third-party quotes or copy a technical direct update", () => {
+    const source = render();
+    const other = document.createElement("div");
+    other.innerHTML = '<p data-be-text="true">Booking.com</p><p data-be-text="true">ARS 183,600.00</p>';
+    source.parentElement!.parentElement!.append(other);
+    convertRateCheckerPrices(1530, label, document);
+    source.firstChild!.nodeValue = "ARS 1.00";
+    convertRateCheckerPrices(1530, label, document);
+    expect(quotes()[0].textContent).toBe("$108.00");
+    expect(quotes()[2].textContent).toBe("$120.00");
+    expect(source.firstChild!.isConnected).toBe(true);
   });
 });
