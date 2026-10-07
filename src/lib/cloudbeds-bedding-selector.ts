@@ -1233,10 +1233,12 @@ function renderBeddingCounterPanel(
     }
 
     if (plusButton) {
+      const canSwitchSingleRoom =
+        totalMaxRooms === 1 && totalSelected === 1 && count === 0;
       plusButton.disabled =
         optionMaxRooms <= 0 ||
         count >= optionMaxRooms ||
-        totalSelected >= totalMaxRooms;
+        (totalSelected >= totalMaxRooms && !canSwitchSingleRoom);
       plusButton.setAttribute("aria-disabled", String(plusButton.disabled));
     }
   }
@@ -1402,11 +1404,21 @@ function bindCounterPanel(
     const optionMaxRooms = getOptionMaxRooms(config, option);
 
     if (button.dataset.hotelBeddingCounterAction === "increment") {
-      if (currentTotal >= totalMaxRooms || currentCount >= optionMaxRooms) {
+      if (optionMaxRooms <= 0 || currentCount >= optionMaxRooms) {
         return;
       }
-
-      nextCounts[option.key] = currentCount + 1;
+      if (totalMaxRooms === 1 && currentTotal === 1 && currentCount === 0) {
+        // One physical room, two possible layouts: switch atomically. Never
+        // send quantity 0 or 2 to Cloudbeds, or enable an unavailable layout.
+        for (const key of Object.keys(nextCounts)) nextCounts[key] = 0;
+        nextCounts[option.key] = 1;
+        updateSelectedOption(wrapper, option.key);
+        const cardId = wrapper.dataset.hotelBeddingSelector;
+        if (cardId) writeStoredSelection(cardId, option.key);
+      } else {
+        if (currentTotal >= totalMaxRooms) return;
+        nextCounts[option.key] = currentCount + 1;
+      }
     } else {
       if (currentCount <= 0 || currentTotal <= 1) {
         return;

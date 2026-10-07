@@ -27,6 +27,11 @@ import { applyCloudbedsVatDisplay } from "@/lib/cloudbeds-vat-adjust";
 import { recordFxCustomFields } from "@/lib/cloudbeds-fx-customfields";
 import { resolveFxRate, type ResolvedFxRate } from "@/lib/fx-rate-client";
 import { VAT_CHANGE_EVENT, getFromArgentina } from "@/lib/vat";
+import {
+  convertRateCheckerPrices,
+  injectRateCheckerCurrencyStyles,
+  RATE_CHECKER_SELECTOR,
+} from "@/lib/cloudbeds-rate-checker-currency";
 
 const HOTEL_DOM_ADJUSTMENT_SELECTOR = [
   ".hotel-bedding-selector",
@@ -150,6 +155,12 @@ function scanForPrices(
   const textNodes: Text[] = [];
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
     acceptNode(node) {
+      // The comparator keeps its native React text nodes. Its separate display
+      // layer updates from those nodes; leave the established converter intact
+      // everywhere else (calendar, room cards and cart).
+      if (node.parentElement?.closest(RATE_CHECKER_SELECTOR)) {
+        return NodeFilter.FILTER_REJECT;
+      }
       return shouldConvertTextNode(node)
         ? NodeFilter.FILTER_ACCEPT
         : NodeFilter.FILTER_REJECT;
@@ -178,6 +189,7 @@ export function BookingPriceObserver() {
     let observer: MutationObserver | null = null;
 
     injectCloudbedsDomAdjustmentStyles(document);
+    injectRateCheckerCurrencyStyles(document);
 
     // Availability is independent of the FX rate. Start it immediately so the
     // dated Cloudbeds counters normally arrive before a guest opens a quantity
@@ -244,6 +256,7 @@ export function BookingPriceObserver() {
         // only make sense once prices are actually converted to USD; without
         // them Cloudbeds' native ARS view stays untouched (and correct).
         if (rate) {
+          convertRateCheckerPrices(rate.arsPerUsd, convertedLabel, document);
           scanForPrices(document.body, rate.arsPerUsd, convertedLabel);
           relabelCloudbedsCurrencyText(document);
           applyCloudbedsVatDisplay(fromArgentina, document);

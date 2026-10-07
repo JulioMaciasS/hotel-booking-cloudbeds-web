@@ -351,6 +351,51 @@ describe("Cloudbeds bedding quantity limits", () => {
     );
   });
 
+  it.each([
+    ["229741711368385", "Triple Superior", "matrimonial_cama_individual", "tres_camas_individuales"],
+    ["229741541683392", "Doble Superior", "matrimonial", "dos_camas_separadas"],
+  ])("switches the last convertible %s room without changing native quantity", (id, title, first, second) => {
+    setCloudbedsBeddingAvailability({
+      mappingComplete: true,
+      roomTypes: {[id]: {totalAvailable: 1, options: {[first]: 1, [second]: 1}}},
+    }, document);
+    const card = renderCard(id, title);
+    const {input} = openQuantityPopover(card, id);
+    const quantities: string[] = [];
+    input.addEventListener("change", () => quantities.push(input.value));
+    expect(getCounterCount(first)).toBe("1");
+    expect(getCounterButton(second, "increment").disabled).toBe(false);
+    getCounterButton(second, "increment").click();
+    expect(getCounterCount(first)).toBe("0");
+    expect(getCounterCount(second)).toBe("1");
+    expect(getTotalSelected()).toBe("1");
+    expect(input.value).toBe("1");
+    expect(card.querySelector(".hotel-bedding-selector")?.getAttribute("data-hotel-selected-bedding")).toBe(second);
+    getCounterButton(first, "increment").click();
+    expect(getCounterCount(first)).toBe("1");
+    expect(getCounterCount(second)).toBe("0");
+    expect(input.value).toBe("1");
+    expect(quantities.every(q => q === "1")).toBe(true);
+    syncCloudbedsBeddingSelections(document);
+    expect(getTotalSelected()).toBe("1");
+  });
+
+  it("does not enable another layout when the last room is not convertible", () => {
+    const id = "229741541683392";
+    setCloudbedsBeddingAvailability({
+      mappingComplete: true,
+      roomTypes: {[id]: {totalAvailable: 1, options: {matrimonial: 1, dos_camas_separadas: 0}}},
+    }, document);
+    const card = renderCard(id, "Doble Superior");
+    const {input} = openQuantityPopover(card, id);
+    const alternate = getCounterButton("dos_camas_separadas", "increment");
+    expect(alternate.disabled).toBe(true);
+    alternate.click();
+    expect(getCounterCount("matrimonial")).toBe("1");
+    expect(getCounterCount("dos_camas_separadas")).toBe("0");
+    expect(input.value).toBe("1");
+  });
+
   it("does not serialize stale stored bedding counts for removed cart items", () => {
     window.sessionStorage.setItem(
       "hotel-bedding-counts:227179928547456",
