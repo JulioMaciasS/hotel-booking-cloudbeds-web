@@ -423,11 +423,25 @@ function adjustSummary(documentRef: Document, fromArgentina: boolean) {
     return;
   }
 
-  // --- Deposit / payment-schedule value (scaled proportionally) ---
+  // --- Deposit / payment-schedule value ---
   const depositRow = findLabeledRow(body, DEPOSIT_PATTERN);
   const depositEl = depositRow?.labelEl
     ? valueNearLabel(depositRow.labelEl)
     : null;
+  // The booking cart's per-night deposit is already pre-tax in Cloudbeds.
+  // Do not divide it by 1.21 again when switching residence. Keep the existing
+  // gross-payment handling for other flows (e.g. "Pay now") unchanged.
+  const isNetCartDeposit = Boolean(
+    depositEl?.closest(".cb-shopping-cart") &&
+      depositRow &&
+      /^\s*(?:dep[oó]sito|deposit)\s*[:：]?\s*$/i.test(
+        directText(depositRow.labelEl),
+      ),
+  );
+
+  if (depositEl && isNetCartDeposit) {
+    restoreValue(depositEl);
+  }
 
   if (!fromArgentina) {
     // Resident abroad: hide every IVA line, drop the grand totals to the net
@@ -445,7 +459,7 @@ function adjustSummary(documentRef: Document, fromArgentina: boolean) {
     // Scale the deposit using the gross→net ratio derived from the gross total
     // value, not from net+tax. This avoids a 1-cent rounding drift caused by
     // individually-rounded USD amounts not summing exactly.
-    if (depositEl && firstGrossEl) {
+    if (depositEl && firstGrossEl && !isNetCartDeposit) {
       const grossOrigUsd = originalUsd(firstGrossEl);
       const depositOrigUsd = originalUsd(depositEl);
 

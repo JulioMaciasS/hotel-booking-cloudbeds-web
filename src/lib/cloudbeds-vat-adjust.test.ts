@@ -155,6 +155,61 @@ function bookingCart(): string {
 }
 
 describe("booking page VAT display (regression)", () => {
+  it.each([
+    ["es", "Impuestos y tasas", "Depósito"],
+    ["en", "Taxes and fees", "Deposit"],
+    ["pt-BR", "Impostos e taxas", "Depósito"],
+  ])("preserves the real cart's already-net deposits and schedule in %s", (locale, taxLabel, depositLabel) => {
+    document.documentElement.lang = locale;
+    for (const [subtotal, tax, gross, deposit, remaining] of [
+      ["123.20", "25.87", "149.07", "59.40", "63.80"],
+      ["112.00", "23.52", "135.52", "54.00", "58.00"],
+    ]) {
+      document.body.innerHTML = `<aside class="cb-shopping-cart" data-testid="shopping-cart-card"><div class="cb-rows">
+        ${row("Subtotal", usd(`$${subtotal}`, "188,496.00"))}
+        ${row(taxLabel, usd(`$${tax}`, "39,584.16"))}
+        ${row("Total", `<span data-testid="shopping-cart-grand-total">${usd(`$${gross}`, "ARS 228,080.16")}</span>`)}
+        ${row(depositLabel, usd(`$${deposit}`, "90,882.00"))}
+        ${row("10 Dec 2026", usd(`$${remaining}`, "97,614.00"))}
+      </div></aside>`;
+      const depositNode = Array.from(document.querySelectorAll(".cb-line"))
+        .find(el => el.textContent?.includes(depositLabel))!
+        .querySelector("[data-hotel-currency-converted]")!;
+      const originalSource = depositNode.getAttribute("data-original-currency-text");
+
+      for (const fromArgentina of [false, false, true, false, true]) {
+        applyCloudbedsVatDisplay(fromArgentina);
+        expect(valueByLabel("Total")).toBe(`$${fromArgentina ? gross : subtotal}`);
+        expect(valueByLabel(depositLabel)).toBe(`$${deposit}`);
+        expect(valueByLabel("10 Dec 2026")).toBe(`$${remaining}`);
+        expect(depositNode.isConnected).toBe(true);
+        expect(depositNode.getAttribute("data-original-currency-text")).toBe(originalSource);
+        expect(depositNode.hasAttribute("data-hotel-iva-orig-text")).toBe(false);
+      }
+    }
+  });
+
+  it("restores a stale cart deposit adjustment without changing its native source", () => {
+    document.body.innerHTML = `<aside class="cb-shopping-cart">${bookingCart()}</aside>`;
+    const depositNode = Array.from(document.querySelectorAll(".cb-line"))
+      .find(el => el.textContent?.includes("Deposit"))!
+      .querySelector<HTMLElement>("[data-hotel-currency-converted]")!;
+    depositNode.dataset.hotelIvaOrigText = "$60.50";
+    depositNode.textContent = "$50.00";
+    applyCloudbedsVatDisplay(false);
+    expect(valueByLabel("Deposit")).toBe("$60.50");
+    expect(depositNode.dataset.hotelIvaOrigText).toBeUndefined();
+    expect(valueByLabel("Total")).toBe("$100.00");
+  });
+
+  it("keeps the existing gross Pay now behavior even inside a cart", () => {
+    document.body.innerHTML = `<aside class="cb-shopping-cart">${bookingCart().replace("Deposit", "Pay now")}</aside>`;
+    applyCloudbedsVatDisplay(false);
+    expect(valueByLabel("Pay now")).toBe("$50.00");
+    applyCloudbedsVatDisplay(true);
+    expect(valueByLabel("Pay now")).toBe("$60.50");
+  });
+
   it("drops the total to the subtotal and scales the deposit when abroad", () => {
     document.body.innerHTML = bookingCart();
 
