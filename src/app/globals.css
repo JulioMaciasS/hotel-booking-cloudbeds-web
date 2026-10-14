@@ -186,6 +186,64 @@ body {
   width: 100%;
 }
 
+/* Landing date bar only: preserve Cloudbeds' controls, events and portaled
+   calendar. Stable test IDs avoid depending on generated vendor class names. */
+@media (max-width: 767px) {
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker"] > .chakra-stack {
+    padding: 0 !important;
+    gap: 12px !important;
+  }
+
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker-date-picker"] {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr);
+    align-items: center;
+    gap: 4px !important;
+    height: auto !important;
+    min-height: 56px;
+    width: 100%;
+  }
+
+  .hotel-home cb-property-date-picker :is(
+    [data-testid="property-date-picker-date-picker-checkin-input"],
+    [data-testid="property-date-picker-date-picker-checkout-input"]
+  ) {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 56px !important;
+    height: auto !important;
+    padding: 10px 6px !important;
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+    white-space: normal !important;
+  }
+
+  .hotel-home cb-property-date-picker :is(
+    [data-testid="property-date-picker-date-picker-checkin-input"],
+    [data-testid="property-date-picker-date-picker-checkout-input"]
+  ) p {
+    margin: 0;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    white-space: normal !important;
+  }
+
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker-search-button"] {
+    width: 100% !important;
+    min-height: 52px !important;
+    height: auto !important;
+    padding: 12px 16px !important;
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    white-space: normal !important;
+  }
+
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker-search-button"] .cb-text {
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+}
+
 [data-hotel-currency-converted="true"] {
   color: inherit;
   white-space: nowrap;
