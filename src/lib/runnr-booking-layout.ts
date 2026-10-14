@@ -21,12 +21,21 @@ export function syncRunnrBookingLayout(documentRef: Document = document) {
   if (!booking || !mobile) {
     // The landing picker portals its calendar outside the booking route.
     // Preserve the normal large launcher there, except while that calendar
-    // owns the mobile viewport. Closing it restores the same mounted widget.
+    // owns the mobile viewport or it covers a native date/search control.
     const landingCalendarOpen = mobile &&
       documentRef.querySelector("cb-property-date-picker") !== null &&
       Array.from(documentRef.querySelectorAll('[data-be-popover="true"][role="dialog"]'))
         .some(element => element.querySelector('[data-testid="calendar"]') && visible(element));
-    if (landingCalendarOpen) {
+    const launcherBox = mobile ? documentRef.querySelector(LAUNCHER)?.getBoundingClientRect() : null;
+    const landingControlCovered = launcherBox && Array.from(documentRef.querySelectorAll(
+      ".hotel-home cb-property-date-picker button",
+    )).some(element => {
+      if (!visible(element)) return false;
+      const rect = element.getBoundingClientRect();
+      return rect.left < launcherBox.right && rect.right > launcherBox.left &&
+        rect.top < launcherBox.bottom && rect.bottom > launcherBox.top;
+    });
+    if (landingCalendarOpen || landingControlCovered) {
       if (root.dataset.runnrBookingBlocked !== "true") root.dataset.runnrBookingBlocked = "true";
     } else {
       delete root.dataset.runnrBookingBlocked;

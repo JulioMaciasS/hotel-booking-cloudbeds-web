@@ -24,6 +24,24 @@ afterEach(() => {
 });
 
 describe("Runnr mobile booking layout", () => {
+  it("protects the landing date/search controls and restores the unchanged widget when clear", () => {
+    document.querySelector("main")!.className = "hotel-home";
+    document.querySelector("main")!.insertAdjacentHTML("beforeend", '<cb-property-date-picker><button id="landing-search">Search</button></cb-property-date-picker>');
+    box("#landing-search", rect(312, 710, 64, 52));
+    const original = document.body.innerHTML;
+    syncRunnrBookingLayout();
+    expect(document.documentElement.dataset.runnrBookingBlocked).toBe("true");
+    expect(document.body.innerHTML).toBe(original);
+    document.querySelector<HTMLElement>(".wdc-launcher")!.style.visibility = "hidden";
+    box("#landing-search", rect(20, 100, 280, 52));
+    syncRunnrBookingLayout();
+    expect(document.documentElement.dataset.runnrBookingBlocked).toBeUndefined();
+    box("#landing-search", rect(312, 710, 64, 52));
+    vi.stubGlobal("matchMedia", vi.fn(() => ({ matches: false })));
+    syncRunnrBookingLayout();
+    expect(document.documentElement.dataset.runnrBookingBlocked).toBeUndefined();
+  });
+
   it("hides the landing launcher for its portaled calendar and restores it on close", () => {
     document.querySelector("main")!.className = "hotel-home";
     document.querySelector("main")!.insertAdjacentHTML("beforeend", '<cb-property-date-picker></cb-property-date-picker>');
