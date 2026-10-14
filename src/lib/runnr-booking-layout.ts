@@ -2,6 +2,7 @@ const LAUNCHER = "#runnrai-container .wdc-launcher";
 const CART_ACTION = '[data-testid="shopping-cart-banner-confirm-button"]';
 const CONTROL_SELECTOR =
   'button, a, input, select, textarea, [role="button"], [role="combobox"], [role="checkbox"], [role="radio"], [tabindex="0"]';
+const PROTECTED_SELECTOR = `${CONTROL_SELECTOR}, [data-hotel-currency-converted="true"], .cb-rate-plan-price, [data-testid="shopping-cart-subtotal"], [data-testid="shopping-cart-grand-total"]`;
 const MIN_GAP = 12;
 
 function visible(element: Element): boolean {
@@ -62,7 +63,7 @@ export function syncRunnrBookingLayout(documentRef: Document = document) {
     // Its box remains measurable while visibility:hidden, so it can recover
     // automatically after scrolling a covered native control out of the way.
     const box = launcher.getBoundingClientRect();
-    collision = Array.from(documentRef.querySelectorAll(CONTROL_SELECTOR)).some(element => {
+    collision = Array.from(documentRef.querySelectorAll(PROTECTED_SELECTOR)).some(element => {
       if (element.closest("#runnrai-container") || element.contains(launcher) || !visible(element)) return false;
       const rect = element.getBoundingClientRect();
       return rect.left < box.right && rect.right > box.left &&

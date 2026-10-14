@@ -77,6 +77,15 @@ describe("Runnr mobile booking layout", () => {
     expect(document.documentElement.dataset.runnrBookingBlocked).toBeUndefined();
   });
 
+  it("also protects displayed prices without changing their currency conversion", () => {
+    document.querySelector("main")!.insertAdjacentHTML("beforeend", '<span id="total" data-hotel-currency-converted="true" data-original-currency-text="188,496.00">$123.20</span>');
+    box("#total", rect(320, 710, 60, 24));
+    const original = document.getElementById("total")!.outerHTML;
+    syncRunnrBookingLayout();
+    expect(document.documentElement.dataset.runnrBookingBlocked).toBe("true");
+    expect(document.getElementById("total")!.outerHTML).toBe(original);
+  });
+
   it("suppresses the launcher while editing booking fields, not when typing in chat", () => {
     document.querySelector(".reservation-page")!.insertAdjacentHTML("beforeend", '<input id="guest-name" />');
     (document.getElementById("guest-name") as HTMLInputElement).focus();
