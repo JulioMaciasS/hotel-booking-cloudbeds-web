@@ -335,6 +335,29 @@ body {
     .wdc-launcher {
     bottom: calc(6.25rem + env(safe-area-inset-bottom)) !important;
   }
+
+  /* booking-chat-layout-v1: leave marketing pages and desktop unchanged. */
+  body:has(.reservation-page) #runnrai-container .wdc-launcher {
+    bottom: max(var(--runnr-booking-bottom, 96px), calc(1rem + env(safe-area-inset-bottom))) !important;
+    width: 48px !important;
+    min-width: 48px !important;
+    height: 48px !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    border-radius: 50% !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  body:has(.reservation-page) #runnrai-container .wdc-launcher--text {
+    display: none !important;
+  }
+
+  html[data-runnr-booking-blocked="true"] #runnrai-container .wdc-launcher {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
 }
 
 body:has([data-runnr-overlay="true"]) #runnrai-container .wdc-launcher,

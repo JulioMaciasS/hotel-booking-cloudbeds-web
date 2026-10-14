@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Script from "next/script";
 import { useTranslations } from "next-intl";
+import { watchRunnrBookingLayout } from "@/lib/runnr-booking-layout";
 import {
   MAP_EXPANDED_EVENT,
   type MapExpandedEventDetail,
@@ -22,6 +23,8 @@ export function RunnrChatWidget() {
   const title = t("title");
   const button = t("button");
   const placeholder = t("placeholder");
+
+  useEffect(() => watchRunnrBookingLayout(), []);
 
   useEffect(() => {
     const syncCopy = () => {
