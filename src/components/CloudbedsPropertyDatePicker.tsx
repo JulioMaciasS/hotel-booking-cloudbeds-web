@@ -15,6 +15,14 @@ interface CloudbedsPropertyDatePickerProps {
 }
 
 const subscribeToOrigin = () => () => {};
+const mobileLayoutQuery = "(max-width: 767px)";
+const subscribeToMobileLayout = (onChange: () => void) => {
+  const media = window.matchMedia(mobileLayoutQuery);
+  media.addEventListener("change", onChange);
+  return () => media.removeEventListener("change", onChange);
+};
+const getMobileLayout = () => window.matchMedia(mobileLayoutQuery).matches;
+const getServerMobileLayout = () => false;
 
 /**
  * Cloudbeds requires `custom-url` to be fully qualified. Build it in the
@@ -28,6 +36,11 @@ export function CloudbedsPropertyDatePicker({
   locale,
   propertyCode,
 }: CloudbedsPropertyDatePickerProps) {
+  const mobileLayout = useSyncExternalStore(
+    subscribeToMobileLayout,
+    getMobileLayout,
+    getServerMobileLayout,
+  );
   const customUrl = useSyncExternalStore(
     subscribeToOrigin,
     () => {
@@ -50,7 +63,7 @@ export function CloudbedsPropertyDatePicker({
       data-testid="cloudbeds-date-picker"
       island={island}
       lang={getCloudbedsLanguage(locale)}
-      layout="horizontal"
+      layout={mobileLayout ? "vertical" : "horizontal"}
       open-in-new-tab="false"
       property-code={propertyCode}
     />
