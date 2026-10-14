@@ -19,7 +19,18 @@ export function syncRunnrBookingLayout(documentRef: Document = document) {
   const booking = documentRef.querySelector(".reservation-page");
   const mobile = windowRef.matchMedia("(max-width: 1023px)").matches;
   if (!booking || !mobile) {
-    delete root.dataset.runnrBookingBlocked;
+    // The landing picker portals its calendar outside the booking route.
+    // Preserve the normal large launcher there, except while that calendar
+    // owns the mobile viewport. Closing it restores the same mounted widget.
+    const landingCalendarOpen = mobile &&
+      documentRef.querySelector("cb-property-date-picker") !== null &&
+      Array.from(documentRef.querySelectorAll('[data-be-popover="true"][role="dialog"]'))
+        .some(element => element.querySelector('[data-testid="calendar"]') && visible(element));
+    if (landingCalendarOpen) {
+      if (root.dataset.runnrBookingBlocked !== "true") root.dataset.runnrBookingBlocked = "true";
+    } else {
+      delete root.dataset.runnrBookingBlocked;
+    }
     root.style.removeProperty("--runnr-booking-bottom");
     return;
   }

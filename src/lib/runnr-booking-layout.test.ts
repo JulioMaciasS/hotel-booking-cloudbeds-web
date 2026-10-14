@@ -24,6 +24,36 @@ afterEach(() => {
 });
 
 describe("Runnr mobile booking layout", () => {
+  it("hides the landing launcher for its portaled calendar and restores it on close", () => {
+    document.querySelector("main")!.className = "hotel-home";
+    document.querySelector("main")!.insertAdjacentHTML("beforeend", '<cb-property-date-picker></cb-property-date-picker>');
+    document.body.insertAdjacentHTML("beforeend", '<div id="landing-calendar" data-be-popover="true" role="dialog"><div data-testid="calendar"></div><button>Apply</button></div>');
+    box("#landing-calendar", rect(0, 0, 390, 844));
+    const launcher = document.querySelector(".wdc-launcher")!;
+    const original = launcher.outerHTML;
+    syncRunnrBookingLayout();
+    expect(document.documentElement.dataset.runnrBookingBlocked).toBe("true");
+    expect(document.documentElement.style.getPropertyValue("--runnr-booking-bottom")).toBe("");
+    expect(launcher.outerHTML).toBe(original);
+    document.getElementById("landing-calendar")!.hidden = true;
+    syncRunnrBookingLayout();
+    expect(document.documentElement.dataset.runnrBookingBlocked).toBeUndefined();
+    expect(launcher.isConnected).toBe(true);
+  });
+
+  it("keeps the landing button unchanged for unrelated popovers and on desktop", () => {
+    document.querySelector("main")!.className = "hotel-home";
+    document.querySelector("main")!.insertAdjacentHTML("beforeend", '<cb-property-date-picker></cb-property-date-picker>');
+    document.body.insertAdjacentHTML("beforeend", '<div id="landing-calendar" data-be-popover="true" role="dialog"><div data-testid="unrelated"></div></div>');
+    box("#landing-calendar", rect(0, 0, 390, 844));
+    syncRunnrBookingLayout();
+    expect(document.documentElement.dataset.runnrBookingBlocked).toBeUndefined();
+    document.querySelector('[data-testid="unrelated"]')!.setAttribute("data-testid", "calendar");
+    vi.stubGlobal("matchMedia", vi.fn(() => ({ matches: false })));
+    syncRunnrBookingLayout();
+    expect(document.documentElement.dataset.runnrBookingBlocked).toBeUndefined();
+  });
+
   it("measures the entire native cart banner without changing native controls or chat", () => {
     const original = document.body.innerHTML;
     syncRunnrBookingLayout();
