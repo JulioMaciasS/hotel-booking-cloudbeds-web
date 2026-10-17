@@ -3,20 +3,25 @@ import { REVIEW_SUMMARY } from "@/lib/review-summary";
 import { siteUrl } from "@/i18n/metadata";
 
 /**
- * schema.org `LodgingBusiness` for the hotel. Powers rich results in Google
- * (star rating, address, price band, contact). The aggregate rating is a
+ * Hotel identity, shared across translations under one stable @id.
+ * The aggregate rating is a
  * review-count-weighted blend of Google, Booking and Expedia, normalised to a
  * 5-point scale. The source figures live in `site-data.ts` and the exact result
  * is also displayed on the page.
  */
-export function lodgingBusinessJsonLd() {
+export function lodgingBusinessJsonLd(description: string) {
   return {
     "@context": "https://schema.org",
-    "@type": "LodgingBusiness",
+    "@type": "Hotel",
     "@id": `${siteUrl}/#hotel`,
     name: HOTEL.name,
+    alternateName: "Hotel Los Lagos",
+    description,
     url: siteUrl,
     image: `${siteUrl}/opengraph-image`,
+    logo: `${siteUrl}/opengraph-image`,
+    hasMap: HOTEL.googleMapsUrl,
+    numberOfRooms: HOTEL.rooms,
     telephone: HOTEL.phone,
     email: HOTEL.email,
     priceRange: "$$",
@@ -26,7 +31,7 @@ export function lodgingBusinessJsonLd() {
       streetAddress: HOTEL.street,
       addressLocality: "El Calafate",
       addressRegion: "Santa Cruz",
-      postalCode: "Z9405",
+      postalCode: HOTEL.postalCode,
       addressCountry: "AR",
     },
     geo: {
@@ -43,7 +48,7 @@ export function lodgingBusinessJsonLd() {
       bestRating: "5",
       worstRating: "1",
     },
-    sameAs: [HOTEL.expediaUrl, HOTEL.bookingUrl, HOTEL.googleMapsUrl],
+    sameAs: [HOTEL.expediaUrl, HOTEL.bookingUrl, HOTEL.googleMapsUrl, HOTEL.tripadvisorUrl],
   };
 }
 

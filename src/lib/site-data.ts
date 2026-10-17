@@ -28,7 +28,8 @@ import fitzRoyImage from "@assets/old-web-images/red-beech-trees-opposite-fitzro
 export const HOTEL = {
   name: "Los Lagos Hotel",
   street: "25 de Mayo 220",
-  cityLine: "Z9405 El Calafate, Santa Cruz, Argentina",
+  postalCode: "Z9405ACF",
+  cityLine: "Z9405ACF El Calafate, Santa Cruz, Argentina",
   phone: "+54 9 2902 417738",
   phoneHref: "tel:+5492902417738",
   whatsapp: "+54 9 2902 417738",
@@ -45,7 +46,7 @@ export const HOTEL = {
   checkOut: "10:00",
   rooms: 14,
   googleMapsUrl:
-    "https://www.google.com/maps/place/Hotel+Los+Lagos/@-50.3361799,-72.2666852,17z/data=!4m11!3m10!1s0xbdbb0cbecdfaad93:0xabbbd7fd7dbc58e5!5m4!1s2026-07-23!2i5!4m1!1i2!8m2!3d-50.3357896!4d-72.2666423!16s%2Fg%2F1tdx0s_r?entry=tts&g_ep=EgoyMDI2MDYwMi4wIPu8ASoASAFQAw%3D%3D&skid=caa95aa2-6c5f-485c-916b-f122cb914a77",
+    "https://www.google.com/maps?cid=12374721884866762981",
   tripadvisorUrl:
     "https://www.tripadvisor.es/Hotel_Review-g312851-d1883505-Reviews-Los_Lagos_Hotel-El_Calafate_Province_of_Santa_Cruz_Patagonia.html",
   bookingUrl: "https://www.booking.com/hotel/ar/los-lagos-el-calafate.es.html",

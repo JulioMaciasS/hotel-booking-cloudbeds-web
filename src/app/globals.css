@@ -184,14 +184,18 @@ body {
 .hotel-home cb-property-date-picker {
   display: block;
   width: 100%;
+  container: landing-date-picker / inline-size;
 }
 
 /* Landing date bar only: preserve Cloudbeds' controls, events and portaled
    calendar. Stable test IDs avoid depending on generated vendor class names. */
-@media (max-width: 767px) {
+@container landing-date-picker (max-width: 1023px) {
   .hotel-home cb-property-date-picker [data-testid="property-date-picker"] > .chakra-stack {
     padding: 0 !important;
     gap: 12px !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    min-width: 0 !important;
   }
 
   .hotel-home cb-property-date-picker [data-testid="property-date-picker-date-picker"] {
@@ -202,6 +206,28 @@ body {
     height: auto !important;
     min-height: 56px;
     width: 100%;
+  }
+
+  /* The native row has FOUR children: calendar, arrival, arrow, departure.
+     Hide only the decorative calendar and place the actual controls explicitly. */
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker-date-picker"] > :has(> .calendar-icon) {
+    display: none !important;
+  }
+
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker-date-picker-checkin-input"] {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker-date-picker"] > :has(> .arrow-icon) {
+    grid-column: 2;
+    grid-row: 1;
+    justify-content: center;
+  }
+
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker-date-picker-checkout-input"] {
+    grid-column: 3;
+    grid-row: 1;
   }
 
   .hotel-home cb-property-date-picker :is(
@@ -216,6 +242,16 @@ body {
     font-size: 16px !important;
     line-height: 1.35 !important;
     white-space: normal !important;
+  }
+
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker-date-picker"] .date-field-content {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* This native sizing aid must not impose its desktop width on compact fields. */
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker-date-picker"] .date-field-width-reference {
+    display: none !important;
   }
 
   .hotel-home cb-property-date-picker :is(
@@ -241,6 +277,22 @@ body {
   .hotel-home cb-property-date-picker [data-testid="property-date-picker-search-button"] .cb-text {
     font-size: inherit !important;
     line-height: inherit !important;
+  }
+}
+
+@container landing-date-picker (max-width: 340px) {
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker-date-picker"] {
+    grid-template-columns: minmax(0, 1fr);
+    border-radius: 20px !important;
+  }
+
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker-date-picker"] > :has(> .arrow-icon) {
+    display: none !important;
+  }
+
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker-date-picker-checkout-input"] {
+    grid-column: 1;
+    grid-row: 2;
   }
 }
 

@@ -55,7 +55,7 @@ export default async function HomePage({
 
   return (
     <main className="hotel-home bg-[#f7f3ea] text-[#1f2b27]">
-      <JsonLd data={lodgingBusinessJsonLd()} />
+      <JsonLd data={lodgingBusinessJsonLd(t("hero.subtitle"))} />
       <Suspense fallback={null}>
         <BookingIntentHandler />
       </Suspense>
