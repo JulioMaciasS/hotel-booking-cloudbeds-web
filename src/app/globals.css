@@ -190,6 +190,21 @@ body {
 /* Landing date bar only: preserve Cloudbeds' controls, events and portaled
    calendar. Stable test IDs avoid depending on generated vendor class names. */
 @container landing-date-picker (max-width: 1023px) {
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker"] {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  /* Horizontal Cloudbeds markup has no .chakra-stack: the search button is
+     a direct card child. Keep both native markup variants full-width. */
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker"] > div,
+  .hotel-home cb-property-date-picker [data-testid="property-date-picker"] div:has(> [data-testid="property-date-picker-date-picker"]) {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
   .hotel-home cb-property-date-picker [data-testid="property-date-picker"] > .chakra-stack {
     padding: 0 !important;
     gap: 12px !important;

@@ -21,20 +21,22 @@ function containerRules(width: number) {
   return css.slice(start + 1, end - 1);
 }
 
-function renderAtContainerWidth(width: number) {
+function renderAtContainerWidth(width: number, horizontal = false) {
   document.body.innerHTML = `
     <style>${width <= 1023 ? containerRules(1023) : ""}
       ${width <= 340 ? containerRules(340) : ""}</style>
     <main class="hotel-home"><cb-property-date-picker>
-      <div data-testid="property-date-picker"><div class="chakra-stack">
+      <div data-testid="property-date-picker"><div class="${horizontal ? "native-horizontal-wrapper" : "chakra-stack"}">
         <div data-testid="property-date-picker-date-picker">
           <div id="calendar-decoration"><span class="calendar-icon"></span></div>
           <button data-testid="property-date-picker-date-picker-checkin-input"><span class="date-field-content"><p>Check-in</p><span class="date-field-width-reference"></span></span></button>
           <div id="arrow-decoration"><span class="arrow-icon"></span></div>
           <button data-testid="property-date-picker-date-picker-checkout-input"><span class="date-field-content"><p>Check-out</p></span></button>
         </div>
+        ${horizontal ? "</div>" : ""}
         <button data-testid="property-date-picker-search-button">Consultar disponibilidade</button>
-      </div></div>
+        ${horizontal ? "" : "</div>"}
+      </div>
     </cb-property-date-picker></main>
     <cb-immersive-experience><button data-testid="property-date-picker-date-picker-checkin-input">Booking flow</button></cb-immersive-experience>`;
   const row = document.querySelector('[data-testid="property-date-picker-date-picker"]')!;
@@ -77,5 +79,16 @@ describe("Landing date picker compact presentation", () => {
     const { arrival } = renderAtContainerWidth(1024);
     expect(getComputedStyle(arrival).gridColumn).toBe("");
     expect(getComputedStyle(arrival).minHeight).not.toBe("56px");
+  });
+
+  it("stacks the search button in the horizontal tablet markup without relying on Chakra classes", () => {
+    renderAtContainerWidth(900, true);
+    const card = document.querySelector('[data-testid="property-date-picker"]')!;
+    expect(card.querySelector(".chakra-stack")).toBeNull();
+    expect(getComputedStyle(card).display).toBe("flex");
+    expect(getComputedStyle(card).flexDirection).toBe("column");
+    expect(getComputedStyle(card.children[0]).width).toBe("100%");
+    expect(card.children[1].getAttribute("data-testid")).toBe("property-date-picker-search-button");
+    expect(getComputedStyle(card.children[1]).width).toBe("100%");
   });
 });
